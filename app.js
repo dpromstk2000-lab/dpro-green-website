@@ -52,8 +52,43 @@
     });
   }
 
+  const TRACKING_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+
+  function captureTracking() {
+    try {
+      const params = new URLSearchParams(location.search);
+      const saved = JSON.parse(sessionStorage.getItem("greenWebTracking") || "{}");
+      TRACKING_KEYS.forEach((key) => {
+        const value = params.get(key);
+        if (value) saved[key] = value.slice(0, 200);
+      });
+      if (!saved.landingPage) saved.landingPage = location.href.slice(0, 1500);
+      sessionStorage.setItem("greenWebTracking", JSON.stringify(saved));
+    } catch { /* sessionStorage unavailable */ }
+  }
+
+  function contactTarget() {
+    const target = resolveSiteLink(links.contact || "contact.html");
+    if (!target || /^(?:https?:)?\/\//i.test(target) || target.startsWith("#")) return target;
+    try {
+      const url = new URL(target, location.href);
+      const current = new URLSearchParams(location.search);
+      let saved = {};
+      try { saved = JSON.parse(sessionStorage.getItem("greenWebTracking") || "{}"); } catch { saved = {}; }
+      TRACKING_KEYS.forEach((key) => {
+        const value = current.get(key) || saved[key];
+        if (value) url.searchParams.set(key, value);
+      });
+      const page = document.body?.dataset.page || "home";
+      url.searchParams.set("from", page);
+      return `${url.pathname.split("/").pop()}${url.search}${url.hash}`;
+    } catch {
+      return target;
+    }
+  }
+
   function setContactLinks() {
-    const target = resolveSiteLink(links.contact || "index.html#contact");
+    const target = contactTarget();
     qsa("[data-link='contact']").forEach((element) => {
       element.setAttribute("href", target);
     });
@@ -317,6 +352,7 @@
   }
 
   function init() {
+    captureTracking();
     applySiteData();
     applyFeatureFlags();
     setContactLinks();
