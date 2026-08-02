@@ -1,367 +1,365 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex,nofollow">
-  <meta name="theme-color" content="#173d2b">
-  <meta name="description" content="法人・店舗・医療・福祉施設向けの観葉植物レンタルと定期メンテナンス。設置場所に合わせた提案から定期管理までご相談いただけます。">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="観葉植物レンタル・定期メンテナンス｜営業デモ">
-  <meta property="og:description" content="植物のある心地よい空間を、設置から定期メンテナンスまで。">
-  <title>観葉植物レンタル・定期メンテナンス｜営業デモ</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
-  <script src="config.js" defer></script>
-  <script src="app.js" defer></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="noindex,nofollow" name="robots"/>
+<meta content="#173d2b" name="theme-color"/>
+<meta content="法人・店舗・医療・福祉施設向けの観葉植物レンタルと定期メンテナンス。設置場所に合わせた提案から定期管理までご相談いただけます。" name="description"/>
+<meta content="website" property="og:type"/>
+<meta content="観葉植物レンタル・定期メンテナンス｜営業デモ" property="og:title"/>
+<meta content="植物のある心地よい空間を、設置から定期メンテナンスまで。" property="og:description"/>
+<title>観葉植物レンタル・定期メンテナンス｜営業デモ</title>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="styles.css" rel="stylesheet"/>
+<script defer="" src="config.js"></script>
+<script defer="" src="app.js"></script>
 </head>
-<body data-site-root="." data-page="home">
-  <a class="skip-link" href="#main">本文へ移動</a>
-
-  <div class="demo-banner" data-demo-only>営業デモ｜店舗名・対応地域・掲載画像は公開前に差し替えます</div>
-
-  <div class="top-assist">
-    <div class="container">
-      <span>主な対応地域：<strong data-site-region>[主な対応地域]</strong></span>
-      <div class="top-assist__links">
-        <a data-portal-action hidden>ご利用中のお客様</a>
-        <a data-link="privacy" href="#privacy-note">プライバシーについて</a>
-      </div>
-    </div>
-  </div>
-
-  <header class="site-header" data-site-header>
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="トップページへ">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span class="brand-copy">
-          <strong><span data-site-name>地域の観葉植物レンタル専門店</span><span class="demo-badge" data-demo-only>DEMO</span></strong>
-          <small data-service-name>観葉植物レンタル・定期メンテナンス</small>
-        </span>
-      </a>
-
-      <nav class="desktop-nav" aria-label="メインナビゲーション">
-        <a href="service.html" data-page-link="service">サービス</a>
-        <a href="cases.html" data-page-link="cases" data-feature="show_case_studies">設置イメージ</a>
-        <a href="flow.html" data-page-link="flow">ご利用の流れ</a>
-        <a href="maintenance.html" data-page-link="maintenance">メンテナンス</a>
-        <a href="area.html" data-page-link="area">対応地域</a>
-        <a href="faq.html" data-page-link="faq">FAQ</a>
-      </nav>
-
-      <div class="header-actions">
-        <button class="btn btn--secondary btn--small" type="button" data-line-action data-feature="show_line_consultation"><span data-line-label>LINEで写真相談</span></button>
-        <a class="btn btn--primary btn--small" data-link="contact" href="contact.html">無料で設置相談</a>
-      </div>
-
-      <button class="menu-button" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobile-menu" data-menu-button>
-        <span class="menu-button__lines" aria-hidden="true"><span></span><span></span><span></span></span>
-      </button>
-    </div>
-  </header>
-
-  <button class="menu-backdrop" type="button" aria-label="メニューを閉じる" data-menu-backdrop hidden></button>
-  <aside class="mobile-menu" id="mobile-menu" aria-hidden="true" data-mobile-menu>
-    <nav class="mobile-menu__nav" aria-label="スマホメニュー">
-      <a href="service.html" data-page-link="service">サービス</a>
-      <a href="cases.html" data-page-link="cases" data-feature="show_case_studies">設置イメージ</a>
-      <a href="flow.html" data-page-link="flow">ご利用の流れ</a>
-      <a href="maintenance.html" data-page-link="maintenance">メンテナンス</a>
-      <a href="area.html" data-page-link="area">対応地域</a>
-      <a href="faq.html" data-page-link="faq">よくある質問</a>
-      <a data-portal-action hidden>ご利用中のお客様</a>
-    </nav>
-    <div class="mobile-menu__actions">
-      <button class="btn btn--secondary" type="button" data-line-action data-feature="show_line_consultation"><span data-line-label>LINEで写真相談</span></button>
-      <a class="btn btn--primary" data-link="contact" href="contact.html">無料で設置相談する</a>
-    </div>
-    <p class="mobile-menu__note">電話番号・LINE URL・お客様画面URLは、確認済みの情報だけを公開します。</p>
-  </aside>
-
-  <main id="main">
-    <section class="hero" id="top">
-      <div class="container hero-inner">
-        <div class="hero-copy" data-reveal>
-          <p class="eyebrow"><span data-site-region>[主な対応地域]</span>の法人・店舗・施設へ</p>
-          <h1>植物のある心地よい空間を、<br><span>設置から定期管理まで。</span></h1>
-          <p class="hero-lead">オフィス・店舗・クリニック・福祉施設へ、環境に合わせた観葉植物をご提案します。給水や剪定などの定期メンテナンスもまとめてお任せいただけます。</p>
-          <div class="hero-actions">
-            <a class="btn btn--primary" data-link="contact" href="contact.html">無料で設置相談する <span class="btn__arrow" aria-hidden="true">→</span></a>
-            <button class="btn btn--secondary" type="button" data-line-action data-feature="show_line_consultation"><span data-line-label>LINEで写真相談</span></button>
-          </div>
-          <ul class="hero-meta" aria-label="サービスの特徴">
-            <li>法人・店舗向け</li>
-            <li>設置場所から提案</li>
-            <li>定期訪問で管理</li>
-          </ul>
-        </div>
-
-        <figure class="hero-media" data-reveal>
-          <div class="hero-media__frame">
-            <img src="hero-office.svg" alt="明るいオフィスに観葉植物を配置した設置イメージ" width="960" height="640">
-            <div class="hero-float" data-feature="show_photo_inquiry">
-              <span class="hero-float__icon" aria-hidden="true">写</span>
-              <span><strong>写真から相談できます</strong><small>置きたい場所が分かれば十分です</small></span>
-            </div>
-          </div>
-          <figcaption class="hero-note">設置イメージ｜実際の導入事例ではありません。</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <div class="audience-strip" aria-label="主な対象施設">
-      <div class="container">
-        <ul class="audience-list">
-          <li>オフィス・事務所</li>
-          <li>店舗・サロン</li>
-          <li>病院・クリニック</li>
-          <li>福祉施設・共用部</li>
-        </ul>
-      </div>
-    </div>
-
-    <section class="section section--canvas" aria-labelledby="problem-title">
-      <div class="container">
-        <div class="section-heading" data-reveal>
-          <p class="section-label">Your concerns</p>
-          <h2 class="section-title" id="problem-title">植物を置きたい。でも、管理まで続けられるか心配。</h2>
-          <p class="section-lead">設置する植物が決まっていなくても大丈夫です。空間と運用のお悩みを確認し、無理のない方法を一緒に考えます。</p>
-        </div>
-        <div class="problem-grid">
-          <article class="problem-card" data-reveal><span class="problem-card__number">CONCERN 01</span><h3>水やりや手入れが続かない</h3><p>担当者が変わっても、植物の状態を保てる管理方法を相談したい。</p></article>
-          <article class="problem-card" data-reveal><span class="problem-card__number">CONCERN 02</span><h3>どの植物が合うか分からない</h3><p>日当たり、空調、人の動線に合う種類や鉢の大きさを選びたい。</p></article>
-          <article class="problem-card" data-reveal><span class="problem-card__number">CONCERN 03</span><h3>状態が悪くなった時が不安</h3><p>枯葉や害虫など、気になる変化が出た時に相談できる相手がほしい。</p></article>
-          <article class="problem-card" data-reveal><span class="problem-card__number">CONCERN 04</span><h3>受付や待合を明るくしたい</h3><p>圧迫感を出さず、清潔で自然な印象を空間へ加えたい。</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="reason-title">
-      <div class="container">
-        <div class="section-heading section-heading--center" data-reveal>
-          <p class="section-label">Why choose us</p>
-          <h2 class="section-title" id="reason-title">設置前から、設置後まで。相談先をひとつに。</h2>
-          <p class="section-lead">植物を置くことだけでなく、日々の管理と連絡のしやすさまで含めて支えます。</p>
-        </div>
-        <div class="reason-grid">
-          <article class="reason-card" data-reveal><span class="reason-card__index">01 / PROPOSAL</span><div class="reason-card__icon"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M12 4V2m0 20v-2m8-8h2M2 12h2m13.7-5.7 1.4-1.4M4.9 19.1l1.4-1.4m11.4 0 1.4 1.4M4.9 4.9l1.4 1.4M17 12a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>設置場所に合わせた提案</h3><p>明るさ、広さ、空調、動線を確認し、空間に合う植物と配置をご提案します。</p></article>
-          <article class="reason-card" data-reveal><span class="reason-card__index">02 / VISIT</span><div class="reason-card__icon"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M12 3s5 5.1 5 9a5 5 0 0 1-10 0c0-3.9 5-9 5-9Zm-2.6 9.4c.2 1.4 1 2.2 2.3 2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>定期訪問で状態を確認</h3><p>給水、葉の清掃、剪定など、必要な作業を定期訪問時に行います。</p></article>
-          <article class="reason-card" data-reveal><span class="reason-card__index">03 / SUPPORT</span><div class="reason-card__icon"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M7 7h11l-3-3m3 3-3 3M17 17H6l3 3m-3-3 3-3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>変化に合わせて相談</h3><p>植物の状態やレイアウト変更に応じ、交換や追加について相談できます。</p></article>
-          <article class="reason-card" data-reveal><span class="reason-card__index">04 / REPORT</span><div class="reason-card__icon"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M5 5h14v10H9l-4 4V5Zm4 4h6m-6 3h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>訪問内容を分かりやすく</h3><p>契約後は、訪問予定や作業内容をLINEから確認できる運用につなげます。</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--mint" id="services" aria-labelledby="service-title">
-      <div class="container">
-        <div class="service-intro" data-reveal>
-          <div class="section-heading">
-            <p class="section-label">Services</p>
-            <h2 class="section-title" id="service-title">観葉植物のことを、まとめて任せられます。</h2>
-            <p class="section-lead">初めて導入する場所も、すでに植物がある場所も、状況を確認してご案内します。</p>
-          </div>
-          <div class="service-intro__note">植物の種類、鉢数、設置位置が決まっていなくても相談できます。</div>
-        </div>
-        <div class="service-grid">
-          <article class="service-card" data-reveal><div class="service-card__icon"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M5 19c5-1 10-5 12-14 2 8-2 14-8 14H5Zm4 0c0-5 2-8 6-11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>定期観葉植物レンタル</h3><p>空間の条件と雰囲気に合わせ、植物と鉢を組み合わせてご提案します。</p><span class="service-card__tag">設置＋定期管理</span></article>
-          <article class="service-card" data-reveal><div class="service-card__icon"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M4 21V5h10v16M8 9h2m-2 4h2m-2 4h2m6 4V10h4v11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>オフィス・店舗への設置</h3><p>受付、執務スペース、エントランスなど、利用目的に合う配置を考えます。</p><span class="service-card__tag">法人・店舗向け</span></article>
-          <article class="service-card" data-reveal><div class="service-card__icon"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M5 21V6h14v15M9 3h6v6H9V3Zm3 1v4m-2-2h4M8 13h2m4 0h2m-8 4h2m4 0h2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>病院・福祉施設への設置</h3><p>待合室や共用部へ、動線や清掃のしやすさに配慮した設置を検討します。</p><span class="service-card__tag">医療・福祉施設向け</span></article>
-          <article class="service-card" data-reveal><div class="service-card__icon"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="m14 6 4 4M3 21l7-7m5-9 4-2 2 2-2 4-4 1-6 6-3-3 6-6 1-4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>定期メンテナンス</h3><p>給水、葉の清掃、剪定、枯葉除去、植物状態の確認などを行います。</p><span class="service-card__tag">訪問管理</span></article>
-          <article class="service-card" data-feature="show_outdoor_plants" data-reveal><div class="service-card__icon"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M5 19c5-1 10-5 12-14 2 8-2 14-8 14H5Zm4 0c0-5 2-8 6-11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>屋外植物・プランター</h3><p>店舗前や施設周辺の植栽について、対応可否を確認してご案内します。</p></article>
-          <article class="service-card" data-feature="show_seasonal_service" data-reveal><div class="service-card__icon"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M12 4V2m0 20v-2m8-8h2M2 12h2m13.7-5.7 1.4-1.4M4.9 19.1l1.4-1.4m11.4 0 1.4 1.4M4.9 4.9l1.4 1.4M17 12a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>季節装飾</h3><p>季節に合わせた植物や装飾の相談を受け付けます。</p></article>
-          <article class="service-card" data-feature="show_spot_rental" data-reveal><div class="service-card__icon"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M4 21V5h10v16M8 9h2m-2 4h2m-2 4h2m6 4V10h4v11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>スポット利用</h3><p>イベントなど短期間の利用について、条件を確認してご案内します。</p></article>
-          <article class="service-card" data-feature="show_plant_disposal" data-reveal><div class="service-card__icon"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M7 7h11l-3-3m3 3-3 3M17 17H6l3 3m-3-3 3-3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>引取り・処分相談</h3><p>植物や鉢の引取りについて、対象と条件を確認します。</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="benefit-title">
-      <div class="container split split--media-right">
-        <figure class="split-media" data-reveal>
-          <img src="benefit-space.svg" alt="受付空間に観葉植物を配置した設置イメージ" width="960" height="720" loading="lazy">
-          <figcaption class="split-media__caption">設置イメージ｜公開前に確認済み写真へ差し替えます。</figcaption>
-        </figure>
-        <div data-reveal>
-          <p class="section-label">Benefits</p>
-          <h2 class="section-title" id="benefit-title">空間の印象と、植物管理の負担を一緒に整えます。</h2>
-          <p class="section-lead">見た目だけでなく、誰がどのように管理するかまで考えることで、導入後も続けやすい状態を目指します。</p>
-          <ul class="benefit-list">
-            <li><span class="benefit-list__check">✓</span><span><strong>空間の印象を自然に整える</strong><span>受付や待合など、来訪者の目に入りやすい場所を明るく見せます。</span></span></li>
-            <li><span class="benefit-list__check">✓</span><span><strong>担当者の管理負担を減らす</strong><span>定期訪問時に必要な手入れをまとめて行います。</span></span></li>
-            <li><span class="benefit-list__check">✓</span><span><strong>専門スタッフが状態を確認</strong><span>植物の変化を見ながら、必要な対応を相談します。</span></span></li>
-            <li><span class="benefit-list__check">✓</span><span><strong>変更や追加を相談しやすい</strong><span>レイアウト変更や増設時も、これまでの状況を踏まえて案内します。</span></span></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--canvas" id="cases" aria-labelledby="case-title" data-feature="show_case_studies">
-      <div class="container">
-        <div class="section-heading section-heading--center" data-reveal>
-          <p class="section-label">Installation image</p>
-          <h2 class="section-title" id="case-title">置きたい場所に近いイメージから考えられます。</h2>
-          <p class="section-lead">以下は営業デモ用の設置イメージです。実績写真・顧客名・効果数値は掲載していません。</p>
-        </div>
-        <div class="case-track">
-          <article class="case-card" data-reveal><div class="case-card__media"><img src="case-office.svg" alt="オフィス受付の観葉植物設置イメージ" width="960" height="640" loading="lazy"><span class="case-label">設置イメージ</span></div><div class="case-card__body"><span class="case-card__type">OFFICE</span><h3>オフィス受付</h3><p>来客を迎える場所へ、視界を遮りすぎない植物を配置する想定です。</p></div></article>
-          <article class="case-card" data-reveal><div class="case-card__media"><img src="case-clinic.svg" alt="クリニック待合室の観葉植物設置イメージ" width="960" height="640" loading="lazy"><span class="case-label">設置イメージ</span></div><div class="case-card__body"><span class="case-card__type">CLINIC</span><h3>クリニック待合室</h3><p>通路幅や清掃性に配慮しながら、やわらかな印象を加える想定です。</p></div></article>
-          <article class="case-card" data-reveal><div class="case-card__media"><img src="case-welfare.svg" alt="福祉施設共用部の観葉植物設置イメージ" width="960" height="640" loading="lazy"><span class="case-label">設置イメージ</span></div><div class="case-card__body"><span class="case-card__type">WELFARE</span><h3>福祉施設共用部</h3><p>利用者の動線を妨げない位置へ、安定感のある鉢を置く想定です。</p></div></article>
-          <article class="case-card" data-reveal><div class="case-card__media"><img src="case-store.svg" alt="店舗エントランスの観葉植物設置イメージ" width="960" height="640" loading="lazy"><span class="case-label">設置イメージ</span></div><div class="case-card__body"><span class="case-card__type">SHOP</span><h3>店舗エントランス</h3><p>店内の雰囲気と入口の視認性を考え、植物の高さや鉢を選ぶ想定です。</p></div></article>
-        </div>
-        <p class="case-disclaimer">本番公開では、掲載許可を確認した写真と説明だけを使用します。</p>
-      </div>
-    </section>
-
-    <section class="section" id="flow" aria-labelledby="flow-title">
-      <div class="container">
-        <div class="section-heading" data-reveal>
-          <p class="section-label">Flow</p>
-          <h2 class="section-title" id="flow-title">ご相談から、定期訪問までの流れ。</h2>
-          <p class="section-lead">最初から植物の種類や鉢数を決める必要はありません。設置場所を確認しながら順番に進めます。</p>
-        </div>
-        <div class="flow-grid">
-          <article class="flow-step" data-reveal><h3>お問い合わせ</h3><p>Web・LINEなどから相談内容をお送りください。</p></article>
-          <article class="flow-step" data-reveal><h3>設置場所の確認</h3><p>写真や現地確認で、明るさ・広さ・動線を確認します。</p></article>
-          <article class="flow-step" data-reveal><h3>植物・配置のご提案</h3><p>空間と管理方法に合う植物や鉢を検討します。</p></article>
-          <article class="flow-step" data-reveal><h3>搬入・設置</h3><p>決定した内容に沿って、植物を搬入し設置します。</p></article>
-          <article class="flow-step" data-reveal><h3>定期訪問</h3><p>契約内容に応じて訪問し、必要な手入れを行います。</p></article>
-          <article class="flow-step" data-reveal><h3>交換・追加相談</h3><p>状態やレイアウト変更に応じ、必要な対応を相談します。</p></article>
-          <article class="flow-step" data-reveal><h3>作業内容の確認</h3><p>訪問予定や作業報告を分かりやすく確認できる運用へつなげます。</p></article>
-        </div>
-        <div class="section-actions" data-reveal><a class="btn btn--primary" data-link="contact" href="contact.html">設置場所について相談する</a></div>
-      </div>
-    </section>
-
-    <section class="section section--mint" id="maintenance" aria-labelledby="maintenance-title">
-      <div class="container maintenance-layout">
-        <figure class="maintenance-media" data-reveal>
-          <img src="maintenance.svg" alt="観葉植物の葉を確認し手入れする作業イメージ" width="800" height="1000" loading="lazy">
-          <figcaption class="split-media__caption">作業イメージ｜店舗の実際の作業内容は公開前に確認します。</figcaption>
-        </figure>
-        <div data-reveal>
-          <p class="section-label">Maintenance</p>
-          <h2 class="section-title" id="maintenance-title">設置した後も、清潔で心地よい状態を続けます。</h2>
-          <p class="section-lead">訪問時に植物の状態を確認し、契約内容に沿って必要な手入れを行います。</p>
-          <div class="maintenance-grid" aria-label="主なメンテナンス内容">
-            <div class="maintenance-item"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M12 3s5 5.1 5 9a5 5 0 0 1-10 0c0-3.9 5-9 5-9Zm-2.6 9.4c.2 1.4 1 2.2 2.3 2.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>給水</span></div>
-            <div class="maintenance-item"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M5 18h14M8 18l1-9h6l1 9M10 6h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>葉の清掃</span></div>
-            <div class="maintenance-item"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="m14 6 4 4M3 21l7-7m5-9 4-2 2 2-2 4-4 1-6 6-3-3 6-6 1-4Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>剪定</span></div>
-            <div class="maintenance-item"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M5 19c5-1 10-5 12-14 2 8-2 14-8 14H5Zm4 0c0-5 2-8 6-11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>枯葉除去</span></div>
-            <div class="maintenance-item"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M5 18h14M8 18l1-9h6l1 9M10 6h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>鉢周辺清掃</span></div>
-            <div class="maintenance-item"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="m5 12 4 4L19 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>状態確認</span></div>
-            <div class="maintenance-item"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M9 8h6m-6 4h6m-5-7 2-2 2 2m-8 7H3m18 0h-3m-9 5H6m12 0h-3m-7-7a4 4 0 0 1 8 0v5a4 4 0 0 1-8 0v-5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>害虫・病気確認</span></div>
-            <div class="maintenance-item"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M7 7h11l-3-3m3 3-3 3M17 17H6l3 3m-3-3 3-3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>交換相談</span></div>
-          </div>
-          <aside class="report-panel" data-feature="show_maintenance_report_feature">
-            <div class="report-panel__head"><span class="report-panel__icon"><svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M5 5h14v10H9l-4 4V5Zm4 4h6m-6 3h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><h3>契約後は訪問予定・作業内容を確認</h3><p>LINE公式とDPRO GREENをつなぎ、継続対応を分かりやすくします。</p></span></div>
-            <div class="report-panel__mock" aria-label="作業報告画面の表示例"><span>次回訪問予定 <em>確認できます</em></span><span>今回の作業内容 <em>写真付き想定</em></span><span>追加の相談 <em>LINEから</em></span></div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="area" aria-labelledby="area-title">
-      <div class="container">
-        <div class="area-card" data-reveal>
-          <div class="area-card__content">
-            <p class="section-label">Service area</p>
-            <h2 class="section-title" id="area-title">地域の担当者が、設置場所を確認します。</h2>
-            <p class="section-lead">対応地域は店舗情報の確認後に公開します。地域の境界付近や複数拠点への設置も、まずはご相談ください。</p>
-            <p class="area-card__region"><span data-site-region>[主な対応地域]</span></p>
-            <p class="area-card__note">営業デモのため、具体的な市区町村名・住所・地図は表示していません。</p>
-            <div class="section-actions"><a class="btn btn--primary" data-link="contact" href="contact.html">訪問可能か相談する</a></div>
-          </div>
-          <div class="area-visual" aria-label="対応地域を表す抽象イメージ">
-            <div class="area-visual__rings"></div>
-            <span class="area-visual__label" data-site-region>[主な対応地域]</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--canvas" id="faq" aria-labelledby="faq-title">
-      <div class="container faq-layout">
-        <div class="faq-side" data-reveal>
-          <p class="section-label">FAQ</p>
-          <h2 class="section-title" id="faq-title">よくあるご質問</h2>
-          <p class="section-lead">詳しい条件は設置場所や契約内容によって異なります。分からないことは相談時にお伝えください。</p>
-          <div class="faq-side__box"><strong>解決しないご質問がありますか？</strong><p>置きたい場所の写真や、現在困っていることから相談できます。</p><button class="btn btn--secondary btn--small" type="button" data-line-action data-feature="show_line_consultation"><span data-line-label>LINEで写真相談</span></button></div>
-        </div>
-        <div class="faq-list" data-reveal>
-          <article class="faq-item"><h3><button class="faq-question" type="button" aria-expanded="true" aria-controls="faq-answer-1" data-faq-button><span>相談する前に、設置する植物を決める必要はありますか？</span><span class="faq-question__icon" aria-hidden="true">＋</span></button></h3><div class="faq-answer" id="faq-answer-1"><p>必要ありません。設置場所の明るさ、広さ、雰囲気、ご希望を確認し、適した植物や配置をご提案します。</p></div></article>
-          <article class="faq-item"><h3><button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-2" data-faq-button><span>日々の水やりや手入れは必要ですか？</span><span class="faq-question__icon" aria-hidden="true">＋</span></button></h3><div class="faq-answer" id="faq-answer-2" hidden><p>定期訪問時に行う作業は契約内容によって異なります。店舗の実際の運用を確認したうえで、必要な管理方法をご案内します。</p></div></article>
-          <article class="faq-item"><h3><button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-3" data-faq-button><span>オフィス以外の店舗や施設にも設置できますか？</span><span class="faq-question__icon" aria-hidden="true">＋</span></button></h3><div class="faq-answer" id="faq-answer-3" hidden><p>店舗、クリニック、福祉施設などを想定しています。設置環境や安全面を確認し、対応可否をご案内します。</p></div></article>
-          <article class="faq-item" data-feature="show_photo_inquiry"><h3><button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-4" data-faq-button><span>設置場所の写真だけでも相談できますか？</span><span class="faq-question__icon" aria-hidden="true">＋</span></button></h3><div class="faq-answer" id="faq-answer-4" hidden><p>はい。写真があると、広さや雰囲気を共有しやすくなります。正確な判断が必要な場合は、現地確認をご案内します。</p></div></article>
-          <article class="faq-item"><h3><button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-5" data-faq-button><span>植物の状態が悪くなった場合はどうなりますか？</span><span class="faq-question__icon" aria-hidden="true">＋</span></button></h3><div class="faq-answer" id="faq-answer-5" hidden><p>状態を確認し、必要な手入れや交換について相談します。交換条件などは契約内容を確認してご案内します。</p></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact" aria-labelledby="contact-title">
-      <div class="container">
-        <div class="final-cta" data-reveal>
-          <div class="final-cta__inner">
-            <p class="section-label" style="color:var(--leaf-300)">Free consultation</p>
-            <h2 id="contact-title">植物の種類や鉢数が決まっていなくても、ご相談いただけます。</h2>
-            <p><span data-contact-kicker>写真が1枚あると、相談がよりスムーズです</span>。設置場所やご希望を確認し、地域の担当者がご案内します。</p>
-            <div class="final-cta__actions">
-              <a class="btn btn--primary" data-link="contact" href="contact.html">無料で設置相談する <span aria-hidden="true">→</span></a>
-              <button class="btn btn--secondary" type="button" data-line-action data-feature="show_line_consultation"><span data-line-label>LINEで写真相談</span></button>
-              <a class="btn btn--quiet" data-phone-action hidden>電話で問い合わせる <span data-phone-number></span></a>
-            </div>
-            <p class="final-cta__sub">入力内容を確認して送信すると受付番号が発行されます。設置場所や植物の写真は最大4枚まで添付できます。</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <span class="brand">
-            <span class="brand-mark" aria-hidden="true"></span>
-            <span class="brand-copy"><strong><span data-site-name>地域の観葉植物レンタル専門店</span><span class="demo-badge" data-demo-only>DEMO</span></strong><small data-service-name>観葉植物レンタル・定期メンテナンス</small></span>
-          </span>
-          <p>法人・店舗・医療・福祉施設向けに、観葉植物の選定・設置・定期メンテナンスをご案内する営業デモサイトです。</p>
-        </div>
-        <nav class="footer-nav" aria-label="フッターナビゲーション">
-          <a href="service.html" data-page-link="service">サービス</a>
-          <a href="cases.html" data-page-link="cases" data-feature="show_case_studies">設置イメージ</a>
-          <a href="flow.html" data-page-link="flow">ご利用の流れ</a>
-          <a href="maintenance.html" data-page-link="maintenance">メンテナンス</a>
-          <a href="area.html" data-page-link="area">対応地域</a>
-          <a href="faq.html" data-page-link="faq">よくある質問</a>
-          <a data-link="contact" href="contact.html">無料相談</a>
-          <a data-portal-action hidden>ご利用中のお客様</a>
-          <a data-link="privacy" href="#privacy-note">プライバシーについて</a>
-          <a data-feature="show_headquarters_branding" hidden>本部サイト</a>
-        </nav>
-      </div>
-      <div class="footer-meta" id="privacy-note">
-        <p data-demo-only>デモ表示：正式店舗名、運営法人、住所、対応地域、電話番号、LINE URL、正式ロゴ、実写真は公開前に確認・差し替えます。</p>
-        <p>問い合わせ送信前に同意確認を行い、写真は非公開領域へ保存します。</p>
-        <p>© <span data-current-year>2026</span> <span data-operator-name>[運営法人名]</span></p>
-      </div>
-    </div>
-  </footer>
-
-  <nav class="mobile-cta" aria-label="スマホ固定相談メニュー" data-mobile-cta>
-    <a class="mobile-cta__phone" data-phone-action hidden>電話<br>相談</a>
-    <button class="mobile-cta__line" type="button" data-line-action data-feature="show_line_consultation">LINE<br>相談</button>
-    <a class="mobile-cta__contact" data-link="contact" href="contact.html">無料で<br>設置相談</a>
-  </nav>
-
-  <dialog class="line-dialog" data-line-dialog>
-    <div class="line-dialog__panel">
-      <div class="line-dialog__head"><div><p class="section-label">LINE consultation</p><h2>LINE相談の準備中です</h2></div><button class="line-dialog__close" type="button" aria-label="閉じる" data-dialog-close>×</button></div>
-      <p>LINE公式URLが確定するまでは、下の相談文面をコピーして利用できます。URL設定後は同じボタンからLINEへ移動します。</p>
-      <label for="line-message">相談文面</label>
-      <textarea id="line-message" data-line-message readonly>観葉植物レンタルについて相談したいです。</textarea>
-      <div class="line-dialog__actions"><button class="btn btn--primary" type="button" data-copy-line-message>相談文面をコピー</button><button class="btn btn--quiet" type="button" data-dialog-close>閉じる</button></div>
-      <p class="line-dialog__note">正式なLINE公式URL・QRコードは公開前に設定します。</p>
-    </div>
-  </dialog>
+<body data-page="home" data-site-root=".">
+<a class="skip-link" href="#main">本文へ移動</a>
+<div class="demo-banner" data-demo-only="">営業デモ｜店舗名・対応地域・掲載画像は公開前に差し替えます</div>
+<div class="top-assist">
+<div class="container">
+<span>主な対応地域：<strong data-site-region="">[主な対応地域]</strong></span>
+<div class="top-assist__links">
+<a data-portal-action="" hidden="">ご利用中のお客様</a>
+<a data-link="privacy" href="#privacy-note">プライバシーについて</a>
+</div>
+</div>
+</div>
+<header class="site-header" data-site-header="">
+<div class="container header-inner">
+<a aria-label="トップページへ" class="brand" href="index.html">
+<span aria-hidden="true" class="brand-mark"></span>
+<span class="brand-copy">
+<strong><span data-site-name="">地域の観葉植物レンタル専門店</span><span class="demo-badge" data-demo-only="">DEMO</span></strong>
+<small data-service-name="">観葉植物レンタル・定期メンテナンス</small>
+</span>
+</a>
+<nav aria-label="メインナビゲーション" class="desktop-nav">
+<a data-page-link="service" href="service.html">サービス</a>
+<a data-feature="show_case_studies" data-page-link="cases" href="cases.html">設置イメージ</a>
+<a data-page-link="flow" href="flow.html">ご利用の流れ</a>
+<a data-page-link="maintenance" href="maintenance.html">メンテナンス</a>
+<a data-page-link="area" href="area.html">対応地域</a>
+<a data-page-link="faq" href="faq.html">FAQ</a>
+<a data-feature="show_line_consultation" data-page-link="line" href="line.html">LINE・お客様</a></nav>
+<div class="header-actions">
+<button class="btn btn--secondary btn--small" data-feature="show_line_consultation" data-line-action="" data-line-message-key="photo" type="button"><span data-line-label="">LINEで写真相談</span></button>
+<a class="btn btn--primary btn--small" data-link="contact" href="contact.html">無料で設置相談</a>
+</div>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="メニューを開く" class="menu-button" data-menu-button="" type="button">
+<span aria-hidden="true" class="menu-button__lines"><span></span><span></span><span></span></span>
+</button>
+</div>
+</header>
+<button aria-label="メニューを閉じる" class="menu-backdrop" data-menu-backdrop="" hidden="" type="button"></button>
+<aside aria-hidden="true" class="mobile-menu" data-mobile-menu="" id="mobile-menu">
+<nav aria-label="スマホメニュー" class="mobile-menu__nav">
+<a data-page-link="service" href="service.html">サービス</a>
+<a data-feature="show_case_studies" data-page-link="cases" href="cases.html">設置イメージ</a>
+<a data-page-link="flow" href="flow.html">ご利用の流れ</a>
+<a data-page-link="maintenance" href="maintenance.html">メンテナンス</a>
+<a data-page-link="area" href="area.html">対応地域</a>
+<a data-page-link="faq" href="faq.html">よくある質問</a>
+<a data-portal-action="" hidden="">ご利用中のお客様</a>
+<a data-feature="show_line_consultation" data-page-link="line" href="line.html">LINE・お客様</a></nav>
+<div class="mobile-menu__actions">
+<button class="btn btn--secondary" data-feature="show_line_consultation" data-line-action="" data-line-message-key="photo" type="button"><span data-line-label="">LINEで写真相談</span></button>
+<a class="btn btn--primary" data-link="contact" href="contact.html">無料で設置相談する</a>
+</div>
+<p class="mobile-menu__note">新規相談とご利用中のお客様の確認導線を分けてご案内します。正式URLは確認済みの情報だけを設定します。</p>
+</aside>
+<main id="main">
+<section class="hero" id="top">
+<div class="container hero-inner">
+<div class="hero-copy" data-reveal="">
+<p class="eyebrow"><span data-site-region="">[主な対応地域]</span>の法人・店舗・施設へ</p>
+<h1>植物のある心地よい空間を、<br/><span>設置から定期管理まで。</span></h1>
+<p class="hero-lead">オフィス・店舗・クリニック・福祉施設へ、環境に合わせた観葉植物をご提案します。給水や剪定などの定期メンテナンスもまとめてお任せいただけます。</p>
+<div class="hero-actions">
+<a class="btn btn--primary" data-link="contact" href="contact.html">無料で設置相談する <span aria-hidden="true" class="btn__arrow">→</span></a>
+<button class="btn btn--secondary" data-feature="show_line_consultation" data-line-action="" data-line-message-key="photo" type="button"><span data-line-label="">LINEで写真相談</span></button>
+</div>
+<ul aria-label="サービスの特徴" class="hero-meta">
+<li>法人・店舗向け</li>
+<li>設置場所から提案</li>
+<li>定期訪問で管理</li>
+</ul>
+</div>
+<figure class="hero-media" data-reveal="">
+<div class="hero-media__frame">
+<img alt="明るいオフィスに観葉植物を配置した設置イメージ" height="640" src="hero-office.svg" width="960"/>
+<div class="hero-float" data-feature="show_photo_inquiry">
+<span aria-hidden="true" class="hero-float__icon">写</span>
+<span><strong>写真から相談できます</strong><small>置きたい場所が分かれば十分です</small></span>
+</div>
+</div>
+<figcaption class="hero-note">設置イメージ｜実際の導入事例ではありません。</figcaption>
+</figure>
+</div>
+</section>
+<div aria-label="主な対象施設" class="audience-strip">
+<div class="container">
+<ul class="audience-list">
+<li>オフィス・事務所</li>
+<li>店舗・サロン</li>
+<li>病院・クリニック</li>
+<li>福祉施設・共用部</li>
+</ul>
+</div>
+</div>
+<section aria-labelledby="problem-title" class="section section--canvas">
+<div class="container">
+<div class="section-heading" data-reveal="">
+<p class="section-label">Your concerns</p>
+<h2 class="section-title" id="problem-title">植物を置きたい。でも、管理まで続けられるか心配。</h2>
+<p class="section-lead">設置する植物が決まっていなくても大丈夫です。空間と運用のお悩みを確認し、無理のない方法を一緒に考えます。</p>
+</div>
+<div class="problem-grid">
+<article class="problem-card" data-reveal=""><span class="problem-card__number">CONCERN 01</span><h3>水やりや手入れが続かない</h3><p>担当者が変わっても、植物の状態を保てる管理方法を相談したい。</p></article>
+<article class="problem-card" data-reveal=""><span class="problem-card__number">CONCERN 02</span><h3>どの植物が合うか分からない</h3><p>日当たり、空調、人の動線に合う種類や鉢の大きさを選びたい。</p></article>
+<article class="problem-card" data-reveal=""><span class="problem-card__number">CONCERN 03</span><h3>状態が悪くなった時が不安</h3><p>枯葉や害虫など、気になる変化が出た時に相談できる相手がほしい。</p></article>
+<article class="problem-card" data-reveal=""><span class="problem-card__number">CONCERN 04</span><h3>受付や待合を明るくしたい</h3><p>圧迫感を出さず、清潔で自然な印象を空間へ加えたい。</p></article>
+</div>
+</div>
+</section>
+<section aria-labelledby="reason-title" class="section">
+<div class="container">
+<div class="section-heading section-heading--center" data-reveal="">
+<p class="section-label">Why choose us</p>
+<h2 class="section-title" id="reason-title">設置前から、設置後まで。相談先をひとつに。</h2>
+<p class="section-lead">植物を置くことだけでなく、日々の管理と連絡のしやすさまで含めて支えます。</p>
+</div>
+<div class="reason-grid">
+<article class="reason-card" data-reveal=""><span class="reason-card__index">01 / PROPOSAL</span><div class="reason-card__icon"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="M12 4V2m0 20v-2m8-8h2M2 12h2m13.7-5.7 1.4-1.4M4.9 19.1l1.4-1.4m11.4 0 1.4 1.4M4.9 4.9l1.4 1.4M17 12a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></div><h3>設置場所に合わせた提案</h3><p>明るさ、広さ、空調、動線を確認し、空間に合う植物と配置をご提案します。</p></article>
+<article class="reason-card" data-reveal=""><span class="reason-card__index">02 / VISIT</span><div class="reason-card__icon"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="M12 3s5 5.1 5 9a5 5 0 0 1-10 0c0-3.9 5-9 5-9Zm-2.6 9.4c.2 1.4 1 2.2 2.3 2.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></div><h3>定期訪問で状態を確認</h3><p>給水、葉の清掃、剪定など、必要な作業を定期訪問時に行います。</p></article>
+<article class="reason-card" data-reveal=""><span class="reason-card__index">03 / SUPPORT</span><div class="reason-card__icon"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="M7 7h11l-3-3m3 3-3 3M17 17H6l3 3m-3-3 3-3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></div><h3>変化に合わせて相談</h3><p>植物の状態やレイアウト変更に応じ、交換や追加について相談できます。</p></article>
+<article class="reason-card" data-reveal=""><span class="reason-card__index">04 / REPORT</span><div class="reason-card__icon"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="M5 5h14v10H9l-4 4V5Zm4 4h6m-6 3h4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></div><h3>訪問内容を分かりやすく</h3><p>契約後は、訪問予定や作業内容をLINEから確認できる運用につなげます。</p></article>
+</div>
+</div>
+</section>
+<section aria-labelledby="service-title" class="section section--mint" id="services">
+<div class="container">
+<div class="service-intro" data-reveal="">
+<div class="section-heading">
+<p class="section-label">Services</p>
+<h2 class="section-title" id="service-title">観葉植物のことを、まとめて任せられます。</h2>
+<p class="section-lead">初めて導入する場所も、すでに植物がある場所も、状況を確認してご案内します。</p>
+</div>
+<div class="service-intro__note">植物の種類、鉢数、設置位置が決まっていなくても相談できます。</div>
+</div>
+<div class="service-grid">
+<article class="service-card" data-reveal=""><div class="service-card__icon"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="M5 19c5-1 10-5 12-14 2 8-2 14-8 14H5Zm4 0c0-5 2-8 6-11" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></div><h3>定期観葉植物レンタル</h3><p>空間の条件と雰囲気に合わせ、植物と鉢を組み合わせてご提案します。</p><span class="service-card__tag">設置＋定期管理</span></article>
+<article class="service-card" data-reveal=""><div class="service-card__icon"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="M4 21V5h10v16M8 9h2m-2 4h2m-2 4h2m6 4V10h4v11" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></div><h3>オフィス・店舗への設置</h3><p>受付、執務スペース、エントランスなど、利用目的に合う配置を考えます。</p><span class="service-card__tag">法人・店舗向け</span></article>
+<article class="service-card" data-reveal=""><div class="service-card__icon"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="M5 21V6h14v15M9 3h6v6H9V3Zm3 1v4m-2-2h4M8 13h2m4 0h2m-8 4h2m4 0h2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></div><h3>病院・福祉施設への設置</h3><p>待合室や共用部へ、動線や清掃のしやすさに配慮した設置を検討します。</p><span class="service-card__tag">医療・福祉施設向け</span></article>
+<article class="service-card" data-reveal=""><div class="service-card__icon"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="m14 6 4 4M3 21l7-7m5-9 4-2 2 2-2 4-4 1-6 6-3-3 6-6 1-4Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></div><h3>定期メンテナンス</h3><p>給水、葉の清掃、剪定、枯葉除去、植物状態の確認などを行います。</p><span class="service-card__tag">訪問管理</span></article>
+<article class="service-card" data-feature="show_outdoor_plants" data-reveal=""><div class="service-card__icon"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="M5 19c5-1 10-5 12-14 2 8-2 14-8 14H5Zm4 0c0-5 2-8 6-11" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></div><h3>屋外植物・プランター</h3><p>店舗前や施設周辺の植栽について、対応可否を確認してご案内します。</p></article>
+<article class="service-card" data-feature="show_seasonal_service" data-reveal=""><div class="service-card__icon"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="M12 4V2m0 20v-2m8-8h2M2 12h2m13.7-5.7 1.4-1.4M4.9 19.1l1.4-1.4m11.4 0 1.4 1.4M4.9 4.9l1.4 1.4M17 12a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></div><h3>季節装飾</h3><p>季節に合わせた植物や装飾の相談を受け付けます。</p></article>
+<article class="service-card" data-feature="show_spot_rental" data-reveal=""><div class="service-card__icon"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="M4 21V5h10v16M8 9h2m-2 4h2m-2 4h2m6 4V10h4v11" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></div><h3>スポット利用</h3><p>イベントなど短期間の利用について、条件を確認してご案内します。</p></article>
+<article class="service-card" data-feature="show_plant_disposal" data-reveal=""><div class="service-card__icon"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="M7 7h11l-3-3m3 3-3 3M17 17H6l3 3m-3-3 3-3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></div><h3>引取り・処分相談</h3><p>植物や鉢の引取りについて、対象と条件を確認します。</p></article>
+</div>
+</div>
+</section>
+<section aria-labelledby="benefit-title" class="section">
+<div class="container split split--media-right">
+<figure class="split-media" data-reveal="">
+<img alt="受付空間に観葉植物を配置した設置イメージ" height="720" loading="lazy" src="benefit-space.svg" width="960"/>
+<figcaption class="split-media__caption">設置イメージ｜公開前に確認済み写真へ差し替えます。</figcaption>
+</figure>
+<div data-reveal="">
+<p class="section-label">Benefits</p>
+<h2 class="section-title" id="benefit-title">空間の印象と、植物管理の負担を一緒に整えます。</h2>
+<p class="section-lead">見た目だけでなく、誰がどのように管理するかまで考えることで、導入後も続けやすい状態を目指します。</p>
+<ul class="benefit-list">
+<li><span class="benefit-list__check">✓</span><span><strong>空間の印象を自然に整える</strong><span>受付や待合など、来訪者の目に入りやすい場所を明るく見せます。</span></span></li>
+<li><span class="benefit-list__check">✓</span><span><strong>担当者の管理負担を減らす</strong><span>定期訪問時に必要な手入れをまとめて行います。</span></span></li>
+<li><span class="benefit-list__check">✓</span><span><strong>専門スタッフが状態を確認</strong><span>植物の変化を見ながら、必要な対応を相談します。</span></span></li>
+<li><span class="benefit-list__check">✓</span><span><strong>変更や追加を相談しやすい</strong><span>レイアウト変更や増設時も、これまでの状況を踏まえて案内します。</span></span></li>
+</ul>
+</div>
+</div>
+</section>
+<section aria-labelledby="case-title" class="section section--canvas" data-feature="show_case_studies" id="cases">
+<div class="container">
+<div class="section-heading section-heading--center" data-reveal="">
+<p class="section-label">Installation image</p>
+<h2 class="section-title" id="case-title">置きたい場所に近いイメージから考えられます。</h2>
+<p class="section-lead">以下は営業デモ用の設置イメージです。実績写真・顧客名・効果数値は掲載していません。</p>
+</div>
+<div class="case-track">
+<article class="case-card" data-reveal=""><div class="case-card__media"><img alt="オフィス受付の観葉植物設置イメージ" height="640" loading="lazy" src="case-office.svg" width="960"/><span class="case-label">設置イメージ</span></div><div class="case-card__body"><span class="case-card__type">OFFICE</span><h3>オフィス受付</h3><p>来客を迎える場所へ、視界を遮りすぎない植物を配置する想定です。</p></div></article>
+<article class="case-card" data-reveal=""><div class="case-card__media"><img alt="クリニック待合室の観葉植物設置イメージ" height="640" loading="lazy" src="case-clinic.svg" width="960"/><span class="case-label">設置イメージ</span></div><div class="case-card__body"><span class="case-card__type">CLINIC</span><h3>クリニック待合室</h3><p>通路幅や清掃性に配慮しながら、やわらかな印象を加える想定です。</p></div></article>
+<article class="case-card" data-reveal=""><div class="case-card__media"><img alt="福祉施設共用部の観葉植物設置イメージ" height="640" loading="lazy" src="case-welfare.svg" width="960"/><span class="case-label">設置イメージ</span></div><div class="case-card__body"><span class="case-card__type">WELFARE</span><h3>福祉施設共用部</h3><p>利用者の動線を妨げない位置へ、安定感のある鉢を置く想定です。</p></div></article>
+<article class="case-card" data-reveal=""><div class="case-card__media"><img alt="店舗エントランスの観葉植物設置イメージ" height="640" loading="lazy" src="case-store.svg" width="960"/><span class="case-label">設置イメージ</span></div><div class="case-card__body"><span class="case-card__type">SHOP</span><h3>店舗エントランス</h3><p>店内の雰囲気と入口の視認性を考え、植物の高さや鉢を選ぶ想定です。</p></div></article>
+</div>
+<p class="case-disclaimer">本番公開では、掲載許可を確認した写真と説明だけを使用します。</p>
+</div>
+</section>
+<section aria-labelledby="flow-title" class="section" id="flow">
+<div class="container">
+<div class="section-heading" data-reveal="">
+<p class="section-label">Flow</p>
+<h2 class="section-title" id="flow-title">ご相談から、定期訪問までの流れ。</h2>
+<p class="section-lead">最初から植物の種類や鉢数を決める必要はありません。設置場所を確認しながら順番に進めます。</p>
+</div>
+<div class="flow-grid">
+<article class="flow-step" data-reveal=""><h3>お問い合わせ</h3><p>Web・LINEなどから相談内容をお送りください。</p></article>
+<article class="flow-step" data-reveal=""><h3>設置場所の確認</h3><p>写真や現地確認で、明るさ・広さ・動線を確認します。</p></article>
+<article class="flow-step" data-reveal=""><h3>植物・配置のご提案</h3><p>空間と管理方法に合う植物や鉢を検討します。</p></article>
+<article class="flow-step" data-reveal=""><h3>搬入・設置</h3><p>決定した内容に沿って、植物を搬入し設置します。</p></article>
+<article class="flow-step" data-reveal=""><h3>定期訪問</h3><p>契約内容に応じて訪問し、必要な手入れを行います。</p></article>
+<article class="flow-step" data-reveal=""><h3>交換・追加相談</h3><p>状態やレイアウト変更に応じ、必要な対応を相談します。</p></article>
+<article class="flow-step" data-reveal=""><h3>作業内容の確認</h3><p>訪問予定や作業報告を分かりやすく確認できる運用へつなげます。</p></article>
+</div>
+<div class="section-actions" data-reveal=""><a class="btn btn--primary" data-link="contact" href="contact.html">設置場所について相談する</a></div>
+</div>
+</section>
+<section aria-labelledby="maintenance-title" class="section section--mint" id="maintenance">
+<div class="container maintenance-layout">
+<figure class="maintenance-media" data-reveal="">
+<img alt="観葉植物の葉を確認し手入れする作業イメージ" height="1000" loading="lazy" src="maintenance.svg" width="800"/>
+<figcaption class="split-media__caption">作業イメージ｜店舗の実際の作業内容は公開前に確認します。</figcaption>
+</figure>
+<div data-reveal="">
+<p class="section-label">Maintenance</p>
+<h2 class="section-title" id="maintenance-title">設置した後も、清潔で心地よい状態を続けます。</h2>
+<p class="section-lead">訪問時に植物の状態を確認し、契約内容に沿って必要な手入れを行います。</p>
+<div aria-label="主なメンテナンス内容" class="maintenance-grid">
+<div class="maintenance-item"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="M12 3s5 5.1 5 9a5 5 0 0 1-10 0c0-3.9 5-9 5-9Zm-2.6 9.4c.2 1.4 1 2.2 2.3 2.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg><span>給水</span></div>
+<div class="maintenance-item"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="M5 18h14M8 18l1-9h6l1 9M10 6h4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg><span>葉の清掃</span></div>
+<div class="maintenance-item"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="m14 6 4 4M3 21l7-7m5-9 4-2 2 2-2 4-4 1-6 6-3-3 6-6 1-4Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg><span>剪定</span></div>
+<div class="maintenance-item"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="M5 19c5-1 10-5 12-14 2 8-2 14-8 14H5Zm4 0c0-5 2-8 6-11" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg><span>枯葉除去</span></div>
+<div class="maintenance-item"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="M5 18h14M8 18l1-9h6l1 9M10 6h4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg><span>鉢周辺清掃</span></div>
+<div class="maintenance-item"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="m5 12 4 4L19 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg><span>状態確認</span></div>
+<div class="maintenance-item"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="M9 8h6m-6 4h6m-5-7 2-2 2 2m-8 7H3m18 0h-3m-9 5H6m12 0h-3m-7-7a4 4 0 0 1 8 0v5a4 4 0 0 1-8 0v-5Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg><span>害虫・病気確認</span></div>
+<div class="maintenance-item"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="M7 7h11l-3-3m3 3-3 3M17 17H6l3 3m-3-3 3-3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg><span>交換相談</span></div>
+</div>
+<aside class="report-panel" data-feature="show_maintenance_report_feature">
+<div class="report-panel__head"><span class="report-panel__icon"><svg aria-hidden="true" height="24" viewbox="0 0 24 24" width="24"><path d="M5 5h14v10H9l-4 4V5Zm4 4h6m-6 3h4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg></span><span><h3>契約後は訪問予定・作業内容を確認</h3><p>LINE公式とDPRO GREENをつなぎ、継続対応を分かりやすくします。</p></span></div>
+<div aria-label="作業報告画面の表示例" class="report-panel__mock"><span>次回訪問予定 <em>確認できます</em></span><span>今回の作業内容 <em>写真付き想定</em></span><span>追加の相談 <em>LINEから</em></span></div>
+</aside>
+</div>
+</div>
+</section>
+<section aria-labelledby="area-title" class="section" id="area">
+<div class="container">
+<div class="area-card" data-reveal="">
+<div class="area-card__content">
+<p class="section-label">Service area</p>
+<h2 class="section-title" id="area-title">地域の担当者が、設置場所を確認します。</h2>
+<p class="section-lead">対応地域は店舗情報の確認後に公開します。地域の境界付近や複数拠点への設置も、まずはご相談ください。</p>
+<p class="area-card__region"><span data-site-region="">[主な対応地域]</span></p>
+<p class="area-card__note">営業デモのため、具体的な市区町村名・住所・地図は表示していません。</p>
+<div class="section-actions"><a class="btn btn--primary" data-link="contact" href="contact.html">訪問可能か相談する</a></div>
+</div>
+<div aria-label="対応地域を表す抽象イメージ" class="area-visual">
+<div class="area-visual__rings"></div>
+<span class="area-visual__label" data-site-region="">[主な対応地域]</span>
+</div>
+</div>
+</div>
+</section>
+<section aria-labelledby="line-route-title" class="section line-route-section" data-feature="show_line_consultation" id="line-customer-route">
+<div class="container line-route-layout">
+<div class="line-route-copy" data-reveal="">
+<p class="section-label">LINE &amp; CUSTOMER</p>
+<h2 class="section-title" id="line-route-title">相談前も、導入後も。<br/>迷わず次の画面へ。</h2>
+<p class="section-lead">初めての方は写真相談へ、ご利用中のお客様は訪問予定・作業報告・追加相談へ。LINE公式のリッチメニューを想定した導線を確認できます。</p>
+<div class="line-route-actions">
+<a class="btn btn--primary" href="line.html">LINE・お客様導線を見る</a>
+<button class="btn btn--secondary" data-line-action="" data-line-message-key="photo" type="button">写真相談の文面を開く</button>
+</div>
+</div>
+<div aria-label="LINEリッチメニューの導線例" class="line-route-mini" data-reveal="">
+<a href="contact.html?category=regular_rental&amp;from=line"><span>新規</span><strong>レンタル相談</strong></a>
+<a href="contact.html?category=photo_consultation&amp;from=line"><span>写真</span><strong>写真で相談</strong></a>
+<a href="line.html#customer-portal"><span>予定</span><strong>訪問予定</strong></a>
+<a href="line.html#reports"><span>報告</span><strong>作業報告</strong></a>
+<a href="line.html#plant-support"><span>相談</span><strong>植物の相談</strong></a>
+<a href="line.html#customer-portal"><span>契約</span><strong>ご利用内容</strong></a>
+</div>
+</div>
+</section><section aria-labelledby="faq-title" class="section section--canvas" id="faq">
+<div class="container faq-layout">
+<div class="faq-side" data-reveal="">
+<p class="section-label">FAQ</p>
+<h2 class="section-title" id="faq-title">よくあるご質問</h2>
+<p class="section-lead">詳しい条件は設置場所や契約内容によって異なります。分からないことは相談時にお伝えください。</p>
+<div class="faq-side__box"><strong>解決しないご質問がありますか？</strong><p>置きたい場所の写真や、現在困っていることから相談できます。</p><button class="btn btn--secondary btn--small" data-feature="show_line_consultation" data-line-action="" data-line-message-key="photo" type="button"><span data-line-label="">LINEで写真相談</span></button></div>
+</div>
+<div class="faq-list" data-reveal="">
+<article class="faq-item"><h3><button aria-controls="faq-answer-1" aria-expanded="true" class="faq-question" data-faq-button="" type="button"><span>相談する前に、設置する植物を決める必要はありますか？</span><span aria-hidden="true" class="faq-question__icon">＋</span></button></h3><div class="faq-answer" id="faq-answer-1"><p>必要ありません。設置場所の明るさ、広さ、雰囲気、ご希望を確認し、適した植物や配置をご提案します。</p></div></article>
+<article class="faq-item"><h3><button aria-controls="faq-answer-2" aria-expanded="false" class="faq-question" data-faq-button="" type="button"><span>日々の水やりや手入れは必要ですか？</span><span aria-hidden="true" class="faq-question__icon">＋</span></button></h3><div class="faq-answer" hidden="" id="faq-answer-2"><p>定期訪問時に行う作業は契約内容によって異なります。店舗の実際の運用を確認したうえで、必要な管理方法をご案内します。</p></div></article>
+<article class="faq-item"><h3><button aria-controls="faq-answer-3" aria-expanded="false" class="faq-question" data-faq-button="" type="button"><span>オフィス以外の店舗や施設にも設置できますか？</span><span aria-hidden="true" class="faq-question__icon">＋</span></button></h3><div class="faq-answer" hidden="" id="faq-answer-3"><p>店舗、クリニック、福祉施設などを想定しています。設置環境や安全面を確認し、対応可否をご案内します。</p></div></article>
+<article class="faq-item" data-feature="show_photo_inquiry"><h3><button aria-controls="faq-answer-4" aria-expanded="false" class="faq-question" data-faq-button="" type="button"><span>設置場所の写真だけでも相談できますか？</span><span aria-hidden="true" class="faq-question__icon">＋</span></button></h3><div class="faq-answer" hidden="" id="faq-answer-4"><p>はい。写真があると、広さや雰囲気を共有しやすくなります。正確な判断が必要な場合は、現地確認をご案内します。</p></div></article>
+<article class="faq-item"><h3><button aria-controls="faq-answer-5" aria-expanded="false" class="faq-question" data-faq-button="" type="button"><span>植物の状態が悪くなった場合はどうなりますか？</span><span aria-hidden="true" class="faq-question__icon">＋</span></button></h3><div class="faq-answer" hidden="" id="faq-answer-5"><p>状態を確認し、必要な手入れや交換について相談します。交換条件などは契約内容を確認してご案内します。</p></div></article>
+</div>
+</div>
+</section>
+<section aria-labelledby="contact-title" class="section" id="contact">
+<div class="container">
+<div class="final-cta" data-reveal="">
+<div class="final-cta__inner">
+<p class="section-label" style="color:var(--leaf-300)">Free consultation</p>
+<h2 id="contact-title">植物の種類や鉢数が決まっていなくても、ご相談いただけます。</h2>
+<p><span data-contact-kicker="">写真が1枚あると、相談がよりスムーズです</span>。設置場所やご希望を確認し、地域の担当者がご案内します。</p>
+<div class="final-cta__actions">
+<a class="btn btn--primary" data-link="contact" href="contact.html">無料で設置相談する <span aria-hidden="true">→</span></a>
+<button class="btn btn--secondary" data-feature="show_line_consultation" data-line-action="" data-line-message-key="photo" type="button"><span data-line-label="">LINEで写真相談</span></button>
+<a class="btn btn--quiet" data-phone-action="" hidden="">電話で問い合わせる <span data-phone-number=""></span></a>
+</div>
+<p class="final-cta__sub">入力内容を確認して送信すると受付番号が発行されます。設置場所や植物の写真は最大4枚まで添付できます。</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<span class="brand">
+<span aria-hidden="true" class="brand-mark"></span>
+<span class="brand-copy"><strong><span data-site-name="">地域の観葉植物レンタル専門店</span><span class="demo-badge" data-demo-only="">DEMO</span></strong><small data-service-name="">観葉植物レンタル・定期メンテナンス</small></span>
+</span>
+<p>法人・店舗・医療・福祉施設向けに、観葉植物の選定・設置・定期メンテナンスをご案内する営業デモサイトです。</p>
+</div>
+<nav aria-label="フッターナビゲーション" class="footer-nav">
+<a data-page-link="service" href="service.html">サービス</a>
+<a data-feature="show_case_studies" data-page-link="cases" href="cases.html">設置イメージ</a>
+<a data-page-link="flow" href="flow.html">ご利用の流れ</a>
+<a data-page-link="maintenance" href="maintenance.html">メンテナンス</a>
+<a data-page-link="area" href="area.html">対応地域</a>
+<a data-page-link="faq" href="faq.html">よくある質問</a>
+<a data-link="contact" href="contact.html">無料相談</a>
+<a data-portal-action="" hidden="">ご利用中のお客様</a>
+<a data-feature="show_line_consultation" data-page-link="line" href="line.html">LINE・お客様</a><a data-link="privacy" href="#privacy-note">プライバシーについて</a>
+<a data-feature="show_headquarters_branding" hidden="">本部サイト</a>
+</nav>
+</div>
+<div class="footer-meta" id="privacy-note">
+<p data-demo-only="">デモ表示：正式店舗名、運営法人、住所、対応地域、電話番号、LINE URL、正式ロゴ、実写真は公開前に確認・差し替えます。</p>
+<p>問い合わせ送信前に同意確認を行い、写真は非公開領域へ保存します。</p>
+<p>© <span data-current-year="">2026</span> <span data-operator-name="">[運営法人名]</span></p>
+</div>
+</div>
+</footer>
+<nav aria-label="スマホ固定相談メニュー" class="mobile-cta" data-mobile-cta="">
+<a class="mobile-cta__phone" data-phone-action="" hidden="">電話<br/>相談</a>
+<button class="mobile-cta__line" data-feature="show_line_consultation" data-line-action="" data-line-message-key="consultation" type="button">LINE<br/>相談</button>
+<a class="mobile-cta__contact" data-link="contact" href="contact.html">無料で<br/>設置相談</a>
+</nav>
+<dialog class="line-dialog" data-line-dialog="">
+<div class="line-dialog__panel">
+<div class="line-dialog__head"><div><p class="section-label">LINE consultation</p><h2 data-line-dialog-title="">LINEで相談する</h2></div><button aria-label="閉じる" class="line-dialog__close" data-dialog-close="" type="button">×</button></div>
+<p data-line-dialog-description="">LINE公式URLの設定前は、下の文面をコピーして利用できます。</p>
+<label for="line-message">相談文面</label>
+<textarea data-line-message="" id="line-message" readonly="">観葉植物レンタルについて相談したいです。</textarea>
+<div class="line-dialog__actions"><button class="btn btn--primary" data-copy-line-message="" type="button">相談文面をコピー</button><button class="btn btn--quiet" data-dialog-close="" type="button">閉じる</button></div>
+<p class="line-dialog__note" data-line-dialog-note="">相談内容に合わせた文面です。必要な部分だけ編集してお送りください。</p>
+</div>
+</dialog>
 </body>
 </html>

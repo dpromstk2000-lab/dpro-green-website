@@ -5,13 +5,12 @@
   const site = config.site || {};
   const links = config.links || {};
   const flags = config.featureFlags || {};
+  const lineConfig = config.line || {};
   const qs = (selector, scope = document) => scope.querySelector(selector);
   const qsa = (selector, scope = document) => Array.from(scope.querySelectorAll(selector));
 
   function setText(selector, value) {
-    qsa(selector).forEach((element) => {
-      element.textContent = value || "";
-    });
+    qsa(selector).forEach((element) => { element.textContent = value || ""; });
   }
 
   function resolveSiteLink(value) {
@@ -36,17 +35,13 @@
       row.hidden = !value;
       row.setAttribute("aria-hidden", String(!value));
     });
-    qsa("[data-demo-only]").forEach((element) => {
-      element.hidden = !site.demo;
-    });
-    const year = new Date().getFullYear();
-    setText("[data-current-year]", String(year));
+    qsa("[data-demo-only]").forEach((element) => { element.hidden = !site.demo; });
+    setText("[data-current-year]", String(new Date().getFullYear()));
   }
 
   function applyFeatureFlags() {
     qsa("[data-feature]").forEach((element) => {
-      const key = element.dataset.feature;
-      const enabled = flags[key] === true;
+      const enabled = flags[element.dataset.feature] === true;
       element.hidden = !enabled;
       element.setAttribute("aria-hidden", String(!enabled));
     });
@@ -67,7 +62,7 @@
     } catch { /* sessionStorage unavailable */ }
   }
 
-  function contactTarget() {
+  function contactTarget(element) {
     const target = resolveSiteLink(links.contact || "contact.html");
     if (!target || /^(?:https?:)?\/\//i.test(target) || target.startsWith("#")) return target;
     try {
@@ -81,21 +76,16 @@
       });
       const page = document.body?.dataset.page || "home";
       url.searchParams.set("from", page);
+      const category = element?.dataset.contactCategory;
+      if (category) url.searchParams.set("category", category);
       return `${url.pathname.split("/").pop()}${url.search}${url.hash}`;
-    } catch {
-      return target;
-    }
+    } catch { return target; }
   }
 
   function setContactLinks() {
-    const target = contactTarget();
-    qsa("[data-link='contact']").forEach((element) => {
-      element.setAttribute("href", target);
-    });
-
-    qsa("[data-link='privacy']").forEach((element) => {
-      element.setAttribute("href", resolveSiteLink(links.privacy || "privacy.html"));
-    });
+    qsa("[data-link='contact']").forEach((element) => { element.setAttribute("href", contactTarget(element)); });
+    qsa("[data-link='privacy']").forEach((element) => { element.setAttribute("href", resolveSiteLink(links.privacy || "privacy.html")); });
+    qsa("[data-link='line-guide']").forEach((element) => { element.setAttribute("href", resolveSiteLink(links.lineGuide || "line.html")); });
   }
 
   function configurePhone() {
@@ -119,12 +109,75 @@
     });
   }
 
+  const lineDialog = qs("[data-line-dialog]");
+  let dialogReturnFocus = null;
+
+  function receptionNumber() {
+    const value = qs("#thanks-reception-number")?.textContent || "";
+    return /GRN-[A-Z0-9-]+/i.test(value) ? value.trim() : "（受付完了画面に表示された番号）";
+  }
+
+  function lineTemplate(key) {
+    const templates = lineConfig.templates || {};
+    const base = templates[key] || templates.consultation || {};
+    return {
+      title: base.title || "LINEで相談する",
+      note: base.note || "相談内容をコピーしてLINEでお送りください。",
+      message: String(base.message || config.lineFallbackMessage || "観葉植物レンタルについて相談したいです。").replaceAll("{receptionNumber}", receptionNumber())
+    };
+  }
+
+  function openLineDialog(trigger, forcedKey) {
+    if (!lineDialog) return;
+    dialogReturnFocus = trigger || document.activeElement;
+    const key = forcedKey || trigger?.dataset.lineMessageKey || "consultation";
+    const template = lineTemplate(key);
+    const title = qs("[data-line-dialog-title]", lineDialog);
+    const description = qs("[data-line-dialog-description]", lineDialog);
+    const message = qs("[data-line-message]", lineDialog);
+    const note = qs("[data-line-dialog-note]", lineDialog);
+    if (title) title.textContent = template.title;
+    if (description) description.textContent = links.line
+      ? "LINE公式を開いて相談を続けます。"
+      : "LINE公式URLの設定前は、下の文面をコピーして利用できます。";
+    if (message) message.value = template.message;
+    if (note) note.textContent = template.note;
+    if (typeof lineDialog.showModal === "function") lineDialog.showModal();
+    else lineDialog.setAttribute("open", "");
+    document.body.classList.add("dialog-open");
+  }
+
+  function closeLineDialog() {
+    if (!lineDialog) return;
+    if (typeof lineDialog.close === "function") lineDialog.close();
+    else lineDialog.removeAttribute("open");
+    document.body.classList.remove("dialog-open");
+    if (dialogReturnFocus && typeof dialogReturnFocus.focus === "function") dialogReturnFocus.focus();
+  }
+
   function configurePortal() {
-    const enabled = flags.show_customer_portal_link === true && Boolean(links.customerPortal);
+    const enabled = flags.show_customer_portal_link === true;
+    const guide = resolveSiteLink(links.customerGuide || "line.html#customer-portal");
     qsa("[data-portal-action]").forEach((element) => {
       element.hidden = !enabled;
       element.setAttribute("aria-hidden", String(!enabled));
-      if (enabled) element.setAttribute("href", resolveSiteLink(links.customerPortal));
+      if (enabled) element.setAttribute("href", guide);
+    });
+    qsa("[data-customer-portal-open]").forEach((element) => {
+      element.hidden = !enabled;
+      element.setAttribute("aria-hidden", String(!enabled));
+      if (!enabled) return;
+      element.addEventListener("click", (event) => {
+        event.preventDefault();
+        if (links.customerPortal) window.open(resolveSiteLink(links.customerPortal), "_blank", "noopener,noreferrer");
+        else openLineDialog(element, element.dataset.lineMessageKey || "portal_help");
+      });
+    });
+    qsa("[data-customer-portal-state]").forEach((element) => {
+      element.textContent = links.customerPortal
+        ? "お客様画面URL設定済み"
+        : "正式URL未設定のため、LINE確認文面へ切り替わります";
+      element.dataset.ready = String(Boolean(links.customerPortal));
     });
   }
 
@@ -144,30 +197,6 @@
     setText("[data-contact-kicker]", enabled ? "写真が1枚あると、相談がよりスムーズです" : "内容が決まっていなくても相談できます");
   }
 
-  const dialog = qs("[data-line-dialog]");
-  let dialogReturnFocus = null;
-
-  function openLineDialog(trigger) {
-    if (!dialog) return;
-    dialogReturnFocus = trigger || document.activeElement;
-    const message = qs("[data-line-message]", dialog);
-    if (message) message.value = config.lineFallbackMessage || "観葉植物レンタルについて相談したいです。";
-    if (typeof dialog.showModal === "function") {
-      dialog.showModal();
-    } else {
-      dialog.setAttribute("open", "");
-    }
-    document.body.classList.add("dialog-open");
-  }
-
-  function closeLineDialog() {
-    if (!dialog) return;
-    if (typeof dialog.close === "function") dialog.close();
-    else dialog.removeAttribute("open");
-    document.body.classList.remove("dialog-open");
-    if (dialogReturnFocus && typeof dialogReturnFocus.focus === "function") dialogReturnFocus.focus();
-  }
-
   function configureLine() {
     const featureEnabled = flags.show_line_consultation === true;
     qsa("[data-line-action]").forEach((element) => {
@@ -176,50 +205,56 @@
       if (!featureEnabled) return;
       element.addEventListener("click", (event) => {
         event.preventDefault();
-        if (links.line) {
-          window.open(links.line, "_blank", "noopener,noreferrer");
-        } else {
-          openLineDialog(element);
-        }
+        if (links.line) window.open(resolveSiteLink(links.line), "_blank", "noopener,noreferrer");
+        else openLineDialog(element);
       });
     });
-
     qsa("[data-dialog-close]").forEach((button) => button.addEventListener("click", closeLineDialog));
-    if (dialog) {
-      dialog.addEventListener("click", (event) => {
-        if (event.target === dialog) closeLineDialog();
-      });
-      dialog.addEventListener("cancel", (event) => {
-        event.preventDefault();
-        closeLineDialog();
-      });
+    if (lineDialog) {
+      lineDialog.addEventListener("click", (event) => { if (event.target === lineDialog) closeLineDialog(); });
+      lineDialog.addEventListener("cancel", (event) => { event.preventDefault(); closeLineDialog(); });
     }
+  }
+
+  async function writeClipboard(value, fallbackNode) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(value);
+    if (fallbackNode) {
+      fallbackNode.focus();
+      fallbackNode.select?.();
+      document.execCommand("copy");
+      return;
+    }
+    const area = document.createElement("textarea");
+    area.value = value;
+    area.style.position = "fixed";
+    area.style.opacity = "0";
+    document.body.append(area);
+    area.select();
+    document.execCommand("copy");
+    area.remove();
   }
 
   function copyLineMessage() {
     const message = qs("[data-line-message]");
     const button = qs("[data-copy-line-message]");
-    if (!message || !button) return;
-
-    button.addEventListener("click", async () => {
-      const value = message.value;
-      try {
-        if (navigator.clipboard && window.isSecureContext) {
-          await navigator.clipboard.writeText(value);
-        } else {
-          message.focus();
-          message.select();
-          document.execCommand("copy");
-        }
-        button.textContent = "コピーしました";
-      } catch (error) {
-        message.focus();
-        message.select();
-        button.textContent = "選択しました";
-      }
-      window.setTimeout(() => {
-        button.textContent = "相談文面をコピー";
-      }, 1800);
+    if (message && button) {
+      button.addEventListener("click", async () => {
+        try { await writeClipboard(message.value, message); button.textContent = "コピーしました"; }
+        catch { message.focus(); message.select(); button.textContent = "選択しました"; }
+        window.setTimeout(() => { button.textContent = "相談文面をコピー"; }, 1800);
+      });
+    }
+    qsa("[data-copy-message]").forEach((copyButton) => {
+      const key = copyButton.dataset.copyMessage || "consultation";
+      const preview = qs(`[data-message-preview='${CSS.escape(key)}']`);
+      const template = lineTemplate(key);
+      if (preview) preview.textContent = template.message;
+      copyButton.addEventListener("click", async () => {
+        const original = copyButton.textContent;
+        try { await writeClipboard(lineTemplate(key).message, preview); copyButton.textContent = "コピーしました"; }
+        catch { copyButton.textContent = "文面を選択してください"; }
+        window.setTimeout(() => { copyButton.textContent = original; }, 1800);
+      });
     });
   }
 
@@ -251,9 +286,7 @@
     qsa("[data-faq-button]").forEach((button) => {
       button.addEventListener("click", () => {
         const expanded = button.getAttribute("aria-expanded") === "true";
-        const answerId = button.getAttribute("aria-controls");
-        const answer = document.getElementById(answerId);
-
+        const answer = document.getElementById(button.getAttribute("aria-controls"));
         qsa("[data-faq-button]").forEach((otherButton) => {
           if (otherButton !== button) {
             otherButton.setAttribute("aria-expanded", "false");
@@ -261,7 +294,6 @@
             if (otherAnswer) otherAnswer.hidden = true;
           }
         });
-
         button.setAttribute("aria-expanded", String(!expanded));
         if (answer) answer.hidden = expanded;
       });
@@ -344,10 +376,7 @@
   function configureContactKeyboardMode() {
     const bar = qs("[data-mobile-cta]");
     if (!bar || !window.visualViewport) return;
-    const update = () => {
-      const keyboardOpen = window.innerHeight - window.visualViewport.height > 160;
-      bar.classList.toggle("is-keyboard-open", keyboardOpen);
-    };
+    const update = () => { bar.classList.toggle("is-keyboard-open", window.innerHeight - window.visualViewport.height > 160); };
     window.visualViewport.addEventListener("resize", update);
   }
 

@@ -117,6 +117,19 @@
     });
   }
 
+  function prefillFromQuery() {
+    if (!form) return;
+    const params = new URLSearchParams(location.search);
+    const category = String(params.get("category") || "").trim();
+    const allowed = new Set(Array.from(document.querySelectorAll("#inquiry-category option")).map((option) => option.value));
+    if (category && allowed.has(category)) selectCategory(category);
+    const source = String(params.get("from") || "").trim();
+    if (source === "line") {
+      const message = form.elements.inquiryDetail;
+      if (message && !message.value) message.placeholder = "LINE・お客様案内ページからのご相談内容をご記入ください。";
+    }
+  }
+
   function configureCategories() {
     const featureMap = {
       photo_consultation: "show_photo_inquiry",
@@ -414,6 +427,7 @@
     prefillTracking();
     configureCandidates();
     configureCategories();
+    prefillFromQuery();
     document.querySelector("#photos")?.addEventListener("change", handlePhotos);
     form.addEventListener("submit", handleSubmit);
     window.addEventListener("pagehide", releaseObjectUrls);
