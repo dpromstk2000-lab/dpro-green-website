@@ -1,5 +1,5 @@
 window.GREEN_WEB_CONFIG = Object.freeze({
-  version: "WEB-GREEN-5-LINE-CUSTOMER-ROUTES-20260802",
+  version: "WEB-GREEN-6-SEO-PUBLICATION-20260802",
   site: {
     publicName: "地域の観葉植物レンタル専門店",
     serviceName: "観葉植物レンタル・定期メンテナンス",
@@ -9,6 +9,33 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     businessHours: "",
     closedDays: "",
     demo: true
+  },
+
+  release: {
+    mode: "demo",
+    demoUrl: "https://dpromstk2000-lab.github.io/dpro-green-website/",
+    productionPlatform: "cloudflare-pages",
+    productionUrl: "",
+    customDomain: "",
+    allowIndexing: false,
+    searchConsoleVerification: "",
+    analyticsEnabled: false
+  },
+  seo: {
+    canonicalBaseUrl: "https://dpromstk2000-lab.github.io/dpro-green-website",
+    defaultShareImage: "og-image.png",
+    localBusinessSchemaEnabled: false,
+    sameAs: [],
+    areaServed: [],
+    address: {
+      postalCode: "",
+      addressRegion: "",
+      addressLocality: "",
+      streetAddress: "",
+      addressCountry: "JP"
+    },
+    geo: { latitude: "", longitude: "" },
+    openingHours: []
   },
   links: {
     contact: "contact.html",

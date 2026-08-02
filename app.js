@@ -226,8 +226,7 @@
     }
     const area = document.createElement("textarea");
     area.value = value;
-    area.style.position = "fixed";
-    area.style.opacity = "0";
+    area.className = "clipboard-fallback";
     document.body.append(area);
     area.select();
     document.execCommand("copy");

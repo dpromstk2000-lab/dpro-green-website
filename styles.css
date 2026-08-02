@@ -774,3 +774,14 @@ button.btn { width: auto; }
 @media(min-width:42rem){.line-route-mini{grid-template-columns:repeat(3,minmax(0,1fr))}.line-audience-grid,.message-template-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.portal-action-card{grid-template-columns:1fr auto;align-items:center}}
 @media(min-width:64rem){.line-route-layout{grid-template-columns:1fr .85fr}.rich-menu-layout{grid-template-columns:1fr .82fr}.portal-showcase{grid-template-columns:.92fr 1fr}.line-audience-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.message-template-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.desktop-nav{gap:17px;font-size:12px}}
 @media(max-width:35rem){.line-route-actions .btn,.line-audience-card__actions .btn{width:100%}.rich-menu-grid a,.rich-menu-grid button{min-height:102px;padding:13px}.portal-action-card .btn{width:100%}}
+
+
+/* WEB-GREEN-6: CSP-compatible utilities */
+.section-label--light{color:var(--leaf-300)}
+.clipboard-fallback{position:fixed;inset:auto auto 0 0;opacity:0;pointer-events:none}
+.status-page{min-height:100vh;display:grid;place-items:center;padding:24px;background:var(--canvas)}
+.status-card{width:min(680px,100%);padding:42px 30px;border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:var(--shadow-md);text-align:center}
+.status-card h1{margin:0 0 14px;font-size:clamp(26px,5vw,40px);line-height:1.35}
+.status-card p{margin:0 0 26px;line-height:1.9;color:var(--ink-600)}
+.status-card small{display:block;margin-top:18px;color:var(--ink-500)}
+.status-mark{width:54px;height:54px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;background:var(--leaf-100);color:var(--forest);font-size:28px;font-weight:800}

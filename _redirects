@@ -1,0 +1,21 @@
+# WEB-GREEN-6 Cloudflare Pages canonical redirects
+/index.html / 301
+/service /service.html 301
+/service/ /service.html 301
+/cases /cases.html 301
+/cases/ /cases.html 301
+/flow /flow.html 301
+/flow/ /flow.html 301
+/maintenance /maintenance.html 301
+/maintenance/ /maintenance.html 301
+/area /area.html 301
+/area/ /area.html 301
+/faq /faq.html 301
+/faq/ /faq.html 301
+/line /line.html 301
+/line/ /line.html 301
+/contact /contact.html 301
+/contact/ /contact.html 301
+/privacy /privacy.html 301
+/privacy/ /privacy.html 301
+/live-check.html / 302

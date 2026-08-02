@@ -1,0 +1,72 @@
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), usb=()
+  X-Permitted-Cross-Domain-Policies: none
+
+https://dpro-green-website.pages.dev/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/*.css
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/*.js
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/*.svg
+  Cache-Control: public, max-age=604800, must-revalidate
+
+/*.png
+  Cache-Control: public, max-age=604800, must-revalidate
+
+/manifest.webmanifest
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/robots.txt
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-BbLbgMl1qHHKtzOICCyVOqj3VnwtyIrmouHF02JMPdg='; style-src 'self'; upgrade-insecure-requests
+
+/index.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-BbLbgMl1qHHKtzOICCyVOqj3VnwtyIrmouHF02JMPdg='; style-src 'self'; upgrade-insecure-requests
+
+/service.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-euxm8WuzotxHynojc/OBA0pksin/JxRUpCtbbn1XXTg='; style-src 'self'; upgrade-insecure-requests
+
+/cases.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-u4hx1RURhEg4ecAngkIu/cZ7GK0KgtxKQ7f/hcDy5uY='; style-src 'self'; upgrade-insecure-requests
+
+/flow.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-OQWSnq9T1xdecfUmlC4rk4hLC8xDs14F2z3bsSJnPzs='; style-src 'self'; upgrade-insecure-requests
+
+/maintenance.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-WWI8muhimjYePeV/gFYh8yTzqy5Ye1SZD1brf8agu2I='; style-src 'self'; upgrade-insecure-requests
+
+/area.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-1tHxQWC6evpULiv4k0GyjaAtcNtC+yLzy+3rcyUQxQw='; style-src 'self'; upgrade-insecure-requests
+
+/faq.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-sZWuVcjUlBASXGWhvy1SsfidvD+/BONmzLqTMjZmr8Q='; style-src 'self'; upgrade-insecure-requests
+
+/line.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-i+r9mJxScOt30iMcJSxHMK7sSeukQXQ2d8Z+ztmgg3c='; style-src 'self'; upgrade-insecure-requests
+
+/contact.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-XDWV3+4ouDUCYl2pULajyXq8LXJ1aeGG/hSr0VyiQt8='; style-src 'self'; upgrade-insecure-requests
+
+/privacy.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-mYIPBWorYudNSWN9HalJAuFAVXZcl3Rwe6fzQ7IysDc='; style-src 'self'; upgrade-insecure-requests
+
+/thanks.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self'; style-src 'self'; upgrade-insecure-requests
+
+/404.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self'; style-src 'self'; upgrade-insecure-requests
+
+/live-check.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self'; style-src 'self'; upgrade-insecure-requests

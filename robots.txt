@@ -1,0 +1,6 @@
+# WEB-GREEN-6 demo publication settings
+# Crawlers are allowed to fetch pages so they can read the page-level noindex rule.
+User-agent: *
+Allow: /
+
+# Add the Sitemap line only after official business details and the production domain are confirmed.
