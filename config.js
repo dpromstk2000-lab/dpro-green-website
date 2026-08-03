@@ -1,15 +1,20 @@
 window.GREEN_WEB_CONFIG = Object.freeze({
-  version: "WEB-GREEN-PRESENTATION-DESIGN-20260803",
+  version: "WEB-GREEN-FUKUOKA-KASUYA-PREVIEW-20260803",
 
   site: {
-    publicName: "グリーンポケット様",
+    publicName: "グリーン・ポケット福岡粕屋店",
     serviceName: "観葉植物レンタル・定期メンテナンス",
-    region: "福岡県内・近郊エリア（確認中）",
-    operatorName: "グリーンポケット様",
-    postalCode: "",
-    address: "",
-    businessHours: "",
-    closedDays: "",
+    region: "福岡県糟屋郡粕屋町を拠点に対応",
+    operatorName: "グリーン・ポケット福岡粕屋店",
+    postalCode: "811-2307",
+    address: "福岡県糟屋郡粕屋町原町4-3-5 八昭ビル1階",
+    businessHours: "09:00～17:30",
+    closedDays: "土日祝日・GW・年末年始",
+    managerName: "西津 佳宏",
+    managerTitle: "店長",
+    fax: "092-719-0338",
+    officialStorePage: "https://green-pocket.biz/shop_list/fukuoka-kasuya",
+    officialContactUrl: "https://green-pocket.biz/shop_contact.html?post_id=326",
     demo: true
   },
 
@@ -28,15 +33,15 @@ window.GREEN_WEB_CONFIG = Object.freeze({
 
   publication: {
     ownerConfirmed: false,
-    storeInformationApproved: false,
+    storeInformationApproved: true,
     logoApproved: false,
-    brandNameApproved: false,
-    headquartersTextApproved: false,
+    brandNameApproved: true,
+    headquartersTextApproved: true,
     lineApproved: false,
     customerDataStorageApproved: false,
     realPhotosApproved: false,
     customerCasesApproved: false,
-    googleMapApproved: false,
+    googleMapApproved: true,
     privacyOperatorApproved: false,
     customDomainApproved: false
   },
@@ -44,10 +49,10 @@ window.GREEN_WEB_CONFIG = Object.freeze({
   brand: {
     logoUrl: "",
     logoAlt: "",
-    headquartersName: "",
-    headquartersLabel: "本部サイト",
-    officialBrandName: "",
-    approvedNotice: ""
+    headquartersName: "グリーン・ポケット",
+    headquartersLabel: "グリーン・ポケット公式サイト",
+    officialBrandName: "グリーン・ポケット",
+    approvedNotice: "公式公開情報をもとに確認用ページへ仮反映しています。"
   },
 
   media: {
@@ -106,38 +111,41 @@ window.GREEN_WEB_CONFIG = Object.freeze({
   },
 
   map: {
-    embedUrl: "",
-    viewUrl: "",
+    embedUrl: "https://www.google.com/maps?q=%E7%A6%8F%E5%B2%A1%E7%9C%8C%E7%B3%9F%E5%B1%8B%E9%83%A1%E7%B2%95%E5%B1%8B%E7%94%BA%E5%8E%9F%E7%94%BA4-3-5%20%E5%85%AB%E6%98%AD%E3%83%93%E3%83%AB1%E9%9A%8E&output=embed",
+    viewUrl: "https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E7%9C%8C%E7%B3%9F%E5%B1%8B%E9%83%A1%E7%B2%95%E5%B1%8B%E7%94%BA%E5%8E%9F%E7%94%BA4-3-5%20%E5%85%AB%E6%98%AD%E3%83%93%E3%83%AB1%E9%9A%8E",
     title: "店舗所在地のGoogleマップ",
-    note: "正式住所と掲載許可を確認後に表示します。"
+    note: "公式店舗ページに掲載されている住所をもとに表示しています。"
   },
 
   seo: {
     canonicalBaseUrl: "https://dpromstk2000-lab.github.io/dpro-green-website",
     defaultShareImage: "og-image.png",
     localBusinessSchemaEnabled: false,
-    sameAs: [],
-    areaServed: [],
+    sameAs: ["https://green-pocket.biz/shop_list/fukuoka-kasuya", "https://green-pocket.biz/"],
+    areaServed: ["福岡県糟屋郡粕屋町"],
     address: {
-      postalCode: "",
-      addressRegion: "",
-      addressLocality: "",
-      streetAddress: "",
+      postalCode: "811-2307",
+      addressRegion: "福岡県",
+      addressLocality: "糟屋郡粕屋町",
+      streetAddress: "原町4-3-5 八昭ビル1階",
       addressCountry: "JP"
     },
     geo: { latitude: "", longitude: "" },
-    openingHours: []
+    openingHours: ["Mo-Fr 09:00-17:30"]
   },
 
   links: {
     contact: "contact.html",
     lineGuide: "line.html",
     line: "",
-    phone: "",
+    phone: "092-719-0336",
     customerGuide: "line.html#customer-portal",
     customerPortal: "",
-    headquarters: "",
-    privacy: "privacy.html"
+    headquarters: "https://green-pocket.biz/",
+    privacy: "privacy.html",
+    officialStore: "https://green-pocket.biz/shop_list/fukuoka-kasuya",
+    officialContact: "https://green-pocket.biz/shop_contact.html?post_id=326",
+    guide: "https://green-pocket.biz/about_guide.html"
   },
 
   api: {
@@ -155,12 +163,12 @@ window.GREEN_WEB_CONFIG = Object.freeze({
       consultation: {
         title: "観葉植物レンタルをLINEで相談",
         note: "設置場所、希望時期、現在のお悩みが分かる範囲でお送りください。",
-        message: "観葉植物レンタルについて相談したいです。設置を考えている場所と希望時期をお伝えします。"
+        message: "グリーン・ポケット福岡粕屋店へ観葉植物レンタルについて相談したいです。設置を考えている場所と希望時期をお伝えします。"
       },
       photo: {
         title: "設置場所の写真から相談",
         note: "LINEへ移動後、設置を考えている場所の写真を添えてください。個人情報や機密情報が写っていないかご確認ください。",
-        message: "設置場所の写真から観葉植物レンタルを相談したいです。写真を送りますので、植物の大きさや配置について案内をお願いします。"
+        message: "グリーン・ポケット福岡粕屋店へ、設置場所の写真から観葉植物レンタルを相談したいです。写真を送りますので、植物の大きさや配置について案内をお願いします。"
       },
       visit: {
         title: "訪問予定について確認",
@@ -185,7 +193,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
       after_inquiry: {
         title: "受付番号をLINEで伝える",
         note: "受付番号だけで確認できない場合は、担当者から必要事項をご案内します。",
-        message: "ホームページから相談しました。受付番号は {receptionNumber} です。続けてLINEで相談したいです。"
+        message: "グリーン・ポケット福岡粕屋店のホームページから相談しました。受付番号は {receptionNumber} です。続けてLINEで相談したいです。"
       },
       portal_help: {
         title: "お客様画面の利用方法を確認",
@@ -195,7 +203,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     }
   },
 
-  lineFallbackMessage: "観葉植物レンタルについて相談したいです。設置を考えている場所と希望時期をお伝えします。",
+  lineFallbackMessage: "グリーン・ポケット福岡粕屋店へ観葉植物レンタルについて相談したいです。設置を考えている場所と希望時期をお伝えします。",
 
   featureFlags: {
     show_price_information: false,
@@ -212,7 +220,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     show_photo_inquiry: true,
     show_customer_portal_link: true,
     show_maintenance_report_feature: true,
-    show_google_map: false,
-    show_headquarters_branding: false
+    show_google_map: true,
+    show_headquarters_branding: true
   }
 });

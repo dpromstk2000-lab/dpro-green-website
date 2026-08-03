@@ -34,6 +34,9 @@
     setText("[data-site-address]", site.address);
     setText("[data-business-hours]", site.businessHours);
     setText("[data-closed-days]", site.closedDays);
+    setText("[data-site-manager]", site.managerName);
+    setText("[data-site-manager-title]", site.managerTitle);
+    setText("[data-site-fax]", site.fax);
     qsa("[data-site-field-row]").forEach((row) => {
       const key = row.dataset.siteFieldRow;
       const value = String(site[key] || "").trim();

@@ -1056,3 +1056,33 @@ body.presentation-design .site-footer { border-top: 0; }
   .present-benefit-bar .container > div:last-child { border-bottom: 0; }
   .present-final { padding: 56px 0 96px; }
 }
+
+
+/* WEB-GREEN-FUKUOKA-KASUYA-PREVIEW-20260803 */
+.top-assist__hours { color: var(--muted, #5f6f67); white-space: nowrap; }
+.present-store-profile { background: linear-gradient(135deg, #f7f4ec 0%, #eef6ea 100%); }
+.present-store-profile__grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(360px, .9fr); gap: clamp(30px, 5vw, 72px); align-items: center; }
+.present-store-profile__eyebrow { margin: 0 0 10px; color: #2c7b42; font-size: .8rem; font-weight: 800; letter-spacing: .16em; }
+.present-store-profile h2 { margin: 0 0 14px; color: #173d2b; font-size: clamp(2rem, 4vw, 3.3rem); line-height: 1.2; }
+.present-store-profile__manager { margin: 0 0 18px; color: #245d3b; font-size: 1.08rem; }
+.present-store-profile__intro > p:not(.present-store-profile__eyebrow):not(.present-store-profile__manager):not(.present-store-profile__source) { max-width: 48rem; font-size: 1.06rem; line-height: 1.9; }
+.present-store-profile__source { margin-top: 18px; color: #6b786f; font-size: .85rem; line-height: 1.7; }
+.present-store-profile__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.present-store-profile__details { padding: clamp(22px, 4vw, 36px); border: 1px solid rgba(23,61,43,.12); border-radius: 24px; background: rgba(255,255,255,.88); box-shadow: 0 18px 50px rgba(23,61,43,.08); }
+.present-store-profile__details dl { display: grid; gap: 0; margin: 0; }
+.present-store-profile__details dl > div { display: grid; grid-template-columns: 8.5rem 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid rgba(23,61,43,.1); }
+.present-store-profile__details dl > div:last-child { border-bottom: 0; }
+.present-store-profile__details dt { color: #517060; font-weight: 700; }
+.present-store-profile__details dd { margin: 0; color: #173d2b; font-weight: 700; line-height: 1.7; }
+.present-store-profile__details a { color: #176c38; }
+.present-store-profile__links { display: grid; gap: 8px; margin-top: 22px; }
+.present-store-profile__links a { display: inline-flex; align-items: center; min-height: 42px; font-weight: 800; text-decoration: none; }
+@media (max-width: 900px) {
+  .present-store-profile__grid { grid-template-columns: 1fr; }
+  .top-assist__hours { display: none; }
+}
+@media (max-width: 560px) {
+  .present-store-profile__details dl > div { grid-template-columns: 1fr; gap: 4px; }
+  .present-store-profile__actions { display: grid; }
+  .present-store-profile__actions .btn { width: 100%; }
+}
