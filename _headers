@@ -70,3 +70,6 @@ https://dpro-green-website.pages.dev/*
 
 /live-check.html
   Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self'; style-src 'self'; upgrade-insecure-requests
+
+/500.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self'; style-src 'self'; upgrade-insecure-requests

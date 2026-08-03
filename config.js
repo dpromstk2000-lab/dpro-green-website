@@ -1,5 +1,5 @@
 window.GREEN_WEB_CONFIG = Object.freeze({
-  version: "WEB-GREEN-6-SEO-PUBLICATION-20260802",
+  version: "WEB-GREEN-7-DEMO-INTEGRATED-20260803",
   site: {
     publicName: "地域の観葉植物レンタル専門店",
     serviceName: "観葉植物レンタル・定期メンテナンス",
