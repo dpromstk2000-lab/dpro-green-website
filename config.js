@@ -1,11 +1,11 @@
 window.GREEN_WEB_CONFIG = Object.freeze({
-  version: "WEB-GREEN-8-PRODUCTION-HANDOFF-20260803",
+  version: "WEB-GREEN-OWNER-PREVIEW-20260803",
 
   site: {
-    publicName: "地域の観葉植物レンタル専門店",
+    publicName: "グリーンポケット様",
     serviceName: "観葉植物レンタル・定期メンテナンス",
-    region: "[主な対応地域]",
-    operatorName: "[運営法人名]",
+    region: "福岡県内・近郊エリア（確認中）",
+    operatorName: "グリーンポケット様",
     postalCode: "",
     address: "",
     businessHours: "",
@@ -54,53 +54,53 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     useRealPhotos: false,
     images: {
       hero: {
-        src: "hero-office.svg",
+        src: "owner-hero.webp",
         alt: "明るいオフィスに観葉植物を配置した設置イメージ",
-        caption: "設置イメージ｜実際の導入事例ではありません。",
-        width: 960,
-        height: 640
+        caption: "AIによる設置イメージ｜実際の導入事例ではありません。",
+        width: 1440,
+        height: 960
       },
       caseOffice: {
-        src: "case-office.svg",
+        src: "owner-office.webp",
         alt: "オフィス受付の観葉植物設置イメージ",
-        caption: "設置イメージ",
-        width: 960,
-        height: 640
+        caption: "AIによる設置イメージ",
+        width: 1200,
+        height: 800
       },
       caseClinic: {
-        src: "case-clinic.svg",
+        src: "owner-clinic.webp",
         alt: "クリニック待合室の観葉植物設置イメージ",
-        caption: "設置イメージ",
-        width: 960,
-        height: 640
+        caption: "AIによる設置イメージ",
+        width: 1200,
+        height: 800
       },
       caseWelfare: {
-        src: "case-welfare.svg",
+        src: "owner-welfare.webp",
         alt: "福祉施設共用部の観葉植物設置イメージ",
-        caption: "設置イメージ",
-        width: 960,
-        height: 640
+        caption: "AIによる設置イメージ",
+        width: 1200,
+        height: 800
       },
       caseStore: {
-        src: "case-store.svg",
+        src: "owner-store.webp",
         alt: "店舗エントランスの観葉植物設置イメージ",
-        caption: "設置イメージ",
-        width: 960,
-        height: 640
+        caption: "AIによる設置イメージ",
+        width: 1200,
+        height: 800
       },
       photoGuide: {
-        src: "benefit-space.svg",
+        src: "owner-photo-consult.webp",
         alt: "設置場所の写真相談を表すイメージ",
-        caption: "写真相談イメージ",
-        width: 960,
-        height: 720
+        caption: "AIによる写真相談イメージ",
+        width: 1200,
+        height: 900
       },
       maintenance: {
-        src: "maintenance.svg",
+        src: "owner-maintenance.webp",
         alt: "観葉植物の定期メンテナンスを表すイメージ",
-        caption: "定期メンテナンスイメージ",
-        width: 960,
-        height: 720
+        caption: "AIによるメンテナンスイメージ",
+        width: 1200,
+        height: 900
       }
     }
   },
