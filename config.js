@@ -1,5 +1,5 @@
 window.GREEN_WEB_CONFIG = Object.freeze({
-  version: "WEB-GREEN-OWNER-PREVIEW-20260803",
+  version: "WEB-GREEN-PRESENTATION-DESIGN-20260803",
 
   site: {
     publicName: "グリーンポケット様",
