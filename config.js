@@ -1,5 +1,5 @@
 window.GREEN_WEB_CONFIG = Object.freeze({
-  version: "WEB-GREEN-FUKUOKA-KASUYA-PREVIEW-20260803",
+  version: "WEB-GREEN-FUKUOKA-KASUYA-LIVE-READY-20260803",
 
   site: {
     publicName: "グリーン・ポケット福岡粕屋店",
@@ -15,12 +15,12 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     fax: "092-719-0338",
     officialStorePage: "https://green-pocket.biz/shop_list/fukuoka-kasuya",
     officialContactUrl: "https://green-pocket.biz/shop_contact.html?post_id=326",
-    demo: true
+    demo: false
   },
 
   release: {
-    mode: "demo",
-    demoUrl: "https://dpromstk2000-lab.github.io/dpro-green-website/",
+    mode: "preview",
+    demoUrl: "",
     productionPlatform: "cloudflare-pages",
     productionUrl: "",
     customDomain: "",
@@ -32,7 +32,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
   },
 
   publication: {
-    ownerConfirmed: false,
+    ownerConfirmed: true,
     storeInformationApproved: true,
     logoApproved: false,
     brandNameApproved: true,
@@ -52,7 +52,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     headquartersName: "グリーン・ポケット",
     headquartersLabel: "グリーン・ポケット公式サイト",
     officialBrandName: "グリーン・ポケット",
-    approvedNotice: "公式公開情報をもとに確認用ページへ仮反映しています。"
+    approvedNotice: "店舗情報をご案内しています。"
   },
 
   media: {
@@ -61,49 +61,49 @@ window.GREEN_WEB_CONFIG = Object.freeze({
       hero: {
         src: "owner-hero.webp",
         alt: "明るいオフィスに観葉植物を配置した設置イメージ",
-        caption: "AIによる設置イメージ｜実際の導入事例ではありません。",
+        caption: "",
         width: 1440,
         height: 960
       },
       caseOffice: {
         src: "owner-office.webp",
         alt: "オフィス受付の観葉植物設置イメージ",
-        caption: "AIによる設置イメージ",
+        caption: "",
         width: 1200,
         height: 800
       },
       caseClinic: {
         src: "owner-clinic.webp",
         alt: "クリニック待合室の観葉植物設置イメージ",
-        caption: "AIによる設置イメージ",
+        caption: "",
         width: 1200,
         height: 800
       },
       caseWelfare: {
         src: "owner-welfare.webp",
         alt: "福祉施設共用部の観葉植物設置イメージ",
-        caption: "AIによる設置イメージ",
+        caption: "",
         width: 1200,
         height: 800
       },
       caseStore: {
         src: "owner-store.webp",
         alt: "店舗エントランスの観葉植物設置イメージ",
-        caption: "AIによる設置イメージ",
+        caption: "",
         width: 1200,
         height: 800
       },
       photoGuide: {
         src: "owner-photo-consult.webp",
         alt: "設置場所の写真相談を表すイメージ",
-        caption: "AIによる写真相談イメージ",
+        caption: "",
         width: 1200,
         height: 900
       },
       maintenance: {
         src: "owner-maintenance.webp",
         alt: "観葉植物の定期メンテナンスを表すイメージ",
-        caption: "AIによるメンテナンスイメージ",
+        caption: "",
         width: 1200,
         height: 900
       }

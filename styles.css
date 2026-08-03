@@ -262,7 +262,7 @@ button.btn { width: auto; }
 .section-heading { max-width: 760px; margin-bottom: 34px; }
 .section-heading--center { margin-inline: auto; text-align: center; }
 .section-label { margin: 0 0 9px; color: var(--leaf-600); font-size: 12px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
-.section-title { margin: 0; font-size: clamp(29px, 6.2vw, 46px); line-height: 1.38; letter-spacing: -.035em; }
+.section-title { margin: 0; font-size: clamp(29px, 6.2vw, 46px); line-height: 1.38; letter-spacing: -.035em; text-wrap: balance; }
 .section-lead { margin: 15px 0 0; color: var(--ink-650); font-size: 16px; }
 .section-actions { margin-top: 26px; }
 
@@ -372,7 +372,7 @@ button.btn { width: auto; }
 .final-cta::before { width: 420px; height: 420px; right: -210px; top: -250px; }
 .final-cta::after { width: 230px; height: 230px; left: -110px; bottom: -180px; }
 .final-cta__inner { position: relative; z-index: 1; }
-.final-cta h2 { margin: 0; font-size: clamp(29px, 7vw, 48px); line-height: 1.4; }
+.final-cta h2 { margin: 0; font-size: clamp(29px, 7vw, 48px); line-height: 1.4; text-wrap: balance; }
 .final-cta p { max-width: 720px; margin: 14px 0 0; color: rgba(255, 255, 255, .75); }
 .final-cta__actions { display: grid; gap: 11px; margin-top: 26px; }
 .final-cta__sub { margin-top: 16px; color: rgba(255, 255, 255, .6); font-size: 12px; }
@@ -500,7 +500,7 @@ button.btn { width: auto; }
 .page-hero { position:relative; overflow:hidden; padding:48px 0 62px; background:radial-gradient(circle at 88% 12%, rgba(166,199,106,.33), transparent 28%), linear-gradient(135deg,var(--canvas-100),#fff 58%,var(--mint-100)); }
 .page-hero::after { content:""; position:absolute; width:360px; height:360px; right:-220px; bottom:-250px; border:1px solid rgba(77,124,87,.22); border-radius:50%; }
 .page-hero__grid { position:relative; z-index:1; display:grid; gap:28px; align-items:end; }
-.page-hero h1 { max-width:860px; margin:0; font-size:clamp(34px,8.4vw,60px); line-height:1.32; letter-spacing:-.035em; }
+.page-hero h1 { max-width:860px; margin:0; font-size:clamp(34px,8.4vw,60px); line-height:1.32; letter-spacing:-.035em; text-wrap:balance; }
 .page-hero__lead { max-width:760px; margin:18px 0 0; color:var(--ink-650); font-size:17px; font-weight:600; }
 .page-hero__actions { display:grid; gap:10px; margin-top:26px; }
 .page-hero__aside { padding:23px; background:rgba(255,255,255,.82); border:1px solid rgba(255,255,255,.9); border-radius:var(--radius-lg); box-shadow:var(--shadow-card); backdrop-filter:blur(10px); }
@@ -556,7 +556,7 @@ button.btn { width: auto; }
 .pattern-card p { margin:8px 0 0; color:var(--ink-650); font-size:13px; }
 .photo-guide { display:grid; gap:32px; align-items:center; }
 .photo-guide figure { margin:0; }
-.photo-guide figure img { width:100%; border-radius:var(--radius-xl); box-shadow:var(--shadow-card); }
+.photo-guide figure img { width:100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center; border-radius:var(--radius-xl); box-shadow:var(--shadow-card); }
 .photo-guide figcaption { margin-top:8px; color:var(--ink-650); font-size:11px; }
 .photo-steps { display:grid; gap:12px; margin:24px 0 0; padding:0; list-style:none; }
 .photo-steps li { display:flex; gap:13px; align-items:flex-start; padding:14px; background:rgba(255,255,255,.76); border:1px solid var(--line-200); border-radius:var(--radius-md); }
@@ -1086,3 +1086,5 @@ body.presentation-design .site-footer { border-top: 0; }
   .present-store-profile__actions { display: grid; }
   .present-store-profile__actions .btn { width: 100%; }
 }
+
+.hero h1 { text-wrap: balance; }

@@ -103,7 +103,9 @@
     });
     qsa("[data-media-caption-key]").forEach((caption) => {
       const item = images[caption.dataset.mediaCaptionKey] || {};
-      if (item.caption) caption.textContent = item.caption;
+      caption.textContent = item.caption || "";
+      caption.hidden = !item.caption;
+      caption.setAttribute("aria-hidden", String(!item.caption));
     });
     const realApproved = media.useRealPhotos === true && publication.realPhotosApproved === true;
     qsa("[data-demo-media-only]").forEach((element) => {
@@ -244,7 +246,7 @@
     if (title) title.textContent = template.title;
     if (description) description.textContent = links.line
       ? "LINE公式を開いて相談を続けます。"
-      : "LINE公式URLの設定前は、下の文面をコピーして利用できます。";
+      : "下の文面をコピーしてLINEでお送りいただけます。";
     if (message) message.value = template.message;
     if (note) note.textContent = template.note;
     if (typeof lineDialog.showModal === "function") lineDialog.showModal();
@@ -280,8 +282,8 @@
     });
     qsa("[data-customer-portal-state]").forEach((element) => {
       element.textContent = links.customerPortal
-        ? "お客様画面URL設定済み"
-        : "正式URL未設定のため、LINE確認文面へ切り替わります";
+        ? "お客様画面へ移動できます"
+        : "LINEから導入後サポートをご案内します";
       element.dataset.ready = String(Boolean(links.customerPortal));
     });
   }
