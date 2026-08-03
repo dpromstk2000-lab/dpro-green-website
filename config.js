@@ -1,5 +1,5 @@
 window.GREEN_WEB_CONFIG = Object.freeze({
-  version: "WEB-GREEN-FUKUOKA-KASUYA-READABLE-20260803",
+  version: "WEB-GREEN-COMPLETE-WRAP-AUDIT-20260803",
 
   site: {
     publicName: "グリーン・ポケット福岡粕屋店",
