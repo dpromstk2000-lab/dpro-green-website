@@ -1088,3 +1088,252 @@ body.presentation-design .site-footer { border-top: 0; }
 }
 
 .hero h1 { text-wrap: balance; }
+
+/* WEB-GREEN-FUKUOKA-KASUYA-READABLE-20260803
+   Readability pass: larger type, clearer spacing, and controlled Japanese wrapping. */
+body {
+  font-size: 18px;
+  line-height: 1.9;
+}
+.top-assist { font-size: 14px; }
+.brand-copy strong { max-width: 340px; font-size: 16px; }
+.brand-copy small { font-size: 13px; }
+.desktop-nav { font-size: 15px; }
+.mobile-menu__note { font-size: 15px; line-height: 1.75; }
+.btn { min-height: 56px; padding: 14px 24px; font-size: 16px; }
+.btn--small { min-height: 48px; font-size: 15px; }
+.eyebrow,
+.section-label,
+.present-section__head p,
+.present-store-profile__eyebrow,
+.present-final p { font-size: 14px; }
+.hero-lead,
+.section-lead,
+.page-hero__lead { font-size: 18px; }
+.hero-meta li,
+.audience-list li,
+.present-feature-badge strong,
+.present-line-banner small,
+.present-service-card a,
+.present-service-card button,
+.present-outline-link { font-size: 15px; }
+.hero-note,
+.hero-float small,
+.problem-card__number,
+.reason-card__index,
+.service-card__tag,
+.split-media__caption,
+.case-label,
+.case-card__type,
+.case-disclaimer,
+.present-caption,
+.image-caption,
+.photo-guide figcaption { font-size: 14px; }
+.hero-float strong,
+.service-intro__note,
+.benefit-list span,
+.flow-step p,
+.maintenance-item,
+.report-panel p,
+.report-panel__mock span,
+.area-card__note,
+.area-visual__label,
+.faq-side__box p { font-size: 15px; }
+.problem-card p,
+.reason-card p,
+.service-card p,
+.benefit-card p,
+.case-card p { font-size: 16px; }
+.benefit-list strong,
+.flow-step h3,
+.report-panel h3 { font-size: 18px; }
+.problem-card h3,
+.reason-card h3,
+.service-card h3,
+.benefit-card h3,
+.case-card h3 { font-size: 22px; }
+.present-feature-badge small { font-size: 13px; line-height: 1.55; }
+.present-line-banner strong { font-size: 20px; }
+.present-concerns h2 { font-size: 25px; }
+.present-concerns li { font-size: 16px; }
+.present-service-card h3 { font-size: 21px; }
+.present-service-card p { min-height: 0; font-size: 16px; line-height: 1.8; }
+.present-case-grid strong { font-size: 18px; }
+.present-case-grid small { font-size: 15px; }
+.present-contact-card strong { font-size: 17px; }
+.present-contact-card small { font-size: 15px; line-height: 1.65; }
+.present-benefit-bar strong { font-size: 16px; }
+.present-final span { font-size: 17px; }
+.present-store-profile__eyebrow { font-size: 14px; }
+.present-store-profile__manager { font-size: 20px; }
+.present-store-profile__intro > p:not(.present-store-profile__eyebrow):not(.present-store-profile__manager):not(.present-store-profile__source) { font-size: 18px; }
+.present-store-profile__source { font-size: 15px; }
+.present-store-profile__details dt,
+.present-store-profile__details dd,
+.present-store-profile__links a { font-size: 16px; }
+.rich-menu-phone__top strong { font-size: 15px; }
+.rich-menu-phone__top small,
+.rich-menu-grid b,
+.rich-menu-grid small,
+.rich-menu-phone > p { font-size: 13px; }
+.portal-window__bar,
+.portal-window__hero p,
+.portal-window__stats span,
+.portal-window__rows p,
+.image-caption,
+.portal-feature-list p,
+.portal-action-card p,
+.message-template-card > span,
+.message-template-card p { font-size: 14px; }
+.portal-feature-list article > span { font-size: 13px; }
+.message-template-card h3 { font-size: 19px; }
+
+/* Keep Japanese words together instead of splitting mid-phrase. */
+.keep-together { display: inline !important; margin: 0 !important; color: inherit !important; white-space: nowrap; }
+.store-title-parts { display: flex; flex-wrap: wrap; column-gap: .34em; row-gap: 0; text-wrap: initial; }
+.store-title-parts span { white-space: nowrap; }
+.present-store-profile__grid { grid-template-columns: minmax(0, 1.4fr) minmax(350px, .75fr); }
+.present-store-profile h2 { font-size: clamp(2rem, 3.2vw, 2.9rem); }
+.photo-guide figure img { aspect-ratio: 4 / 5; object-fit: cover; object-position: center; }
+
+@media (max-width: 63.99rem) {
+  body { font-size: 17px; }
+  .brand-copy strong { max-width: 250px; font-size: 15px; }
+  .present-store-profile__grid { grid-template-columns: 1fr; }
+  .page-hero h1 { font-size: clamp(36px, 7vw, 54px); }
+}
+
+@media (max-width: 40rem) {
+  body { font-size: 17px; line-height: 1.85; }
+  .container { width: min(calc(100% - 28px), var(--container)); }
+  .section { padding-block: 62px; }
+  .brand-copy strong { max-width: 220px; font-size: 15px; }
+  .brand-copy small { font-size: 12px; }
+  .btn { min-height: 54px; padding-inline: 18px; font-size: 16px; }
+  .section-label,
+  .present-section__head p,
+  .present-store-profile__eyebrow,
+  .present-final p { font-size: 13px; }
+  .section-lead,
+  .page-hero__lead,
+  .present-hero__lead { font-size: 17px; }
+  .present-feature-badge strong { font-size: 15px; }
+  .present-feature-badge small { font-size: 13px; }
+  .present-service-card h3 { font-size: 20px; }
+  .present-service-card p { font-size: 16px; }
+  .present-concerns li { font-size: 16px; }
+  .present-case-grid strong { font-size: 17px; }
+  .present-case-grid small,
+  .present-contact-card small { font-size: 14px; }
+  .present-final h2 { font-size: clamp(29px, 8.2vw, 38px); line-height: 1.45; }
+  .present-final span { font-size: 16px; }
+  .present-store-profile h2 { font-size: clamp(2rem, 10vw, 2.65rem); }
+  .present-store-profile__source { font-size: 14px; }
+  .present-store-profile__details dt,
+  .present-store-profile__details dd,
+  .present-store-profile__links a { font-size: 16px; }
+  .photo-guide figure img { aspect-ratio: 4 / 5; }
+}
+
+/* Complete readable-size overrides for supporting text, forms, LINE pages, and footer. */
+.footer-brand p,
+.footer-nav a { font-size: 16px; }
+.footer-meta p { font-size: 14px; line-height: 1.75; }
+.factor-list strong { font-size: 17px; }
+.factor-list p,
+.option-card p,
+.empty-feature-note p,
+.case-detail-card p,
+.pattern-card p,
+.photo-steps p,
+.flow-detail-card p,
+.prep-grid p,
+.mini-timeline p,
+.maintenance-detail-card p,
+.feature-list span,
+.map-placeholder p,
+.policy-alert p,
+.policy-document p,
+.policy-document li { font-size: 16px; }
+.case-detail-card figcaption,
+.case-detail-card > div > span,
+.pattern-card__scale,
+.panel-note,
+.prep-grid article > span,
+.mini-timeline span,
+.maintenance-detail-card > span,
+.role-compare__label,
+.report-feature__note,
+.report-phone__plant span,
+.report-phone__row,
+.report-phone__button,
+.area-map-visual > small,
+.store-info dt,
+.faq-filter button,
+.faq-full-list .faq-question small,
+.policy-contact dt { font-size: 14px; }
+.case-detail-card h3,
+.pattern-card h3,
+.flow-detail-card h3,
+.prep-grid h3,
+.maintenance-detail-card h3 { font-size: 21px; }
+.contact-trust-row span,
+.contact-api-card .api-state,
+.contact-guide__steps p,
+.contact-guide__notice p,
+.form-alert,
+.submission-status { font-size: 15px; }
+.form-section__title p,
+.inquiry-form label,
+.inquiry-form label small,
+.inquiry-form label em,
+.consent-row em,
+.category-choice-grid strong,
+.category-choice-grid small,
+.field-help,
+.photo-uploader p,
+.photo-count,
+.form-submit-area p { font-size: 15px; }
+.inquiry-form input,
+.inquiry-form textarea,
+.inquiry-form select { font-size: 17px; }
+.photo-preview-item figcaption,
+.photo-remove { font-size: 13px; }
+.reception-card span,
+.reception-card button,
+.thanks-next p,
+.thanks-note { font-size: 15px; }
+.line-route-mini span,
+.line-status-card > span,
+.line-status-row,
+.line-audience-card__tag,
+.rich-menu-phone__top small,
+.rich-menu-grid b,
+.rich-menu-grid small,
+.rich-menu-phone > p,
+.portal-window__bar,
+.portal-window__hero p,
+.portal-window__stats span,
+.portal-window__rows p,
+.image-caption,
+.portal-feature-list p,
+.portal-action-card p,
+.message-template-card > span,
+.message-template-card p { font-size: 14px; }
+.line-route-mini strong { font-size: 16px; }
+.line-status-card > strong { font-size: 22px; }
+.rich-menu-phone__top strong { font-size: 16px; }
+.rich-menu-grid span { font-size: 16px; }
+.portal-window__stats strong { font-size: 24px; }
+.portal-feature-list p,
+.message-template-card p { line-height: 1.75; }
+
+@media (max-width: 40rem) {
+  .footer-brand p,
+  .footer-nav a { font-size: 15px; }
+  .footer-meta p { font-size: 14px; }
+  .inquiry-form input,
+  .inquiry-form textarea,
+  .inquiry-form select { font-size: 16px; }
+  .store-title-parts { display: grid; gap: 0; }
+}

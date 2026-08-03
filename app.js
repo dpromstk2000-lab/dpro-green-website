@@ -149,7 +149,7 @@
       if (placeholder) {
         placeholder.hidden = enabled;
         const note = qs("[data-map-note]", placeholder);
-        if (note) note.textContent = mapConfig.note || "正式住所と掲載許可を確認後に表示します。";
+        if (note) note.textContent = mapConfig.note || "店舗所在地をご案内します。";
       }
     });
   }

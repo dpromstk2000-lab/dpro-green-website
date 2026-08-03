@@ -1,5 +1,5 @@
 window.GREEN_WEB_CONFIG = Object.freeze({
-  version: "WEB-GREEN-FUKUOKA-KASUYA-LIVE-READY-20260803",
+  version: "WEB-GREEN-FUKUOKA-KASUYA-READABLE-20260803",
 
   site: {
     publicName: "グリーン・ポケット福岡粕屋店",
@@ -19,7 +19,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
   },
 
   release: {
-    mode: "preview",
+    mode: "production",
     demoUrl: "",
     productionPlatform: "cloudflare-pages",
     productionUrl: "",
@@ -60,49 +60,49 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     images: {
       hero: {
         src: "owner-hero.webp",
-        alt: "明るいオフィスに観葉植物を配置した設置イメージ",
+        alt: "明るいオフィスに観葉植物を配置した空間",
         caption: "",
         width: 1440,
         height: 960
       },
       caseOffice: {
         src: "owner-office.webp",
-        alt: "オフィス受付の観葉植物設置イメージ",
+        alt: "観葉植物を配置したオフィス受付",
         caption: "",
         width: 1200,
         height: 800
       },
       caseClinic: {
         src: "owner-clinic.webp",
-        alt: "クリニック待合室の観葉植物設置イメージ",
+        alt: "観葉植物を配置したクリニック待合室",
         caption: "",
         width: 1200,
         height: 800
       },
       caseWelfare: {
         src: "owner-welfare.webp",
-        alt: "福祉施設共用部の観葉植物設置イメージ",
+        alt: "観葉植物を配置した福祉施設共用部",
         caption: "",
         width: 1200,
         height: 800
       },
       caseStore: {
         src: "owner-store.webp",
-        alt: "店舗エントランスの観葉植物設置イメージ",
+        alt: "観葉植物を配置した店舗エントランス",
         caption: "",
         width: 1200,
         height: 800
       },
       photoGuide: {
         src: "owner-photo-consult.webp",
-        alt: "設置場所の写真相談を表すイメージ",
+        alt: "スマートフォンで設置場所の写真を撮影して相談する様子",
         caption: "",
         width: 1200,
         height: 900
       },
       maintenance: {
         src: "owner-maintenance.webp",
-        alt: "観葉植物の定期メンテナンスを表すイメージ",
+        alt: "スタッフが観葉植物を手入れする様子",
         caption: "",
         width: 1200,
         height: 900
@@ -197,7 +197,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
       },
       portal_help: {
         title: "お客様画面の利用方法を確認",
-        note: "本番ではLINE本人確認後、確認済みのお客様情報だけを表示します。",
+        note: "LINE本人確認後、確認済みのお客様情報だけを表示します。",
         message: "契約中のお客様です。お客様画面の開き方について確認したいです。"
       }
     }
