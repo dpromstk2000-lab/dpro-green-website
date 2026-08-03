@@ -6,6 +6,10 @@
   const links = config.links || {};
   const flags = config.featureFlags || {};
   const lineConfig = config.line || {};
+  const publication = config.publication || {};
+  const brand = config.brand || {};
+  const media = config.media || {};
+  const mapConfig = config.map || {};
   const qs = (selector, scope = document) => scope.querySelector(selector);
   const qsa = (selector, scope = document) => Array.from(scope.querySelectorAll(selector));
 
@@ -26,6 +30,7 @@
     setText("[data-service-name]", site.serviceName);
     setText("[data-site-region]", site.region);
     setText("[data-operator-name]", site.operatorName);
+    setText("[data-site-postal-code]", site.postalCode);
     setText("[data-site-address]", site.address);
     setText("[data-business-hours]", site.businessHours);
     setText("[data-closed-days]", site.closedDays);
@@ -44,6 +49,103 @@
       const enabled = flags[element.dataset.feature] === true;
       element.hidden = !enabled;
       element.setAttribute("aria-hidden", String(!enabled));
+    });
+  }
+
+
+  function configureBrand() {
+    const logoUrl = String(brand.logoUrl || "").trim();
+    const approved = publication.logoApproved === true && Boolean(logoUrl);
+    qsa(".brand-mark").forEach((mark) => {
+      mark.classList.toggle("brand-mark--image", approved);
+      const existing = qs("img", mark);
+      if (!approved) {
+        existing?.remove();
+        return;
+      }
+      const image = existing || document.createElement("img");
+      image.src = resolveSiteLink(logoUrl);
+      image.alt = "";
+      image.setAttribute("aria-hidden", "true");
+      image.decoding = "async";
+      if (!existing) mark.append(image);
+    });
+
+    const headquartersEnabled = flags.show_headquarters_branding === true
+      && publication.headquartersTextApproved === true
+      && Boolean(String(links.headquarters || "").trim());
+    qsa("[data-headquarters-action]").forEach((element) => {
+      element.hidden = !headquartersEnabled;
+      element.setAttribute("aria-hidden", String(!headquartersEnabled));
+      if (!headquartersEnabled) return;
+      element.setAttribute("href", resolveSiteLink(links.headquarters));
+      element.setAttribute("target", "_blank");
+      element.setAttribute("rel", "noopener noreferrer");
+      element.textContent = brand.headquartersLabel || "本部サイト";
+    });
+    setText("[data-official-brand-name]", publication.brandNameApproved ? brand.officialBrandName : "");
+    setText("[data-brand-approved-notice]", publication.headquartersTextApproved ? brand.approvedNotice : "");
+  }
+
+  function configureMedia() {
+    const images = media.images || {};
+    qsa("[data-media-key]").forEach((image) => {
+      const item = images[image.dataset.mediaKey] || {};
+      const src = String(item.src || "").trim();
+      if (src) image.setAttribute("src", resolveSiteLink(src));
+      if (item.alt) image.setAttribute("alt", item.alt);
+      if (Number(item.width) > 0) image.setAttribute("width", String(item.width));
+      if (Number(item.height) > 0) image.setAttribute("height", String(item.height));
+      image.dataset.mediaReal = String(media.useRealPhotos === true && publication.realPhotosApproved === true);
+    });
+    qsa("[data-media-caption-key]").forEach((caption) => {
+      const item = images[caption.dataset.mediaCaptionKey] || {};
+      if (item.caption) caption.textContent = item.caption;
+    });
+    const realApproved = media.useRealPhotos === true && publication.realPhotosApproved === true;
+    qsa("[data-demo-media-only]").forEach((element) => {
+      const scope = element.dataset.demoMediaOnly || "all";
+      const hide = realApproved && (scope !== "cases" || publication.customerCasesApproved === true);
+      element.hidden = hide;
+      element.setAttribute("aria-hidden", String(hide));
+    });
+  }
+
+  function configureMap() {
+    const featureEnabled = flags.show_google_map === true;
+    const approved = publication.googleMapApproved === true;
+    const embedUrl = String(mapConfig.embedUrl || "").trim();
+    const viewUrl = String(mapConfig.viewUrl || "").trim();
+    qsa("[data-map-container]").forEach((container) => {
+      const enabled = featureEnabled && approved && Boolean(embedUrl || viewUrl);
+      container.hidden = !featureEnabled;
+      container.setAttribute("aria-hidden", String(!featureEnabled));
+      if (!featureEnabled) return;
+      const frame = qs("[data-map-frame]", container);
+      const link = qs("[data-map-link]", container);
+      const placeholder = qs("[data-map-placeholder]", container);
+      if (frame) {
+        frame.hidden = !enabled || !embedUrl;
+        if (enabled && embedUrl) {
+          frame.src = embedUrl;
+          frame.title = mapConfig.title || "店舗所在地のGoogleマップ";
+        } else {
+          frame.removeAttribute("src");
+        }
+      }
+      if (link) {
+        link.hidden = !enabled || !viewUrl;
+        if (enabled && viewUrl) {
+          link.href = viewUrl;
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+        }
+      }
+      if (placeholder) {
+        placeholder.hidden = enabled;
+        const note = qs("[data-map-note]", placeholder);
+        if (note) note.textContent = mapConfig.note || "正式住所と掲載許可を確認後に表示します。";
+      }
     });
   }
 
@@ -383,6 +485,9 @@
     captureTracking();
     applySiteData();
     applyFeatureFlags();
+    configureBrand();
+    configureMedia();
+    configureMap();
     setContactLinks();
     configurePhone();
     configurePortal();

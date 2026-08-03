@@ -1,10 +1,12 @@
 window.GREEN_WEB_CONFIG = Object.freeze({
-  version: "WEB-GREEN-7-DEMO-INTEGRATED-20260803",
+  version: "WEB-GREEN-8-PRODUCTION-HANDOFF-20260803",
+
   site: {
     publicName: "地域の観葉植物レンタル専門店",
     serviceName: "観葉植物レンタル・定期メンテナンス",
     region: "[主な対応地域]",
     operatorName: "[運営法人名]",
+    postalCode: "",
     address: "",
     businessHours: "",
     closedDays: "",
@@ -19,8 +21,97 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     customDomain: "",
     allowIndexing: false,
     searchConsoleVerification: "",
-    analyticsEnabled: false
+    analyticsEnabled: false,
+    analyticsProvider: "",
+    analyticsId: ""
   },
+
+  publication: {
+    ownerConfirmed: false,
+    storeInformationApproved: false,
+    logoApproved: false,
+    brandNameApproved: false,
+    headquartersTextApproved: false,
+    lineApproved: false,
+    customerDataStorageApproved: false,
+    realPhotosApproved: false,
+    customerCasesApproved: false,
+    googleMapApproved: false,
+    privacyOperatorApproved: false,
+    customDomainApproved: false
+  },
+
+  brand: {
+    logoUrl: "",
+    logoAlt: "",
+    headquartersName: "",
+    headquartersLabel: "本部サイト",
+    officialBrandName: "",
+    approvedNotice: ""
+  },
+
+  media: {
+    useRealPhotos: false,
+    images: {
+      hero: {
+        src: "hero-office.svg",
+        alt: "明るいオフィスに観葉植物を配置した設置イメージ",
+        caption: "設置イメージ｜実際の導入事例ではありません。",
+        width: 960,
+        height: 640
+      },
+      caseOffice: {
+        src: "case-office.svg",
+        alt: "オフィス受付の観葉植物設置イメージ",
+        caption: "設置イメージ",
+        width: 960,
+        height: 640
+      },
+      caseClinic: {
+        src: "case-clinic.svg",
+        alt: "クリニック待合室の観葉植物設置イメージ",
+        caption: "設置イメージ",
+        width: 960,
+        height: 640
+      },
+      caseWelfare: {
+        src: "case-welfare.svg",
+        alt: "福祉施設共用部の観葉植物設置イメージ",
+        caption: "設置イメージ",
+        width: 960,
+        height: 640
+      },
+      caseStore: {
+        src: "case-store.svg",
+        alt: "店舗エントランスの観葉植物設置イメージ",
+        caption: "設置イメージ",
+        width: 960,
+        height: 640
+      },
+      photoGuide: {
+        src: "benefit-space.svg",
+        alt: "設置場所の写真相談を表すイメージ",
+        caption: "写真相談イメージ",
+        width: 960,
+        height: 720
+      },
+      maintenance: {
+        src: "maintenance.svg",
+        alt: "観葉植物の定期メンテナンスを表すイメージ",
+        caption: "定期メンテナンスイメージ",
+        width: 960,
+        height: 720
+      }
+    }
+  },
+
+  map: {
+    embedUrl: "",
+    viewUrl: "",
+    title: "店舗所在地のGoogleマップ",
+    note: "正式住所と掲載許可を確認後に表示します。"
+  },
+
   seo: {
     canonicalBaseUrl: "https://dpromstk2000-lab.github.io/dpro-green-website",
     defaultShareImage: "og-image.png",
@@ -37,6 +128,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     geo: { latitude: "", longitude: "" },
     openingHours: []
   },
+
   links: {
     contact: "contact.html",
     lineGuide: "line.html",
@@ -47,6 +139,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     headquarters: "",
     privacy: "privacy.html"
   },
+
   api: {
     baseUrl: "https://dpro-green-rental-line-api.dpromstk2000.workers.dev",
     facilityCode: "dpro_green_rental_demo",
@@ -56,6 +149,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     maxImageEdge: 1600,
     jpegQuality: 0.82
   },
+
   line: {
     templates: {
       consultation: {
@@ -100,7 +194,9 @@ window.GREEN_WEB_CONFIG = Object.freeze({
       }
     }
   },
+
   lineFallbackMessage: "観葉植物レンタルについて相談したいです。設置を考えている場所と希望時期をお伝えします。",
+
   featureFlags: {
     show_price_information: false,
     show_personal_home_service: false,
