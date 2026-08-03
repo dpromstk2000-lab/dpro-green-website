@@ -1,6 +1,6 @@
-# WEB-GREEN-6-R2 Cloudflare Pages redirects
-# Cloudflare Pages automatically serves *.html files at extensionless URLs.
-# Do not redirect /service -> /service.html because it creates a redirect loop.
+# WEB-GREEN-6-R3 final Cloudflare Pages redirects
+# HTML pages are served at extensionless URLs by Cloudflare Pages.
 
 /index.html / 301
 /live-check.html / 302
+/cloudflare-check.html / 302

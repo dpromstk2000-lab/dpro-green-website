@@ -4,221 +4,32 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow,noarchive">
-  <title>Cloudflare公開環境検査｜DPRO GREEN</title>
+  <meta http-equiv="refresh" content="3;url=./">
+  <title>公開環境検査完了｜DPRO GREEN</title>
   <style>
-    :root{--green:#0d3b2e;--pale:#f3f7ef;--line:#dce6d6;--ok:#18794e;--ng:#b42318}
+    :root{--green:#0d3b2e;--pale:#f3f7ef;--line:#dce6d6}
     *{box-sizing:border-box}
-    body{margin:0;background:var(--pale);color:#17352b;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;line-height:1.7}
-    main{width:min(900px,calc(100% - 32px));margin:42px auto;padding:30px;background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 16px 48px rgba(13,59,46,.08)}
-    h1{margin:0 0 8px;font-size:clamp(27px,5vw,42px);line-height:1.35}
-    p{margin:0 0 18px;color:#52645d}
-    .state{display:inline-block;margin-bottom:16px;padding:6px 12px;border-radius:999px;background:#eef4ea;font-weight:800}
-    .state.ok{color:var(--ok)}.state.ng{color:var(--ng);background:#fff1f0}
-    .summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0}
-    .summary div{padding:18px;border:1px solid var(--line);border-radius:14px;text-align:center}
-    .summary strong{display:block;font-size:30px;color:var(--green)}
-    ol{list-style:none;padding:0;margin:0;display:grid;gap:10px}
-    li{padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:#fff}
-    li.ok{border-color:#b7dfc8}li.ng{border-color:#f4b7b2;background:#fffafa}
-    li b{display:block}li small{color:#66766f;word-break:break-word}
-    pre{margin:20px 0 0;padding:14px;max-height:220px;overflow:auto;border-radius:12px;background:#f6f8f5;font-size:12px;white-space:pre-wrap;word-break:break-word}
-    @media(max-width:560px){main{margin:16px auto;padding:20px}.summary{grid-template-columns:1fr}}
+    body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;
+      background:var(--pale);color:#17352b;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif}
+    main{width:min(680px,100%);padding:42px 30px;text-align:center;background:#fff;
+      border:1px solid var(--line);border-radius:24px;box-shadow:0 18px 50px rgba(13,59,46,.10)}
+    .mark{width:56px;height:56px;margin:0 auto 18px;display:grid;place-items:center;
+      border-radius:50%;background:#e4f3dd;color:var(--green);font-size:30px;font-weight:800}
+    h1{margin:0 0 14px;font-size:clamp(26px,5vw,40px);line-height:1.35}
+    p{margin:0 0 26px;color:#52645d;line-height:1.9}
+    a{display:inline-block;padding:14px 22px;border-radius:999px;background:var(--green);
+      color:#fff;text-decoration:none;font-weight:700}
+    small{display:block;margin-top:18px;color:#75847e}
   </style>
 </head>
 <body>
-<main>
-  <span class="state" id="state">検査を実行しています…</span>
-  <h1>Cloudflare公開環境検査</h1>
-  <p>問い合わせや写真を登録せず、pages.devからのCORS、公開ページ、リダイレクト、セキュリティヘッダーを自動確認します。</p>
-  <section class="summary" aria-label="検査集計">
-    <div><strong id="total">0</strong>検査件数</div>
-    <div><strong id="pass">0</strong>合格</div>
-    <div><strong id="fail">0</strong>失敗</div>
-  </section>
-  <ol id="results"></ol>
-  <pre id="record" aria-label="検査記録"></pre>
-</main>
-<script>
-(() => {
-  "use strict";
-  const EXPECTED_ORIGIN = "https://dpro-green-website.pages.dev";
-  const API = "https://dpro-green-rental-line-api.dpromstk2000.workers.dev";
-  const results = [];
-  const $ = (id) => document.getElementById(id);
-
-  function add(name, ok, detail) {
-    results.push({name, ok, detail});
-    const li = document.createElement("li");
-    li.className = ok ? "ok" : "ng";
-    const mark = ok ? "✓" : "×";
-    li.innerHTML = `<b>${mark} ${escapeHtml(name)}</b><small>${escapeHtml(detail || "")}</small>`;
-    $("results").appendChild(li);
-    update();
-  }
-
-  function escapeHtml(value) {
-    return String(value ?? "").replace(/[&<>"']/g, (c) => ({
-      "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-    }[c]));
-  }
-
-  function update() {
-    const pass = results.filter(x => x.ok).length;
-    const fail = results.length - pass;
-    $("total").textContent = String(results.length);
-    $("pass").textContent = String(pass);
-    $("fail").textContent = String(fail);
-  }
-
-  async function request(url, options = {}) {
-    const response = await fetch(url, {
-      cache: "no-store",
-      redirect: "follow",
-      ...options
-    });
-    let text = "";
-    try { text = await response.text(); } catch (_) {}
-    let json = null;
-    try { json = text ? JSON.parse(text) : null; } catch (_) {}
-    return {response, text, json};
-  }
-
-  async function run() {
-    const startedAt = new Date().toISOString();
-
-    add(
-      "Cloudflare Pages公開元",
-      location.origin === EXPECTED_ORIGIN,
-      `現在: ${location.origin} / 期待値: ${EXPECTED_ORIGIN}`
-    );
-
-    try {
-      const {response} = await request("./index.html");
-      add("トップページ取得", response.status === 200, `HTTP ${response.status}`);
-    } catch (e) {
-      add("トップページ取得", false, e.message);
-    }
-
-    try {
-      const {response} = await request("./service");
-      add(
-        "拡張子なしURLのリダイレクト",
-        response.status === 200 && /\/service\.html$/.test(new URL(response.url).pathname),
-        `HTTP ${response.status} / 最終URL: ${response.url}`
-      );
-    } catch (e) {
-      add("拡張子なしURLのリダイレクト", false, e.message);
-    }
-
-    try {
-      const {response} = await request("./live-check.html");
-      const path = new URL(response.url).pathname;
-      add(
-        "旧検査ページの無効化",
-        response.status === 200 && (path === "/" || path.endsWith("/index.html")),
-        `HTTP ${response.status} / 最終URL: ${response.url}`
-      );
-    } catch (e) {
-      add("旧検査ページの無効化", false, e.message);
-    }
-
-    try {
-      const {response} = await request("./");
-      const nosniff = response.headers.get("x-content-type-options");
-      const frame = response.headers.get("x-frame-options");
-      add(
-        "基本セキュリティヘッダー",
-        nosniff === "nosniff" && frame === "DENY",
-        `X-Content-Type-Options: ${nosniff || "なし"} / X-Frame-Options: ${frame || "なし"}`
-      );
-      const robots = response.headers.get("x-robots-tag");
-      add(
-        "Cloudflareデモ版の検索除外ヘッダー",
-        !!robots && /noindex/i.test(robots),
-        `X-Robots-Tag: ${robots || "なし"}`
-      );
-    } catch (e) {
-      add("基本セキュリティヘッダー", false, e.message);
-      add("Cloudflareデモ版の検索除外ヘッダー", false, e.message);
-    }
-
-    try {
-      const {response, json} = await request(`${API}/api/health`);
-      const healthy = response.status === 200 && (
-        json?.status === "healthy" || json?.ok === true
-      );
-      add(
-        "Worker健康診断・CORS",
-        healthy,
-        `HTTP ${response.status} / status: ${json?.status ?? "不明"}`
-      );
-    } catch (e) {
-      add("Worker健康診断・CORS", false, `ブラウザ接続失敗: ${e.message}`);
-    }
-
-    try {
-      const {response, json} = await request(`${API}/api/public/facility`);
-      add(
-        "事業所情報取得・CORS",
-        response.status === 200,
-        `HTTP ${response.status} / ${json?.facilityName || json?.name || "応答あり"}`
-      );
-    } catch (e) {
-      add("事業所情報取得・CORS", false, `ブラウザ接続失敗: ${e.message}`);
-    }
-
-    try {
-      const {response, json} = await request(`${API}/api/public/services`);
-      const count = Array.isArray(json) ? json.length :
-        Array.isArray(json?.services) ? json.services.length : "確認済み";
-      add(
-        "公開サービス取得・CORS",
-        response.status === 200,
-        `HTTP ${response.status} / 件数: ${count}`
-      );
-    } catch (e) {
-      add("公開サービス取得・CORS", false, `ブラウザ接続失敗: ${e.message}`);
-    }
-
-    try {
-      const key = `web-green-6-cors-${Date.now()}-${Math.random().toString(16).slice(2)}`;
-      const {response} = await request(`${API}/api/public/inquiries`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Idempotency-Key": key
-        },
-        body: JSON.stringify({})
-      });
-      add(
-        "問い合わせPOSTの事前通信・CORS",
-        [400, 422].includes(response.status),
-        `空入力を正しく拒否: HTTP ${response.status}（登録データなし）`
-      );
-    } catch (e) {
-      add("問い合わせPOSTの事前通信・CORS", false, `プリフライトまたはCORS失敗: ${e.message}`);
-    }
-
-    const pass = results.filter(x => x.ok).length;
-    const fail = results.length - pass;
-    $("state").textContent = fail === 0 ? "全項目合格" : "失敗項目があります";
-    $("state").className = `state ${fail === 0 ? "ok" : "ng"}`;
-    $("record").textContent = JSON.stringify({
-      version: "WEB-GREEN-6-R1-CLOUDFLARE-CHECK-20260802",
-      startedAt,
-      finishedAt: new Date().toISOString(),
-      origin: location.origin,
-      summary: {total: results.length, pass, fail},
-      results
-    }, null, 2);
-  }
-
-  run().catch((e) => {
-    add("検査処理", false, e?.message || String(e));
-    $("state").textContent = "検査処理でエラー";
-    $("state").className = "state ng";
-  });
-})();
-</script>
+  <main>
+    <div class="mark" aria-hidden="true">✓</div>
+    <h1>公開環境検査は完了しました</h1>
+    <p>検査用の通信機能は無効化されています。<br>まもなくホームページへ移動します。</p>
+    <a href="./">ホームページへ戻る</a>
+    <small>WEB-GREEN-6-R3 / production cleanup</small>
+  </main>
 </body>
 </html>
