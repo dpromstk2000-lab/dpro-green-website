@@ -421,6 +421,21 @@
     const progress = qs("[data-hero-progress]", gallery);
     if (frames.length < 2) return;
 
+    const mobileMedia = window.matchMedia("(max-width: 47.99rem)");
+    const applyHeroSources = (useMobile = mobileMedia.matches) => {
+      frames.forEach((frame) => {
+        const nextSrc = useMobile ? frame.dataset.mobileSrc : frame.dataset.desktopSrc;
+        const nextWidth = useMobile ? frame.dataset.mobileWidth : frame.dataset.desktopWidth;
+        const nextHeight = useMobile ? frame.dataset.mobileHeight : frame.dataset.desktopHeight;
+        if (nextSrc && frame.getAttribute("src") !== nextSrc) frame.setAttribute("src", nextSrc);
+        if (nextWidth) frame.setAttribute("width", nextWidth);
+        if (nextHeight) frame.setAttribute("height", nextHeight);
+      });
+      gallery.dataset.heroMode = useMobile ? "mobile" : "desktop";
+    };
+
+    applyHeroSources();
+
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion) {
       frames.forEach((frame, index) => frame.classList.toggle("is-active", index === 0));
@@ -456,6 +471,13 @@
       timer = 0;
       if (progress) progress.classList.remove("is-running");
     };
+
+    const handleMediaChange = () => applyHeroSources();
+    if (typeof mobileMedia.addEventListener === "function") {
+      mobileMedia.addEventListener("change", handleMediaChange);
+    } else if (typeof mobileMedia.addListener === "function") {
+      mobileMedia.addListener(handleMediaChange);
+    }
 
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) stop();

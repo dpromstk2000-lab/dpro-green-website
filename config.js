@@ -73,14 +73,14 @@ window.GREEN_WEB_CONFIG = Object.freeze({
         height: 800
       },
       caseClinic: {
-        src: "owner-clinic.webp",
+        src: "owner-clinic-green.webp",
         alt: "観葉植物を配置したクリニック待合室",
         caption: "",
         width: 1200,
         height: 800
       },
       caseWelfare: {
-        src: "owner-welfare.webp",
+        src: "owner-welfare-green.webp",
         alt: "観葉植物を配置した福祉施設共用部",
         caption: "",
         width: 1200,
