@@ -65,8 +65,11 @@
 </aside>
 <main id="main">
 <section aria-labelledby="present-hero-title" class="present-hero" id="top">
-<div aria-hidden="true" class="present-hero__media">
-<img alt="" decoding="async" fetchpriority="high" height="640" src="owner-hero.webp" width="960"/>
+<div aria-hidden="true" class="present-hero__media" data-hero-gallery="">
+<img alt="" class="present-hero__frame is-active" decoding="async" fetchpriority="high" height="960" src="owner-hero.webp" width="1440"/>
+<img alt="" class="present-hero__frame" decoding="async" height="800" loading="eager" src="owner-office.webp" width="1200"/>
+<img alt="" class="present-hero__frame" decoding="async" height="800" loading="eager" src="owner-clinic.webp" width="1200"/>
+<span class="present-hero__media-progress" data-hero-progress=""></span>
 </div>
 <div class="present-hero__shade"></div>
 <div class="container present-hero__inner">
@@ -108,7 +111,7 @@
 
 </section>
 <section aria-labelledby="present-concerns-title" class="present-concerns">
-<div class="container">
+<div class="container" data-reveal="">
 <h2 id="present-concerns-title">こんなお悩みありませんか？</h2>
 <ul>
 <li>オフィスを明るい雰囲気にしたい</li>
@@ -121,11 +124,11 @@
 </section>
 <section aria-labelledby="present-services-title" class="present-section present-services" id="services">
 <div class="container">
-<div class="present-section__head">
+<div class="present-section__head" data-reveal="">
 <p>サービス内容</p>
 <h2 id="present-services-title">選定から設置、日々の管理までまとめて対応</h2>
 </div>
-<div class="present-service-grid">
+<div class="present-service-grid" data-reveal-stagger="">
 <article class="present-service-card">
 <img alt="観葉植物を配置したオフィスの設置例" decoding="async" height="640" loading="lazy" src="owner-office.webp" width="960"/>
 <div><span aria-hidden="true">葉</span><h3>観葉植物レンタル</h3><p>空間に合う植物と鉢を選び、月額制で設置します。</p><a href="service.html">詳しく見る →</a></div>
@@ -148,11 +151,11 @@
 </section>
 <section aria-labelledby="present-cases-title" class="present-section present-cases" id="cases">
 <div class="container">
-<div class="present-section__head present-section__head--row">
+<div class="present-section__head present-section__head--row" data-reveal="">
 <div><p>導入イメージ</p><h2 id="present-cases-title">さまざまな空間に、自然なグリーンを</h2></div>
 <a class="present-outline-link" href="cases.html">導入イメージをもっと見る →</a>
 </div>
-<div class="present-case-grid">
+<div class="present-case-grid" data-reveal-stagger="">
 <article><img alt="オフィスへの設置例" height="640" loading="lazy" src="owner-office.webp" width="960"/><div><strong>オフィス</strong><small>受付・執務スペース</small></div></article>
 <article><img alt="クリニックへの設置例" height="640" loading="lazy" src="owner-clinic.webp" width="960"/><div><strong>クリニック</strong><small>待合室・受付</small></div></article>
 <article><img alt="店舗への設置例" height="640" loading="lazy" src="owner-store.webp" width="960"/><div><strong>サロン・店舗</strong><small>入口・接客スペース</small></div></article>
@@ -190,7 +193,7 @@
 </div>
 </div>
 </section><section aria-label="お問い合わせ方法" class="present-contact-strip">
-<div class="container present-contact-grid">
+<div class="container present-contact-grid" data-reveal-stagger="">
 <button class="present-contact-card" data-feature="show_line_consultation" data-line-action="" data-line-message-key="consultation" type="button">
 <span class="present-contact-card__icon">LINE</span><span><strong>LINEでかんたん相談</strong><small>写真を送るだけでもOK</small></span>
 </button>
@@ -203,7 +206,7 @@
 </div>
 </section>
 <section aria-label="サービスの安心ポイント" class="present-benefit-bar">
-<div class="container">
+<div class="container" data-reveal-stagger="">
 <div><span>✓</span><strong>初期費用を抑えた<br/>月額制レンタル</strong></div>
 <div><span>✓</span><strong>専門スタッフによる<br/>定期メンテナンス</strong></div>
 <div><span>✓</span><strong>空間に合わせた<br/>最適なご提案</strong></div>
@@ -211,7 +214,7 @@
 </div>
 </section>
 <section aria-labelledby="present-final-title" class="present-final">
-<div class="container present-final__inner">
+<div class="container present-final__inner" data-reveal="">
 <div><p>FREE CONSULTATION</p><h2 id="present-final-title">植物や鉢数が未定でも、ご相談いただけます。</h2><span>設置場所の写真や、現在のお悩みからご案内します。</span></div>
 <div class="present-final__actions"><a class="btn present-btn present-btn--solid" data-link="contact" href="contact.html">無料で設置相談</a><button class="btn present-btn present-btn--light" data-feature="show_line_consultation" data-line-action="" data-line-message-key="photo" type="button">LINEで写真相談</button></div>
 </div>

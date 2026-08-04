@@ -427,7 +427,7 @@ button.btn { width: auto; }
 .line-dialog__actions { display: grid; gap: 10px; margin-top: 16px; }
 .line-dialog__note { font-size: 11px !important; }
 
-[data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .58s ease, transform .58s ease; }
+[data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .72s cubic-bezier(.2,.7,.2,1), transform .72s cubic-bezier(.2,.7,.2,1); transition-delay: var(--reveal-delay, 0ms); }
 [data-reveal].is-visible { opacity: 1; transform: none; }
 
 @media (min-width: 36rem) {
@@ -491,6 +491,10 @@ button.btn { width: auto; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .001ms !important; animation-duration: .001ms !important; animation-iteration-count: 1 !important; }
   [data-reveal] { opacity: 1; transform: none; }
+  .present-hero__frame { opacity: 0; transform: none; }
+  .present-hero__frame:first-child { opacity: 1; }
+  .present-hero__media-progress { display: none; }
+  .present-line-banner::after { display: none; }
 }
 
 
@@ -901,7 +905,16 @@ body.presentation-design .demo-banner { color: #315c42; background: #eef7ec; bor
 
 .present-hero { position: relative; min-height: 650px; overflow: hidden; color: #fff; background: var(--present-green-deep); }
 .present-hero__media, .present-hero__shade { position: absolute; inset: 0; }
-.present-hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.present-hero__media { overflow: hidden; background: #123f2a; }
+.present-hero__frame { position: absolute; inset: -2%; width: 104%; height: 104%; object-fit: cover; object-position: center; opacity: 0; transform: scale(1.025); transition: opacity 2.2s ease; will-change: opacity, transform; }
+.present-hero__frame:nth-of-type(2) { object-position: center 48%; }
+.present-hero__frame:nth-of-type(3) { object-position: center 44%; }
+.present-hero__frame.is-active { z-index: 1; opacity: 1; animation: present-hero-drift 11s cubic-bezier(.18,.68,.22,1) both; }
+.present-hero__media-progress { position: absolute; z-index: 3; right: clamp(18px, 3vw, 46px); top: 26px; width: 74px; height: 3px; overflow: hidden; background: rgba(255,255,255,.28); border-radius: 999px; }
+.present-hero__media-progress::after { content: ""; display: block; width: 100%; height: 100%; transform: scaleX(0); transform-origin: left; background: rgba(255,255,255,.92); border-radius: inherit; }
+.present-hero__media-progress.is-running::after { animation: present-hero-progress 9s linear both; }
+@keyframes present-hero-drift { from { transform: scale(1.025) translate3d(0,0,0); } to { transform: scale(1.11) translate3d(-1.2%,-.8%,0); } }
+@keyframes present-hero-progress { to { transform: scaleX(1); } }
 .present-hero__shade { background: linear-gradient(90deg, rgba(1,35,19,.88) 0%, rgba(1,35,19,.66) 42%, rgba(1,35,19,.18) 72%, rgba(1,35,19,.06) 100%); }
 .present-hero__inner { position: relative; z-index: 2; min-height: 650px; display: grid; align-content: space-between; gap: 40px; padding-block: 72px 34px; }
 .present-hero__copy { max-width: 670px; }
@@ -971,6 +984,29 @@ body.presentation-design .demo-banner { color: #315c42; background: #eef7ec; bor
 .present-contact-card small { display: block; margin-top: 5px; color: #66796c; font-size: 11px; line-height: 1.5; }
 .present-contact-card--phone > a, .present-contact-fallback { width: 100%; display: flex; gap: 12px; align-items: center; justify-content: center; }
 .present-contact-card--phone:has([data-phone-action]:not([hidden])) .present-contact-fallback { display: none; }
+
+/* Subtle motion: keeps the site lively without distracting from consultation CTAs. */
+.present-service-card,
+.present-case-grid article,
+.present-feature-badge,
+.present-contact-card,
+.present-line-banner { transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease, border-color .35s ease, background-color .35s ease; }
+.present-service-card > img,
+.present-case-grid img { transition: transform .75s cubic-bezier(.2,.7,.2,1); }
+.present-line-banner { position: relative; overflow: hidden; }
+.present-line-banner::after { content: ""; position: absolute; inset: -60% auto -60% -28%; width: 18%; transform: rotate(16deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent); animation: present-line-shine 7s ease-in-out infinite; pointer-events: none; }
+@keyframes present-line-shine { 0%, 62% { left: -28%; opacity: 0; } 68% { opacity: 1; } 86%, 100% { left: 118%; opacity: 0; } }
+@media (hover: hover) and (pointer: fine) {
+  .present-service-card:hover { transform: translateY(-7px); border-color: #bdd7c2; box-shadow: 0 20px 44px rgba(7,61,31,.14); }
+  .present-service-card:hover > img { transform: scale(1.045); }
+  .present-case-grid article:hover { transform: translateY(-6px); box-shadow: 0 16px 34px rgba(7,61,31,.13); }
+  .present-case-grid article:hover img { transform: scale(1.055); }
+  .present-feature-badge:hover { transform: translateY(-6px) scale(1.02); }
+  .present-contact-card:hover { transform: translateY(-3px); }
+  .present-line-banner:hover { transform: translateY(-3px); }
+  .present-line-banner:hover .present-line-banner__arrow { transform: translateX(4px); }
+}
+.present-line-banner__arrow { transition: transform .3s ease; }
 
 .present-benefit-bar { color: #fff; background: linear-gradient(90deg, #075127, #053b22); }
 .present-benefit-bar .container { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); }

@@ -414,7 +414,63 @@
     window.addEventListener("scroll", update, { passive: true });
   }
 
+  function configureHeroMotion() {
+    const gallery = qs("[data-hero-gallery]");
+    if (!gallery) return;
+    const frames = qsa(".present-hero__frame", gallery);
+    const progress = qs("[data-hero-progress]", gallery);
+    if (frames.length < 2) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) {
+      frames.forEach((frame, index) => frame.classList.toggle("is-active", index === 0));
+      return;
+    }
+
+    const intervalMs = 9000;
+    let current = 0;
+    let timer = 0;
+
+    const restartProgress = () => {
+      if (!progress) return;
+      progress.classList.remove("is-running");
+      void progress.offsetWidth;
+      progress.classList.add("is-running");
+    };
+
+    const showNext = () => {
+      frames[current].classList.remove("is-active");
+      current = (current + 1) % frames.length;
+      frames[current].classList.add("is-active");
+      restartProgress();
+    };
+
+    const start = () => {
+      window.clearInterval(timer);
+      restartProgress();
+      timer = window.setInterval(showNext, intervalMs);
+    };
+
+    const stop = () => {
+      window.clearInterval(timer);
+      timer = 0;
+      if (progress) progress.classList.remove("is-running");
+    };
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stop();
+      else start();
+    });
+    start();
+  }
+
   function configureReveal() {
+    qsa("[data-reveal-stagger]").forEach((group) => {
+      Array.from(group.children).forEach((item, index) => {
+        item.setAttribute("data-reveal", "");
+        item.style.setProperty("--reveal-delay", `${Math.min(index, 6) * 90}ms`);
+      });
+    });
     const items = qsa("[data-reveal]");
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion || !("IntersectionObserver" in window)) {
@@ -502,6 +558,7 @@
     configureMenu();
     configureFaq();
     configureHeader();
+    configureHeroMotion();
     configureReveal();
     configureScrollSpy();
     configureCurrentPage();
