@@ -1,0 +1,21 @@
+.green-live-public-info{position:relative;z-index:5;width:100%;background:#f2f7f3;border-bottom:1px solid #d6e4da;color:#173d2b}
+.green-live-public-info__inner{width:min(1180px,calc(100% - 40px));margin:0 auto;padding:20px 0}
+.green-live-public-info__head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:12px}
+.green-live-public-info__head span{display:block;font-size:11px;letter-spacing:.14em;font-weight:800;color:#4d755f}
+.green-live-public-info__head h2{margin:3px 0 0;font-size:clamp(20px,2vw,27px);line-height:1.35}
+.green-live-public-info__head small{color:#63776b;font-size:12px}
+.green-live-announcements,.green-live-holidays{display:grid;gap:10px}
+.green-live-announcement{padding:14px 17px;border:1px solid #bfd5c5;border-radius:14px;background:#fff}
+.green-live-announcement.is-important{border-color:#dfa959;background:#fff7e8}
+.green-live-announcement strong{display:block;font-size:16px}
+.green-live-announcement p{margin:5px 0 0;line-height:1.75}
+.green-live-announcement small{display:block;margin-top:6px;color:#67796f}
+.green-live-holidays{margin-top:13px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.green-live-holidays h3{grid-column:1/-1;margin:0 0 1px;font-size:16px}
+.green-live-holiday{display:grid;grid-template-columns:88px 1fr;gap:12px;align-items:start;padding:12px 14px;border-radius:13px;border:1px solid #d6e4da;background:#fff}
+.green-live-holiday.is-closed{border-color:#e0c189;background:#fffaf0}
+.green-live-holiday.is-open{border-color:#add2bd;background:#f4fbf6}
+.green-live-date{font-variant-numeric:tabular-nums;font-weight:800;color:#0c6648}
+.green-live-holiday strong{display:block}.green-live-holiday p{margin:3px 0 0;font-size:13px;color:#52685b;line-height:1.55}
+.green-live-empty{margin:0;padding:12px 15px;border:1px dashed #bfd5c5;border-radius:13px;background:#fff;color:#5e7166}
+@media(max-width:680px){.green-live-public-info__inner{width:min(100% - 28px,1180px);padding:15px 0}.green-live-public-info__head{display:block}.green-live-public-info__head small{display:block;margin-top:6px}.green-live-holidays{grid-template-columns:1fr}.green-live-holiday{grid-template-columns:78px 1fr}}

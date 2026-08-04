@@ -1,5 +1,5 @@
 window.GREEN_WEB_CONFIG = Object.freeze({
-  version: "WEB-GREEN-COMPLETE-WRAP-AUDIT-20260803",
+  version: "WEB-GREEN-CONTROL-CENTER-6-20260804",
 
   site: {
     publicName: "グリーン・ポケット福岡粕屋店",
@@ -158,6 +158,16 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     jpegQuality: 0.82
   },
 
+  liveSync: {
+    enabled: true,
+    endpointPath: "/api/public/site-profile?target=website",
+    timeoutMs: 8000,
+    cacheMinutes: 10,
+    adapterVersion: "GREEN-WEBSITE-LIVE-SYNC-20260804",
+    fallbackSource: "config.js",
+    showSyncStatus: true
+  },
+
   line: {
     templates: {
       consultation: {
@@ -224,3 +234,21 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     show_headquarters_branding: true
   }
 });
+
+(() => {
+  "use strict";
+  const liveSync = window.GREEN_WEB_CONFIG?.liveSync;
+  if (!liveSync?.enabled || document.querySelector('script[data-green-live-sync]')) return;
+  const version = encodeURIComponent(liveSync.adapterVersion || "latest");
+  const stylesheet = document.createElement("link");
+  stylesheet.rel = "stylesheet";
+  stylesheet.href = `green-live-sync.css?v=${version}`;
+  stylesheet.dataset.greenLiveSync = "style";
+  document.head.append(stylesheet);
+
+  const script = document.createElement("script");
+  script.src = `green-live-sync.js?v=${version}`;
+  script.async = false;
+  script.dataset.greenLiveSync = "script";
+  document.head.append(script);
+})();
