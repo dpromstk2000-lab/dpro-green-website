@@ -1487,3 +1487,19 @@ h1, h2, h3,
   .present-home-flow__grid article { padding: 22px 18px 20px; border-radius: 20px; }
   .present-home-flow__grid h3 { font-size: 18px; }
 }
+
+
+/* --- public-facing trust and clarity improvements V5 --- */
+.faq-quick-start { padding-bottom: 18px; }
+.area-reassurance { padding-block: 10px 24px; }
+.faq-quick-start .prep-grid article,
+.area-reassurance .prep-grid article { transition: transform .25s ease, border-color .25s ease; }
+.faq-quick-start .prep-grid article:hover,
+.area-reassurance .prep-grid article:hover { transform: translateY(-3px); border-color: rgba(77,124,87,.34); }
+.line-page-hero .line-status-card > span { letter-spacing: .12em; }
+@media (prefers-reduced-motion: reduce) {
+  .faq-quick-start .prep-grid article,
+  .area-reassurance .prep-grid article { transition: none; }
+  .faq-quick-start .prep-grid article:hover,
+  .area-reassurance .prep-grid article:hover { transform: none; }
+}

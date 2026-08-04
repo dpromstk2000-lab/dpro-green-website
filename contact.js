@@ -414,11 +414,11 @@
       const name = facility.facilityName || facility.facility_name;
       if (name) document.querySelectorAll("[data-api-facility-name]").forEach((node) => { node.textContent = name; });
       const rows = services.services || [];
-      if (note) note.textContent = `${rows.length || "複数"}種類の相談区分をDPRO GREENで受け付けます。料金確定ではなく、担当者が内容を確認するための受付です。`;
-      if (apiState) { apiState.textContent = "受付システム接続：確認済み"; apiState.dataset.tone = "success"; }
+      if (note) note.textContent = `${rows.length || "複数"}種類のご相談を受け付けています。料金確定ではなく、担当者が内容を確認するための相談受付です。`;
+      if (apiState) { apiState.textContent = "相談フォーム：送信可能です"; apiState.dataset.tone = "success"; }
     } catch {
-      if (note) note.textContent = "フォームは入力できます。送信時に受付システムとの接続を確認します。";
-      if (apiState) { apiState.textContent = "受付システム接続：送信時に再確認"; apiState.dataset.tone = "warning"; }
+      if (note) note.textContent = "フォームは入力できます。送信時に接続状況を確認します。";
+      if (apiState) { apiState.textContent = "相談フォーム：送信時に再確認"; apiState.dataset.tone = "warning"; }
     }
   }
 
