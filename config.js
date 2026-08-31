@@ -1,5 +1,5 @@
 window.GREEN_WEB_CONFIG = Object.freeze({
-  version: "WEB-GREEN-SHOP-R1.2-20260831",
+  version: "WEB-GREEN-WRAP-FIX-R1-20260831",
 
   site: {
     publicName: "グリーン・ポケット福岡粕屋店",
@@ -264,4 +264,16 @@ window.GREEN_WEB_CONFIG = Object.freeze({
   script.async = false;
   script.dataset.greenShopModule = version;
   document.head.append(script);
+})();
+
+
+(() => {
+  "use strict";
+  const version = "GREEN-WRAP-FIX-R1-20260831";
+  if (document.querySelector('link[data-green-wrap-fix]')) return;
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href = `green-wrap-fix.css?v=${encodeURIComponent(version)}`;
+  link.dataset.greenWrapFix = version;
+  document.head.append(link);
 })();

@@ -1,0 +1,77 @@
+/* DPRO GREEN / JAPANESE WRAP FIX R1 / 2026-08-31
+   Prevent awkward mid-word wrapping in the desktop header while keeping the full navigation. */
+
+.desktop-nav a,
+.header-actions .btn,
+.header-actions button,
+body.presentation-design .desktop-nav a,
+body.presentation-design .header-actions .btn {
+  white-space: nowrap;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+@media (min-width: 70rem) {
+  body.presentation-design .header-inner {
+    gap: 12px;
+  }
+  body.presentation-design .brand {
+    flex: 0 1 238px;
+  }
+  body.presentation-design .brand-copy strong {
+    max-width: 205px;
+    font-size: 14px;
+  }
+  body.presentation-design .desktop-nav {
+    flex: 0 1 auto;
+    gap: 13px;
+    font-size: 13px;
+  }
+  body.presentation-design .desktop-nav a {
+    flex: 0 0 auto;
+    padding-inline: 0;
+  }
+  body.presentation-design .header-actions {
+    flex: 0 0 auto;
+    gap: 8px;
+  }
+  body.presentation-design .header-actions .btn--small {
+    min-height: 46px;
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 70rem) and (max-width: 84rem) {
+  body.presentation-design .header-inner {
+    gap: 9px;
+  }
+  body.presentation-design .brand {
+    flex-basis: 214px;
+  }
+  body.presentation-design .brand-copy strong {
+    max-width: 184px;
+    font-size: 13px;
+  }
+  body.presentation-design .desktop-nav {
+    gap: 9px;
+    font-size: 12px;
+  }
+  body.presentation-design .header-actions {
+    gap: 6px;
+  }
+  body.presentation-design .header-actions .btn--small {
+    min-height: 44px;
+    padding-inline: 11px;
+    font-size: 12px;
+  }
+}
+
+/* Japanese title helpers available to future pages. */
+.jp-line {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  white-space: nowrap;
+  word-break: keep-all;
+}
