@@ -1,23 +1,28 @@
 (() => {
   "use strict";
-  const VERSION="GREEN-SHOP-PUBLIC-R1.1-20260831";
+  const VERSION="GREEN-SHOP-PUBLIC-R1.2-20260831";
   const SETTINGS_KEY="dpro_green_shop_settings_v1";
   const PRODUCTS_KEY="dpro_green_shop_products_v1";
   const SHOP_PATH="shop.html";
   const defaults={enabled:true,onlineShop:true,delivery:true,pickup:true,gift:true,square:true};
   const defaultProducts=[
-    {id:"pachira-6",name:"パキラ 6号（鉢カバー付き）",category:"観葉植物",price:6600,stock:6,image:"owner-office.webp",description:"オフィスやご自宅に置きやすい定番の観葉植物。6号鉢にインテリアになじむ鉢カバーを合わせた販売イメージです。",lead:"発送目安 3〜5営業日",published:true},
-    {id:"monstera-8",name:"モンステラ 8号（鉢カバー付き）",category:"観葉植物",price:11000,stock:4,image:"owner-store.webp",description:"存在感のある葉が人気のモンステラ。受付・店舗・リビングにも合わせやすい8号サイズです。",lead:"発送目安 5〜7営業日",published:true},
-    {id:"strelitzia-6",name:"ストレリチア・オーガスタ 6号",category:"観葉植物",price:5500,stock:6,image:"owner-clinic-green.webp",description:"大きく伸びる葉が印象的なオーガスタ。明るい室内のアクセントとして人気の中型サイズです。",lead:"発送目安 3〜5営業日",published:true},
-    {id:"sansevieria-6",name:"サンセベリア 6号（鉢カバー付き）",category:"観葉植物",price:5500,stock:8,image:"owner-hero.webp",description:"シャープな葉姿で省スペースにも置きやすい定番グリーン。オフィスや店舗の入口にもおすすめです。",lead:"発送目安 3〜5営業日",published:true},
-    {id:"benjamin-8",name:"ベンジャミン 8号（鉢カバー付き）",category:"ギフト",price:12100,stock:3,image:"owner-maintenance.webp",description:"やわらかな樹形で空間になじみやすいベンジャミン。開店・移転・新築祝いにも使いやすい8号サイズです。",lead:"発送目安 5〜7営業日",published:true},
-    {id:"yucca-8",name:"ユッカ 8号（鉢カバー付き）",category:"ギフト",price:13200,stock:3,image:"owner-welfare-green.webp",description:"力強い樹形が特徴のユッカ。オフィス・店舗のシンボルグリーンや法人ギフトを想定した8号サイズです。",lead:"発送目安 5〜7営業日",published:true}
+    {id:"pachira-6",name:"パキラ 6号（ホワイト鉢カバー付き）",category:"観葉植物",price:6600,stock:6,image:"green-shop-pachira-6.webp",description:"丈夫で育てやすく、オフィスやご自宅にも合わせやすい定番グリーン。明るいホワイト鉢カバーとのセットを想定した販売デモです。",lead:"発送目安 3〜5営業日",published:true},
+    {id:"monstera-8",name:"モンステラ 8号（チャコール鉢カバー付き）",category:"観葉植物",price:11000,stock:4,image:"green-shop-monstera-8.webp",description:"大きく切れ込んだ葉が印象的なモンステラ。落ち着いたチャコール鉢で、受付・店舗・リビングのアクセントに。",lead:"発送目安 5〜7営業日",published:true},
+    {id:"strelitzia-6",name:"ストレリチア・オーガスタ 6号（テラコッタ鉢付き）",category:"観葉植物",price:5500,stock:6,image:"green-shop-strelitzia-6.webp",description:"伸びやかな葉姿が魅力のオーガスタ。温かみのあるテラコッタ鉢と合わせた、明るい室内向けの中型グリーンです。",lead:"発送目安 3〜5営業日",published:true},
+    {id:"sansevieria-6",name:"サンセベリア 6号（ナチュラル鉢カバー付き）",category:"観葉植物",price:5500,stock:8,image:"green-shop-sansevieria-6.webp",description:"シャープな葉姿で省スペースにも置きやすい定番グリーン。天然素材風の編み込み鉢カバーでやわらかな印象に。",lead:"発送目安 3〜5営業日",published:true},
+    {id:"benjamin-8",name:"ベンジャミン 8号（ホワイト鉢カバー付き）",category:"観葉植物",price:12100,stock:3,image:"green-shop-benjamin-8.webp",description:"細かな葉とやわらかな樹形が魅力のベンジャミン。清潔感のあるホワイト鉢で、オフィスや開店祝いにも合わせやすいセットです。",lead:"発送目安 5〜7営業日",published:true},
+    {id:"yucca-8",name:"ユッカ 8号（チャコール鉢カバー付き）",category:"観葉植物",price:13200,stock:3,image:"green-shop-yucca-8.webp",description:"力強い幹とシャープな葉が特徴のユッカ。チャコール鉢と合わせて、店舗やオフィスのシンボルグリーンに。",lead:"発送目安 5〜7営業日",published:true},
+    {id:"pot-woven-6",name:"ナチュラル編み込み鉢カバー 6号対応",category:"鉢・鉢カバー",price:3300,stock:10,image:"green-shop-pot-woven.webp",description:"天然素材の風合いを楽しめる編み込みタイプ。観葉植物をやわらかく見せたい空間に合わせやすい鉢カバーです。",lead:"発送目安 2〜4営業日",published:true},
+    {id:"pot-white-6",name:"マットホワイト セラミック鉢カバー 6号対応",category:"鉢・鉢カバー",price:3850,stock:8,image:"green-shop-pot-white.webp",description:"シンプルで清潔感のあるマットホワイト。住宅・クリニック・サロンなど幅広い内装になじむデザインです。",lead:"発送目安 2〜4営業日",published:true},
+    {id:"pot-charcoal-8",name:"チャコール シンプル鉢カバー 8号対応",category:"鉢・鉢カバー",price:4950,stock:7,image:"green-shop-pot-charcoal.webp",description:"落ち着いたチャコールカラーの大型鉢カバー。オフィスや店舗でグリーンを引き締めて見せたい時におすすめです。",lead:"発送目安 2〜4営業日",published:true},
+    {id:"pot-terracotta-6",name:"テラコッタ リブプランター 6号対応",category:"鉢・鉢カバー",price:3850,stock:9,image:"green-shop-pot-terracotta.webp",description:"縦リブの表情と温かみのあるテラコッタカラーが特徴。ナチュラル系・カフェ系の空間にも合わせやすいプランターです。",lead:"発送目安 2〜4営業日",published:true}
   ];  const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
   function read(key,fallback){try{return JSON.parse(localStorage.getItem(key)||"null")??fallback}catch{return fallback}}
   function settings(){const configDefault=window.GREEN_WEB_CONFIG?.featureFlags?.show_online_shop;return {...defaults,enabled:configDefault===false?false:true,...read(SETTINGS_KEY,{})};}
   const LEGACY_PRODUCT_IDS=new Set(["desk-green","pot-set","gift-medium","cover","care","season"]);
-  function isLegacySeed(items){return Array.isArray(items)&&items.length===6&&items.every(x=>LEGACY_PRODUCT_IDS.has(x?.id));}
-  function products(){const saved=read(PRODUCTS_KEY,null);if(Array.isArray(saved)){if(isLegacySeed(saved)){localStorage.setItem(PRODUCTS_KEY,JSON.stringify(defaultProducts));return [...defaultProducts];}return saved;}localStorage.setItem(PRODUCTS_KEY,JSON.stringify(defaultProducts));return [...defaultProducts];}
+  const R11_PRODUCT_IDS=new Set(["pachira-6","monstera-8","strelitzia-6","sansevieria-6","benjamin-8","yucca-8"]);
+  function isSeedVersion(items,ids){return Array.isArray(items)&&items.length===ids.size&&items.every(x=>ids.has(x?.id));}
+  function products(){const saved=read(PRODUCTS_KEY,null);if(Array.isArray(saved)){if(isSeedVersion(saved,LEGACY_PRODUCT_IDS)||isSeedVersion(saved,R11_PRODUCT_IDS)){localStorage.setItem(PRODUCTS_KEY,JSON.stringify(defaultProducts));return [...defaultProducts];}return saved;}localStorage.setItem(PRODUCTS_KEY,JSON.stringify(defaultProducts));return [...defaultProducts];}
   function css(){if($('link[data-green-shop-public]'))return;const l=document.createElement('link');l.rel='stylesheet';l.href=`green-shop-module.css?v=${encodeURIComponent(VERSION)}`;l.dataset.greenShopPublic=VERSION;document.head.append(l);}
   function addLink(nav,label="ONLINE SHOP"){if(!nav||nav.querySelector('[data-green-shop-link]'))return;const a=document.createElement('a');a.href=SHOP_PATH;a.textContent=label;a.dataset.greenShopLink="1";nav.append(a);}
   function clear(){ $$('[data-green-shop-link]').forEach(x=>x.remove()); $$('[data-green-shop-entry]').forEach(x=>x.remove()); }
