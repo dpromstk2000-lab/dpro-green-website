@@ -1,5 +1,5 @@
 window.GREEN_WEB_CONFIG = Object.freeze({
-  version: "WEB-GREEN-CONTROL-CENTER-6-20260804",
+  version: "WEB-GREEN-SHOP-R1-20260831",
 
   site: {
     publicName: "グリーン・ポケット福岡粕屋店",
@@ -231,7 +231,8 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     show_customer_portal_link: true,
     show_maintenance_report_feature: true,
     show_google_map: true,
-    show_headquarters_branding: true
+    show_headquarters_branding: true,
+    show_online_shop: true
   }
 });
 
@@ -250,5 +251,17 @@ window.GREEN_WEB_CONFIG = Object.freeze({
   script.src = `green-live-sync.js?v=${version}`;
   script.async = false;
   script.dataset.greenLiveSync = "script";
+  document.head.append(script);
+})();
+
+(() => {
+  "use strict";
+  if (document.querySelector('meta[name="dpro-green-shop-standalone"]')) return;
+  if (document.querySelector('script[data-green-shop-module]')) return;
+  const version = "GREEN-SHOP-PUBLIC-R1-20260831";
+  const script = document.createElement("script");
+  script.src = `green-shop-module.js?v=${encodeURIComponent(version)}`;
+  script.async = false;
+  script.dataset.greenShopModule = version;
   document.head.append(script);
 })();
