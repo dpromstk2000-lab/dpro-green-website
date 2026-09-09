@@ -45,3 +45,42 @@ body,button,a{font-family:inherit}a{color:inherit;text-decoration:none}img{displ
 }
 @media (max-width:420px){.wrap{width:min(100% - 26px,1180px)}.brand__copy strong{font-size:12px}.head-actions .btn--solid{padding:0 12px}.purpose-grid{grid-template-columns:1fr}.purpose-grid article{min-height:unset}.scene-grid,.catalog-grid{grid-template-columns:1fr}.scene-grid article{min-height:320px}.catalog-grid a{min-height:205px}.maintenance-list,.price-points{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+/* STAGE3: responsive QA / Japanese wrapping hardening */
+.hero__copy,.hero__proof,.intro__grid>*,.purpose-grid>*,.service-grid>*,.compare-grid>*,.scene-grid>*,.photo-consult__grid>*,.maintenance-detail__grid>*,.maintenance-list>*,.flow-grid>*,.catalog-grid>*,.price-guide__grid>*,.price-points>*,.system-grid>*,.system-flow>*,.shop__grid>*,.faq-grid>*{min-width:0}
+.photo-consult__grid{width:min(100%,1440px);max-width:1440px;margin-inline:auto}
+
+@media (max-width:900px){
+  .purpose-grid{grid-template-columns:1fr 1fr}
+  .purpose-grid article{min-width:0}
+}
+
+@media (max-width:760px){
+  .hero h1,.hero__lead,.section h2,.photo-consult h2,.system-copy h2,.shop h2,.final-cta h2,.maintenance-detail h2,.price-guide__grid h2,
+  .hero h1 span,.section-head h2 span,.photo-consult h2 span,.system-copy h2 span,.shop h2 span,.final-cta h2 span,.maintenance-detail h2 span,.price-guide__grid h2 span{
+    word-break:normal;
+    overflow-wrap:anywhere;
+    line-break:strict;
+  }
+  .photo-consult__grid{width:100%;max-width:none;margin:0}
+  .photo-consult__copy,.maintenance-detail__copy{max-width:100%;min-width:0}
+  .photo-consult__copy{padding-inline:max(16px,calc((100vw - 364px)/2))}
+  .photo-consult ol,.photo-consult li,.photo-consult__actions{min-width:0;max-width:100%}
+  .photo-consult li span{min-width:0}
+  .maintenance-list{min-width:0}
+  .catalog-grid a,.compare-card,.price-points article,.system-flow article{min-width:0}
+}
+
+@media (max-width:420px){
+  .hero h1{font-size:clamp(40px,12vw,50px)}
+  .section-head h2,.photo-consult h2,.system-copy h2,.shop h2,.maintenance-detail h2,.price-guide__grid h2{font-size:clamp(30px,8.8vw,38px)}
+  .photo-consult__copy{padding-left:13px;padding-right:13px}
+}
+
+/* Keep semantic line groups, but permit safe CJK wrapping before overflow at every width. */
+.hero h1,.section h2,.photo-consult h2,.system-copy h2,.shop h2,.final-cta h2,.maintenance-detail h2,.price-guide__grid h2,
+.hero h1 span,.section-head h2 span,.photo-consult h2 span,.system-copy h2 span,.shop h2 span,.final-cta h2 span,.maintenance-detail h2 span,.price-guide__grid h2 span{
+  word-break:normal;
+  overflow-wrap:anywhere;
+  line-break:strict;
+}
