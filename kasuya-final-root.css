@@ -1,0 +1,35 @@
+/* DPRO GREEN KASUYA STAGE 6.5 — final ROOT integration delta */
+[data-stage6-shop][hidden]{display:none!important}
+.site-head{transition:box-shadow .25s ease,background .25s ease}
+.site-head.is-scrolled{box-shadow:0 10px 30px rgba(16,48,32,.08)}
+
+@media (prefers-reduced-motion:no-preference){
+  html[data-final-motion="ready"] [data-final-reveal]{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .65s ease,transform .65s cubic-bezier(.22,.61,.36,1);
+  }
+  html[data-final-motion="ready"] [data-final-reveal].is-revealed{
+    opacity:1;
+    transform:none;
+  }
+  html[data-final-motion="ready"] .card,
+  html[data-final-motion="ready"] .media-card,
+  html[data-final-motion="ready"] .price-card,
+  html[data-final-motion="ready"] .compare-card{
+    transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+  }
+  html[data-final-motion="ready"] .card:hover,
+  html[data-final-motion="ready"] .media-card:hover,
+  html[data-final-motion="ready"] .price-card:hover,
+  html[data-final-motion="ready"] .compare-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 16px 38px rgba(18,56,39,.09);
+  }
+}
+
+@media(max-width:760px){
+  body[data-shop-enabled="true"] .mobile-cta{grid-template-columns:.62fr .78fr .72fr 1.38fr}
+  body[data-shop-enabled="false"] .mobile-cta{grid-template-columns:.65fr .85fr 1.5fr}
+  .mobile-cta [data-stage6-shop]{border-right:1px solid var(--line)}
+}
