@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const VERSION="GREEN-SHOP-PUBLIC-R1.3-20260910";
+  const VERSION="GREEN-SHOP-PUBLIC-R1.4-20260910";
   const SETTINGS_KEY="dpro_green_shop_settings_v1";
   const PRODUCTS_KEY="dpro_green_shop_products_v1";
   const SHOP_PATH="shop.html";
@@ -18,7 +18,7 @@
     {id:"pot-terracotta-6",name:"テラコッタ リブプランター 6号対応",category:"鉢・鉢カバー",price:3850,stock:9,image:"green-shop-pot-terracotta.webp",description:"縦リブの表情と温かみのあるテラコッタカラーが特徴。ナチュラル系・カフェ系の空間にも合わせやすいプランターです。",lead:"発送目安 2〜4営業日",published:true}
   ];  const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
   function read(key,fallback){try{return JSON.parse(localStorage.getItem(key)||"null")??fallback}catch{return fallback}}
-  function settings(){const configDefault=window.GREEN_WEB_CONFIG?.featureFlags?.show_online_shop;return {...defaults,enabled:configDefault===false?false:true,...read(SETTINGS_KEY,{})};}
+  function settings(){const saved=read(SETTINGS_KEY,{});const merged={...defaults,...saved};if(window.GREEN_WEB_CONFIG?.featureFlags?.show_online_shop===false){merged.enabled=false;merged.onlineShop=false;}return merged;}
   const LEGACY_PRODUCT_IDS=new Set(["desk-green","pot-set","gift-medium","cover","care","season"]);
   const R11_PRODUCT_IDS=new Set(["pachira-6","monstera-8","strelitzia-6","sansevieria-6","benjamin-8","yucca-8"]);
   function isSeedVersion(items,ids){return Array.isArray(items)&&items.length===ids.size&&items.every(x=>ids.has(x?.id));}
@@ -29,8 +29,6 @@
   function promo(){if(!document.body.matches('[data-page="home"]')&&!/\/index\.html$/.test(location.pathname)&&!location.pathname.endsWith('/dpro-green-website/'))return;if($('[data-green-shop-entry]'))return;const anchor=$('#services')||$('.present-services');if(!anchor)return;const sec=document.createElement('section');sec.className='green-shop-entry';sec.dataset.greenShopEntry='promo';sec.innerHTML=`<div class="container green-shop-entry__grid"><div><p class="green-shop-entry__eyebrow">RENTAL + ONLINE SHOP</p><h2>レンタルも、購入も。<br>植物のことをひとつの窓口で。</h2><p>観葉植物レンタルに加えて、植物・鉢・ギフトなどの販売にも対応できます。「レンタルしたい」は設置相談へ、「購入したい」はオンラインSHOPへ、迷ったときはLINEへ。店舗の事業に合わせて販売機能をON / OFFできます。</p><div class="green-shop-entry__actions"><a class="green-shop-entry__primary" href="shop.html">植物・商品を購入する →</a><a class="green-shop-entry__secondary" href="line.html">LINEで相談する</a></div><p class="green-shop-entry__note">SHOP CONTROL：商品・価格・在庫・決済はDPRO GREENの商品管理・設定と連動します。</p></div><div class="green-shop-entry__cards"><article><span>RENTAL</span><strong>レンタルで導入</strong><small>設置提案・定期メンテナンスへ</small></article><article><span>BUY</span><strong>商品を購入</strong><small>植物・鉢・ギフトをオンラインで</small></article><article><span>LINE</span><strong>迷ったら相談</strong><small>置き場所の写真から相談できます</small></article><article><span>DPRO</span><strong>管理はひとつ</strong><small>商品・注文・顧客・レンタルを連携</small></article></div></div>`;anchor.insertAdjacentElement('afterend',sec);const tri=document.createElement('section');tri.className='green-shop-rental-buy';tri.dataset.greenShopEntry='tri';tri.innerHTML=`<div class="container green-shop-rental-buy__inner"><article><small>01 / RENTAL</small><strong>植物をレンタルしたい</strong><p>空間に合わせた提案と、導入後の定期管理まで。</p></article><article><small>02 / ONLINE SHOP</small><strong>植物・鉢を購入したい</strong><p>商品を選び、カートからオンライン注文へ。</p></article><article><small>03 / OFFICIAL LINE</small><strong>どちらが合うか相談したい</strong><p>写真や用途を送って、購入前に相談できます。</p></article></div>`;sec.insertAdjacentElement('afterend',tri);}
   function polishStandalone(){
     if(!document.querySelector('meta[name="dpro-green-shop-standalone"]'))return;
-    document.title=document.title.replace(/\s*BUSINESS DEMO/gi,'');
-    if(!window.__dproGreenShopAlertGuard){const nativeAlert=window.alert.bind(window);window.alert=message=>nativeAlert(String(message??'').replace(/このデモ注文/g,'この注文フロー').replace(/（DEMO）/g,'（確認画面）'));window.__dproGreenShopAlertGuard=true;}
     const bar=$('.demo-bar');
     if(bar)bar.textContent='ONLINE SHOP CONTROL｜商品・価格・在庫はDPRO GREENの商品管理データを表示します。現在の商品情報はシステム表示例です。';
     const featured=$('.featured-section .section-head > p');
@@ -45,33 +43,6 @@
     if(squareNote)squareNote.textContent='この画面では実決済を行わず、Square連携とDPRO GREENの商品・注文管理の流れを確認できます。';
     const squareButton=$('#checkout-form button[type="submit"][data-shop-feature="square"]');
     if(squareButton)squareButton.textContent='Square決済フローを確認する';
-    const replacements=[
-      [/BUSINESS DEMO/g,'SHOP SYSTEM'],
-      [/商談デモ用/g,'商品ラインナップ例として'],
-      [/販売デモです/g,'商品管理データとして表示しています'],
-      [/本番では店舗オーナー名義のSquareへ接続/g,'Square連携設定に応じて店舗名義の決済へ接続'],
-      [/Square オンライン決済（DEMO）/g,'Square オンライン決済・連携フロー'],
-      [/Squareで支払って注文する（DEMO）/g,'Square決済フローを確認する'],
-      [/ORDER COMPLETE \/ DEMO/g,'ORDER FLOW COMPLETE'],
-      [/Square決済済み（DEMO）として、DPRO GREEN OWNERの「販売・SHOP → 注文管理」へ反映しました。/g,'この画面では実決済を行わず、DPRO GREEN OWNERの「販売・SHOP → 注文管理」へつながる流れを確認できます。']
-    ];
-    const cleanText=node=>{
-      if(node.nodeType===Node.TEXT_NODE){
-        let value=node.nodeValue||'';
-        for(const [pattern,next] of replacements)value=value.replace(pattern,next);
-        if(value!==node.nodeValue)node.nodeValue=value;
-        return;
-      }
-      node.childNodes?.forEach(cleanText);
-    };
-    cleanText(document.body);
-    const observer=new MutationObserver(mutations=>{
-      mutations.forEach(m=>{
-        if(m.type==='characterData')cleanText(m.target);
-        m.addedNodes.forEach(cleanText);
-      });
-    });
-    observer.observe(document.body,{subtree:true,childList:true,characterData:true});
   }
   function apply(){css();clear();polishStandalone();const s=settings();if(!s.enabled||!s.onlineShop)return;addLink($('.desktop-nav'),'SHOP');addLink($('.mobile-menu__nav'),'ONLINE SHOP');addLink($('.footer-nav'),'ONLINE SHOP');promo();}
   window.DPROGreenShop={version:VERSION,settings,products,apply,keys:{SETTINGS_KEY,PRODUCTS_KEY}};
