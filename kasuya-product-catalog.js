@@ -2,7 +2,7 @@
    Front-end data source for the website product-introduction area.
    Fields can be replaced by an API/Supabase payload without changing page markup. */
 window.KASUYA_PRODUCT_CATALOG = {
-  schema_version: "1.0",
+  schema_version: "1.1",
   updated_at: "2026-09-09",
   fields: [
     "id","name","category","image","monthly_price","size","material",
@@ -70,5 +70,15 @@ window.KASUYA_PRODUCT_CATALOG = {
       visible: true,
       source_url: "https://green-pocket.biz/catalog/area/items/"
     }
+  ],
+  shop_items: [
+    {id:"monstera",name:"モンステラ",category:"観葉植物",image:"shop-monstera-main.webp",size:"M〜L",feature:"大きな葉が空間のアクセントになる定番グリーン。",recommended_for:"受付・オフィス・リビング",rental_enabled:true,purchase_enabled:true,visible:true},
+    {id:"pachira",name:"パキラ",category:"観葉植物",image:"shop-pachira-main.webp",size:"M〜L",feature:"すっきりした樹形で、さまざまな内装に合わせやすい植物。",recommended_for:"受付・執務室・店舗",rental_enabled:true,purchase_enabled:true,visible:true},
+    {id:"sansevieria",name:"サンセベリア",category:"観葉植物",image:"shop-sansevieria-main.webp",size:"S〜M",feature:"縦のラインが美しく、省スペースにも置きやすい植物。",recommended_for:"カウンター・待合・デスク周辺",rental_enabled:true,purchase_enabled:true,visible:true},
+    {id:"benjamin",name:"ベンジャミン",category:"観葉植物",image:"shop-benjamin-main.webp",size:"M〜L",feature:"細かな葉がやわらかな印象をつくる樹形タイプ。",recommended_for:"エントランス・応接・店舗",rental_enabled:true,purchase_enabled:true,visible:true},
+    {id:"gift-green",name:"ギフトグリーン",category:"ギフト",image:"shop-gift-green.webp",size:"M",feature:"開店・移転などのお祝い用途を想定したグリーンギフト。",recommended_for:"開店・移転・お祝い",rental_enabled:false,purchase_enabled:true,visible:true},
+    {id:"set-clean",name:"グリーン＋白鉢セット",category:"PLANT + POT",image:"shop-set-clean.webp",size:"M",feature:"明るく清潔感のある空間に合わせやすい組み合わせ。",recommended_for:"クリニック・受付・オフィス",rental_enabled:true,purchase_enabled:true,visible:true},
+    {id:"set-modern",name:"グリーン＋チャコール鉢セット",category:"PLANT + POT",image:"shop-set-modern.webp",size:"M",feature:"落ち着いた内装を引き締めるモダンな組み合わせ。",recommended_for:"オフィス・店舗・ショールーム",rental_enabled:true,purchase_enabled:true,visible:true},
+    {id:"set-natural",name:"グリーン＋ナチュラル鉢セット",category:"PLANT + POT",image:"shop-set-natural.webp",size:"M",feature:"木やベージュ系の内装になじむ自然な組み合わせ。",recommended_for:"サロン・店舗・ラウンジ",rental_enabled:true,purchase_enabled:true,visible:true}
   ]
 };

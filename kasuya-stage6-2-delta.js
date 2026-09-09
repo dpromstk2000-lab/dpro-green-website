@@ -3,6 +3,7 @@
 
   const catalogRoot = document.querySelector("[data-product-catalog]");
   const data = window.KASUYA_PRODUCT_CATALOG;
+  const shopRoot = document.querySelector("[data-shop-catalog]");
 
   const esc = (value) => String(value ?? "")
     .replaceAll("&","&amp;").replaceAll("<","&lt;")
@@ -29,11 +30,35 @@
     }).join("");
   }
 
+  function renderShop(items) {
+    if (!shopRoot) return;
+    const visible = (items || []).filter(item => item && item.visible !== false);
+    shopRoot.innerHTML = visible.map(item => {
+      const flags = [];
+      if (item.rental_enabled) flags.push(`<span>レンタル相談</span>`);
+      if (item.purchase_enabled) flags.push(`<span>購入</span>`);
+      return `<article class="shop-product-card">
+        <a href="shop.html" aria-label="${esc(item.name)}をONLINE SHOPで見る">
+          <img src="${esc(item.image)}" alt="${esc(item.name)}のイメージ" width="1080" height="1440" loading="lazy">
+          <div class="shop-product-card__body">
+            <span class="shop-product-card__cat">${esc(item.category || "PRODUCT")}</span>
+            <strong>${esc(item.name)}</strong>
+            ${item.feature ? `<small>${esc(item.feature)}</small>` : ""}
+            <div class="shop-product-card__meta"><span>${esc(item.size || "")}</span>${flags.join("")}</div>
+          </div>
+        </a>
+      </article>`;
+    }).join("");
+  }
+
   if (catalogRoot && data && Array.isArray(data.items)) renderCatalog(data.items);
+  if (shopRoot && data && Array.isArray(data.shop_items)) renderShop(data.shop_items);
 
   // Public interface for future API/Supabase binding.
   window.DPRO_KASUYA_PRODUCTS = Object.freeze({
     render(items) { renderCatalog(items); },
-    getItems() { return data && Array.isArray(data.items) ? [...data.items] : []; }
+    renderShop(items) { renderShop(items); },
+    getItems() { return data && Array.isArray(data.items) ? [...data.items] : []; },
+    getShopItems() { return data && Array.isArray(data.shop_items) ? [...data.shop_items] : []; }
   });
 })();
