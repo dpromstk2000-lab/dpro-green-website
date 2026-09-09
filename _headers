@@ -33,40 +33,55 @@ https://dpro-green-website.pages.dev/*
   Cache-Control: public, max-age=3600, must-revalidate
 
 /
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-GERYHBs+B5rhOfnbi52ZfdY7QuKSbzoUiQ+Vfc0uUDE='; style-src 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-Ytn2rKCrBz8QY1pEmyvYbya9iF75Zgqak7nUoNG/Ofw='; style-src 'self'; upgrade-insecure-requests
 
 /index.html
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-GERYHBs+B5rhOfnbi52ZfdY7QuKSbzoUiQ+Vfc0uUDE='; style-src 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-Ytn2rKCrBz8QY1pEmyvYbya9iF75Zgqak7nUoNG/Ofw='; style-src 'self'; upgrade-insecure-requests
 
 /service.html
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-Qh9wuQpwD7v+Z5gbt04iqkfPcr2whkS6DP/ue5iGO98='; style-src 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-NMt0U2WKk5TgAJknOVp+RanXdDEeexZP/sf41mwieBY='; style-src 'self'; upgrade-insecure-requests
 
 /cases.html
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-RHej+u6vla1cjTeHnB6BoilPrQXRLoYwyUJpTEWcAKw='; style-src 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-x4P38bs2bclKQGxTARm1XRtR+oVYmR5bkRkAUMM3uBg='; style-src 'self'; upgrade-insecure-requests
+
+/office.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-3+2cHiZGjTsdltNFydvbWhWN81hnmt+swrcXQiJyXAw='; style-src 'self'; upgrade-insecure-requests
+
+/store.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-gBf51bvA2LqyCw3OV3Hw9WSVcvDwW1Vtej5hjftvo6k='; style-src 'self'; upgrade-insecure-requests
+
+/clinic.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-e0XfsYicxAKkQNPR3xWi1Vj7woBj9GifzsR5T8+pGF8='; style-src 'self'; upgrade-insecure-requests
+
+/welfare.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-VjVMEiShseJntCm8pOtpG6zN6oepNq99dF9hwU1xFg0='; style-src 'self'; upgrade-insecure-requests
 
 /flow.html
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-0o9M12tvUb9NvEWjeZKjL3q1Ci3flIZ04HsrKsNCSwA='; style-src 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-G6gTZl3KbqaI19EuZBwG4kpPVxNaYtDMKnxCLwidGDA='; style-src 'self'; upgrade-insecure-requests
+
+/about.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-rnQBKqOj992EVaahHtoj/gFBA68mNuWq3VXoKZIwzU8='; style-src 'self'; upgrade-insecure-requests
+
+/faq.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-WW0qkmx65RyK8PP5uQZQVyE4F4r7S0kSc9pXic2651s='; style-src 'self'; upgrade-insecure-requests
+
+/line.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-LQIbr4BnSJqO4+Oz5+wqW3EBKx/75/m5CKkayr0Ur/I='; style-src 'self'; upgrade-insecure-requests
+
+/contact.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-vmuYmmIiSyOmy0qaPc0oNzKcFOGhj+Yv8zxSba4HOQU='; style-src 'self'; upgrade-insecure-requests
+
+/privacy.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-nGY4wfzwdTaDEs9pJQcdrEuKXRNgFjKLtVwnFkeyvR0='; style-src 'self'; upgrade-insecure-requests
+
+/thanks.html
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-/ut68aQ6fGWbR8VVOmAR1fCglLqo7Oyj9peAibM3hdw='; style-src 'self'; upgrade-insecure-requests
 
 /maintenance.html
   Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-RnnLuYWFi6babBiZWkeFkyeky4nu2UOwcQhZglM3Cno='; style-src 'self'; upgrade-insecure-requests
 
 /area.html
   Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-BNoChN1ZhFnI7E76Y9fg4tK0QV1mODp05+69LVqhWdQ='; style-src 'self'; upgrade-insecure-requests
-
-/faq.html
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-aTunOcWQSYMQqGup97p7SZykaZhW4RmVtrk8h7dmfqM='; style-src 'self'; upgrade-insecure-requests
-
-/line.html
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-AfQQqb4+mC5VaXfRKiTsyOYgvZIzTpWDvBiSr3rgvXc='; style-src 'self'; upgrade-insecure-requests
-
-/contact.html
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-D5qAg9kTs0/Fzqg93vGXN5cYOHFx8ZZNvyVh4a7irIY='; style-src 'self'; upgrade-insecure-requests
-
-/privacy.html
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self' 'sha256-qnp/ngdm8/jbB/z06bAH4K72YNBTv0trWmIS3eeexlA='; style-src 'self'; upgrade-insecure-requests
-
-/thanks.html
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self'; style-src 'self'; upgrade-insecure-requests
 
 /404.html
   Content-Security-Policy: default-src 'self'; base-uri 'self'; connect-src 'self' https://dpro-green-rental-line-api.dpromstk2000.workers.dev; font-src 'self'; form-action 'self'; frame-src https://www.google.com https://maps.google.com; frame-ancestors 'none'; img-src 'self' data: blob:; manifest-src 'self'; object-src 'none'; script-src 'self'; style-src 'self'; upgrade-insecure-requests
