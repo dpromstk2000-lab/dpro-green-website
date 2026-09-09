@@ -113,3 +113,13 @@ body,button,a{font-family:inherit}a{color:inherit;text-decoration:none}img{displ
 .consult-ready__cards strong{grid-area:title;align-self:end;font-size:18px}.consult-ready__cards small{grid-area:body;margin-top:3px;color:var(--muted);font-size:12px}
 @media(max-width:900px){.strength-grid{grid-template-columns:1fr}.strength-flow{grid-template-columns:1fr}.strength-flow i{transform:rotate(90deg);text-align:center}.consult-ready__grid{grid-template-columns:1fr;gap:34px}}
 @media(max-width:760px){.strength-grid article{padding:22px}.strength-grid h3{font-size:21px}.strength-flow{padding:14px}.consult-ready__copy h2{font-size:clamp(30px,8.8vw,40px)}.consult-ready__actions{display:grid}.consult-ready__actions .btn{width:100%}.consult-ready__cards article{grid-template-columns:44px 1fr;padding:16px}.consult-ready__cards span{width:44px;height:44px}}
+
+/* STAGE5: full preview-site navigation / official HQ price reference */
+.section-more{margin-top:20px;text-align:right}
+.price-reference-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;align-self:stretch}
+.price-reference-mini article{min-width:0;padding:22px;border:1px solid var(--line);border-radius:18px;background:#fff}
+.price-reference-mini span{display:block;color:var(--green2);font-size:10px;font-weight:900;letter-spacing:.13em}
+.price-reference-mini strong{display:block;margin-top:8px;color:var(--green);font-size:26px;line-height:1.2}
+.price-reference-mini small{display:block;margin-top:4px;color:var(--muted);font-size:10px}
+.price-reference-mini>a{grid-column:1/-1;display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:999px;background:var(--green);color:#fff;font-size:12px;font-weight:900}
+@media(max-width:760px){.section-more{text-align:left}.price-reference-mini{grid-template-columns:1fr}.price-reference-mini>a{grid-column:auto}.price-reference-mini article{padding:18px}.price-reference-mini strong{font-size:24px}}
