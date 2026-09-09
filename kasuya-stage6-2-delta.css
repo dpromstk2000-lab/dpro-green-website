@@ -1,0 +1,186 @@
+
+/* DPRO GREEN KASUYA STAGE 6.2 — competitor delta only
+   Existing design stays authoritative; this file only adds/overrides required differences. */
+
+:where(h1,h2,h3,.hero__lead,.subhero__lead,.section-head p,.cta p,.final-cta p){
+  line-break:strict;
+  overflow-wrap:normal;
+  word-break:auto-phrase;
+}
+:where(h1,h2,h3){text-wrap:balance}
+:where(p,li,summary,small){line-break:strict}
+
+.hero__actions{align-items:center}
+.hero__actions .btn{white-space:nowrap}
+
+.rental-compare{
+  margin-top:28px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:26px;
+  background:#fff;
+  box-shadow:0 12px 38px rgba(18,56,39,.06);
+}
+.rental-compare__head{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:20px 24px;
+  border-bottom:1px solid var(--line);
+  background:var(--soft);
+}
+.rental-compare__head span{
+  color:var(--green2);
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.16em;
+}
+.rental-compare__head strong{font-size:20px;line-height:1.35}
+.rental-compare__table{display:grid}
+.rental-compare__row{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr 1.2fr;
+  gap:0;
+  border-bottom:1px solid var(--line);
+}
+.rental-compare__row:last-child{border-bottom:0}
+.rental-compare__row>*{
+  min-width:0;
+  margin:0;
+  padding:16px 18px;
+  border-right:1px solid var(--line);
+}
+.rental-compare__row>*:last-child{border-right:0}
+.rental-compare__row>span,.rental-compare__row>b{
+  font-weight:900;
+  color:var(--green);
+}
+.rental-compare__row>p{color:var(--muted);font-size:13px}
+.rental-compare__row--head{background:var(--green);color:#fff}
+.rental-compare__row--head>b{color:#fff}
+
+.maintenance__steps--five article{grid-template-columns:42px 1fr}
+.maintenance__steps--five span{max-width:100%}
+
+.hq-trust{background:#fff}
+.hq-trust__grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+.hq-trust__grid a{
+  display:block;
+  min-width:0;
+  padding:24px 20px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:var(--soft);
+  transition:transform .2s ease,border-color .2s ease,background .2s ease;
+}
+.hq-trust__grid a:hover{
+  transform:translateY(-2px);
+  border-color:#b8cebE;
+  background:#fff;
+}
+.hq-trust__grid span{
+  display:block;
+  color:var(--green2);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.14em;
+}
+.hq-trust__grid strong{
+  display:block;
+  margin-top:8px;
+  font-size:18px;
+  line-height:1.4;
+}
+.hq-trust__grid small{
+  display:block;
+  margin-top:8px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.75;
+}
+
+.product-examples__list{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+}
+.product-examples__list .catalog-item{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  min-width:0;
+  padding:14px 15px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:var(--soft);
+}
+.product-examples__list .catalog-item:hover{background:#fff}
+.catalog-item__meta{
+  color:var(--green2);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.12em;
+}
+.catalog-item__name{
+  color:var(--green);
+  font-size:14px;
+  font-weight:900;
+  line-height:1.45;
+}
+.catalog-item__feature{
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.65;
+}
+.catalog-item__data{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:4px;
+}
+.catalog-item__data span{
+  padding:4px 8px;
+  border-radius:999px;
+  background:#fff;
+  color:#53635a;
+  font-size:9px;
+  font-weight:800;
+}
+
+@media(max-width:900px){
+  .hq-trust__grid{grid-template-columns:1fr 1fr}
+  .rental-compare__row{grid-template-columns:.75fr 1.25fr 1.25fr}
+}
+@media(max-width:800px){
+  :where(h1,h2,h3){text-wrap:balance}
+  .hero__actions{grid-template-columns:1fr}
+  .hero__actions .btn{white-space:normal}
+  .rental-compare{border-radius:20px}
+  .rental-compare__head{display:block;padding:17px}
+  .rental-compare__head strong{display:block;margin-top:4px;font-size:18px}
+  .rental-compare__row{
+    grid-template-columns:1fr 1fr;
+  }
+  .rental-compare__row>span{
+    grid-column:1/-1;
+    padding-bottom:8px;
+    border-right:0;
+    background:var(--soft);
+  }
+  .rental-compare__row>p{
+    padding:13px;
+    font-size:11px;
+  }
+  .rental-compare__row--head{display:none}
+  .hq-trust__grid{grid-template-columns:1fr 1fr}
+  .hq-trust__grid a{padding:18px 16px}
+  .product-examples__list{grid-template-columns:1fr}
+}
+@media(max-width:430px){
+  .hq-trust__grid{grid-template-columns:1fr}
+  .rental-compare__row>p{font-size:10.5px}
+}
