@@ -271,3 +271,16 @@
   .shop-showcase h2{font-size:32px;line-height:1.2}
   .final-cta h2{font-size:32px;line-height:1.22}
 }
+
+
+/* V5 SEO / consultation intent delta — additive only */
+.consult-input-guide{margin:22px 0 18px;padding:16px;border:1px solid rgba(255,255,255,.16);border-radius:18px;background:rgba(255,255,255,.07)}
+.consult-input-guide>span{display:block;color:var(--lime);font-size:9px;font-weight:900;letter-spacing:.13em}
+.consult-input-guide__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:10px}
+.consult-input-guide article{min-width:0;padding:10px;border-radius:13px;background:rgba(255,255,255,.08)}
+.consult-input-guide b{display:block;color:rgba(255,255,255,.62);font-size:8px;letter-spacing:.12em}
+.consult-input-guide strong{display:block;margin-top:4px;color:#fff;font-size:12px;line-height:1.45}
+.consult-input-guide small{display:block;margin-top:3px;color:rgba(255,255,255,.7);font-size:9px;line-height:1.55}
+.consult-input-guide>p{margin:10px 0 0;color:rgba(255,255,255,.74);font-size:10px;line-height:1.7}
+@media(max-width:800px){.consult-input-guide__grid{grid-template-columns:1fr 1fr}}
+@media(max-width:430px){.consult-input-guide{padding:13px}.consult-input-guide strong{font-size:11px}}
