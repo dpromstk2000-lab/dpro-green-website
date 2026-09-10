@@ -1,5 +1,13 @@
 (() => {
   "use strict";
+  // FINAL LOCK ADDON: lightweight user-side language access (no legacy translator widget).
+  if(!document.querySelector('script[data-kasuya-language-lite]')){
+    const languageLite=document.createElement('script');
+    languageLite.src='kasuya-language-lite.js?v=LANG-LITE-V1.0-20260910';
+    languageLite.defer=true;
+    languageLite.dataset.kasuyaLanguageLite='1';
+    document.head.append(languageLite);
+  }
   const VERSION="GREEN-SHOP-PUBLIC-R1.4-20260910";
   const SETTINGS_KEY="dpro_green_shop_settings_v1";
   const PRODUCTS_KEY="dpro_green_shop_products_v1";

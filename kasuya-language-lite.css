@@ -1,0 +1,14 @@
+/* DPRO GREEN KASUYA — FINAL LOCK ADDON / LANGUAGE LITE V1.0 / 2026-09-10
+   Visual layer only. No existing page/layout rules are overridden. */
+.dpro-lang{position:relative;display:inline-flex;align-items:center;font-family:inherit}
+.dpro-lang__button{appearance:none;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:38px;padding:0 11px;border:1px solid rgba(30,90,62,.22);border-radius:999px;background:rgba(255,255,255,.94);color:#1b4e36;font:800 11px/1 inherit;white-space:nowrap;cursor:pointer;box-shadow:none}
+.dpro-lang__button:hover,.dpro-lang__button:focus-visible{border-color:rgba(30,90,62,.5);outline:none;box-shadow:0 0 0 3px rgba(30,90,62,.09)}
+.dpro-lang__button-icon{font-size:14px;line-height:1}.dpro-lang__chev{font-size:9px;opacity:.72;transition:transform .18s}.dpro-lang.is-open .dpro-lang__chev{transform:rotate(180deg)}
+.dpro-lang__menu{position:absolute;z-index:120;top:calc(100% + 8px);right:0;min-width:168px;padding:7px;border:1px solid rgba(18,56,39,.12);border-radius:14px;background:#fff;box-shadow:0 16px 40px rgba(15,45,31,.18)}
+.dpro-lang__menu[hidden]{display:none}.dpro-lang__option{appearance:none;width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 11px;border:0;border-radius:9px;background:transparent;color:#213f31;font:750 13px/1.25 inherit;text-align:left;cursor:pointer}
+.dpro-lang__option:hover,.dpro-lang__option:focus-visible{background:#f1f6f2;outline:none}.dpro-lang__option[aria-current="true"]{background:#edf5ef;color:#174f34}.dpro-lang__option[aria-current="true"]::after{content:'✓';font-weight:900}
+.dpro-lang-mobile{display:none}.dpro-lang-mobile__title{display:block;margin:0 0 10px;color:#617168;font-size:11px;font-weight:900;letter-spacing:.08em}.dpro-lang-mobile__options{display:grid;grid-template-columns:1fr 1fr;gap:7px}.dpro-lang-mobile__options button{appearance:none;min-height:42px;padding:8px 10px;border:1px solid rgba(18,56,39,.14);border-radius:10px;background:#fff;color:#244535;font:800 12px/1.25 inherit;cursor:pointer}.dpro-lang-mobile__options button[aria-current="true"]{border-color:#2c6a49;background:#edf5ef;color:#174f34}
+.dpro-lang-mobile--panel{margin:14px 0 0;padding:14px;border-top:1px solid rgba(18,56,39,.1);border-bottom:1px solid rgba(18,56,39,.1)}
+@media(max-width:1080px){.dpro-lang--desktop{display:none}.dpro-lang-mobile{display:block}.dpro-lang--fallback-mobile{display:inline-flex;margin-left:4px}}
+@media(min-width:1081px){.dpro-lang--fallback-mobile{display:none!important}}
+@media(max-width:900px){.dpro-lang--fallback-mobile .dpro-lang__button{width:40px;min-width:40px;padding:0;font-size:0}.dpro-lang--fallback-mobile .dpro-lang__button-icon{font-size:15px}.dpro-lang--fallback-mobile .dpro-lang__chev{display:none}.dpro-lang--fallback-mobile .dpro-lang__menu{right:0;min-width:158px}.dpro-lang-mobile--panel{margin-inline:0}}
