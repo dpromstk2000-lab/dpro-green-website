@@ -1,5 +1,12 @@
 (()=>{
   'use strict';
+  if(!document.querySelector('link[data-stage611-public-polish]')){
+    const publicPolish=document.createElement('link');
+    publicPolish.rel='stylesheet';
+    publicPolish.href='kasuya-stage6-11-public-polish.css?v=STAGE6.11-20260910';
+    publicPolish.dataset.stage611PublicPolish='1';
+    document.head.append(publicPolish);
+  }
   const cfg=window.GREEN_WEB_CONFIG||{};
   const shopEnabled=cfg?.featureFlags?.show_online_shop!==false;
   document.body.dataset.shopEnabled=String(shopEnabled);
@@ -32,13 +39,13 @@
   if(dpro.length&&!reduced){let d=0;setInterval(()=>{dpro.forEach(x=>x.classList.remove('is-hot'));dpro[d].classList.add('is-hot');d=(d+1)%dpro.length;},1800);}
 })();
 
-/* DPRO JP LINE FIT R2 / 2026-09-10
-   Existing <span> blocks are editorial line breaks. Keep each phrase on one line,
-   and only reduce that heading enough to fit the available column width. */
+/* DPRO JP LINE FIT R3 / 2026-09-10
+   Existing <span> blocks are editorial line breaks. Measure without affecting layout,
+   then reduce only that heading enough to keep each intended phrase on one line. */
 (()=>{
   'use strict';
-  if(window.__DPRO_JP_LINE_FIT_R2)return;
-  window.__DPRO_JP_LINE_FIT_R2=true;
+  if(window.__DPRO_JP_LINE_FIT_R3)return;
+  window.__DPRO_JP_LINE_FIT_R3=true;
 
   let raf=0;
   const directLines=heading=>[...heading.children].filter(el=>el.tagName==='SPAN');
@@ -48,42 +55,59 @@
     heading.style.removeProperty('word-break');
     heading.style.removeProperty('overflow-wrap');
     heading.style.removeProperty('text-wrap');
+    heading.style.removeProperty('min-width');
+    heading.style.removeProperty('max-width');
+  }
+
+  function measureLine(line){
+    const cs=getComputedStyle(line);
+    const probe=document.createElement('span');
+    probe.textContent=line.textContent||'';
+    probe.style.cssText='position:fixed;left:-100000px;top:-100000px;visibility:hidden;white-space:nowrap;width:max-content;max-width:none;pointer-events:none;';
+    probe.style.font=cs.font;
+    probe.style.fontKerning=cs.fontKerning;
+    probe.style.letterSpacing=cs.letterSpacing;
+    probe.style.wordSpacing=cs.wordSpacing;
+    document.body.append(probe);
+    const width=probe.getBoundingClientRect().width;
+    probe.remove();
+    return width;
   }
 
   function fitHeading(heading){
     const lines=directLines(heading);
     resetHeading(heading);
 
-    if(lines.length<2){
+    if(!lines.length){
       heading.style.setProperty('word-break','auto-phrase');
       heading.style.setProperty('overflow-wrap','normal');
       heading.style.setProperty('text-wrap','balance');
       return;
     }
 
+    const available=Math.floor(heading.getBoundingClientRect().width);
+    if(!available)return;
+    const base=parseFloat(getComputedStyle(heading).fontSize)||32;
+    const widest=Math.max(...lines.map(measureLine),0);
+    if(widest>available){
+      const fitted=Math.max(20,Math.floor(base*(available/widest)*0.965*10)/10);
+      heading.style.setProperty('font-size',`${fitted}px`);
+    }
+    heading.style.setProperty('min-width','0');
+    heading.style.setProperty('max-width','100%');
     lines.forEach(line=>{
       line.style.setProperty('display','block');
-      line.style.setProperty('width','max-content');
-      line.style.setProperty('max-width','none');
+      line.style.setProperty('max-width','100%');
       line.style.setProperty('white-space','nowrap');
       line.style.setProperty('word-break','keep-all');
       line.style.setProperty('overflow-wrap','normal');
       line.style.setProperty('line-break','strict');
     });
-
-    const base=parseFloat(getComputedStyle(heading).fontSize)||32;
-    const available=Math.floor(heading.getBoundingClientRect().width);
-    if(!available)return;
-    const widest=Math.max(...lines.map(line=>line.scrollWidth),0);
-    if(widest<=available)return;
-
-    const fitted=Math.max(20,Math.floor(base*(available/widest)*0.975*10)/10);
-    heading.style.setProperty('font-size',`${fitted}px`);
   }
 
   function run(){
     raf=0;
-    document.querySelectorAll('h1,h2').forEach(fitHeading);
+    document.querySelectorAll('h1,h2,h3').forEach(fitHeading);
   }
   function schedule(){
     if(raf)return;
@@ -97,7 +121,7 @@
   document.fonts?.ready?.then(schedule).catch(()=>{});
 
   const observer=new MutationObserver(mutations=>{
-    if(mutations.some(m=>[...m.addedNodes].some(node=>node.nodeType===1&&(node.matches?.('h1,h2')||node.querySelector?.('h1,h2')))))schedule();
+    if(mutations.some(m=>[...m.addedNodes].some(node=>node.nodeType===1&&(node.matches?.('h1,h2,h3')||node.querySelector?.('h1,h2,h3')))))schedule();
   });
   observer.observe(document.documentElement,{childList:true,subtree:true});
 })();

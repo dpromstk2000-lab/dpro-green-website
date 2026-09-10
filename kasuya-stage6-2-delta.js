@@ -32,7 +32,9 @@
 
   function renderShop(items) {
     if (!shopRoot) return;
-    const visible = (items || []).filter(item => item && item.visible !== false);
+    const limit = Number.parseInt(shopRoot.dataset.shopLimit || "0", 10);
+    const allVisible = (items || []).filter(item => item && item.visible !== false);
+    const visible = Number.isFinite(limit) && limit > 0 ? allVisible.slice(0, limit) : allVisible;
     shopRoot.innerHTML = visible.map(item => {
       const flags = [];
       if (item.rental_enabled) flags.push(`<span>レンタル相談</span>`);

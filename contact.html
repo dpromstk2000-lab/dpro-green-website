@@ -13,7 +13,7 @@
 <link href="kasuya-stage6-2-delta.css?v=STAGE6.2-20260909" rel="stylesheet"/>
 <link href="kasuya-support-final.css?v=STAGE6.5-20260909" rel="stylesheet"/>
 <script src="config.js"></script>
-<script defer="" src="kasuya-brushup-preview.js?v=STAGE6-20260909"></script>
+<script defer="" src="kasuya-brushup-preview.js?v=STAGE6.11-20260910"></script>
 <script defer="" src="kasuya-support-final.js?v=STAGE6.5-20260909"></script>
 <script defer="" src="contact.js"></script>
 <script defer="" src="kasuya-contact-copy-guard.js?v=STAGE6.7-20260910"></script>
@@ -86,7 +86,7 @@
 <section class="section support-form-section">
 <div class="wrap support-form-layout">
 <aside class="support-guide" data-reveal="">
-<p class="eyebrow eyebrow--green">BEFORE SENDING</p><h2>最初に分かる範囲だけで大丈夫です。</h2>
+<p class="eyebrow eyebrow--green">BEFORE SENDING</p><h2><span>最初に分かる範囲だけで、</span><span>大丈夫です。</span></h2>
 <ul><li><strong>設置場所</strong><span>オフィス・店舗・クリニック・福祉施設など</span></li><li><strong>鉢数の目安</strong><span>未定でも相談できます</span></li><li><strong>月額予算の目安</strong><span>任意。料金確定ではありません</span></li><li><strong>希望時期</strong><span>急ぎ・検討中などでも構いません</span></li></ul>
 <div class="support-note"><strong>このフォームでは契約条件・料金を確定しません。</strong><p>ご希望と設置条件を確認するための相談受付です。正式な内容は担当者からご案内します。</p></div>
 </aside>
@@ -99,7 +99,7 @@
 <fieldset data-photo-section=""><legend><span>04</span>設置場所・植物の写真</legend><div class="final-photo-box"><div><strong>JPEG・PNG・WebP／最大4枚</strong><p>設置場所の広さや明るさが分かる写真があると、初回の相談がスムーズです。</p></div><label class="btn btn--quiet" for="photos">写真を選択</label><input accept="image/jpeg,image/png,image/webp" hidden="" id="photos" multiple="" name="photos" type="file"/><span id="photo-count">0/4枚</span></div><div aria-live="polite" class="photo-preview" id="photo-preview"></div><label class="final-consent" hidden="" id="photo-confirm-row"><input name="photoConfirmed" type="checkbox"/><span>写真に人の顔、名札、顧客・患者情報、機密書類、PC画面などが写っていないことを確認しました。</span></label></fieldset>
 <fieldset><legend><span>05</span>詳しい相談内容</legend><label>相談内容<em>必須</em><textarea maxlength="4000" minlength="5" name="inquiryText" placeholder="例：受付横に大型を1鉢、会議室に中型を2鉢ほど検討しています。植物の種類は相談したいです。" required="" rows="7"></textarea></label></fieldset>
 <label class="final-consent"><input name="consent" required="" type="checkbox"/><span>入力情報と任意で添付した写真を、相談対応・現地確認・連絡のために利用すること、および<a href="privacy.html" rel="noopener" target="_blank">プライバシーポリシー</a>に同意します。<em>必須</em></span></label>
-<div class="final-submit"><p id="service-note">相談内容を確認し、担当者からご連絡します。</p><small aria-live="polite" id="api-state">受付システム接続を確認中…</small><button class="btn btn--lime btn--large" id="submit-button" type="submit">この内容で相談を送る</button></div>
+<div class="final-submit"><p id="service-note">相談内容を確認し、担当者からご連絡します。</p><small aria-live="polite" id="api-state">送信準備を確認しています…</small><button class="btn btn--lime btn--large" id="submit-button" type="submit">この内容で相談を送る</button></div>
 <div data-api-facility-name="" hidden=""></div>
 </form></div></section>
 </main>
