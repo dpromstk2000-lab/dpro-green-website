@@ -38,14 +38,23 @@
     if(/\/catalog\/area\/s\/?/i.test(p)){
       return homeLike()?{href:'service.html#size-s',label:null}:{href:'contact.html',label:'Sサイズを相談する →'};
     }
-    if(/\/catalog\/915\/?/i.test(p))return {href:'original.html#kozimi',label:null};
+    if(/\/catalog\/915\/?/i.test(p))return {href:'original-kozimi.html',label:null};
+    if(/\/catalog\/greeva-dx\/?/i.test(p))return {href:'original-greeba-dx.html',label:null};
+    if(/\/catalog\/1760\/?/i.test(p))return {href:'original-kozimi-oasis.html',label:null};
+    if(/\/catalog\/foridge\/?/i.test(p))return {href:'original-foliage.html',label:null};
+    if(/\/catalog\/885\/?/i.test(p))return {href:'original-honeycomb-wall.html',label:null};
+    if(/\/catalog\/870\/?/i.test(p))return {href:'original-forest-frame.html',label:null};
+    if(/\/catalog\/985\/?/i.test(p))return {href:'original-carsys.html',label:null};
+    if(/\/catalog\/1014\/?/i.test(p))return {href:'original-woobo.html',label:null};
+    if(/\/catalog\/941\/?/i.test(p))return {href:'original-green-hoop.html',label:null};
+    if(/\/catalog\/1410\/?/i.test(p))return {href:'original-shirakaba.html',label:null};
     if(/\/catalog\/area\/original\/?/i.test(p)){
-      if(/グリーバ|greeba/i.test(text))return {href:'original.html#greeba-dx',label:null};
+      if(/グリーバ|greeba/i.test(text))return {href:'original-greeba-dx.html',label:null};
       return {href:'original.html#original-products',label:null};
     }
     if(/\/catalog\/area\/items\/?/i.test(p)){
-      if(/白樺/.test(text))return {href:'original.html#shirakaba-planter',label:null};
-      if(/クレスト|crest/i.test(text))return {href:'original.html#crest',label:null};
+      if(/白樺/.test(text))return {href:'original-shirakaba.html',label:null};
+      if(/クレスト|crest/i.test(text))return {href:'original.html#all-lineup',label:null};
       if(/鉢|カバー|POT/i.test(text))return serviceLike()?{href:'contact.html',label:'鉢・カバーを相談する →'}:{href:'original.html#original-products',label:null};
       return {href:'original.html#original-products',label:null};
     }

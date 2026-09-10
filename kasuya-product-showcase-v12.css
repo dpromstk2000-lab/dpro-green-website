@@ -1,0 +1,17 @@
+
+/* DPRO GREEN KASUYA — TOP ORIGINAL PRODUCT SHOWCASE V1.2 / 2026-09-10 */
+.product-examples{align-items:start}
+.product-examples__intro .text-link{display:inline-flex;margin-top:18px}
+.product-examples__list{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:12px!important}
+.catalog-item--visual{display:flex!important;flex-direction:column!important;overflow:hidden!important;padding:0!important;background:#fff!important;border:1px solid #d9e5dc!important;border-radius:20px!important;text-decoration:none!important;min-width:0}
+.catalog-item__image{display:block;aspect-ratio:4/3;overflow:hidden;background:#eef3ef}
+.catalog-item__image img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+.catalog-item--visual:hover .catalog-item__image img{transform:scale(1.025)}
+.catalog-item__body{display:flex;flex:1;flex-direction:column;padding:17px}
+.catalog-item__body .catalog-item__meta{font-size:9px;letter-spacing:.12em;color:#1d5a3d;font-weight:900}
+.catalog-item__body .catalog-item__name{margin-top:7px;font-size:17px;line-height:1.35}
+.catalog-item__body .catalog-item__feature{margin-top:7px;line-height:1.65;color:#617168}
+.catalog-item__body .catalog-item__data{margin-top:12px}
+.catalog-item__more{display:block;margin-top:auto;padding-top:14px;color:#123827;font-size:11px;font-weight:900}
+@media(max-width:980px){.product-examples__list{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:620px){.product-examples__list{grid-template-columns:1fr!important}.catalog-item--visual{display:grid!important;grid-template-columns:120px 1fr!important}.catalog-item__image{height:100%;aspect-ratio:auto}.catalog-item__body{padding:15px}.catalog-item__body .catalog-item__feature{display:none}}

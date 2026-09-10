@@ -19,14 +19,18 @@
       if (item.material) chips.push(`<span>${esc(item.material)}</span>`);
       if (item.recommended_for) chips.push(`<span>${esc(item.recommended_for)}</span>`);
       const body = `
-        <span class="catalog-item__meta">${esc(item.category || "PRODUCT")}</span>
-        <strong class="catalog-item__name">${esc(item.name)}</strong>
-        ${item.feature ? `<small class="catalog-item__feature">${esc(item.feature)}</small>` : ""}
-        ${chips.length ? `<span class="catalog-item__data">${chips.join("")}</span>` : ""}
+        ${item.image ? `<span class="catalog-item__image"><img src="${esc(item.image)}" alt="${esc(item.name)}の公式商品写真" loading="lazy" referrerpolicy="no-referrer"></span>` : ""}
+        <span class="catalog-item__body">
+          <span class="catalog-item__meta">${esc(item.category || "PRODUCT")}</span>
+          <strong class="catalog-item__name">${esc(item.name)}</strong>
+          ${item.feature ? `<small class="catalog-item__feature">${esc(item.feature)}</small>` : ""}
+          ${chips.length ? `<span class="catalog-item__data">${chips.join("")}</span>` : ""}
+          <span class="catalog-item__more">商品詳細を見る →</span>
+        </span>
       `;
-      return item.source_url
-        ? `<a class="catalog-item" href="${esc(item.source_url)}" target="_blank" rel="noopener">${body}</a>`
-        : `<article class="catalog-item">${body}</article>`;
+      return item.detail_url
+        ? `<a class="catalog-item catalog-item--visual" href="${esc(item.detail_url)}">${body}</a>`
+        : `<article class="catalog-item catalog-item--visual">${body}</article>`;
     }).join("");
   }
 
