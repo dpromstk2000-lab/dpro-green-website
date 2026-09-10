@@ -61,4 +61,15 @@
     getItems() { return data && Array.isArray(data.items) ? [...data.items] : []; },
     getShopItems() { return data && Array.isArray(data.shop_items) ? [...data.shop_items] : []; }
   });
+
+  // STAGE 6.9 is isolated as a home-only additive delta so the accepted STAGE 6.2 logic stays intact.
+  const canonical = document.querySelector('link[rel="canonical"]')?.href || "";
+  const isHome = /\/dpro-green-website\/?$/.test(canonical) || /\/index\.html$/.test(location.pathname) || location.pathname.endsWith('/dpro-green-website/');
+  if (isHome && !document.querySelector('script[data-stage69-yamanashi-gap]')) {
+    const script = document.createElement("script");
+    script.src = "kasuya-stage6-9-yamanashi-gap.js?v=STAGE6.9-20260910";
+    script.async = false;
+    script.dataset.stage69YamanashiGap = "1";
+    document.head.append(script);
+  }
 })();
