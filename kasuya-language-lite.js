@@ -1,4 +1,4 @@
-/* DPRO GREEN KASUYA — FINAL LOCK ADDON / LANGUAGE LITE V1.0 / 2026-09-10
+/* DPRO GREEN KASUYA — FINAL LOCK ADDON / LANGUAGE LITE V1.1 / 2026-09-10
    User-side simple website translation only.
    No legacy Google Website Translator Widget, no SEO language pages, no hreflang changes. */
 (()=>{
@@ -6,7 +6,7 @@
   if(window.__DPRO_KASUYA_LANGUAGE_LITE)return;
   window.__DPRO_KASUYA_LANGUAGE_LITE=true;
 
-  const VERSION='LANG-LITE-V1.0-20260910';
+  const VERSION='LANG-LITE-V1.1-20260910';
   const LANGS=[
     {code:'ja',label:'日本語',html:'ja'},
     {code:'en',label:'English',html:'en'},
@@ -18,7 +18,7 @@
     if(document.querySelector('link[data-dpro-language-lite]'))return;
     const link=document.createElement('link');
     link.rel='stylesheet';
-    link.href='kasuya-language-lite.css?v=LANG-LITE-V1.0-20260910';
+    link.href='kasuya-language-lite.css?v=LANG-LITE-V1.1-20260910';
     link.dataset.dproLanguageLite=VERSION;
     document.head.append(link);
   }
@@ -50,12 +50,19 @@
     location.assign(target);
   }
 
+  function markNoTranslate(el){
+    el.classList.add('notranslate');
+    el.setAttribute('translate','no');
+    return el;
+  }
+
   function optionButtons(className='dpro-lang__option'){
     const current=getCurrentLang();
     return LANGS.map(lang=>{
       const b=document.createElement('button');
       b.type='button';
       b.className=className;
+      markNoTranslate(b);
       b.dataset.dproLang=lang.code;
       b.lang=lang.html;
       b.textContent=lang.label;
@@ -68,16 +75,19 @@
   function makePopover(extraClass=''){
     const root=document.createElement('div');
     root.className=`dpro-lang ${extraClass}`.trim();
+    markNoTranslate(root);
     root.dataset.dproLanguageSwitcher=VERSION;
     const button=document.createElement('button');
     button.type='button';
     button.className='dpro-lang__button';
+    markNoTranslate(button);
     button.setAttribute('aria-haspopup','menu');
     button.setAttribute('aria-expanded','false');
     button.setAttribute('aria-label','言語を選択 / Select language');
     button.innerHTML='<span class="dpro-lang__button-icon" aria-hidden="true">🌐</span><span>Language</span><span class="dpro-lang__chev" aria-hidden="true">▼</span>';
     const menu=document.createElement('div');
     menu.className='dpro-lang__menu';
+    markNoTranslate(menu);
     menu.hidden=true;
     menu.setAttribute('role','menu');
     optionButtons().forEach(b=>{b.setAttribute('role','menuitem');menu.append(b)});
@@ -108,12 +118,15 @@
     if(!panel||panel.querySelector('.dpro-lang-mobile--panel'))return false;
     const block=document.createElement('section');
     block.className='dpro-lang-mobile dpro-lang-mobile--panel';
+    markNoTranslate(block);
     block.setAttribute('aria-label','Language / 言語');
     const title=document.createElement('span');
     title.className='dpro-lang-mobile__title';
+    markNoTranslate(title);
     title.textContent='Language / 言語';
     const options=document.createElement('div');
     options.className='dpro-lang-mobile__options';
+    markNoTranslate(options);
     optionButtons('').forEach(b=>options.append(b));
     block.append(title,options);
     const actions=panel.querySelector('.menu-panel__actions');

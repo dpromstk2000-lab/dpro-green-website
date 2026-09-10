@@ -3,7 +3,7 @@
   // FINAL LOCK ADDON: lightweight user-side language access (no legacy translator widget).
   if(!document.querySelector('script[data-kasuya-language-lite]')){
     const languageLite=document.createElement('script');
-    languageLite.src='kasuya-language-lite.js?v=LANG-LITE-V1.0-20260910';
+    languageLite.src='kasuya-language-lite.js?v=LANG-LITE-V1.1-20260910';
     languageLite.defer=true;
     languageLite.dataset.kasuyaLanguageLite='1';
     document.head.append(languageLite);
