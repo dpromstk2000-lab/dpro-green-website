@@ -9,6 +9,15 @@
     languageLite.dataset.kasuyaLanguageLite='1';
     document.head.append(languageLite);
   }
+
+  // FINAL LOCK ADDON: keep HQ product/brand browsing inside the Kasuya public site.
+  if(!document.querySelector('script[data-kasuya-hq-local-routing]')){
+    const hqLocalRouting=document.createElement('script');
+    hqLocalRouting.src='kasuya-hq-local-routing.js?v=HQ-LOCAL-ROUTING-V1.0-20260910';
+    hqLocalRouting.defer=true;
+    hqLocalRouting.dataset.kasuyaHqLocalRouting='1';
+    document.head.append(hqLocalRouting);
+  }
   if(!document.querySelector('link[data-stage611-public-polish]')){
     const publicPolish=document.createElement('link');
     publicPolish.rel='stylesheet';
