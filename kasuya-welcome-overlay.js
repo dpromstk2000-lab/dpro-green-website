@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "WELCOME-V1.2-20260911";
+  const VERSION = "WELCOME-EVERGREEN-V1.3-20260911";
   const SEEN_KEY = "dpro-green-kasuya:welcome-notice:seen";
   const FORCE = new URLSearchParams(location.search).get("welcome") === "1";
   const cfg = window.GREEN_WEB_CONFIG || {};
