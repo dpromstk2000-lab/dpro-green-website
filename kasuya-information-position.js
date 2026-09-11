@@ -10,6 +10,19 @@
     return HOME_RE.test(path) || path === "/";
   }
 
+  function text(value) {
+    return String(value ?? "").trim();
+  }
+
+  function getBusinessSummary() {
+    const cfg = window.GREEN_WEB_CONFIG || {};
+    return {
+      openDays: text(cfg.site?.openDays || cfg.site?.openDaysLabel) || "月〜金",
+      hours: text(cfg.site?.businessHours) || "09:00～17:30",
+      closed: text(cfg.site?.closedDays) || "土日祝日・GW・年末年始"
+    };
+  }
+
   function noticeData(section) {
     const important = [...section.querySelectorAll(".green-live-announcement.is-important")];
     const holidays = [...section.querySelectorAll(".green-live-holiday")];
@@ -39,6 +52,44 @@
     return { show: false, label: "", title: "", detail: "" };
   }
 
+  function ensureSummary(section) {
+    const inner = section.querySelector(".green-live-public-info__inner") || section;
+    let summary = section.querySelector(".kasuya-store-summary");
+    const data = getBusinessSummary();
+
+    if (!summary) {
+      summary = document.createElement("div");
+      summary.className = "kasuya-store-summary";
+      summary.setAttribute("aria-label", "営業時間・営業日の概要");
+
+      const head = section.querySelector(".green-live-public-info__head");
+      if (head && head.nextSibling) {
+        head.parentNode.insertBefore(summary, head.nextSibling);
+      } else if (head) {
+        head.parentNode.appendChild(summary);
+      } else {
+        inner.prepend(summary);
+      }
+    }
+
+    summary.innerHTML = `
+      <div class="kasuya-store-summary__card">
+        <span>通常営業日</span>
+        <strong>${escapeHtml(data.openDays)}</strong>
+        <small>ご相談受付の基本日程</small>
+      </div>
+      <div class="kasuya-store-summary__card">
+        <span>営業時間</span>
+        <strong>${escapeHtml(data.hours)}</strong>
+        <small>店舗・対応時間</small>
+      </div>
+      <div class="kasuya-store-summary__card">
+        <span>定休日</span>
+        <strong>${escapeHtml(data.closed)}</strong>
+        <small>祝日・長期休暇を含む</small>
+      </div>`;
+  }
+
   function positionInformation() {
     if (!isHome()) return;
 
@@ -52,6 +103,8 @@
     if (section.nextElementSibling !== finalCta) {
       finalCta.insertAdjacentElement("beforebegin", section);
     }
+
+    ensureSummary(section);
 
     const data = noticeData(section);
     let alert = document.querySelector(`[${ALERT_ATTR}]`);

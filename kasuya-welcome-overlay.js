@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "WELCOME-V1.0-20260911";
+  const VERSION = "WELCOME-V1.1-20260911";
   const SEEN_KEY = "dpro-green-kasuya:welcome-notice:seen";
   const FORCE = new URLSearchParams(location.search).get("welcome") === "1";
   const cfg = window.GREEN_WEB_CONFIG || {};
@@ -69,12 +69,14 @@
 
   const getSnapshot = () => {
     const live = getLiveNotice();
+    const openDays = text(cfg.site?.openDays || cfg.site?.openDaysLabel) || "月〜金";
     const hours = text(cfg.site?.businessHours) || "09:00～17:30";
     const closed = text(cfg.site?.closedDays) || "土日祝日・GW・年末年始";
     const shopEnabled = cfg.featureFlags?.show_online_shop !== false;
     const lineReady = cfg.publication?.lineApproved === true && !!text(cfg.links?.line);
     const signature = [
       VERSION,
+      openDays,
       hours,
       closed,
       live.signature,
@@ -82,6 +84,7 @@
       lineReady ? `line:${text(cfg.links?.line)}` : "line:pending"
     ].join("||");
     return {
+      openDays,
       hours,
       closed,
       live,
@@ -119,10 +122,11 @@
     if (enabled && href) card.href = href;
 
     const copy = make("div", "welcome-service__copy");
-    const eyebrow = make("span", "welcome-service__eyebrow", status);
-    const heading = make("strong", "", title);
-    const desc = make("small", "", note);
-    copy.append(eyebrow, heading, desc);
+    copy.append(
+      make("span", "welcome-service__eyebrow", status),
+      make("strong", "", title),
+      make("small", "", note)
+    );
 
     const visual = make("div", "welcome-service__visual");
     if (qr && enabled) {
@@ -133,11 +137,20 @@
       img.height = 132;
       visual.append(img);
     } else {
-      const pending = make("span", "welcome-service__pending", "準備中");
-      visual.append(pending);
+      visual.append(make("span", "welcome-service__pending", "準備中"));
     }
 
     card.append(copy, visual);
+    return card;
+  };
+
+  const buildFactCard = (label, value, hint = "") => {
+    const card = make("div", "welcome-notice__fact");
+    card.append(
+      make("span", "", label),
+      make("strong", "", value)
+    );
+    if (hint) card.append(make("small", "", hint));
     return card;
   };
 
@@ -171,30 +184,43 @@
     const brand = make("div", "welcome-overlay__brand");
     const mark = make("span", "welcome-overlay__mark", "葉");
     mark.setAttribute("aria-hidden", "true");
+
     const brandCopy = make("div", "");
     brandCopy.append(
       make("span", "welcome-overlay__eyebrow", "FUKUOKA KASUYA / WELCOME"),
       make("h2", "", "福岡粕屋店からのお知らせ")
     );
     brandCopy.querySelector("h2").id = "welcome-overlay-title";
+
+    const headLead = make("p", "welcome-overlay__lead",
+      "植物のある空間づくりを、相談しやすく・分かりやすく。営業案内と相談導線をまとめています。"
+    );
+
     brand.append(mark, brandCopy);
-    head.append(brand, close);
+    head.append(brand, headLead, close);
 
     const body = make("div", "welcome-overlay__body");
 
     const notice = make("section", "welcome-notice");
-    const noticeTitle = make("div", "welcome-notice__title");
-    noticeTitle.append(
-      make("span", "", "SHOP INFORMATION"),
-      make("h3", "", "ご来店・ご相談の前に")
+    const intro = make("div", "welcome-notice__intro");
+    intro.append(
+      make("span", "welcome-notice__intro-eyebrow", "BOTANICAL WELCOME"),
+      make("h3", "", "グリーンのある毎日を、\nここから始めましょう。"),
+      make("p", "", "ご来店前に営業時間とお知らせをご確認いただき、気になる方法からそのままご相談ください。")
     );
 
+    const chips = make("div", "welcome-notice__chips");
+    ["レンタルグリーン", "植物販売", "空間づくり相談"].forEach((label) => {
+      chips.append(make("span", "welcome-notice__chip", label));
+    });
+    intro.append(chips);
+
     const facts = make("div", "welcome-notice__facts");
-    const hours = make("div", "welcome-notice__fact");
-    hours.append(make("span", "", "営業時間"), make("strong", "", snapshot.hours));
-    const closed = make("div", "welcome-notice__fact");
-    closed.append(make("span", "", "定休日"), make("strong", "", snapshot.closed));
-    facts.append(hours, closed);
+    facts.append(
+      buildFactCard("通常営業日", snapshot.openDays, "ご相談受付の基本日程"),
+      buildFactCard("営業時間", snapshot.hours, "店舗・対応時間"),
+      buildFactCard("定休日", snapshot.closed, "祝日・長期休暇を含む")
+    );
 
     const liveBox = make("div", "welcome-notice__live");
     liveBox.append(
@@ -202,21 +228,22 @@
       make("strong", "", snapshot.live.summary)
     );
     if (snapshot.live.detail) {
-      const detail = make("p", "", snapshot.live.detail);
-      liveBox.append(detail);
+      liveBox.append(make("p", "", snapshot.live.detail));
     }
 
     const noticeFoot = make("p", "welcome-notice__foot",
       "同じお知らせは次回から表示しません。臨時休業など内容が更新された場合は、もう一度表示します。"
     );
-    notice.append(noticeTitle, facts, liveBox, noticeFoot);
+    notice.append(intro, facts, liveBox, noticeFoot);
 
     const services = make("section", "welcome-services");
     const servicesHead = make("div", "welcome-services__head");
     servicesHead.append(
       make("span", "", "QUICK ACCESS"),
-      make("h3", "", "スマホで、そのまま相談・購入")
+      make("h3", "", "スマホで、そのまま相談・購入"),
+      make("p", "welcome-services__lead", "気になる方法を選ぶだけで、福岡粕屋店の導線へそのまま進めます。")
     );
+
     const grid = make("div", "welcome-services__grid");
     grid.append(
       buildServiceCard({
