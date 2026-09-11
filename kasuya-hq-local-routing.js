@@ -1,12 +1,12 @@
-/* DPRO GREEN KASUYA — HQ LOCAL ROUTING V1.1 / 2026-09-11
+/* DPRO GREEN KASUYA — HQ LOCAL ROUTING V1.2 / 2026-09-11
    Keeps public visitors inside the Kasuya website instead of sending product/brand clicks to HQ pages.
-   Also loads the shared INFORMATION position controller on every public page.
+   Also loads the shared INFORMATION position controller and official brand lockup on every public page.
    Does not alter SEO metadata, LINE, SHOP, DPRO, inquiry API or source catalog data. */
 (()=>{
   'use strict';
   if(window.__DPRO_KASUYA_HQ_LOCAL_ROUTING)return;
   window.__DPRO_KASUYA_HQ_LOCAL_ROUTING=true;
-  const VERSION='HQ-LOCAL-ROUTING-V1.1-20260911';
+  const VERSION='HQ-LOCAL-ROUTING-V1.2-20260911';
 
   function ensureInformationPosition(){
     if(!document.querySelector('link[href*="kasuya-information-position.css"]')){
@@ -25,6 +25,74 @@
     }
   }
   ensureInformationPosition();
+
+  const OFFICIAL_GP_LOGO='https://www.kokudoryokuka.co.jp/images/lp/logo_lp_gp370_122.png';
+
+  function ensureBrandLockupCss(){
+    if(document.querySelector('link[href*="kasuya-brand-lockup.css"]'))return;
+    const css=document.createElement('link');
+    css.rel='stylesheet';
+    css.href='kasuya-brand-lockup.css?v=OFFICIAL-BRAND-V1.0-20260911';
+    css.dataset.kasuyaBrandLockup='1';
+    document.head.append(css);
+  }
+  ensureBrandLockupCss();
+
+  function enhanceBrand(root=document){
+    const brands=[];
+    if(root instanceof HTMLAnchorElement && root.matches('a.brand'))brands.push(root);
+    root.querySelectorAll?.('a.brand').forEach(a=>brands.push(a));
+
+    brands.forEach(brand=>{
+      if(brand.dataset.kasuyaOfficialBrand==='1')return;
+      brand.dataset.kasuyaOfficialBrand='1';
+      brand.classList.add('kasuya-brand-lockup');
+      brand.setAttribute('aria-label','グリーン・ポケット福岡粕屋店 トップへ');
+
+      const official=document.createElement('span');
+      official.className='kasuya-brand-lockup__official';
+      official.setAttribute('aria-hidden','true');
+
+      const logo=document.createElement('img');
+      logo.className='kasuya-brand-lockup__logo';
+      logo.alt='';
+      logo.width=370;
+      logo.height=122;
+      logo.decoding='async';
+      logo.fetchPriority='high';
+
+      const local=document.createElement('span');
+      local.className='kasuya-brand-lockup__local';
+
+      const kicker=document.createElement('span');
+      kicker.className='kasuya-brand-lockup__kicker';
+      kicker.textContent='FUKUOKA KASUYA';
+
+      const store=document.createElement('strong');
+      store.className='kasuya-brand-lockup__store';
+      store.textContent='福岡粕屋店';
+
+      const service=document.createElement('small');
+      service.className='kasuya-brand-lockup__service';
+      service.textContent='観葉植物レンタル・定期メンテナンス';
+
+      local.append(kicker,store,service);
+      official.append(logo,local);
+      brand.append(official);
+
+      logo.addEventListener('load',()=>{
+        brand.classList.add('is-official-brand-ready');
+      },{once:true});
+      logo.addEventListener('error',()=>{
+        brand.classList.add('is-official-brand-fallback');
+      },{once:true});
+      logo.src=OFFICIAL_GP_LOGO;
+
+      if(logo.complete && logo.naturalWidth>0){
+        brand.classList.add('is-official-brand-ready');
+      }
+    });
+  }
 
   const isHQ=(url)=>{
     try{
@@ -125,11 +193,16 @@
 
   function init(){
     addServiceAnchors();
+    enhanceBrand(document);
     scan(document);
     restoreHash();
     const mo=new MutationObserver(ms=>ms.forEach(m=>{
       if(m.type==='attributes')rewrite(m.target);
-      m.addedNodes.forEach(n=>{if(n.nodeType===1)scan(n);});
+      m.addedNodes.forEach(n=>{
+        if(n.nodeType!==1)return;
+        enhanceBrand(n);
+        scan(n);
+      });
     }));
     mo.observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['href']});
     document.addEventListener('click',e=>{

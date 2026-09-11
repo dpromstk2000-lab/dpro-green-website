@@ -1,0 +1,117 @@
+/* DPRO GREEN KASUYA — OFFICIAL BRAND HEADER V1.0 / 2026-09-11
+   Official Green Pocket logo stays intact; Kasuya identity is added as a separate local lockup. */
+
+/* Fallback: prevent clipping even if the external official logo is temporarily unavailable. */
+a.brand.kasuya-brand-lockup{
+  min-width:0;
+  overflow:visible;
+}
+a.brand.kasuya-brand-lockup :is(.brand__copy,.brand-copy){
+  min-width:0;
+  overflow:visible;
+}
+a.brand.kasuya-brand-lockup :is(.brand__copy,.brand-copy) strong{
+  overflow:visible;
+  text-overflow:clip;
+  white-space:normal;
+  word-break:keep-all;
+  line-height:1.15;
+}
+a.brand.kasuya-brand-lockup :is(.brand__copy,.brand-copy) small{
+  overflow:visible;
+  text-overflow:clip;
+}
+
+/* Swap only after the official logo has actually loaded. */
+.kasuya-brand-lockup__official{
+  display:none;
+  min-width:0;
+  align-items:center;
+  gap:11px;
+  color:#123827;
+}
+a.brand.is-official-brand-ready > :is(.brand__mark,.brand-mark,.brand__copy,.brand-copy){
+  display:none!important;
+}
+a.brand.is-official-brand-ready > .kasuya-brand-lockup__official{
+  display:flex;
+}
+
+.kasuya-brand-lockup__logo{
+  display:block;
+  width:112px;
+  height:auto;
+  flex:0 0 auto;
+  object-fit:contain;
+}
+.kasuya-brand-lockup__local{
+  position:relative;
+  display:grid;
+  min-width:0;
+  gap:1px;
+  padding-left:11px;
+  border-left:1px solid rgba(18,56,39,.18);
+}
+.kasuya-brand-lockup__kicker{
+  display:block;
+  color:#397052;
+  font-size:7px;
+  font-weight:900;
+  letter-spacing:.16em;
+  line-height:1.1;
+  white-space:nowrap;
+}
+.kasuya-brand-lockup__store{
+  display:block;
+  color:#123827;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:-.02em;
+  line-height:1.18;
+  white-space:nowrap;
+}
+.kasuya-brand-lockup__service{
+  display:block;
+  color:#67776e;
+  font-size:8px;
+  font-weight:700;
+  line-height:1.3;
+  white-space:nowrap;
+}
+
+.site-head a.brand.is-official-brand-ready,
+.site-header a.brand.is-official-brand-ready{
+  width:auto;
+  max-width:none;
+  flex:0 0 auto;
+}
+
+@media(max-width:1240px){
+  .kasuya-brand-lockup__logo{width:100px}
+  .kasuya-brand-lockup__local{gap:2px;padding-left:9px}
+  .kasuya-brand-lockup__store{font-size:12px}
+  .kasuya-brand-lockup__service{font-size:7.5px}
+}
+@media(max-width:1080px){
+  .kasuya-brand-lockup__logo{width:94px}
+  .kasuya-brand-lockup__service{display:none}
+  .kasuya-brand-lockup__store{font-size:12px}
+}
+@media(max-width:760px){
+  .kasuya-brand-lockup__official{gap:8px}
+  .kasuya-brand-lockup__logo{width:88px}
+  .kasuya-brand-lockup__local{padding-left:8px}
+  .kasuya-brand-lockup__kicker{font-size:6px;letter-spacing:.12em}
+  .kasuya-brand-lockup__store{font-size:11.5px}
+}
+@media(max-width:430px){
+  .kasuya-brand-lockup__logo{width:78px}
+  .kasuya-brand-lockup__local{padding-left:7px}
+  .kasuya-brand-lockup__kicker{display:none}
+  .kasuya-brand-lockup__store{font-size:11px}
+}
+
+/* Fail safe: keep the current local brand if the HQ image cannot be loaded. */
+a.brand.is-official-brand-fallback > .kasuya-brand-lockup__official{
+  display:none!important;
+}
