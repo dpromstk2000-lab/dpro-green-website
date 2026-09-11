@@ -1,81 +1,41 @@
-/* DPRO GREEN KASUYA — FIRST VISIT / UPDATED NOTICE OVERLAY V1.2 / 2026-09-11 */
+/* DPRO GREEN KASUYA — WELCOME OVERLAY EVERGREEN V1.3 / 2026-09-11 */
 html.welcome-overlay-open,html.welcome-overlay-open body{overflow:hidden}
-.welcome-overlay{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;padding:26px;opacity:0;pointer-events:none;transition:opacity .24s ease}
+.welcome-overlay{position:fixed;inset:0;z-index:100000;display:grid;place-items:center;padding:18px;opacity:0;pointer-events:none;transition:opacity .22s ease}
 .welcome-overlay.is-open{opacity:1;pointer-events:auto}.welcome-overlay.is-closing{opacity:0}
-.welcome-overlay__shade{position:absolute;inset:0;width:100%;height:100%;border:0;background:rgba(5,20,14,.52);backdrop-filter:blur(8px);cursor:default}
-.welcome-overlay__panel{position:relative;isolation:isolate;z-index:1;width:min(1120px,100%);max-height:min(860px,calc(100vh - 52px));overflow:auto;border:1px solid rgba(255,255,255,.28);border-radius:34px;box-shadow:0 48px 150px rgba(0,0,0,.38);transform:translateY(14px) scale(.985);transition:transform .26s ease;background:#173b2b}
-.welcome-overlay__panel::before{content:"";position:absolute;inset:0;z-index:-2;background:
-linear-gradient(120deg,rgba(9,30,21,.20) 0%,rgba(11,34,24,.10) 34%,rgba(255,255,255,.00) 60%),
-url('hero-kasuya-store.webp') center center/cover no-repeat;filter:saturate(1.08) contrast(1.04) brightness(.88)}
-.welcome-overlay__panel::after{content:"";position:absolute;inset:0;z-index:-1;background:
-radial-gradient(circle at 18% 18%,rgba(214,239,104,.18),transparent 22%),
-linear-gradient(90deg,rgba(10,28,20,.12) 0%,rgba(10,28,20,.06) 38%,rgba(255,255,255,.04) 58%,rgba(255,255,255,.10) 100%)}
+.welcome-overlay__shade{position:absolute;inset:0;width:100%;height:100%;border:0;background:rgba(4,19,13,.44);backdrop-filter:blur(5px);cursor:default}
+.welcome-overlay__panel{position:relative;isolation:isolate;z-index:1;width:min(1160px,100%);max-height:calc(100dvh - 36px);overflow:auto;border:1px solid rgba(255,255,255,.30);border-radius:32px;background:#173b2b;box-shadow:0 46px 140px rgba(0,0,0,.36);transform:translateY(10px) scale(.99);transition:transform .24s ease}
+.welcome-overlay__panel::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(120deg,rgba(8,29,19,.08) 0%,rgba(8,29,19,.04) 34%,rgba(255,255,255,0) 66%),url('hero-kasuya-store.webp') center 43%/cover no-repeat;filter:saturate(1.13) contrast(1.04) brightness(.96)}
+.welcome-overlay__panel::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle at 18% 18%,rgba(214,239,104,.12),transparent 20%),linear-gradient(90deg,rgba(9,31,20,.07) 0%,rgba(9,31,20,.025) 42%,rgba(255,255,255,.03) 68%,rgba(255,255,255,.07) 100%)}
 .welcome-overlay.is-open .welcome-overlay__panel{transform:none}
-.welcome-overlay__head{position:sticky;top:0;z-index:4;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;padding:24px 28px;border-bottom:1px solid rgba(255,255,255,.14);background:linear-gradient(135deg,rgba(12,47,32,.82) 0%,rgba(24,92,61,.72) 62%,rgba(34,106,71,.54) 100%);backdrop-filter:blur(14px);color:#fff}
-.welcome-overlay__brand{display:flex;align-items:center;gap:14px}
-.welcome-overlay__mark{width:50px;height:50px;display:grid;place-items:center;border-radius:50%;background:#d8ef6f;color:#113625;font-weight:900;box-shadow:0 10px 28px rgba(0,0,0,.20)}
-.welcome-overlay__eyebrow,.welcome-notice__intro-eyebrow,.welcome-services__head>span{display:block;color:#dff39d;font-size:9px;font-weight:900;letter-spacing:.18em}
-.welcome-overlay__head h2{margin:2px 0 0;font-size:clamp(21px,2.3vw,30px);line-height:1.18}
-.welcome-overlay__lead{margin:0;max-width:520px;color:rgba(255,255,255,.92);font-size:12px;line-height:1.7;text-shadow:0 1px 3px rgba(0,0,0,.18)}
-.welcome-overlay__close{width:44px;height:44px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.34);border-radius:50%;background:rgba(255,255,255,.18);color:#fff;font-size:26px;line-height:1;cursor:pointer;backdrop-filter:blur(12px)}
+.welcome-overlay__head{position:sticky;top:0;z-index:4;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px;padding:16px 22px;border-bottom:1px solid rgba(255,255,255,.16);background:linear-gradient(135deg,rgba(11,45,30,.76),rgba(28,92,62,.60));backdrop-filter:blur(13px);color:#fff}
+.welcome-overlay__brand{display:flex;align-items:center;gap:12px}.welcome-overlay__mark{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:#d8ef6f;color:#113625;font-weight:900;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.welcome-overlay__eyebrow,.welcome-notice__intro-eyebrow,.welcome-services__head>span{display:block;color:#dff39d;font-size:8px;font-weight:900;letter-spacing:.18em}
+.welcome-overlay__head h2{margin:2px 0 0;font-size:clamp(20px,2vw,27px);line-height:1.16}
+.welcome-overlay__lead{margin:0;max-width:520px;color:rgba(255,255,255,.92);font-size:11px;line-height:1.55;text-shadow:0 1px 3px rgba(0,0,0,.16)}
+.welcome-overlay__close{width:40px;height:40px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.34);border-radius:50%;background:rgba(255,255,255,.15);color:#fff;font-size:24px;line-height:1;cursor:pointer;backdrop-filter:blur(10px)}
 .welcome-overlay__body{display:grid;grid-template-columns:1.03fr .97fr;gap:0}
-.welcome-notice{position:relative;overflow:hidden;padding:34px 30px;background:linear-gradient(180deg,rgba(15,58,39,.50) 0%,rgba(22,72,48,.44) 100%);backdrop-filter:blur(16px);color:#fff;border-right:1px solid rgba(255,255,255,.10)}
-.welcome-notice::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 8% 86%,rgba(255,255,255,.08),transparent 20%),radial-gradient(circle at 92% 8%,rgba(214,239,104,.18),transparent 18%);pointer-events:none}
-.welcome-notice__intro{position:relative;padding:26px;border:1px solid rgba(255,255,255,.16);border-radius:28px;background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.08));backdrop-filter:blur(18px);box-shadow:0 18px 46px rgba(0,0,0,.10)}
-.welcome-notice__intro h3{margin:8px 0 0;font-size:clamp(30px,3vw,42px);line-height:1.13;letter-spacing:-.045em;white-space:pre-line;text-shadow:0 2px 8px rgba(0,0,0,.16)}
-.welcome-notice__intro p{margin:12px 0 0;max-width:580px;color:rgba(242,248,243,.94);font-size:12px;line-height:1.85}
-.welcome-notice__chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.welcome-notice__chip{display:inline-flex;align-items:center;min-height:30px;padding:0 12px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.12);color:#fff;font-size:10px;font-weight:900;letter-spacing:.04em;backdrop-filter:blur(12px)}
-.welcome-notice__facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px}
-.welcome-notice__fact{padding:18px;border:1px solid rgba(255,255,255,.18);border-radius:22px;background:rgba(255,255,255,.14);backdrop-filter:blur(18px);box-shadow:0 16px 34px rgba(0,0,0,.08)}
-.welcome-notice__fact span,.welcome-notice__live>span{display:block;color:#e0f1e5;font-size:10px;font-weight:800}
-.welcome-notice__fact strong{display:block;margin-top:6px;color:#fff;font-size:17px;line-height:1.42;text-shadow:0 1px 5px rgba(0,0,0,.12)}
-.welcome-notice__fact small{display:block;margin-top:6px;color:rgba(232,241,234,.92);font-size:10px;line-height:1.55}
-.welcome-notice__live{margin-top:14px;padding:22px;border-radius:24px;background:rgba(250,253,250,.82);border:1px solid rgba(255,255,255,.34);backdrop-filter:blur(20px);color:#143b29;box-shadow:0 18px 44px rgba(6,31,20,.12)}
-.welcome-notice__live>span{color:#1c5e3f}
-.welcome-notice__live strong{display:block;margin-top:7px;font-size:19px;line-height:1.48}
-.welcome-notice__live p{white-space:pre-line;margin:9px 0 0;color:#51685a;font-size:11px;line-height:1.75}
-.welcome-notice__foot{margin:16px 0 0;color:rgba(236,245,238,.92);font-size:10px;line-height:1.7;text-shadow:0 1px 3px rgba(0,0,0,.12)}
-.welcome-services{padding:34px 30px;background:linear-gradient(180deg,rgba(251,253,250,.48) 0%,rgba(246,250,247,.42) 100%);backdrop-filter:blur(18px)}
-.welcome-services__head h3{margin:6px 0 0;font-size:clamp(24px,2.8vw,38px);line-height:1.14;letter-spacing:-.04em;color:#173e2b}
-.welcome-services__lead{margin:10px 0 0;color:#58695f;font-size:12px;line-height:1.75}
-.welcome-services__grid{display:grid;gap:14px;margin-top:24px}
-.welcome-service{display:grid;grid-template-columns:1fr 128px;gap:14px;align-items:center;padding:16px;border:1px solid rgba(255,255,255,.40);border-radius:24px;background:rgba(255,255,255,.58);backdrop-filter:blur(18px);text-decoration:none;color:#123827;box-shadow:0 16px 36px rgba(18,56,39,.06);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,background .2s ease}
- a.welcome-service:hover{transform:translateY(-2px);border-color:rgba(171,203,176,.92);background:rgba(255,255,255,.66);box-shadow:0 20px 42px rgba(18,56,39,.12)}
-.welcome-service__eyebrow{display:block;color:#245a3e;font-size:8px;font-weight:900;letter-spacing:.13em}
-.welcome-service__copy strong{display:block;margin-top:7px;font-size:18px;line-height:1.35}
-.welcome-service__copy small{display:block;margin-top:6px;color:#61746a;font-size:10px;line-height:1.65}
-.welcome-service__visual{display:grid;place-items:center;min-height:114px;border-radius:18px;background:rgba(255,255,255,.40);backdrop-filter:blur(14px)}
-.welcome-service__visual img{display:block;width:98px;height:98px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
-.welcome-service__pending{display:grid;place-items:center;width:82px;height:82px;border:1px dashed #9cb5a8;border-radius:50%;color:#70847a;font-size:10px;font-weight:900;background:rgba(255,255,255,.56)}
-.welcome-overlay__foot{display:flex;align-items:center;justify-content:space-between;gap:22px;padding:20px 28px;border-top:1px solid rgba(255,255,255,.18);background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.78));backdrop-filter:blur(16px)}
-.welcome-overlay__foot small{color:#586a60;font-size:10px}
-.welcome-overlay__enter{min-height:48px;padding:0 24px;border:0;border-radius:999px;background:linear-gradient(135deg,#123827 0%,#20553b 100%);color:#fff;font-weight:900;cursor:pointer;box-shadow:0 12px 24px rgba(18,56,39,.16)}
+.welcome-notice{position:relative;overflow:hidden;padding:22px;background:linear-gradient(180deg,rgba(13,53,35,.37),rgba(20,67,45,.34));backdrop-filter:blur(12px);color:#fff;border-right:1px solid rgba(255,255,255,.10)}
+.welcome-notice::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 92% 8%,rgba(214,239,104,.12),transparent 18%)}
+.welcome-notice__intro{position:relative;padding:19px 20px;border:1px solid rgba(255,255,255,.17);border-radius:24px;background:rgba(255,255,255,.10);backdrop-filter:blur(14px);box-shadow:0 16px 38px rgba(0,0,0,.08)}
+.welcome-notice__intro h3{margin:6px 0 0;font-size:clamp(28px,2.8vw,38px);line-height:1.10;letter-spacing:-.045em;white-space:pre-line;text-shadow:0 2px 7px rgba(0,0,0,.14)}
+.welcome-notice__intro p{margin:9px 0 0;max-width:580px;color:rgba(245,249,246,.94);font-size:11px;line-height:1.65}
+.welcome-notice__chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.welcome-notice__chip{display:inline-flex;align-items:center;min-height:27px;padding:0 10px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.11);color:#fff;font-size:9px;font-weight:900;letter-spacing:.03em;backdrop-filter:blur(10px)}
+.welcome-notice__facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:12px}
+.welcome-notice__fact{min-width:0;padding:13px 14px;border:1px solid rgba(255,255,255,.18);border-radius:18px;background:rgba(255,255,255,.13);backdrop-filter:blur(14px);box-shadow:0 12px 28px rgba(0,0,0,.06)}
+.welcome-notice__fact span,.welcome-notice__live>span{display:block;color:#e2f0e6;font-size:9px;font-weight:800}.welcome-notice__fact strong{display:block;margin-top:4px;color:#fff;font-size:15px;line-height:1.35;text-shadow:0 1px 4px rgba(0,0,0,.12)}.welcome-notice__fact small{display:block;margin-top:4px;color:rgba(235,243,237,.90);font-size:9px;line-height:1.42}
+.welcome-notice__live{margin-top:10px;padding:15px 16px;border-radius:19px;background:rgba(250,253,250,.79);border:1px solid rgba(255,255,255,.36);backdrop-filter:blur(16px);color:#143b29;box-shadow:0 14px 34px rgba(6,31,20,.10)}
+.welcome-notice__live>span{color:#1c5e3f}.welcome-notice__live strong{display:block;margin-top:5px;font-size:16px;line-height:1.40}.welcome-notice__live p{white-space:pre-line;margin:7px 0 0;color:#51685a;font-size:10px;line-height:1.55}
+.welcome-notice__foot{margin:10px 0 0;color:rgba(238,246,240,.90);font-size:9px;line-height:1.55;text-shadow:0 1px 3px rgba(0,0,0,.10)}
+.welcome-services{padding:22px;background:linear-gradient(180deg,rgba(251,253,250,.36),rgba(246,250,247,.31));backdrop-filter:blur(13px)}
+.welcome-services__head h3{margin:5px 0 0;font-size:clamp(23px,2.5vw,34px);line-height:1.10;letter-spacing:-.04em;color:#173e2b}.welcome-services__lead{margin:7px 0 0;color:#56695f;font-size:11px;line-height:1.55}
+.welcome-services__grid{display:grid;gap:10px;margin-top:15px}.welcome-service{display:grid;grid-template-columns:1fr 108px;gap:12px;align-items:center;padding:12px 13px;border:1px solid rgba(255,255,255,.42);border-radius:20px;background:rgba(255,255,255,.50);backdrop-filter:blur(14px);text-decoration:none;color:#123827;box-shadow:0 13px 30px rgba(18,56,39,.055);transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,background .2s ease}
+a.welcome-service:hover{transform:translateY(-2px);border-color:rgba(171,203,176,.92);background:rgba(255,255,255,.59);box-shadow:0 18px 38px rgba(18,56,39,.10)}
+.welcome-service__eyebrow{display:block;color:#245a3e;font-size:7px;font-weight:900;letter-spacing:.13em}.welcome-service__copy strong{display:block;margin-top:5px;font-size:16px;line-height:1.28}.welcome-service__copy small{display:block;margin-top:4px;color:#61746a;font-size:9px;line-height:1.45}
+.welcome-service__visual{display:grid;place-items:center;min-height:92px;border-radius:15px;background:rgba(255,255,255,.42);backdrop-filter:blur(12px)}.welcome-service__visual img{display:block;width:82px;height:82px;border-radius:8px;box-shadow:0 7px 20px rgba(0,0,0,.07)}
+.welcome-service__pending{display:grid;place-items:center;width:68px;height:68px;border:1px dashed #9cb5a8;border-radius:50%;color:#70847a;font-size:9px;font-weight:900;background:rgba(255,255,255,.52)}
+.welcome-overlay__foot{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 22px;border-top:1px solid rgba(255,255,255,.20);background:rgba(255,255,255,.72);backdrop-filter:blur(14px)}
+.welcome-overlay__foot small{color:#586a60;font-size:9px}.welcome-overlay__enter{min-height:42px;padding:0 22px;border:0;border-radius:999px;background:linear-gradient(135deg,#123827,#20553b);color:#fff;font-weight:900;cursor:pointer;box-shadow:0 10px 22px rgba(18,56,39,.15)}
 .welcome-reopen{margin-top:14px;padding:10px 14px;border:1px solid #cbd9cf;border-radius:999px;background:#fff;color:#123827;font-size:10px;font-weight:900;cursor:pointer;box-shadow:0 8px 18px rgba(18,56,39,.04)}
-@media(max-width:900px){
-  .welcome-overlay{padding:12px}
-  .welcome-overlay__panel{max-height:calc(100dvh - 24px);border-radius:26px}
-  .welcome-overlay__head{grid-template-columns:1fr auto;align-items:start}
-  .welcome-overlay__lead{grid-column:1/-1;max-width:none}
-  .welcome-overlay__body{grid-template-columns:1fr}
-  .welcome-notice,.welcome-services{padding:28px 22px}
-}
-@media(max-width:620px){
-  .welcome-overlay{padding:0;align-items:end}
-  .welcome-overlay__shade{backdrop-filter:blur(6px)}
-  .welcome-overlay__panel{width:100%;max-height:92dvh;border-radius:28px 28px 0 0;border-bottom:0}
-  .welcome-overlay__panel::before{background:linear-gradient(120deg,rgba(9,30,21,.14) 0%,rgba(11,34,24,.08) 42%,rgba(255,255,255,.00) 100%),url('hero-kasuya-store.webp') center center/cover no-repeat;filter:saturate(1.05) contrast(1.02) brightness(.82)}
-  .welcome-overlay__head{padding:18px}
-  .welcome-overlay__mark{width:42px;height:42px}
-  .welcome-notice,.welcome-services{padding:22px 18px}
-  .welcome-notice__intro h3,.welcome-services__head h3{font-size:clamp(24px,9vw,34px)}
-  .welcome-notice__facts{grid-template-columns:1fr}
-  .welcome-services__grid{grid-template-columns:1fr}
-  .welcome-service{grid-template-columns:1fr 96px;padding:12px;background:rgba(255,255,255,.64)}
-  .welcome-service__visual{min-height:96px}
-  .welcome-service__visual img{width:82px;height:82px}
-  .welcome-overlay__foot{position:sticky;bottom:0;z-index:4;background:rgba(255,255,255,.88);backdrop-filter:blur(12px)}
-  .welcome-overlay__foot small{display:none}
-  .welcome-overlay__enter{width:100%}
-}
+@media(max-width:900px){.welcome-overlay{padding:10px}.welcome-overlay__panel{max-height:calc(100dvh - 20px);border-radius:25px}.welcome-overlay__head{grid-template-columns:1fr auto;align-items:start}.welcome-overlay__lead{grid-column:1/-1;max-width:none}.welcome-overlay__body{grid-template-columns:1fr}.welcome-notice,.welcome-services{padding:22px}}
+@media(max-width:620px){.welcome-overlay{padding:0;align-items:end}.welcome-overlay__shade{backdrop-filter:blur(4px)}.welcome-overlay__panel{width:100%;max-height:92dvh;border-radius:26px 26px 0 0;border-bottom:0}.welcome-overlay__panel::before{background:linear-gradient(120deg,rgba(9,30,21,.10),rgba(11,34,24,.04) 46%,rgba(255,255,255,0) 100%),url('hero-kasuya-store.webp') center center/cover no-repeat;filter:saturate(1.08) contrast(1.02) brightness(.90)}.welcome-overlay__head{padding:16px}.welcome-overlay__mark{width:40px;height:40px}.welcome-notice,.welcome-services{padding:18px 16px}.welcome-notice__intro h3,.welcome-services__head h3{font-size:clamp(24px,9vw,33px)}.welcome-notice__facts{grid-template-columns:1fr}.welcome-services__grid{grid-template-columns:1fr}.welcome-service{grid-template-columns:1fr 92px;padding:11px;background:rgba(255,255,255,.60)}.welcome-service__visual{min-height:88px}.welcome-service__visual img{width:76px;height:76px}.welcome-overlay__foot{position:sticky;bottom:0;z-index:4;background:rgba(255,255,255,.86);backdrop-filter:blur(12px)}.welcome-overlay__foot small{display:none}.welcome-overlay__enter{width:100%}}
 @media(prefers-reduced-motion:reduce){.welcome-overlay,.welcome-overlay__panel,.welcome-service{transition:none!important}}

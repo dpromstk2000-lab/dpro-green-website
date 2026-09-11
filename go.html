@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="robots" content="noindex,nofollow,noarchive"/><title>福岡粕屋店｜ご案内</title>
+<style>
+html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;background:#eef5ef;color:#123827}
+main{min-height:100vh;display:grid;place-items:center;padding:24px}.card{width:min(520px,100%);padding:32px;border:1px solid #d7e4da;border-radius:26px;background:#fff;box-shadow:0 24px 70px rgba(18,56,39,.10);text-align:center}
+.mark{width:54px;height:54px;margin:0 auto 16px;display:grid;place-items:center;border-radius:50%;background:#123827;color:#d6ef68;font-weight:900}
+h1{font-size:24px;margin:0 0 10px}p{color:#66766d;line-height:1.8}.links{display:grid;gap:10px;margin-top:22px}
+a{display:block;padding:14px 18px;border-radius:999px;background:#123827;color:#fff;text-decoration:none;font-weight:800}
+</style><script src="config.js"></script></head>
+<body><main><div class="card"><div class="mark">葉</div><h1>福岡粕屋店へご案内します</h1><p id="status">ページを移動しています。</p>
+<div class="links"><a href="contact.html">レンタル・設置相談</a><a href="shop.html">ONLINE SHOP</a><a href="line.html">LINE相談</a></div></div></main>
+<script>
+(() => {
+  const key = new URLSearchParams(location.search).get("to") || "";
+  const cfg = window.GREEN_WEB_CONFIG || {};
+  const lineUrl = (cfg.publication?.lineApproved === true && cfg.links?.line) ? cfg.links.line : "line.html";
+  const routes = {rental:"contact.html",contact:"contact.html",shop:"shop.html",line:lineUrl};
+  const target = routes[key];
+  if (!target) { document.getElementById("status").textContent = "ご希望のページをお選びください。"; return; }
+  location.replace(target);
+})();
+</script></body></html>
