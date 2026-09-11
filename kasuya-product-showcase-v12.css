@@ -38,6 +38,7 @@
   word-break:auto-phrase!important;
   overflow-wrap:normal!important;
 }
+.product-examples__intro strong span{display:block!important}
 .product-examples__intro small{
   display:block!important;
   max-width:58em!important;
