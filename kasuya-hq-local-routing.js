@@ -1,11 +1,30 @@
-/* DPRO GREEN KASUYA — HQ LOCAL ROUTING V1.0 / 2026-09-10
+/* DPRO GREEN KASUYA — HQ LOCAL ROUTING V1.1 / 2026-09-11
    Keeps public visitors inside the Kasuya website instead of sending product/brand clicks to HQ pages.
+   Also loads the shared INFORMATION position controller on every public page.
    Does not alter SEO metadata, LINE, SHOP, DPRO, inquiry API or source catalog data. */
 (()=>{
   'use strict';
   if(window.__DPRO_KASUYA_HQ_LOCAL_ROUTING)return;
   window.__DPRO_KASUYA_HQ_LOCAL_ROUTING=true;
-  const VERSION='HQ-LOCAL-ROUTING-V1.0-20260910';
+  const VERSION='HQ-LOCAL-ROUTING-V1.1-20260911';
+
+  function ensureInformationPosition(){
+    if(!document.querySelector('link[href*="kasuya-information-position.css"]')){
+      const css=document.createElement('link');
+      css.rel='stylesheet';
+      css.href='kasuya-information-position.css?v=INFO-ALL-PAGES-V1.0-20260911';
+      css.dataset.kasuyaInformationPosition='1';
+      document.head.append(css);
+    }
+    if(!document.querySelector('script[src*="kasuya-information-position.js"]')){
+      const script=document.createElement('script');
+      script.src='kasuya-information-position.js?v=INFO-ALL-PAGES-V1.0-20260911';
+      script.defer=true;
+      script.dataset.kasuyaInformationPosition='1';
+      document.head.append(script);
+    }
+  }
+  ensureInformationPosition();
 
   const isHQ=(url)=>{
     try{

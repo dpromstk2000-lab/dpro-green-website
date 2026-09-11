@@ -1,17 +1,21 @@
+/* DPRO GREEN KASUYA — INFORMATION POSITION ALL PAGES V1.0 / 2026-09-11 */
 (() => {
   "use strict";
 
-  const HOME_RE = /(?:\/dpro-green-website\/?|\/index\.html)$/i;
+  if (window.__DPRO_KASUYA_INFORMATION_ALL_PAGES) return;
+  window.__DPRO_KASUYA_INFORMATION_ALL_PAGES = true;
+
   const ALERT_ATTR = "data-kasuya-important-alert";
   let queued = false;
 
-  function isHome() {
-    const path = location.pathname.replace(/\/+$/, "/");
-    return HOME_RE.test(path) || path === "/";
-  }
-
   function text(value) {
     return String(value ?? "").trim();
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+    }[char]));
   }
 
   function getBusinessSummary() {
@@ -32,20 +36,20 @@
       return {
         show: true,
         label: "IMPORTANT",
-        title: item.querySelector("strong")?.textContent?.trim() || "重要なお知らせがあります",
-        detail: item.querySelector("small")?.textContent?.trim() || ""
+        title: text(item.querySelector("strong")?.textContent) || "重要なお知らせがあります",
+        detail: text(item.querySelector("small")?.textContent)
       };
     }
 
     if (holidays.length) {
       const item = holidays[0];
-      const date = item.querySelector(".green-live-date")?.textContent?.trim() || "";
-      const title = item.querySelector("strong")?.textContent?.trim() || "休業・特別営業のお知らせ";
+      const date = text(item.querySelector(".green-live-date")?.textContent);
+      const title = text(item.querySelector("strong")?.textContent) || "休業・特別営業のお知らせ";
       return {
         show: true,
         label: "SCHEDULE",
         title: [date, title].filter(Boolean).join(" "),
-        detail: item.querySelector("p")?.textContent?.trim() || ""
+        detail: text(item.querySelector("p")?.textContent)
       };
     }
 
@@ -56,6 +60,7 @@
     const inner = section.querySelector(".green-live-public-info__inner") || section;
     let summary = section.querySelector(".kasuya-store-summary");
     const data = getBusinessSummary();
+    const signature = [data.openDays, data.hours, data.closed].join("|");
 
     if (!summary) {
       summary = document.createElement("div");
@@ -63,15 +68,13 @@
       summary.setAttribute("aria-label", "営業時間・営業日の概要");
 
       const head = section.querySelector(".green-live-public-info__head");
-      if (head && head.nextSibling) {
-        head.parentNode.insertBefore(summary, head.nextSibling);
-      } else if (head) {
-        head.parentNode.appendChild(summary);
-      } else {
-        inner.prepend(summary);
-      }
+      if (head?.nextSibling) head.parentNode.insertBefore(summary, head.nextSibling);
+      else if (head) head.parentNode.appendChild(summary);
+      else inner.prepend(summary);
     }
 
+    if (summary.dataset.signature === signature) return;
+    summary.dataset.signature = signature;
     summary.innerHTML = `
       <div class="kasuya-store-summary__card">
         <span>通常営業日</span>
@@ -90,22 +93,30 @@
       </div>`;
   }
 
-  function positionInformation() {
-    if (!isHome()) return;
+  function findFinalAction(main) {
+    const candidates = [...main.querySelectorAll(".final-cta, .cta, .local-contact")];
+    return candidates.length ? candidates[candidates.length - 1] : null;
+  }
 
-    const section = document.querySelector("[data-green-live-public-info]");
-    const finalCta = document.querySelector("main .final-cta");
-    if (!section || !finalCta) return;
+  function moveInformation(section) {
+    const main = document.querySelector("main");
+    if (!main) return false;
 
-    section.id = "store-information";
-    section.classList.add("is-kasuya-bottom-info");
-
-    if (section.nextElementSibling !== finalCta) {
-      finalCta.insertAdjacentElement("beforebegin", section);
+    const target = findFinalAction(main);
+    if (target) {
+      if (section.parentElement !== main || section.nextElementSibling !== target) {
+        target.insertAdjacentElement("beforebegin", section);
+      }
+      return true;
     }
 
-    ensureSummary(section);
+    if (section.parentElement !== main || section !== main.lastElementChild) {
+      main.append(section);
+    }
+    return true;
+  }
 
+  function renderAlert(section) {
     const data = noticeData(section);
     let alert = document.querySelector(`[${ALERT_ATTR}]`);
 
@@ -125,6 +136,9 @@
       else document.body.prepend(alert);
     }
 
+    const signature = [data.label, data.title, data.detail].join("|");
+    if (alert.dataset.signature === signature) return;
+    alert.dataset.signature = signature;
     alert.innerHTML = `
       <div class="wrap kasuya-important-alert__inner">
         <span class="kasuya-important-alert__label">${escapeHtml(data.label)}</span>
@@ -134,10 +148,16 @@
       </div>`;
   }
 
-  function escapeHtml(value) {
-    return String(value ?? "").replace(/[&<>"']/g, (char) => ({
-      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
-    }[char]));
+  function positionInformation() {
+    const section = document.querySelector("[data-green-live-public-info]");
+    if (!section) return;
+
+    section.id = "store-information";
+    section.classList.add("is-kasuya-bottom-info");
+
+    if (!moveInformation(section)) return;
+    ensureSummary(section);
+    renderAlert(section);
   }
 
   function schedule() {
@@ -157,6 +177,16 @@
 
   window.addEventListener("green:live-sync", schedule);
 
-  const observer = new MutationObserver(schedule);
+  const observer = new MutationObserver((mutations) => {
+    const relevant = mutations.some((mutation) =>
+      [...mutation.addedNodes].some((node) =>
+        node.nodeType === 1 && (
+          node.matches?.("[data-green-live-public-info], .green-live-announcement, .green-live-holiday") ||
+          node.querySelector?.("[data-green-live-public-info], .green-live-announcement, .green-live-holiday")
+        )
+      )
+    );
+    if (relevant) schedule();
+  });
   observer.observe(document.documentElement, { childList: true, subtree: true });
 })();
