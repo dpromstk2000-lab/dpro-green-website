@@ -1,0 +1,45 @@
+/* DPRO GREEN KASUYA — CASES FINAL CTA V1.0
+   Scope: cases.html YOUR SPACE CTA only */
+.cta.cta--your-space{
+  min-height:520px;
+  background:#0d251a;
+}
+.cta--your-space .cta__media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center center;
+  filter:none;
+}
+.cta--your-space .cta__veil{
+  background:
+    linear-gradient(180deg,rgba(13,37,26,.02) 54%,rgba(13,37,26,.82) 100%),
+    linear-gradient(90deg,rgba(7,30,19,.34) 0%,rgba(7,30,19,.20) 42%,rgba(7,30,19,.06) 72%,rgba(7,30,19,.12) 100%);
+}
+.cta--your-space .cta__inner{
+  padding-top:82px;
+  padding-bottom:88px;
+}
+.cta--your-space .section-kicker{
+  color:#d3ef67;
+  text-shadow:0 1px 16px rgba(0,0,0,.22);
+}
+.cta--your-space h2,
+.cta--your-space p{
+  text-shadow:0 2px 22px rgba(0,0,0,.24);
+}
+@media(max-width:760px){
+  .cta.cta--your-space{min-height:560px}
+  .cta--your-space .cta__media img{
+    object-position:62% center;
+  }
+  .cta--your-space .cta__veil{
+    background:
+      linear-gradient(180deg,rgba(8,33,21,.20) 0%,rgba(8,33,21,.34) 55%,rgba(13,37,26,.90) 100%),
+      linear-gradient(90deg,rgba(8,33,21,.62),rgba(8,33,21,.20));
+  }
+  .cta--your-space .cta__inner{
+    padding-top:70px;
+    padding-bottom:76px;
+  }
+}
