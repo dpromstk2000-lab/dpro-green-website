@@ -176,9 +176,25 @@ window.GREEN_WEB_CONFIG = Object.freeze({
 
 (() => {
   "use strict";
-  if (document.querySelector('meta[name="dpro-green-shop-standalone"]')) return;
+  const standalone = document.querySelector('meta[name="dpro-green-shop-standalone"]');
+  const version = "GREEN-SHOP-PUBLIC-PROD-R2.3-20260927";
+
+  // shop.html currently contains an older fixed query string.
+  // On the standalone SHOP page, load the production module again after the page
+  // has finished loading so the newest production handlers always win.
+  if (standalone) {
+    window.addEventListener("load", () => {
+      if (document.querySelector('script[data-green-shop-runtime-r23]')) return;
+      const script = document.createElement("script");
+      script.src = `green-shop-module.js?v=${encodeURIComponent(version)}`;
+      script.async = false;
+      script.dataset.greenShopRuntimeR23 = "1";
+      document.body.append(script);
+    }, { once: true });
+    return;
+  }
+
   if (document.querySelector('script[data-green-shop-module]')) return;
-  const version = "GREEN-SHOP-PUBLIC-R1.2-20260831";
   const script = document.createElement("script");
   script.src = `green-shop-module.js?v=${encodeURIComponent(version)}`;
   script.async = false;
