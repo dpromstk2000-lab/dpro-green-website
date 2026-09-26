@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const VERSION="GREEN-SHOP-PUBLIC-PROD-R2.0-20260927";
+  const VERSION="GREEN-SHOP-PUBLIC-PROD-R2.1-20260927";
   const API="https://dpro-cl-000001-green-shop.dpromstk2000.workers.dev";
   const CART_KEY="dpro_green_shop_cart_v2";
   let liveSettings={enabled:false,onlineShop:false,delivery:false,pickup:false,gift:false,orderingEnabled:false,squareEnabled:false};
@@ -18,6 +18,7 @@
       delivery:liveSettings.delivery,
       pickup:liveSettings.pickup,
       gift:liveSettings.gift,
+      orderingEnabled:liveSettings.orderingEnabled,
       // Existing shop.html opens checkout when "square" is true.
       // Until Square is connected, this means "order reception enabled".
       square:liveSettings.orderingEnabled,
