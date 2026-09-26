@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const VERSION="GREEN-SHOP-PUBLIC-PROD-R2.1-20260927";
+  const VERSION="GREEN-SHOP-PUBLIC-PROD-R2.2-20260927";
   const API="https://dpro-cl-000001-green-shop.dpromstk2000.workers.dev";
   const CART_KEY="dpro_green_shop_cart_v2";
   let liveSettings={enabled:false,onlineShop:false,delivery:false,pickup:false,gift:false,orderingEnabled:false,squareEnabled:false};
@@ -71,6 +71,13 @@
       const form=$("#checkout-form");if(!form)return;
       form.onsubmit=async e=>{
         e.preventDefault();
+        try{
+          const freshSettings=await get("/api/public/settings");
+          liveSettings=freshSettings||liveSettings;
+        }catch(err){
+          alert("SHOP設定を確認できませんでした。時間をおいて再度お試しください。");
+          return;
+        }
         const s=settings();
         if(!s.orderingEnabled){alert("現在オンライン注文を受け付けていません。LINEからご相談ください。");return;}
         let cart=[];try{cart=JSON.parse(localStorage.getItem(CART_KEY)||"[]")}catch{}

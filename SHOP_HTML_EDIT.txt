@@ -1,0 +1,14 @@
+SHOP.HTML EDIT REQUIRED
+Open:
+https://github.com/dpromstk2000-lab/dpro-green-website/edit/main/shop.html
+
+Find:
+green-shop-module.js?v=GREEN-SHOP-PUBLIC-R1.4-20260910
+
+Replace with:
+green-shop-module.js?v=GREEN-SHOP-PUBLIC-PROD-R2.2-20260927
+
+Commit changes.
+
+Reason:
+shop.html still pins the old public module query version. This causes stale CDN/browser delivery even though green-shop-module.js itself has been updated.
