@@ -1,28 +1,31 @@
-DPRO GREEN WEBSITE / LINE OFFICIAL LIVE R2.1 / 2026-09-27
+DPRO GREEN WEBSITE / LINE OFFICIAL QR LIVE R2.2 / 2026-09-27
 
 Purpose:
-- Connect the public HP to the real LINE Official Account.
-- Basic ID: @358xjlgr
-- Uses LINE's official profile/friend-add URL scheme.
-- Enables publication.lineApproved.
-- Existing LINE guide page and message templates remain unchanged.
-
-Changed:
-publication.lineApproved: false -> true
-links.line: "" -> https://line.me/R/ti/p/%40358xjlgr
+- Replace the welcome overlay LINE Official "準備中" circle with a real QR code.
+- QR destination: https://line.me/R/ti/p/%40358xjlgr
+- Existing rental/contact and online-shop QR cards are unchanged.
+- Existing LINE message-template dialog remains unchanged.
 
 Target repository:
 https://github.com/dpromstk2000-lab/dpro-green-website
 
-Upload to repository root:
-config.js
-config_JS_TEXT.txt
-PATCH_NOTE.txt
+Upload all files in this ZIP to repository root.
 
-After commit:
-1. Open line.html
-2. Ctrl+F5
-3. Open a message template
-4. Confirm "LINEを開く" is visible
-5. Click it and confirm the Green Pocket Fukuoka Kasuya official account opens
-6. Also test a public "LINEで相談" action from the site
+Files:
+- config.js
+- config_JS_TEXT.txt
+- kasuya-line-qr-live.js
+- kasuya-line-qr-live_JS_TEXT.txt
+- kasuya-qr-line-official.png
+- PATCH_NOTE.txt
+
+After Commit:
+1. Open:
+   https://dpromstk2000-lab.github.io/dpro-green-website/?welcome=1
+2. Ctrl + F5
+3. Confirm the LINE公式 card shows the QR instead of "準備中"
+4. Scan the QR with a smartphone
+5. Confirm グリーン・ポケット福岡粕屋店 LINE公式 opens
+
+QR decode self-check:
+https://line.me/R/ti/p/%40358xjlgr

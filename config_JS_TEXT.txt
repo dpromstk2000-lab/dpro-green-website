@@ -1,5 +1,5 @@
 window.GREEN_WEB_CONFIG = Object.freeze({
-  version: "WEB-GREEN-LINE-OFFICIAL-LIVE-R2.1-20260927",
+  version: "WEB-GREEN-LINE-OFFICIAL-LIVE-R2.2-20260927",
 
   site: {
     publicName: "グリーン・ポケット福岡粕屋店",
@@ -208,4 +208,15 @@ window.GREEN_WEB_CONFIG = Object.freeze({
   link.href = `green-wrap-fix.css?v=${encodeURIComponent(version)}`;
   link.dataset.greenWrapFix = version;
   document.head.append(link);
+})();
+
+(() => {
+  "use strict";
+  const version = "GREEN-LINE-QR-LIVE-R1-20260927";
+  if (document.querySelector('script[data-green-line-qr-live]')) return;
+  const script = document.createElement("script");
+  script.src = `kasuya-line-qr-live.js?v=${encodeURIComponent(version)}`;
+  script.defer = true;
+  script.dataset.greenLineQrLive = version;
+  document.head.appendChild(script);
 })();
