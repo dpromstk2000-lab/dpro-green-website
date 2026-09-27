@@ -1,20 +1,36 @@
-DPRO GREEN WEBSITE / WELCOME LOGO LIVE R2.3 / 2026-09-27
+DPRO GREEN WEBSITE SHOP R2.4 FINAL HARDENING
+2026-09-27
 
-変更内容:
-- トップページ初回表示の「福岡粕屋店からのお知らせ」左上アイコンを、
-  ユーザー指定の丸型「グリーン・ポケット 福岡粕屋店」ロゴへ変更。
-- 既存のLINE公式QR、レンタル相談QR、ONLINE SHOP QRには変更なし。
-- LINE公式本番リンクにも変更なし。
-- 元画像の内容は変更せず、Web表示用に512px以内へ縮小最適化のみ実施。
+目的:
+現在PASS済みの公開SHOPを崩さず、引き渡し前に重複実行と旧ローカル注文処理を封じる。
 
-対象リポジトリ:
+今回の修正:
+- green-shop-module.js をR2.4へ更新
+- Runtime二重起動ガード追加
+  shop.html直読込 + config.js再読込が起きても2回実行されない
+- 注文submitをcapture phaseで取得
+  旧shop.html内のlocalStorage注文処理より先に停止し、必ず本番SHOP Workerへ送る
+- 注文直前に/public/settingsを再確認
+- orderingEnabled=falseなら受付不可
+- 電話番号正規化（+81→0、記号除去）
+- 配送時住所必須を再確認
+- 成功後はcartをクリア
+- 注文番号を本番API結果から表示
+- Square実決済はOFFのまま
+  現在は「注文受付（決済前）→店舗から決済案内」
+- window.DPROGreenShopをObject.freeze
+- BUILD Secret/Worker/SQL変更なし
+
+既存PASS:
+公開SHOP → 注文 → Owner受注一覧
+注文番号 GRS系
+商品10件本番同期
+
+アップロード先:
 https://github.com/dpromstk2000-lab/dpro-green-website
 
-ZIP内の全ファイルをリポジトリ直下へ上書きしてください。
+対象ファイル:
+green-shop-module.js
 
 確認URL:
-https://dpromstk2000-lab.github.io/dpro-green-website/?welcome=1
-
-確認:
-Ctrl + F5
-→ 左上の「葉」アイコンが丸型の福岡粕屋店ロゴへ変わっていること。
+https://dpromstk2000-lab.github.io/dpro-green-website/shop.html
