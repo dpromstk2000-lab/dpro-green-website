@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "GREEN-SHOP-PUBLIC-V3E2.1-REQUEST-UX-20260927";
+  const VERSION = "GREEN-SHOP-PUBLIC-V3E2.2-LINE-HANDOFF-20260927";
   if (window.__DPRO_GREEN_SHOP_PUBLIC_V3E2__) return;
   window.__DPRO_GREEN_SHOP_PUBLIC_V3E2__ = VERSION;
 
@@ -46,6 +46,27 @@
 
   function settings() {
     return window.DPROGreenShop?.settings?.() || {};
+  }
+
+  function officialLineId() {
+    const lineUrl = String(window.GREEN_WEB_CONFIG?.links?.line || "");
+    const m = lineUrl.match(/\/ti\/p\/([^/?#]+)/);
+    try {
+      return m ? decodeURIComponent(m[1]) : "@358xjlgr";
+    } catch {
+      return "@358xjlgr";
+    }
+  }
+
+  function receiptLineUrl({ mode, orderNumber, productName }) {
+    const label = mode === "reserve" ? "取り置き" : mode === "rental" ? "レンタル" : "商品";
+    const message = [
+      `${label}希望をWEBから送信しました。`,
+      `受付番号：${orderNumber}`,
+      `商品：${productName}`,
+      "店舗確認をお願いします。"
+    ].join("\n");
+    return `https://line.me/R/oaMessage/${encodeURIComponent(officialLineId())}/?${encodeURIComponent(message)}`;
   }
 
   function product(id) {
@@ -323,9 +344,9 @@
               <label class="shopv3e-field">
                 <span>希望連絡方法</span>
                 <select name="contactMethod">
-                  <option>LINE</option>
-                  <option>電話</option>
-                  <option>メール</option>
+                  <option value="LINE">LINE（受付後にトークへ移動）</option>
+                  <option value="電話">電話</option>
+                  <option value="メール">メール</option>
                 </select>
               </label>
               <label class="shopv3e-field wide" data-v3e-address>
@@ -341,6 +362,9 @@
               ${mode === "reserve"
                 ? "この送信で取り置きは確定しません。店舗が在庫を確認したあとに確定のご連絡をします。"
                 : "レンタル料金・設置・配達条件は、店舗確認後に最終確定します。"}
+            </div>
+            <div style="padding:10px 12px;border-radius:10px;background:#eef8f2;color:#315543;font-size:12px;line-height:1.7">
+              希望連絡方法でLINEを選んだ場合は、受付完了後にLINEトークを開き、受付番号入りの文面をそのまま送れます。
             </div>
           </div>
           <div class="shopv3e-request-foot">
@@ -391,12 +415,23 @@
           },
         });
 
+        const contactMethod = String(fd.get("contactMethod") || "LINE");
+        const lineUrl = receiptLineUrl({
+          mode,
+          orderNumber: result.orderNumber || "",
+          productName: p.name || "商品"
+        });
+
         $(".shopv3e-request-card", overlay).innerHTML = `
           <div class="shopv3e-success">
             <strong>${mode === "reserve" ? "取り置き希望を受け付けました" : "レンタル希望を受け付けました"}</strong>
             <p>受付番号 <b>${esc(result.orderNumber || "")}</b></p>
             <p>${esc(result.message || "店舗からご案内します。")}</p>
-            <button type="button" class="shopv3e-submit" data-v3e-success-close style="padding:0 18px;min-height:44px;border-radius:11px">閉じる</button>
+            ${contactMethod === "LINE" ? `
+              <p style="margin-top:16px;color:#476056;font-size:13px">LINEでのご連絡を希望されたため、受付番号を粕屋店のLINEへ送ってください。</p>
+              <a class="shopv3e-submit" href="${esc(lineUrl)}" style="display:inline-flex;align-items:center;justify-content:center;text-decoration:none;padding:0 18px;min-height:46px;border-radius:11px;margin-right:8px">LINEで受付番号を送る</a>
+            ` : ""}
+            <button type="button" class="shopv3e-cancel" data-v3e-success-close style="padding:0 18px;min-height:44px;border-radius:11px">閉じる</button>
           </div>
         `;
         $("[data-v3e-success-close]", overlay).onclick = () => overlay.hidden = true;

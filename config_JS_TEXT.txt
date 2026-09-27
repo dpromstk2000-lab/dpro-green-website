@@ -1,5 +1,5 @@
 window.GREEN_WEB_CONFIG = Object.freeze({
-  version: "WEB-GREEN-SHOP-V3E2.1-20260927",
+  version: "WEB-GREEN-SHOP-V3E2.2-20260927",
 
   site: {
     publicName: "グリーン・ポケット福岡粕屋店",
@@ -179,7 +179,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
   const standalone = document.querySelector('meta[name="dpro-green-shop-standalone"]');
   const version = "GREEN-SHOP-PUBLIC-PROD-R3.0-20260927";
   const detailVersion = "GREEN-SHOP-PUBLIC-DETAIL-V3D1-20260927";
-  const experienceVersion = "GREEN-SHOP-PUBLIC-V3E2.1-REQUEST-UX-20260927";
+  const experienceVersion = "GREEN-SHOP-PUBLIC-V3E2.2-LINE-HANDOFF-20260927";
 
   if (standalone) {
     if (!document.querySelector('link[data-green-shop-detail-v3]')) {

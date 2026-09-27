@@ -1,19 +1,28 @@
-SHOP V3-E2.1 REQUEST UX
+SHOP V3-E2.2 LINE HANDOFF
 
-今回の実画面QAで以下を修正:
-- 店頭受取でも住所欄が見えていた問題
-- 取り置き/レンタルの数量指定
-- 旧「LINEで取り置き受付」文言を専用フォーム仕様へ修正
+目的:
+WEBフォームで「希望連絡方法：LINE」を選んだお客様を、
+受付番号付きでLINE公式トークへ確実につなぐ。
 
 GitHub:
 https://github.com/dpromstk2000-lab/dpro-green-website
 
-ZIP直下をリポジトリ直下へ上書き:
+上書き:
 - green-shop-v3e.js
-- green-shop-detail-v3.js
 - config.js
 
-確認:
-店頭受取 → 住所欄は非表示
-配送/自店配達/レンタル配達 → 住所欄が表示・必須
-数量欄が表示
+動作:
+1. 取り置き/レンタル希望をWEB送信
+2. 受付番号発行
+3. LINE希望なら「LINEで受付番号を送る」を表示
+4. LINE公式 @358xjlgr のトークを開く
+5. 入力欄に
+   - 受付種別
+   - 受付番号
+   - 商品名
+   を自動入力
+6. お客様が送信
+7. DPRO LINE受信側で受付番号を確認できる
+
+LINE公式URLスキーム:
+https://line.me/R/oaMessage/{LINE_ID}/?{message}
