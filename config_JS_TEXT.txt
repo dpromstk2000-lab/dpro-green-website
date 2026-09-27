@@ -1,5 +1,5 @@
 window.GREEN_WEB_CONFIG = Object.freeze({
-  version: "WEB-GREEN-INTEGRATED-GO-LIVE-R2-20260926",
+  version: "WEB-GREEN-LINE-OFFICIAL-LIVE-R2.1-20260927",
 
   site: {
     publicName: "グリーン・ポケット福岡粕屋店",
@@ -37,7 +37,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     logoApproved: false,
     brandNameApproved: true,
     headquartersTextApproved: true,
-    lineApproved: false,
+    lineApproved: true,
     customerDataStorageApproved: false,
     realPhotosApproved: false,
     customerCasesApproved: false,
@@ -89,7 +89,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
   links: {
     contact: "contact.html",
     lineGuide: "line.html",
-    line: "",
+    line: "https://line.me/R/ti/p/%40358xjlgr",
     phone: "092-719-0336",
     customerGuide: "line.html#customer-portal",
     customerPortal: "https://dpromstk2000-lab.github.io/dpro-cl-000001-green/member.html",
@@ -179,9 +179,6 @@ window.GREEN_WEB_CONFIG = Object.freeze({
   const standalone = document.querySelector('meta[name="dpro-green-shop-standalone"]');
   const version = "GREEN-SHOP-PUBLIC-PROD-R2.3-20260927";
 
-  // shop.html currently contains an older fixed query string.
-  // On the standalone SHOP page, load the production module again after the page
-  // has finished loading so the newest production handlers always win.
   if (standalone) {
     window.addEventListener("load", () => {
       if (document.querySelector('script[data-green-shop-runtime-r23]')) return;
@@ -189,7 +186,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
       script.src = `green-shop-module.js?v=${encodeURIComponent(version)}`;
       script.async = false;
       script.dataset.greenShopRuntimeR23 = "1";
-      document.body.append(script);
+      document.body.appendChild(script);
     }, { once: true });
     return;
   }

@@ -1,0 +1,28 @@
+DPRO GREEN WEBSITE / LINE OFFICIAL LIVE R2.1 / 2026-09-27
+
+Purpose:
+- Connect the public HP to the real LINE Official Account.
+- Basic ID: @358xjlgr
+- Uses LINE's official profile/friend-add URL scheme.
+- Enables publication.lineApproved.
+- Existing LINE guide page and message templates remain unchanged.
+
+Changed:
+publication.lineApproved: false -> true
+links.line: "" -> https://line.me/R/ti/p/%40358xjlgr
+
+Target repository:
+https://github.com/dpromstk2000-lab/dpro-green-website
+
+Upload to repository root:
+config.js
+config_JS_TEXT.txt
+PATCH_NOTE.txt
+
+After commit:
+1. Open line.html
+2. Ctrl+F5
+3. Open a message template
+4. Confirm "LINEを開く" is visible
+5. Click it and confirm the Green Pocket Fukuoka Kasuya official account opens
+6. Also test a public "LINEで相談" action from the site
