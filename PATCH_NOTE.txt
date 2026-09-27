@@ -1,31 +1,20 @@
-DPRO GREEN WEBSITE / LINE OFFICIAL QR LIVE R2.2 / 2026-09-27
+DPRO GREEN WEBSITE / WELCOME LOGO LIVE R2.3 / 2026-09-27
 
-Purpose:
-- Replace the welcome overlay LINE Official "準備中" circle with a real QR code.
-- QR destination: https://line.me/R/ti/p/%40358xjlgr
-- Existing rental/contact and online-shop QR cards are unchanged.
-- Existing LINE message-template dialog remains unchanged.
+変更内容:
+- トップページ初回表示の「福岡粕屋店からのお知らせ」左上アイコンを、
+  ユーザー指定の丸型「グリーン・ポケット 福岡粕屋店」ロゴへ変更。
+- 既存のLINE公式QR、レンタル相談QR、ONLINE SHOP QRには変更なし。
+- LINE公式本番リンクにも変更なし。
+- 元画像の内容は変更せず、Web表示用に512px以内へ縮小最適化のみ実施。
 
-Target repository:
+対象リポジトリ:
 https://github.com/dpromstk2000-lab/dpro-green-website
 
-Upload all files in this ZIP to repository root.
+ZIP内の全ファイルをリポジトリ直下へ上書きしてください。
 
-Files:
-- config.js
-- config_JS_TEXT.txt
-- kasuya-line-qr-live.js
-- kasuya-line-qr-live_JS_TEXT.txt
-- kasuya-qr-line-official.png
-- PATCH_NOTE.txt
+確認URL:
+https://dpromstk2000-lab.github.io/dpro-green-website/?welcome=1
 
-After Commit:
-1. Open:
-   https://dpromstk2000-lab.github.io/dpro-green-website/?welcome=1
-2. Ctrl + F5
-3. Confirm the LINE公式 card shows the QR instead of "準備中"
-4. Scan the QR with a smartphone
-5. Confirm グリーン・ポケット福岡粕屋店 LINE公式 opens
-
-QR decode self-check:
-https://line.me/R/ti/p/%40358xjlgr
+確認:
+Ctrl + F5
+→ 左上の「葉」アイコンが丸型の福岡粕屋店ロゴへ変わっていること。

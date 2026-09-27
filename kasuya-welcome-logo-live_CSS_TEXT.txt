@@ -1,0 +1,11 @@
+/* DPRO GREEN KASUYA / WELCOME LOGO LIVE
+ * Version: GREEN-WELCOME-LOGO-LIVE-R1-20260927
+ * Replaces the temporary "葉" badge with the approved round Fukuoka Kasuya logo.
+ */
+.welcome-overlay__mark{
+  background:#fff url("kasuya-logo-badge.png") center/cover no-repeat !important;
+  color:transparent !important;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:0 8px 24px rgba(0,0,0,.18);
+}
