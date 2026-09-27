@@ -1,0 +1,394 @@
+(() => {
+  "use strict";
+
+  const VERSION = "GREEN-SHOP-PUBLIC-DETAIL-V3D-20260927";
+  if (window.__DPRO_GREEN_SHOP_DETAIL_V3D__) return;
+  window.__DPRO_GREEN_SHOP_DETAIL_V3D__ = VERSION;
+
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+  const TYPE_LABELS = {
+    plant: "観葉植物",
+    pot: "鉢・鉢カバー",
+    accessory: "小物・用品",
+    gift: "ギフト",
+    other: "その他",
+  };
+  const TX_LABELS = {
+    sale: "通常販売",
+    reserve: "取り置き",
+    rental: "レンタル",
+    inquiry: "問い合わせ",
+  };
+  const FULFILL_LABELS = {
+    shipping: "配送",
+    pickup: "店頭受取",
+    local_delivery: "自店配達",
+    rental_delivery: "レンタル配達",
+  };
+
+  let modal = null;
+  let currentId = "";
+  let mainIndex = 0;
+  let observer = null;
+
+  function esc(v) {
+    return String(v ?? "").replace(/[&<>'"]/g, (c) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      "'": "&#39;",
+      '"': "&quot;",
+    }[c]));
+  }
+
+  function yen(n) {
+    return new Intl.NumberFormat("ja-JP", {
+      style: "currency",
+      currency: "JPY",
+      maximumFractionDigits: 0,
+    }).format(Number(n) || 0);
+  }
+
+  function products() {
+    return window.DPROGreenShop?.products?.() || [];
+  }
+
+  function settings() {
+    return window.DPROGreenShop?.settings?.() || {};
+  }
+
+  function product(id) {
+    return products().find((p) => String(p.id) === String(id)) || null;
+  }
+
+  function absImage(src) {
+    const value = String(src || "").trim();
+    if (!value) return "";
+    try {
+      return new URL(value, location.href).href;
+    } catch {
+      return value;
+    }
+  }
+
+  function productImages(p) {
+    const media = Array.isArray(p?.media) ? p.media : [];
+    const rows = media
+      .map((m) => ({
+        url: absImage(m?.url || ""),
+        alt: String(m?.altText || p?.name || ""),
+        primary: Boolean(m?.isPrimary),
+        order: Number(m?.sortOrder || 100),
+      }))
+      .filter((x) => x.url)
+      .sort((a, b) => (b.primary - a.primary) || (a.order - b.order));
+
+    if (!rows.length && p?.image) {
+      rows.push({ url: absImage(p.image), alt: String(p.name || ""), primary: true, order: 0 });
+    }
+
+    const seen = new Set();
+    return rows.filter((x) => {
+      if (seen.has(x.url)) return false;
+      seen.add(x.url);
+      return true;
+    });
+  }
+
+  function stockText(p) {
+    if (p?.stockMode === "unlimited") return "在庫数の表示なし";
+    if (p?.stockMode === "inquiry") return "在庫は店舗へご確認ください";
+    const stock = Math.max(0, Number(p?.stock) || 0);
+    if (stock <= 0) return "在庫なし";
+    if (stock <= Number(p?.lowStockThreshold || 3)) return `残りわずか（${stock}）`;
+    return `在庫あり（${stock}）`;
+  }
+
+  function isSaleAvailable(p) {
+    const s = settings();
+    return Boolean(
+      s.enabled &&
+      s.onlineShop &&
+      s.orderingEnabled &&
+      (p?.transactionModes || ["sale"]).includes("sale") &&
+      p?.productStatus !== "archived" &&
+      p?.published !== false &&
+      (p?.stockMode !== "managed" || Number(p?.stock) > 0)
+    );
+  }
+
+  function allowedFulfillment(p) {
+    const s = settings();
+    const allowed = new Set();
+    if (s.delivery) allowed.add("shipping");
+    if (s.pickup) allowed.add("pickup");
+    if (s.localDelivery) allowed.add("local_delivery");
+    if (s.rentalDelivery) allowed.add("rental_delivery");
+
+    const modes = Array.isArray(p?.fulfillmentModes) ? p.fulfillmentModes : [];
+    return modes.filter((x) => allowed.has(x));
+  }
+
+  function ensureModal() {
+    if (modal) return modal;
+
+    const overlay = document.createElement("div");
+    overlay.className = "shopv3d-overlay";
+    overlay.hidden = true;
+    overlay.innerHTML = `
+      <section class="shopv3d-dialog" role="dialog" aria-modal="true" aria-labelledby="shopv3d-title">
+        <button type="button" class="shopv3d-close" aria-label="商品詳細を閉じる">×</button>
+        <div class="shopv3d-content"></div>
+      </section>
+    `;
+    document.body.append(overlay);
+    modal = overlay;
+
+    $(".shopv3d-close", overlay).onclick = close;
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) close();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !overlay.hidden) close();
+    });
+
+    return overlay;
+  }
+
+  function open(id) {
+    const p = product(id);
+    if (!p) return;
+
+    currentId = String(id);
+    mainIndex = 0;
+    const overlay = ensureModal();
+    render(p);
+    overlay.hidden = false;
+    document.documentElement.classList.add("shopv3d-lock");
+    document.body.classList.add("shopv3d-lock");
+    requestAnimationFrame(() => $(".shopv3d-close", overlay)?.focus());
+  }
+
+  function close() {
+    if (!modal) return;
+    modal.hidden = true;
+    currentId = "";
+    document.documentElement.classList.remove("shopv3d-lock");
+    document.body.classList.remove("shopv3d-lock");
+  }
+
+  function render(p) {
+    const root = $(".shopv3d-content", ensureModal());
+    const imgs = productImages(p);
+    if (mainIndex >= imgs.length) mainIndex = 0;
+    const main = imgs[mainIndex] || null;
+    const tx = Array.isArray(p.transactionModes) && p.transactionModes.length ? p.transactionModes : ["sale"];
+    const fulfillment = allowedFulfillment(p);
+    const s = settings();
+
+    root.innerHTML = `
+      <div class="shopv3d-grid">
+        <div class="shopv3d-gallery">
+          <div class="shopv3d-main">
+            ${main
+              ? `<img src="${esc(main.url)}" alt="${esc(main.alt || p.name)}">`
+              : `<div class="shopv3d-noimage">写真準備中</div>`}
+            ${imgs.length > 1 ? `<span class="shopv3d-counter">${mainIndex + 1} / ${imgs.length}</span>` : ""}
+          </div>
+          ${imgs.length > 1 ? `
+            <div class="shopv3d-thumbs" aria-label="商品写真">
+              ${imgs.map((img, i) => `
+                <button type="button" class="${i === mainIndex ? "is-active" : ""}" data-shopv3d-thumb="${i}" aria-label="${i + 1}枚目の写真">
+                  <img src="${esc(img.url)}" alt="">
+                </button>`).join("")}
+            </div>` : ""}
+        </div>
+
+        <div class="shopv3d-info">
+          <div class="shopv3d-kicker">${esc(TYPE_LABELS[p.productType] || p.category || "商品")}</div>
+          <h2 id="shopv3d-title">${esc(p.name)}</h2>
+          ${p.shortDescription ? `<p class="shopv3d-short">${esc(p.shortDescription)}</p>` : ""}
+
+          <div class="shopv3d-price">
+            <strong>${yen(p.price)}</strong><span>税込</span>
+          </div>
+          ${tx.includes("rental") && Number(p.rentalMonthlyYen) > 0
+            ? `<div class="shopv3d-rental-price">レンタル ${yen(p.rentalMonthlyYen)} / 月</div>`
+            : ""}
+
+          <div class="shopv3d-status-row">
+            <span>${esc(stockText(p))}</span>
+            ${p.lead ? `<span>${esc(p.lead)}</span>` : ""}
+          </div>
+
+          ${p.description ? `
+            <div class="shopv3d-section">
+              <h3>商品について</h3>
+              <p>${esc(p.description).replace(/\n/g, "<br>")}</p>
+            </div>` : ""}
+
+          <div class="shopv3d-section">
+            <h3>ご利用方法</h3>
+            <div class="shopv3d-tags">
+              ${tx.map((x) => `<span>${esc(TX_LABELS[x] || x)}</span>`).join("")}
+            </div>
+          </div>
+
+          <div class="shopv3d-section">
+            <h3>受取・お届け</h3>
+            <div class="shopv3d-tags">
+              ${fulfillment.length
+                ? fulfillment.map((x) => `<span>${esc(FULFILL_LABELS[x] || x)}</span>`).join("")
+                : `<span>受取方法は店舗へご確認ください</span>`}
+            </div>
+          </div>
+
+          <div class="shopv3d-actions">
+            ${isSaleAvailable(p)
+              ? `<button type="button" class="shopv3d-primary" data-shopv3d-add="${esc(p.id)}">カートへ入れる</button>`
+              : ""}
+            <button type="button" class="shopv3d-secondary" data-shopv3d-line="${esc(p.id)}">LINEで相談</button>
+          </div>
+
+          ${tx.includes("reserve") && s.reservation ? `<div class="shopv3d-note">取り置きはLINEで在庫・受取日を確認して受付します。</div>` : ""}
+          ${tx.includes("rental") && s.rental ? `<div class="shopv3d-note">レンタルは設置場所・配達条件を確認後にご案内します。</div>` : ""}
+          ${!s.squareReady ? `<div class="shopv3d-note">現在は注文受付後、店舗から決済方法をご案内します。</div>` : ""}
+        </div>
+      </div>
+    `;
+
+    $$("[data-shopv3d-thumb]", root).forEach((b) => {
+      b.onclick = () => {
+        mainIndex = Number(b.dataset.shopv3dThumb) || 0;
+        render(p);
+      };
+    });
+
+    $("[data-shopv3d-add]", root)?.addEventListener("click", () => {
+      const button = document.querySelector(`[data-add="${CSS.escape(String(p.id))}"]`);
+      if (button) {
+        button.click();
+        close();
+        setTimeout(() => document.querySelector("[data-cart-open]")?.click(), 80);
+      }
+    });
+
+    $("[data-shopv3d-line]", root)?.addEventListener("click", () => {
+      sessionStorage.setItem("dpro_green_shop_line_product", p.name || "商品");
+      sessionStorage.setItem("dpro_green_shop_line_product_id", p.id || "");
+      sessionStorage.setItem("dpro_green_shop_line_intent", tx.includes("rental") ? "rental" : tx.includes("reserve") ? "reserve" : "product");
+      location.href = "line.html";
+    });
+  }
+
+  function enhanceGrid() {
+    const grid = $("#product-grid");
+    if (!grid) return;
+
+    $$(".product", grid).forEach((card) => {
+      const marker = card.querySelector("[data-line-product]") || card.querySelector("[data-add]");
+      const id = marker?.dataset?.lineProduct || marker?.dataset?.add;
+      if (!id) return;
+
+      card.dataset.shopv3dProduct = id;
+
+      const image = $(".product-media img", card);
+      if (image) {
+        image.dataset.shopv3dOpen = id;
+        image.tabIndex = 0;
+        image.setAttribute("role", "button");
+        image.setAttribute("aria-label", `${product(id)?.name || "商品"}の詳細を見る`);
+      }
+
+      const title = $(".product-body h3", card);
+      if (title) {
+        title.dataset.shopv3dOpen = id;
+        title.tabIndex = 0;
+        title.setAttribute("role", "button");
+      }
+
+      const actions = $(".product-actions", card);
+      if (actions && !actions.querySelector("[data-shopv3d-open]")) {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "shopv3d-detail-button";
+        b.dataset.shopv3dOpen = id;
+        b.textContent = "詳しく見る";
+        actions.insertBefore(b, actions.firstChild);
+      }
+    });
+  }
+
+  function syncStaticImages() {
+    for (const p of products()) {
+      const img = productImages(p)[0]?.url;
+      if (!img) continue;
+
+      document.querySelectorAll(`[data-feature-add="${CSS.escape(String(p.id))}"]`).forEach((button) => {
+        const card = button.closest(".feature-card");
+        const image = card?.querySelector("img");
+        if (image) image.src = img;
+      });
+    }
+
+    document.querySelectorAll("[data-set-add]").forEach((button) => {
+      const ids = String(button.dataset.setAdd || "").split(",").map((x) => x.trim()).filter(Boolean);
+      const images = button.closest(".set-card")?.querySelectorAll(".set-visual img") || [];
+      ids.forEach((id, index) => {
+        const p = product(id);
+        const src = productImages(p)[0]?.url;
+        if (src && images[index]) images[index].src = src;
+      });
+    });
+  }
+
+  function bindGlobal() {
+    document.addEventListener("click", (e) => {
+      const target = e.target.closest("[data-shopv3d-open]");
+      if (!target) return;
+      e.preventDefault();
+      e.stopPropagation();
+      open(target.dataset.shopv3dOpen);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (!["Enter", " "].includes(e.key)) return;
+      const target = e.target.closest?.("[data-shopv3d-open]");
+      if (!target) return;
+      e.preventDefault();
+      open(target.dataset.shopv3dOpen);
+    });
+  }
+
+  function watchGrid() {
+    const grid = $("#product-grid");
+    if (!grid || observer) return;
+    observer = new MutationObserver(() => {
+      enhanceGrid();
+      syncStaticImages();
+    });
+    observer.observe(grid, { childList: true, subtree: true });
+  }
+
+  function apply() {
+    enhanceGrid();
+    syncStaticImages();
+    watchGrid();
+    document.body.dataset.greenShopDetailRuntime = VERSION;
+  }
+
+  function boot() {
+    bindGlobal();
+    if (window.DPROGreenShop?.products?.().length) apply();
+    window.addEventListener("dpro-green-shop-ready", apply);
+    window.addEventListener("pageshow", () => setTimeout(apply, 0));
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot, { once: true });
+  } else {
+    boot();
+  }
+})();
