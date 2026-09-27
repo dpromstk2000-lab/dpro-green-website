@@ -1,5 +1,5 @@
 window.GREEN_WEB_CONFIG = Object.freeze({
-  version: "WEB-GREEN-WELCOME-LOGO-LIVE-R2.3-20260927",
+  version: "WEB-GREEN-SHOP-V3D-20260927",
 
   site: {
     publicName: "グリーン・ポケット福岡粕屋店",
@@ -177,16 +177,34 @@ window.GREEN_WEB_CONFIG = Object.freeze({
 (() => {
   "use strict";
   const standalone = document.querySelector('meta[name="dpro-green-shop-standalone"]');
-  const version = "GREEN-SHOP-PUBLIC-PROD-R2.3-20260927";
+  const version = "GREEN-SHOP-PUBLIC-PROD-R3.0-20260927";
+  const detailVersion = "GREEN-SHOP-PUBLIC-DETAIL-V3D-20260927";
 
   if (standalone) {
+    if (!document.querySelector('link[data-green-shop-detail-v3]')) {
+      const style = document.createElement("link");
+      style.rel = "stylesheet";
+      style.href = `green-shop-detail-v3.css?v=${encodeURIComponent(detailVersion)}`;
+      style.dataset.greenShopDetailV3 = detailVersion;
+      document.head.appendChild(style);
+    }
+
     window.addEventListener("load", () => {
-      if (document.querySelector('script[data-green-shop-runtime-r23]')) return;
-      const script = document.createElement("script");
-      script.src = `green-shop-module.js?v=${encodeURIComponent(version)}`;
-      script.async = false;
-      script.dataset.greenShopRuntimeR23 = "1";
-      document.body.appendChild(script);
+      if (!document.querySelector('script[data-green-shop-runtime-r30]')) {
+        const script = document.createElement("script");
+        script.src = `green-shop-module.js?v=${encodeURIComponent(version)}`;
+        script.async = false;
+        script.dataset.greenShopRuntimeR30 = version;
+        document.body.appendChild(script);
+      }
+
+      if (!document.querySelector('script[data-green-shop-detail-v3]')) {
+        const detail = document.createElement("script");
+        detail.src = `green-shop-detail-v3.js?v=${encodeURIComponent(detailVersion)}`;
+        detail.async = false;
+        detail.dataset.greenShopDetailV3 = detailVersion;
+        document.body.appendChild(detail);
+      }
     }, { once: true });
     return;
   }

@@ -1,9 +1,9 @@
 (() => {
   "use strict";
 
-  const VERSION = "GREEN-SHOP-PUBLIC-PROD-R2.4-20260927";
-  if (window.__DPRO_GREEN_SHOP_RUNTIME_R24__) return;
-  window.__DPRO_GREEN_SHOP_RUNTIME_R24__ = VERSION;
+  const VERSION = "GREEN-SHOP-PUBLIC-PROD-R3.0-20260927";
+  if (window.__DPRO_GREEN_SHOP_RUNTIME_R30__) return;
+  window.__DPRO_GREEN_SHOP_RUNTIME_R30__ = VERSION;
 
   const API = "https://dpro-cl-000001-green-shop.dpromstk2000.workers.dev";
   const CART_KEY = "dpro_green_shop_cart_v2";
@@ -14,7 +14,11 @@
     pickup: false,
     gift: false,
     orderingEnabled: false,
-    squareEnabled: false
+    squareEnabled: false,
+    reservation: false,
+    localDelivery: false,
+    rental: false,
+    rentalDelivery: false
   };
   let liveProducts = [];
   let loading = null;
@@ -30,6 +34,10 @@
       pickup: Boolean(liveSettings.pickup),
       gift: Boolean(liveSettings.gift),
       orderingEnabled: Boolean(liveSettings.orderingEnabled),
+      reservation: Boolean(liveSettings.reservation),
+      localDelivery: Boolean(liveSettings.localDelivery),
+      rental: Boolean(liveSettings.rental),
+      rentalDelivery: Boolean(liveSettings.rentalDelivery),
       // Legacy shop.html uses `square` only to decide whether order reception can open.
       // Real Square payment remains OFF until squareEnabled becomes true.
       square: Boolean(liveSettings.orderingEnabled),
@@ -128,7 +136,7 @@
 
   function refreshLegacyUi() {
     // Current shop.html renderer listens for these events.
-    // R2.4 is idempotent, so duplicate module execution no longer occurs.
+    // R3.0 is idempotent, so duplicate module execution no longer occurs.
     try {
       window.dispatchEvent(new StorageEvent("storage", {
         key: "dpro_green_shop_products_v1"

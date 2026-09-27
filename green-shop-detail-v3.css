@@ -310,3 +310,7 @@ body.shopv3d-lock {
     grid-template-columns: 1fr;
   }
 }
+
+.product-actions .shopv3d-detail-button {
+  grid-column: 1 / -1;
+}
