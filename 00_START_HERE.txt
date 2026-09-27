@@ -1,22 +1,19 @@
-SHOP V3-E2 PUBLIC
+SHOP V3-E2.1 REQUEST UX
+
+今回の実画面QAで以下を修正:
+- 店頭受取でも住所欄が見えていた問題
+- 取り置き/レンタルの数量指定
+- 旧「LINEで取り置き受付」文言を専用フォーム仕様へ修正
 
 GitHub:
 https://github.com/dpromstk2000-lab/dpro-green-website
 
-ZIP直下のファイルをリポジトリ直下へ上書き/追加。
+ZIP直下をリポジトリ直下へ上書き:
+- green-shop-v3e.js
+- green-shop-detail-v3.js
+- config.js
 
-追加:
-green-shop-v3e.js
-
-上書き:
-config.js
-
-公開SHOP:
-https://dpromstk2000-lab.github.io/dpro-green-website/shop.html
-
-Owner側でおすすめ/セットをDB登録すると、
-固定カードの代わりにDB内容が公開SHOPへ表示されます。
-
-商品に「取り置き」「レンタル」を設定し、
-SHOP全体設定もONにすると、
-商品詳細に受付ボタンが表示されます。
+確認:
+店頭受取 → 住所欄は非表示
+配送/自店配達/レンタル配達 → 住所欄が表示・必須
+数量欄が表示

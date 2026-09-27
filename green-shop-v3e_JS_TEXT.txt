@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "GREEN-SHOP-PUBLIC-V3E2-20260927";
+  const VERSION = "GREEN-SHOP-PUBLIC-V3E2.1-REQUEST-UX-20260927";
   if (window.__DPRO_GREEN_SHOP_PUBLIC_V3E2__) return;
   window.__DPRO_GREEN_SHOP_PUBLIC_V3E2__ = VERSION;
 
@@ -74,6 +74,7 @@
       .shopv3e-request-body{padding:18px;display:grid;gap:12px}
       .shopv3e-request-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
       .shopv3e-field{display:grid;gap:5px}
+      .shopv3e-field[hidden]{display:none!important}
       .shopv3e-field.wide{grid-column:1/-1}
       .shopv3e-field>span{font-size:12px;font-weight:900;color:#274a39}
       .shopv3e-field input,.shopv3e-field select,.shopv3e-field textarea{width:100%;box-sizing:border-box;border:1px solid #cbd9d2;border-radius:10px;padding:11px;font:inherit;background:#fff}
@@ -303,6 +304,10 @@
                 </select>
               </label>
               <label class="shopv3e-field">
+                <span>数量</span>
+                <input name="quantity" type="number" min="1" max="${p.stockMode === "managed" ? Math.max(1, Number(p.stock) || 1) : 99}" value="1" inputmode="numeric">
+              </label>
+              <label class="shopv3e-field">
                 <span>希望日（任意）</span>
                 <input name="requestedDate" type="date" min="${todayJst()}">
               </label>
@@ -382,7 +387,7 @@
               contactMethod: String(fd.get("contactMethod") || "LINE"),
             },
             note: String(fd.get("note") || ""),
-            items: [{ id: p.id, qty: 1 }],
+            items: [{ id: p.id, qty: Math.max(1, Number(fd.get("quantity") || 1)) }],
           },
         });
 
