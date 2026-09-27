@@ -179,6 +179,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
   const standalone = document.querySelector('meta[name="dpro-green-shop-standalone"]');
   const version = "GREEN-SHOP-PUBLIC-PROD-R3.0-20260927";
   const detailVersion = "GREEN-SHOP-PUBLIC-DETAIL-V3D-20260927";
+  const experienceVersion = "GREEN-SHOP-PUBLIC-V3E2-20260927";
 
   if (standalone) {
     if (!document.querySelector('link[data-green-shop-detail-v3]')) {
@@ -204,6 +205,14 @@ window.GREEN_WEB_CONFIG = Object.freeze({
         detail.async = false;
         detail.dataset.greenShopDetailV3 = detailVersion;
         document.body.appendChild(detail);
+      }
+
+      if (!document.querySelector('script[data-green-shop-v3e2]')) {
+        const experience = document.createElement("script");
+        experience.src = `green-shop-v3e.js?v=${encodeURIComponent(experienceVersion)}`;
+        experience.async = false;
+        experience.dataset.greenShopV3e2 = experienceVersion;
+        document.body.appendChild(experience);
       }
     }, { once: true });
     return;
