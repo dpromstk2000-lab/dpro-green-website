@@ -1,26 +1,46 @@
-DPRO GREEN WEBSITE MOBILE CROSS-BROWSER FIT R3
+DPRO GREEN SHOP / OWNER SYNC R1
+2026-09-28
 
-REPLACE:
-kasuya-mobile-viewport-fix.css
+目的
+公開SHOPのレイアウトは固定したまま、表示する商品・写真・価格をオーナー管理へ接続します。
 
-NO HTML CHANGE
-NO WORKER CHANGE
-NO SQL CHANGE
-NO SECRET CHANGE
+今回の動作
+- 上部 STAFF PICK:
+  DPRO GREEN「販売・SHOP」のおすすめ商品から自動表示。
+- 右上・右下の小カード:
+  おすすめ表示順 2・3 を自動表示。
+- おすすめ商品がまだ設定されていない間:
+  現在の見た目を維持するため
+  1. モンステラ8号
+  2. チャコール鉢カバー
+  3. パキラ6号
+  を優先しつつ、写真・商品名・価格は本番DBの値へ同期。
+- 商品名と価格:
+  別行にして重なりを解消。
+- 商品一覧:
+  12件までは従来通り。
+  13件以上は自動的に「前へ / 次へ」を表示。
+  カテゴリー切替後も12件単位で自動調整。
 
-The website already loads kasuya-mobile-viewport-fix.css through config.js,
-so replacing this file is enough for the functional patch.
+オーナーが変更できる項目（既存機能）
+- 商品写真（複数・メイン写真選択）
+- 商品名
+- 価格
+- 在庫
+- 商品説明
+- 公開 / 非公開
+- 表示順
+- おすすめ商品
+- おすすめ表示順
 
-If LINE in-app browser still shows the old cached CSS immediately after upload:
-- close the in-app page with X
-- reopen it from LINE
-- if necessary wait a few minutes for GitHub Pages cache revalidation
+おすすめ表示順の運用
+1 = STAFF PICK
+2 = 右上小カード
+3 = 右下小カード
 
-Main fixes:
-- Android Japanese heading right-edge clipping
-- Android LINE WebView text autosizing normalization
-- max-content / nowrap width traps
-- grid/flex min-content overflow
-- standalone SHOP title wrapping
-- mobile fixed CTA width
-- hamburger menu / CTA overlap retained
+変更対象
+kasuya-language-lite.js
+既存の翻訳機能はそのまま維持し、SHOPページだけで追加処理が動きます。
+
+変更なし
+Worker / SQL / DB schema / Owner画面構成 / SHOP HTMLレイアウト
