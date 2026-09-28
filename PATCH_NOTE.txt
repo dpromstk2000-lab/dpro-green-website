@@ -1,29 +1,26 @@
-DPRO GREEN WEBSITE / MOBILE MENU OVERLAP FIX R2
-2026-09-28
+DPRO GREEN WEBSITE MOBILE CROSS-BROWSER FIT R3
 
-症状:
-スマホでハンバーガーメニューを開くと、固定4ボタン
-「電話 / LINE / SHOP / 設置相談」がメニューの上に重なり、
-下側のメニュー（FAQ等）が読めない。
+REPLACE:
+kasuya-mobile-viewport-fix.css
 
-確認した原因:
-- .menu-panel の z-index = 75
-- .mobile-cta の z-index = 90
-そのため固定CTAがメニューより前面に表示されていた。
+NO HTML CHANGE
+NO WORKER CHANGE
+NO SQL CHANGE
+NO SECRET CHANGE
 
-修正:
-1. メニューを z-index 125 に変更。
-2. メニュー表示中は固定CTAを非表示。
-3. メニューの高さを dynamic viewport 内に制限し、縦スクロール可能に。
-4. safe-area を考慮。
-5. config.js のCSSバージョンをR2へ更新し、キャッシュを更新。
+The website already loads kasuya-mobile-viewport-fix.css through config.js,
+so replacing this file is enough for the functional patch.
 
-変更ファイル:
-- config.js
-- kasuya-mobile-viewport-fix.css
+If LINE in-app browser still shows the old cached CSS immediately after upload:
+- close the in-app page with X
+- reopen it from LINE
+- if necessary wait a few minutes for GitHub Pages cache revalidation
 
-GitHub:
-https://github.com/dpromstk2000-lab/dpro-green-website
-
-公開確認:
-https://dpromstk2000-lab.github.io/dpro-green-website/index.html
+Main fixes:
+- Android Japanese heading right-edge clipping
+- Android LINE WebView text autosizing normalization
+- max-content / nowrap width traps
+- grid/flex min-content overflow
+- standalone SHOP title wrapping
+- mobile fixed CTA width
+- hamburger menu / CTA overlap retained

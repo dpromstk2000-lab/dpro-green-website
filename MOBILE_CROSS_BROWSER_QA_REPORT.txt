@@ -1,0 +1,77 @@
+DPRO GREEN WEBSITE
+ANDROID / iPHONE / LINE IN-APP BROWSER CROSS-BROWSER QA
+2026-09-28
+
+AUDIT SCOPE
+Public pages checked for viewport + shared config loader:
+- index.html
+- service.html
+- about.html
+- faq.html
+- flow.html
+- cases.html
+- office.html
+- clinic.html
+- store.html
+- welfare.html
+- line.html
+- contact.html
+- shop.html
+- original.html
+- maintenance.html
+- area.html
+- privacy.html
+- thanks.html
+
+RESULT
+All listed public pages have a mobile viewport meta and load config.js.
+Therefore the existing shared file:
+  kasuya-mobile-viewport-fix.css
+can be used as one cross-page mobile correction layer.
+
+HIGH-CONFIDENCE ROOT CAUSES FOUND
+1. Mobile Japanese headings use:
+   word-break:auto-phrase
+   in shared CSS.
+   This can create different wrapping behavior between browser engines.
+   The Android screenshots match a phrase staying wider than the available viewport.
+
+2. Standalone SHOP contains:
+   width:max-content;
+   white-space:nowrap;
+   for .shop-title-line.
+   This is an explicit mobile width trap.
+
+3. Several grid/flex sections depend on min-content sizing.
+   Without min-width:0 on children, a long Japanese phrase can force the grid wider.
+
+4. Existing mobile fixed CTA is intentionally fixed.
+   R2 menu overlap fix is preserved:
+   when hamburger menu is open, the fixed CTA is hidden and menu stays above it.
+
+R3 FIX POLICY
+- Desktop is untouched.
+- iPhone design is preserved as much as possible.
+- Only <=800px gets cross-browser overflow hardening.
+- Do not shrink the whole site.
+- Allow Japanese headings/buttons to wrap only when needed.
+- Keep current 2-column / 3-image visual layouts where they fit.
+- At <=360px only the consultation guide drops to 1 column.
+- Normalize browser text-size adjustment to 100%.
+- Keep fixed CTA width inside viewport.
+- Keep menu-overlap fix from R2.
+
+STATIC CHECKS
+- CSS brace balance: PASS
+- Mobile selectors present: PASS
+- auto-phrase override present: PASS
+- SHOP nowrap override present: PASS
+- grid min-width hardening present: PASS
+- R2 menu/CTA overlap fix retained: PASS
+
+FINAL DEVICE CHECK AFTER APPLY
+Only one short Android LINE-browser pass is needed:
+1. HOME: maintenance / photo consultation / online shop / manager sections
+2. FAQ final CTA
+3. hamburger menu
+If those three are clean, repeated page-by-page screenshots are not necessary.
