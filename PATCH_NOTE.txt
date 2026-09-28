@@ -1,14 +1,29 @@
-MOBILE VIEWPORT FIT R1
+DPRO GREEN WEBSITE / MOBILE MENU OVERLAP FIX R2
+2026-09-28
 
-対象:
-グリーン・ポケット福岡粕屋店 公開WEB共通
+症状:
+スマホでハンバーガーメニューを開くと、固定4ボタン
+「電話 / LINE / SHOP / 設置相談」がメニューの上に重なり、
+下側のメニュー（FAQ等）が読めない。
 
-追加:
-kasuya-mobile-viewport-fix.css
+確認した原因:
+- .menu-panel の z-index = 75
+- .mobile-cta の z-index = 90
+そのため固定CTAがメニューより前面に表示されていた。
 
-更新:
-config.js
-→ 上記CSSを全ページで後読み込み
+修正:
+1. メニューを z-index 125 に変更。
+2. メニュー表示中は固定CTAを非表示。
+3. メニューの高さを dynamic viewport 内に制限し、縦スクロール可能に。
+4. safe-area を考慮。
+5. config.js のCSSバージョンをR2へ更新し、キャッシュを更新。
 
-主目的:
-スマホ下部固定メニューがページ幅を押し広げないようにする。
+変更ファイル:
+- config.js
+- kasuya-mobile-viewport-fix.css
+
+GitHub:
+https://github.com/dpromstk2000-lab/dpro-green-website
+
+公開確認:
+https://dpromstk2000-lab.github.io/dpro-green-website/index.html

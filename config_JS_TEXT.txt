@@ -1,5 +1,5 @@
 window.GREEN_WEB_CONFIG = Object.freeze({
-  version: "WEB-GREEN-MOBILE-FIT-R1-20260928",
+  version: "WEB-GREEN-MOBILE-MENU-FIT-R2-20260928",
 
   site: {
     publicName: "グリーン・ポケット福岡粕屋店",
@@ -261,7 +261,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
 
 (() => {
   "use strict";
-  const version = "GREEN-MOBILE-VIEWPORT-FIT-R1-20260928";
+  const version = "GREEN-MOBILE-VIEWPORT-FIT-R2-20260928";
   if (document.querySelector('link[data-green-mobile-viewport-fit]')) return;
   const link = document.createElement("link");
   link.rel = "stylesheet";

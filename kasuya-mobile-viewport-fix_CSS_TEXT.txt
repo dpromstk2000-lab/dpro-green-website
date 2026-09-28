@@ -1,6 +1,19 @@
-/* DPRO GREEN KASUYA / MOBILE VIEWPORT FIT R1 / 2026-09-28
-   Fix horizontal movement caused by the fixed bottom 4-action bar:
-   phone / LINE / SHOP / installation consultation. */
+/* DPRO GREEN KASUYA / MOBILE VIEWPORT FIT R2 / 2026-09-28
+   R1: fixed horizontal movement caused by the fixed bottom 4-action bar.
+   R2: prevents the fixed bottom CTA from covering the opened mobile menu. */
+
+@media (max-width: 1120px) {
+  .menu-panel {
+    z-index: 125 !important;
+    max-height: calc(100dvh - 126px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .menu-panel.is-open {
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+  }
+}
 
 @media (max-width: 800px) {
   html,
@@ -58,6 +71,18 @@
     font-size: clamp(8px, 2.45vw, 10px);
     letter-spacing: -.035em;
     line-height: 1.15;
+  }
+
+  /* When the hamburger menu is open, the fixed CTA must not cover menu items. */
+  body:has(.menu-panel.is-open) .mobile-cta {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(calc(100% + 24px)) !important;
+  }
+
+  .menu-panel.is-open {
+    max-height: calc(100dvh - 120px);
   }
 }
 
