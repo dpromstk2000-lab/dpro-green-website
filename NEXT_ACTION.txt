@@ -1,9 +1,18 @@
 次のアクション
 
-1. GitHubへ2ファイル上書き
-2. Ctrl+F5
-3. パキラ6号 → レンタルを相談
-4. 希望連絡方法に「LINE（受付後にトークへ移動）」と表示されることを確認
-5. その後レンタル希望を1件送信
-6. 完了画面の「LINEで受付番号を送る」を押す
-7. LINE入力欄に受付番号付き文面が入ることを確認
+GitHub:
+https://github.com/dpromstk2000-lab/dpro-green-website
+
+ZIP直下からリポジトリ直下へ:
+1. kasuya-mobile-viewport-fix.css
+2. config.js
+
+Commit changes 後、スマホで完全再読込。
+
+確認URL:
+https://dpromstk2000-lab.github.io/dpro-green-website/index.html
+
+確認点:
+- WEB全体が左右に動かない
+- 電話番号 / LINE / SHOP / 設置相談が画面内
+- 各ボタンが押せる

@@ -1,28 +1,19 @@
-SHOP V3-E2.2 LINE HANDOFF
+DPRO GREEN / MOBILE VIEWPORT FIT R1 / 2026-09-28
 
-目的:
-WEBフォームで「希望連絡方法：LINE」を選んだお客様を、
-受付番号付きでLINE公式トークへ確実につなぐ。
+症状:
+スマホでWEB全体が横へわずかに動く。
 
-GitHub:
-https://github.com/dpromstk2000-lab/dpro-green-website
+確認した主原因:
+画面下の固定4ボタン
+「092-719-0336 / LINE / SHOP / 設置相談」
+のGrid列で、電話番号のmin-content幅が狭い端末上で列を押し広げる余地がありました。
 
-上書き:
-- green-shop-v3e.js
-- config.js
+修正:
+- 4列を minmax(0, ...) に変更
+- 各ボタンを min-width:0
+- 電話番号列の比率を拡大
+- 固定バーを 100dvw - 16px 以内に固定
+- 320px級端末向けに文字サイズも調整
+- WEB全体の意図しない横スクロールを防止
 
-動作:
-1. 取り置き/レンタル希望をWEB送信
-2. 受付番号発行
-3. LINE希望なら「LINEで受付番号を送る」を表示
-4. LINE公式 @358xjlgr のトークを開く
-5. 入力欄に
-   - 受付種別
-   - 受付番号
-   - 商品名
-   を自動入力
-6. お客様が送信
-7. DPRO LINE受信側で受付番号を確認できる
-
-LINE公式URLスキーム:
-https://line.me/R/oaMessage/{LINE_ID}/?{message}
+既存リンク・LINE・SHOP・設置相談の機能は変更しません。

@@ -1,5 +1,5 @@
 window.GREEN_WEB_CONFIG = Object.freeze({
-  version: "WEB-GREEN-SHOP-V3E2.2-20260927",
+  version: "WEB-GREEN-MOBILE-FIT-R1-20260928",
 
   site: {
     publicName: "グリーン・ポケット福岡粕屋店",
@@ -256,5 +256,16 @@ window.GREEN_WEB_CONFIG = Object.freeze({
   link.rel = "stylesheet";
   link.href = `kasuya-welcome-logo-live.css?v=${encodeURIComponent(version)}`;
   link.dataset.greenWelcomeLogoLive = version;
+  document.head.appendChild(link);
+})();
+
+(() => {
+  "use strict";
+  const version = "GREEN-MOBILE-VIEWPORT-FIT-R1-20260928";
+  if (document.querySelector('link[data-green-mobile-viewport-fit]')) return;
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.href = `kasuya-mobile-viewport-fix.css?v=${encodeURIComponent(version)}`;
+  link.dataset.greenMobileViewportFit = version;
   document.head.appendChild(link);
 })();
