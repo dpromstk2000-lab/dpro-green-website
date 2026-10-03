@@ -11,10 +11,10 @@
 <link rel="stylesheet" href="kasuya-brushup-preview.css?v=STAGE6-20260909">
 <link rel="stylesheet" href="kasuya-stage6-2-delta.css?v=STAGE6.2-20260909">
 <link rel="stylesheet" href="kasuya-mobile-viewport-fix.css?v=R2-20260928">
-<link rel="stylesheet" href="plant-guide-preview.css?v=ATLAS-R1.1-20261003">
+<link rel="stylesheet" href="plant-guide-preview.css?v=ATLAS-R1.2-20261003">
 <script src="config.js"></script>
 <script defer src="plant-guide-data.js?v=ATLAS-R1-20261003"></script>
-<script defer src="plant-guide-preview.js?v=ATLAS-R1.1-20261003"></script>
+<script defer src="plant-guide-preview.js?v=ATLAS-R1.2-20261003"></script>
 </head>
 <body class="atlas-page">
 <a class="skip" href="#main">本文へ移動</a>
@@ -38,7 +38,6 @@
     </div>
   </div>
 </header>
-
 <main id="main">
 <section class="atlas-hero">
   <div class="wrap atlas-hero__inner">
@@ -58,14 +57,12 @@
     </div>
   </div>
 </section>
-
 <section class="atlas-browser" id="atlas-browser">
   <div class="wrap">
     <div class="atlas-tabs" role="tablist" aria-label="図鑑切替">
       <button class="is-active" data-atlas-tab="plants" type="button">植物図鑑 <b>74</b></button>
       <button data-atlas-tab="pots" type="button">鉢図鑑 <b>22</b></button>
     </div>
-
     <div class="atlas-toolbar" data-plant-tools>
       <label class="atlas-search">検索<input id="atlas-plant-search" type="search" placeholder="植物名・コードで検索"></label>
       <label>分類<select id="atlas-plant-category"><option value="">すべて</option><option>観葉植物</option><option>花観葉</option><option>アウトドア</option></select></label>
@@ -73,19 +70,16 @@
       <label>サイズ<select id="atlas-plant-size"><option value="">すべて</option><option value="L">L</option><option value="M">M</option><option value="S">S</option><option value="指定なし">指定なし</option></select></label>
       <button class="atlas-clear" data-clear="plants" type="button">条件をクリア</button>
     </div>
-
     <div class="atlas-toolbar" data-pot-tools hidden>
       <label class="atlas-search">検索<input id="atlas-pot-search" type="search" placeholder="鉢名・素材・コードで検索"></label>
       <label>種別<select id="atlas-pot-type"><option value="">すべて</option><option value="pot">鉢</option><option value="cover">鉢カバー</option><option value="planter">プランター</option></select></label>
       <label>本社区分<select id="atlas-pot-series"><option value="">すべて</option><option value="シンプル">シンプル</option><option value="ナチュラル">ナチュラル</option><option value="デザイン">デザイン</option><option value="オリジナル商品">オリジナル商品</option></select></label>
       <button class="atlas-clear" data-clear="pots" type="button">条件をクリア</button>
     </div>
-
     <div class="atlas-result-head">
       <div><strong id="atlas-result-count">全74件</strong><span id="atlas-image-count">代表画像 10件</span></div>
       <p>画像のない項目は、代表画像を順次追加予定です。</p>
     </div>
-
     <div class="atlas-grid" id="atlas-grid" aria-live="polite"></div>
     <div class="atlas-empty" id="atlas-empty" hidden>条件に合う項目がありません。</div>
     <nav class="atlas-pager" id="atlas-pager" aria-label="図鑑ページ送り">
@@ -96,7 +90,6 @@
     </nav>
   </div>
 </section>
-
 <section class="atlas-note">
   <div class="wrap atlas-note__grid">
     <div><p class="eyebrow eyebrow--green">HOW TO USE</p><h2>「どれを置こう？」を、相談しやすく。</h2></div>
@@ -108,12 +101,10 @@
   </div>
 </section>
 </main>
-
 <dialog class="atlas-dialog" id="atlas-dialog">
   <button class="atlas-dialog__close" data-dialog-close aria-label="閉じる">×</button>
   <div id="atlas-dialog-body"></div>
 </dialog>
-
 <footer class="footer">
   <div class="wrap footer__grid">
     <div><strong>グリーン・ポケット福岡粕屋店</strong><p>観葉植物レンタル・定期メンテナンス</p></div>
