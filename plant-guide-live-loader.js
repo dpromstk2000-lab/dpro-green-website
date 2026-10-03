@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "ATLAS-LIVE-LOADER-R1.1-20261004";
+  const VERSION = "ATLAS-LIVE-LOADER-R1.2-20261004";
   const SUPABASE_URL = "https://jjmcavcuujkcwifuxonl.supabase.co";
   const SUPABASE_KEY = "sb_publishable_OtSNyipbXnlX-DcuOnCL_A_XA_1O3FP";
   const PREVIEW_SCRIPT = "plant-guide-preview.js?v=ATLAS-R1.3-20261003";
@@ -45,6 +45,20 @@
       };
     }
     return detail;
+  }
+
+  function applyPotCardImageFit() {
+    if (document.querySelector('style[data-atlas-pot-fit]')) return;
+    const style = document.createElement("style");
+    style.dataset.atlasPotFit = VERSION;
+    style.textContent = `
+      .atlas-card[data-kind="pots"] .atlas-card__media img {
+        object-fit: contain;
+        padding: 10px;
+        background: #f7f5ef;
+      }
+    `;
+    document.head.append(style);
   }
 
   function loadPreviewScript() {
@@ -106,6 +120,7 @@
     window.DPRO_GREEN_ATLAS_DETAIL_DATA = Object.freeze(detail);
     window.DPRO_GREEN_ATLAS_RUNTIME_SOURCE = source;
     document.documentElement.dataset.atlasDataSource = source;
+    applyPotCardImageFit();
     loadPreviewScript();
   }
 
