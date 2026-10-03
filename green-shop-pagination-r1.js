@@ -1,5 +1,5 @@
 /* DPRO GREEN / PUBLIC SHOP PAGINATION
- * Version: GREEN-SHOP-PAGINATION-R1.0-20261003
+ * Version: GREEN-SHOP-PAGINATION-R1.1-REAL-PRODUCTS-20261003
  * Production: 6 products per page.
  * BUILD ACCESS QA: ?dpro_build=1&shop_page_qa=1 adds visual-only clones up to 12 products.
  * QA clones never write to the product API and cannot be added to cart.
@@ -7,9 +7,9 @@
 (() => {
   "use strict";
 
-  const VERSION = "GREEN-SHOP-PAGINATION-R1.0-20261003";
+  const VERSION = "GREEN-SHOP-PAGINATION-R1.1-REAL-PRODUCTS-20261003";
   const PAGE_SIZE = 6;
-  const QA_TARGET_COUNT = 12;
+  const QA_TARGET_COUNT = PAGE_SIZE + 1;
 
   if (window.__DPRO_GREEN_SHOP_PAGINATION_R1__) return;
   window.__DPRO_GREEN_SHOP_PAGINATION_R1__ = VERSION;
@@ -37,6 +37,7 @@
       ".shop-pagination-r1-page{display:inline-block;margin-right:5px;color:#173d2b;font-size:15px;font-weight:900}" +
       ".shop-pagination-r1-qa{margin:0 0 16px;padding:12px 14px;border:1px solid #dfc96b;border-radius:14px;background:#fff7cf;color:#624f0f;font-size:12px;font-weight:800;line-height:1.7}" +
       ".shop-pagination-r1-qa strong{display:block;font-size:13px;margin-bottom:2px}" +
+      ".product[hidden]{display:none!important}" +
       ".product[data-shop-qa-clone='1']{position:relative}" +
       ".product[data-shop-qa-clone='1']::after{content:'QA表示';position:absolute;top:10px;left:10px;z-index:3;padding:5px 8px;border-radius:999px;background:#745b00;color:#fff;font-size:10px;font-weight:900;letter-spacing:.04em}" +
       ".product[data-shop-qa-clone='1'] button{opacity:.55;cursor:not-allowed}" +
@@ -83,7 +84,7 @@
       banner.className = "shop-pagination-r1-qa";
       banner.innerHTML =
         "<strong>BUILD ACCESS｜2ページ表示確認</strong>" +
-        "本番の商品データは変更せず、この画面だけ疑似商品を追加してページ分けを確認しています。";
+        "本番公開商品が7件以上ある場合は実商品だけでページ分けを確認します。7件未満の場合だけ、この画面にQA確認用の商品を1件補います。商品DBは変更しません。";
       g.parentNode.insertBefore(banner, g);
     }
   }
@@ -94,6 +95,8 @@
     const g = grid();
     const originals = realCards();
     if (!g || !originals.length) return;
+
+    if (originals.length > PAGE_SIZE) return;
 
     let current = allCards();
     if (current.length >= QA_TARGET_COUNT) return;
@@ -110,7 +113,7 @@
       const title = clone.querySelector("h3");
       if (title) {
         title.textContent =
-          title.textContent + "（QA " + (index + 1) + "）";
+          "QA確認用・追加商品 " + (index + 1);
       }
 
       clone.querySelectorAll("button").forEach((button) => {

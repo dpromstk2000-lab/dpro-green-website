@@ -1,12 +1,12 @@
 /* DPRO GREEN KASUYA / LINE OFFICIAL QR LIVE
- * Version: GREEN-LINE-QR-LIVE-R1.1-SHOP-PAGINATION-LOADER-20261003
+ * Version: GREEN-LINE-QR-LIVE-R1.2-SHOP-SALES-ONLY-LOADER-20261003
  * Adds the real LINE Official QR to the welcome quick-access overlay.
  * On standalone SHOP only, also loads the public product pagination add-on.
  */
 (() => {
   "use strict";
 
-  const VERSION = "GREEN-LINE-QR-LIVE-R1.1-SHOP-PAGINATION-LOADER-20261003";
+  const VERSION = "GREEN-LINE-QR-LIVE-R1.2-SHOP-SALES-ONLY-LOADER-20261003";
   const QR_SRC = "kasuya-qr-line-official.png";
   const cfg = window.GREEN_WEB_CONFIG || {};
   const lineUrl = String(cfg?.links?.line || "").trim();
@@ -18,13 +18,27 @@
     if (document.querySelector('script[data-green-shop-pagination-r1]')) return;
 
     const script = document.createElement("script");
-    script.src = "green-shop-pagination-r1.js?v=GREEN-SHOP-PAGINATION-R1.0-20261003";
+    script.src = "green-shop-pagination-r1.js?v=GREEN-SHOP-PAGINATION-R1.1-REAL-PRODUCTS-20261003";
     script.async = false;
-    script.dataset.greenShopPaginationR1 = "GREEN-SHOP-PAGINATION-R1.0-20261003";
+    script.dataset.greenShopPaginationR1 = "GREEN-SHOP-PAGINATION-R1.1-REAL-PRODUCTS-20261003";
     document.head.appendChild(script);
   }
 
   loadShopPagination();
+
+  function loadShopSalesOnly() {
+    const standalone = document.querySelector('meta[name="dpro-green-shop-standalone"]');
+    if (!standalone) return;
+    if (document.querySelector('script[data-green-shop-sales-only-public-r1]')) return;
+
+    const script = document.createElement("script");
+    script.src = "green-shop-sales-only-public-r1.js?v=GREEN-SHOP-SALES-ONLY-PUBLIC-R1.0-20261003";
+    script.async = false;
+    script.dataset.greenShopSalesOnlyPublicR1 = "GREEN-SHOP-SALES-ONLY-PUBLIC-R1.0-20261003";
+    document.head.appendChild(script);
+  }
+
+  loadShopSalesOnly();
 
   if (!lineReady) return;
   if (window.__DPRO_GREEN_LINE_QR_LIVE__) return;
