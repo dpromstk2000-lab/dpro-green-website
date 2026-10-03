@@ -1,6 +1,7 @@
 (() => {
   "use strict";
   const data = window.DPRO_GREEN_ATLAS_DATA || {plants:[],pots:[]};
+  const DETAIL_DATA = window.DPRO_GREEN_ATLAS_DETAIL_DATA || {};
   const PAGE_SIZE = 24;
   const state = {tab:"plants",pages:{plants:1,pots:1}};
   const $ = (s,r=document)=>r.querySelector(s);
@@ -9,25 +10,6 @@
     indoorOutdoor:{indoor:"屋内",outdoor:"屋外",both:"屋内・屋外"},
     potType:{pot:"鉢",cover:"鉢カバー",planter:"プランター",stand:"スタンド",other:"その他"}
   };
-  const PILOT_DETAIL = Object.freeze({
-    "SP-PACHIRA-001":{lead:"やわらかな葉姿と明るい印象で、オフィスや店舗の定番として合わせやすい観葉植物です。",places:["受付","オフィス","店舗","ご自宅"],moods:["明るい","親しみやすい","ナチュラル"],care:"比較的扱いやすい",pots:["丸型陶器鉢","特殊セメント鉢"]},
-    "SP-GP-0066":{lead:"大きく切れ込んだ葉が印象的で、1鉢でも空間のアクセントになりやすい植物です。",places:["店舗","受付","待合室","オフィス"],moods:["存在感","リゾート感","やわらかい"],care:"標準",pots:["特殊セメント鉢","Kozimi(コズミ)"]},
-    "SP-GP-0067":{lead:"シャープな葉姿で、すっきりした空間やモダンなインテリアに合わせやすい植物です。",places:["エントランス","オフィス","店舗"],moods:["シャープ","モダン","スタイリッシュ"],care:"比較的扱いやすい",pots:["特殊セメント鉢","丸型陶器鉢"]},
-    "SP-GP-0034":{lead:"直線的な葉姿で省スペースにも置きやすく、すっきりした印象をつくりやすい植物です。",places:["受付","デスク周り","店舗","ご自宅"],moods:["シンプル","シャープ","省スペース"],care:"比較的扱いやすい",pots:["丸型陶器鉢","Kozimi(コズミ)"]},
-    "SP-GP-0059":{lead:"つる性のやわらかな葉が特徴で、棚上やハンギングなど幅広い見せ方ができます。",places:["棚上","受付","オフィス","店舗"],moods:["やわらかい","親しみやすい","軽やか"],care:"比較的扱いやすい",pots:["シーグラスバスケット","トラース"]},
-    "SP-GP-0056":{lead:"細かな葉が密に茂り、落ち着きと上品さを演出しやすい定番の観葉植物です。",places:["オフィス","応接室","店舗","受付"],moods:["上品","落ち着き","定番"],care:"標準",pots:["Kozimi(コズミ)","特殊セメント鉢"]},
-    "SP-GP-0011":{lead:"大きなハート形の葉が特徴で、ナチュラルでやさしい雰囲気をつくりやすい植物です。",places:["受付","待合室","店舗","ご自宅"],moods:["やさしい","ナチュラル","存在感"],care:"標準",pots:["丸型陶器鉢","Kozimi(コズミ)"]},
-    "SP-GP-0017":{lead:"大きな葉が上へ伸び、ホテルライクで開放感のある空間づくりに向く植物です。",places:["エントランス","店舗","広めのオフィス","待合室"],moods:["開放感","リゾート感","存在感"],care:"標準",pots:["特殊セメント鉢","Kozimi(コズミ)"]},
-    "SP-GP-0008":{lead:"細長い葉が広がる軽やかな樹形で、空間を明るく柔らかく見せやすい植物です。",places:["オフィス","店舗","待合室","休憩スペース"],moods:["軽やか","爽やか","リラックス"],care:"標準",pots:["シーグラスバスケット","丸型陶器鉢"]},
-    "SP-GP-0016":{lead:"シルバーがかった葉色と樹形が魅力で、屋外や明るい空間に自然なアクセントを加えます。",places:["屋外入口","テラス","店舗前","ご自宅"],moods:["ナチュラル","上品","地中海風"],care:"屋外向け",pots:["特殊セメント鉢","Kozimi(コズミ)"]},
-
-    "CM-GP-0002":{lead:"素材感を活かした落ち着いた印象で、グリーンを引き締めて見せやすい鉢です。",moods:["モダン","重厚感","シンプル"],plants:["モンステラ","ユッカ","オーガスタ"]},
-    "CM-GP-0005":{lead:"丸みのある陶器の形で、植物を選びにくく、やわらかな空間にも合わせやすい鉢です。",moods:["シンプル","やわらかい","上品"],plants:["パキラ","ウンベラータ","サンセベリア"]},
-    "CM-GP-0011":{lead:"天然素材らしい表情があり、植物の緑をやさしくナチュラルに見せる鉢カバーです。",moods:["ナチュラル","あたたかい","軽やか"],plants:["ポトス","アレカヤシ"]},
-    "CM-GP-0019":{lead:"木の質感を活かしたオリジナルプランターで、空間に温かみとデザイン性を加えます。",moods:["木質","デザイン","ナチュラル"],plants:["モンステラ","ベンジャミナ","オリーブ"]},
-    "CM-GP-0022":{lead:"吊るして植物を楽しめるハンギングタイプで、床面を使わず立体的に緑を見せられます。",moods:["軽やか","立体感","ナチュラル"],plants:["ポトス","ライムポトス"]}
-  });
-
   const esc = (v)=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
 
   function filteredPlants(){
@@ -110,7 +92,7 @@
     const item=(kind==="plants"?data.plants:data.pots).find(x=>x.code===code);
     if(!item)return;
     const plant=kind==="plants";
-    const extra=PILOT_DETAIL[code]||{};
+    const extra=DETAIL_DATA[code]||{};
     const media=item.image?`<img src="${esc(item.image)}" alt="${esc(item.name)}の代表イメージ">`:`<div class="atlas-detail__placeholder">${plant?"🌿":"◯"}</div>`;
     const meta=plant
       ? [["分類",item.category],["屋内外",labels.indoorOutdoor[item.indoorOutdoor]||item.indoorOutdoor],["対応サイズ",item.size]]

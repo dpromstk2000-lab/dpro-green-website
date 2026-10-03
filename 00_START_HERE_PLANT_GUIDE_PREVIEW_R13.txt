@@ -1,0 +1,33 @@
+DPRO GREEN HP図鑑プレビュー R1.3 / Supabase Snapshot Separation
+2026-10-03
+
+目的
+- DPRO GREENのSupabaseを図鑑情報の正本とする
+- HP表示ロジックと図鑑詳細データを分離する
+- 今回はPILOT 15件のSupabase登録済み内容をスナップショット化
+- plant-guide-preview.js から個別の植物・鉢説明を撤去
+- plant-guide-detail-data.js が詳細データスナップショットを保持
+- 今後64植物＋17鉢を追加してもUIロジック変更不要
+
+本番Supabase状態
+植物 74: ready_pilot 10 / pending 64 / public_on 0
+鉢 22: ready_pilot 5 / pending 17 / public_on 0
+
+GitHub投入先
+https://github.com/dpromstk2000-lab/dpro-green-website/upload/main/
+
+投入ファイル
+plant-guide-preview.html
+plant-guide-preview.js
+plant-guide-detail-data.js
+各TEXT版
+00_START_HERE_PLANT_GUIDE_PREVIEW_R13.txt
+
+確認URL
+https://dpromstk2000-lab.github.io/dpro-green-website/plant-guide-preview.html
+
+注意
+- CSSはR1.2をそのまま使用
+- plant-guide-data.js（74/22基本データ）は今回変更なし
+- noindex/nofollow維持
+- 正式HP導線にはまだ追加しない
