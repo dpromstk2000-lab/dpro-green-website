@@ -1,25 +1,20 @@
 (() => {
   "use strict";
 
-  const VERSION = "ATLAS-LIVE-LOADER-R1.0-20261004";
+  const VERSION = "ATLAS-LIVE-LOADER-R1.1-20261004";
   const SUPABASE_URL = "https://jjmcavcuujkcwifuxonl.supabase.co";
   const SUPABASE_KEY = "sb_publishable_OtSNyipbXnlX-DcuOnCL_A_XA_1O3FP";
   const PREVIEW_SCRIPT = "plant-guide-preview.js?v=ATLAS-R1.3-20261003";
 
-  const IMAGE_MAP = Object.freeze({
-    "SP-GP-0010": "atlas-plant-sp-gp-0010.png",
-    "SP-GP-0012": "atlas-plant-sp-gp-0012.png",
-    "SP-GP-0013": "atlas-plant-sp-gp-0013.png",
-    "SP-GP-0014": "atlas-plant-sp-gp-0014.png",
-    "SP-GP-0015": "atlas-plant-sp-gp-0015.png",
-    "SP-GP-0018": "atlas-plant-sp-gp-0018.png",
-    "SP-GP-0019": "atlas-plant-sp-gp-0019.png",
-    "SP-GP-0020": "atlas-plant-sp-gp-0020.png"
-  });
-
   function imageFor(code, current) {
-    const file = IMAGE_MAP[code];
-    return file ? new URL(file, location.href).toString() : (current || null);
+    if (current) return current;
+    if (/^SP-GP-\d{4}$/.test(code)) {
+      return new URL(`atlas-plant-${code.toLowerCase()}.png`, location.href).toString();
+    }
+    if (/^CM-GP-\d{4}$/.test(code)) {
+      return new URL(`atlas-pot-${code.toLowerCase()}.png`, location.href).toString();
+    }
+    return null;
   }
 
   function applyImages(items) {
