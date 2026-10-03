@@ -1,0 +1,30 @@
+DPRO GREEN 植物・鉢図鑑 HPプレビュー R1
+2026-10-03
+
+目的:
+- DPRO GREENの共通マスターをHP図鑑へ展開する前段プレビュー
+- 本公開リンクにはまだ追加しない
+- robots=noindex,nofollow,noarchive
+- 植物74種類 / 鉢22モデル
+- 代表画像PILOT: 植物10 / 鉢5
+- 未作成画像は統一プレースホルダー
+- 検索・分類・屋内外・サイズ・鉢種別・本社区分の絞り込み
+- 詳細ダイアログ
+- LINE相談 / 設置相談導線
+
+GitHub投入先:
+https://github.com/dpromstk2000-lab/dpro-green-website/upload/main/
+
+投入する4ファイル:
+plant-guide-preview.html
+plant-guide-preview.css
+plant-guide-preview.js
+plant-guide-data.js
+
+公開確認URL:
+https://dpromstk2000-lab.github.io/dpro-green-website/plant-guide-preview.html
+
+注意:
+- index.html / sitemap.xml / robots.txt は今回は変更しません。
+- よって正式なHP導線にはまだ出ません。
+- 見た目確認後に正式ページ名・SEO・ナビ導線を決めます。

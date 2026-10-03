@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#123827">
+<title>植物・鉢図鑑｜グリーン・ポケット福岡粕屋店｜プレビュー</title>
+<meta name="description" content="グリーン・ポケット福岡粕屋店の植物・鉢図鑑プレビューです。">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="kasuya-brushup-preview.css?v=STAGE6-20260909">
+<link rel="stylesheet" href="kasuya-stage6-2-delta.css?v=STAGE6.2-20260909">
+<link rel="stylesheet" href="kasuya-mobile-viewport-fix.css?v=R2-20260928">
+<link rel="stylesheet" href="plant-guide-preview.css?v=ATLAS-R1-20261003">
+<script src="config.js"></script>
+<script defer src="plant-guide-data.js?v=ATLAS-R1-20261003"></script>
+<script defer src="plant-guide-preview.js?v=ATLAS-R1-20261003"></script>
+</head>
+<body class="atlas-page">
+<a class="skip" href="#main">本文へ移動</a>
+<div class="atlas-preview-ribbon">DPRO GREEN 図鑑プレビュー｜本公開前・検索エンジン非公開</div>
+<header class="site-head" data-header data-site-header>
+  <div class="wrap site-head__inner">
+    <a aria-label="トップへ" class="brand" href="index.html">
+      <span aria-hidden="true" class="brand__mark">葉</span>
+      <span class="brand__copy"><strong>グリーン・ポケット福岡粕屋店</strong><small>観葉植物レンタル・定期メンテナンス</small></span>
+    </a>
+    <nav aria-label="メインナビゲーション" class="nav">
+      <a href="service.html">サービス</a>
+      <a class="is-current" href="plant-guide-preview.html">植物・鉢図鑑</a>
+      <a href="cases.html">導入イメージ</a>
+      <a href="shop.html">ONLINE SHOP</a>
+      <a href="about.html">粕屋店</a>
+    </nav>
+    <div class="head-actions">
+      <a class="btn btn--line" href="line.html">LINE相談</a>
+      <a class="btn btn--primary" href="contact.html">設置を相談する</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<section class="atlas-hero">
+  <div class="wrap atlas-hero__inner">
+    <div>
+      <p class="eyebrow eyebrow--green">GREEN ATLAS / PREVIEW</p>
+      <h1>植物と鉢を、<br><span>見ながら選べる図鑑へ。</span></h1>
+      <p>スタッフにも、お客様にも分かりやすく。植物74種類と鉢・プランター22モデルを、DPRO GREENの共通マスターを基準に整理しています。</p>
+      <div class="atlas-hero__actions">
+        <a class="btn btn--primary" href="#atlas-browser">図鑑を見る</a>
+        <a class="btn btn--line" href="line.html">LINEで相談</a>
+      </div>
+    </div>
+    <div class="atlas-hero__stats" aria-label="登録状況">
+      <article><strong>74</strong><span>植物種類</span></article>
+      <article><strong>22</strong><span>鉢モデル</span></article>
+      <article><strong>15</strong><span>代表画像PILOT</span></article>
+    </div>
+  </div>
+</section>
+
+<section class="atlas-browser" id="atlas-browser">
+  <div class="wrap">
+    <div class="atlas-tabs" role="tablist" aria-label="図鑑切替">
+      <button class="is-active" data-atlas-tab="plants" type="button">植物図鑑 <b>74</b></button>
+      <button data-atlas-tab="pots" type="button">鉢図鑑 <b>22</b></button>
+    </div>
+
+    <div class="atlas-toolbar" data-plant-tools>
+      <label class="atlas-search">検索<input id="atlas-plant-search" type="search" placeholder="植物名・コードで検索"></label>
+      <label>分類<select id="atlas-plant-category"><option value="">すべて</option><option>観葉植物</option><option>花観葉</option><option>アウトドア</option></select></label>
+      <label>屋内外<select id="atlas-plant-indoor"><option value="">すべて</option><option value="indoor">屋内</option><option value="outdoor">屋外</option></select></label>
+      <label>サイズ<select id="atlas-plant-size"><option value="">すべて</option><option value="L">L</option><option value="M">M</option><option value="S">S</option><option value="指定なし">指定なし</option></select></label>
+      <button class="atlas-clear" data-clear="plants" type="button">条件をクリア</button>
+    </div>
+
+    <div class="atlas-toolbar" data-pot-tools hidden>
+      <label class="atlas-search">検索<input id="atlas-pot-search" type="search" placeholder="鉢名・素材・コードで検索"></label>
+      <label>種別<select id="atlas-pot-type"><option value="">すべて</option><option value="pot">鉢</option><option value="cover">鉢カバー</option><option value="planter">プランター</option></select></label>
+      <label>本社区分<select id="atlas-pot-series"><option value="">すべて</option><option value="シンプル">シンプル</option><option value="ナチュラル">ナチュラル</option><option value="デザイン">デザイン</option><option value="オリジナル商品">オリジナル商品</option></select></label>
+      <button class="atlas-clear" data-clear="pots" type="button">条件をクリア</button>
+    </div>
+
+    <div class="atlas-result-head">
+      <div><strong id="atlas-result-count">全74件</strong><span id="atlas-image-count">代表画像 10件</span></div>
+      <p>画像のない項目は、代表画像を順次追加予定です。</p>
+    </div>
+
+    <div class="atlas-grid" id="atlas-grid" aria-live="polite"></div>
+    <div class="atlas-empty" id="atlas-empty" hidden>条件に合う項目がありません。</div>
+  </div>
+</section>
+
+<section class="atlas-note">
+  <div class="wrap atlas-note__grid">
+    <div><p class="eyebrow eyebrow--green">HOW TO USE</p><h2>「どれを置こう？」を、相談しやすく。</h2></div>
+    <div>
+      <p>図鑑は植物・鉢選びの参考用です。植物は樹形や葉ぶりに個体差があり、鉢も色味・質感・在庫状況が異なる場合があります。</p>
+      <p><strong>気になる植物名や鉢名をLINEで伝えるだけでも大丈夫です。</strong> 設置場所の写真があると、サイズや組み合わせをより具体的にご案内できます。</p>
+      <div class="atlas-note__actions"><a class="btn btn--line" href="line.html">LINEで写真相談</a><a class="btn btn--primary" href="contact.html">無料見積り・設置相談</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<dialog class="atlas-dialog" id="atlas-dialog">
+  <button class="atlas-dialog__close" data-dialog-close aria-label="閉じる">×</button>
+  <div id="atlas-dialog-body"></div>
+</dialog>
+
+<footer class="footer">
+  <div class="wrap footer__grid">
+    <div><strong>グリーン・ポケット福岡粕屋店</strong><p>観葉植物レンタル・定期メンテナンス</p></div>
+    <nav><a href="service.html">サービス</a><a href="cases.html">導入イメージ</a><a href="shop.html">ONLINE SHOP</a><a href="line.html">LINE相談</a></nav>
+  </div>
+  <div class="wrap footer__meta">© 2026 グリーン・ポケット福岡粕屋店</div>
+</footer>
+<nav aria-label="スマートフォン固定メニュー" class="mobile-cta">
+  <a href="tel:0927190336">092-719-0336</a><a href="line.html">LINE</a><a href="shop.html">SHOP</a><a class="mobile-cta__main" href="contact.html">設置相談</a>
+</nav>
+</body>
+</html>
