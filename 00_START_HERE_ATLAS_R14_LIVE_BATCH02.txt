@@ -1,0 +1,28 @@
+DPRO GREEN HP図鑑 R1.4 LIVE + IMAGE BATCH 02
+2026-10-04
+
+今回の変更
+- HPプレビューはSupabase green_preview_atlas() を最優先で読み込み
+- Supabaseが一時的に読めない場合は既存スナップショットへ自動フォールバック
+- 植物74件＋鉢22件の詳細情報をSupabaseから直接反映
+- 今回生成済み8植物の代表画像を追加
+- noindex / nofollow は維持
+- 正式公開はまだOFF
+
+今回追加する8画像
+SP-GP-0010 インシグニス
+SP-GP-0012 エバーフレッシュ
+SP-GP-0013 エレガンテシマ
+SP-GP-0014 オカメヅタ
+SP-GP-0015 オキシカルジウム
+SP-GP-0018 カシワバゴム
+SP-GP-0019 カポック
+SP-GP-0020 カマクラヒバ
+
+GitHub投入先
+https://github.com/dpromstk2000-lab/dpro-green-website/upload/main/
+
+確認URL
+https://dpromstk2000-lab.github.io/dpro-green-website/plant-guide-preview.html
+
+ZIPは直下のみ。全ファイルをドラッグしてください。
