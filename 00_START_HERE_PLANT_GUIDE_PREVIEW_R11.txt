@@ -1,0 +1,23 @@
+DPRO GREEN HP図鑑プレビュー R1.1 修正パッチ
+2026-10-03
+
+修正内容
+- 鉢図鑑で植物用検索欄も表示される二重表示を修正
+- 非アクティブ側の検索欄は hidden + CSS で確実に非表示
+- 植物/鉢とも24件ずつページング
+- 全件数 / 表示範囲 / 現在ページ / 前へ / 次へ
+- 検索・絞り込み変更時は1ページ目へ戻る
+- スマホのページ送り折返し対応
+- noindex / nofollow は維持
+- 正式HP導線にはまだ追加しない
+
+投入先
+https://github.com/dpromstk2000-lab/dpro-green-website/upload/main/
+
+上書き対象
+plant-guide-preview.html
+plant-guide-preview.css
+plant-guide-preview.js
+
+確認URL
+https://dpromstk2000-lab.github.io/dpro-green-website/plant-guide-preview.html
