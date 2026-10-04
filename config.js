@@ -87,6 +87,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
   },
 
   links: {
+    plantGuide: "plant-guide.html",
     contact: "contact.html",
     lineGuide: "line.html",
     line: "https://line.me/R/ti/p/%40358xjlgr",
