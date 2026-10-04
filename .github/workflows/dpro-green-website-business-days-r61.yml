@@ -1,0 +1,280 @@
+name: DPRO GREEN Website Business Days R61
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout website
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Guard audited source blobs
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD:config.js)" = "4f6bb87331e36adf88e87baa3bf17b8a03160a6b"
+          test "$(git rev-parse HEAD:config_JS_TEXT.txt)" = "e8bea8c67893f61c8d9fea7874c3defbd106f6aa"
+          test "$(git rev-parse HEAD:kasuya-welcome-overlay.js)" = "a91648b5887ebde792c5cc48bd8a93bd713cdec6"
+          test "$(git rev-parse HEAD:kasuya-information-position.js)" = "662488afda2a7640cb448dacbce4810dc8b52d8f"
+          test "$(git rev-parse HEAD:green-live-sync.js)" = "1a27edb06064a83f7cf66434e22a4596803f5de9"
+          test "$(git rev-parse HEAD:index.html)" = "0af8be247cb535c571b6a58fe856f0b3e9a51176"
+          test "$(git rev-parse HEAD:sitemap.xml)" = "9c23c3ad4a8baf4cfc93491e0934824f82c08818"
+          echo "AUDITED SOURCE BLOBS PASS"
+
+      - name: Apply R61 business-day consistency fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          def replace_once(text, old, new, label):
+              if old not in text:
+                  if new in text:
+                      return text
+                  raise SystemExit(f"{label}: expected anchor not found")
+              return text.replace(old, new, 1)
+
+          for name in ("config.js", "config_JS_TEXT.txt"):
+              p = Path(name)
+              s = p.read_text(encoding="utf-8")
+              s = replace_once(
+                  s,
+                  'version: "WEB-GREEN-MOBILE-MENU-FIT-R2-20260928"',
+                  'version: "WEB-GREEN-BUSINESS-DAYS-R61-20261004"',
+                  f"{name} version"
+              )
+              if 'openDays: "毎日"' not in s:
+                  anchor = 'address: "福岡県糟屋郡粕屋町原町4-3-5 八昭ビル1階",'
+                  if anchor not in s:
+                      raise SystemExit(f"{name}: address anchor not found")
+                  s = s.replace(anchor, anchor + '\n    openDays: "毎日",', 1)
+              s = replace_once(
+                  s,
+                  'adapterVersion: "GREEN-WEBSITE-LIVE-SYNC-20260804"',
+                  'adapterVersion: "GREEN-WEBSITE-LIVE-SYNC-R61-20261004"',
+                  f"{name} liveSync version"
+              )
+              p.write_text(s, encoding="utf-8")
+
+          p = Path("kasuya-welcome-overlay.js")
+          s = p.read_text(encoding="utf-8")
+          s = replace_once(
+              s,
+              'const VERSION = "WELCOME-EVERGREEN-V1.3-20260911";',
+              'const VERSION = "WELCOME-EVERGREEN-R61-20261004";',
+              "welcome version"
+          )
+          s = replace_once(
+              s,
+              'const openDays = text(cfg.site?.openDays || cfg.site?.openDaysLabel) || "月〜金";',
+              'const openDays = text(cfg.site?.openDays || cfg.site?.openDaysLabel) || "毎日";',
+              "welcome openDays fallback"
+          )
+          s = replace_once(
+              s,
+              'buildFactCard("通常営業日", snapshot.openDays, "ご相談受付の基本日程"),',
+              'buildFactCard("営業日", snapshot.openDays, "ご相談受付の基本日程"),',
+              "welcome day label"
+          )
+          s = replace_once(
+              s,
+              'buildFactCard("定休日", snapshot.closed, "祝日・長期休暇を含む")',
+              'buildFactCard("休業日", snapshot.closed, "年末年始・臨時休業")',
+              "welcome closed label"
+          )
+          p.write_text(s, encoding="utf-8")
+
+          p = Path("kasuya-information-position.js")
+          s = p.read_text(encoding="utf-8")
+          s = replace_once(
+              s,
+              "/* DPRO GREEN KASUYA — INFORMATION POSITION ALL PAGES V1.0 / 2026-09-11 */",
+              "/* DPRO GREEN KASUYA — INFORMATION POSITION R61 / 2026-10-04 */",
+              "information version comment"
+          )
+          s = replace_once(
+              s,
+              'openDays: text(cfg.site?.openDays || cfg.site?.openDaysLabel) || "月〜金",',
+              'openDays: text(cfg.site?.openDays || cfg.site?.openDaysLabel) || "毎日",',
+              "information openDays fallback"
+          )
+          s = replace_once(s, "<span>通常営業日</span>", "<span>営業日</span>", "information day label")
+          s = replace_once(s, "<span>定休日</span>", "<span>休業日</span>", "information closed label")
+          s = replace_once(
+              s,
+              "<small>祝日・長期休暇を含む</small>",
+              "<small>年末年始・臨時休業</small>",
+              "information closed hint"
+          )
+          p.write_text(s, encoding="utf-8")
+
+          p = Path("green-live-sync.js")
+          s = p.read_text(encoding="utf-8")
+          s = replace_once(
+              s,
+              "/* DPRO GREEN KASUYA — PUBLIC EXPERIENCE GUARD V1.0 / 2026-09-11",
+              "/* DPRO GREEN KASUYA — PUBLIC EXPERIENCE GUARD R61 / 2026-10-04",
+              "live sync version comment"
+          )
+          s = replace_once(
+              s,
+              'const cacheKey = `green-live-site-profile:${config.api?.facilityCode || "default"}`;',
+              'const cacheKey = `green-live-site-profile:${config.api?.facilityCode || "default"}:${liveSync.adapterVersion || "v1"}`;',
+              "live sync cache key"
+          )
+          s = s.replace(
+              "kasuya-information-position.css?v=INFO-ALL-PAGES-V1.0-20260911",
+              "kasuya-information-position.css?v=INFO-POSITION-R61-20261004"
+          )
+          s = s.replace(
+              "kasuya-information-position.js?v=INFO-ALL-PAGES-V1.0-20260911",
+              "kasuya-information-position.js?v=INFO-POSITION-R61-20261004"
+          )
+
+          helper = """
+            function normalizeBusinessSnapshot(snapshot) {
+              const rows = [...(snapshot.businessHours || [])].sort((a, b) => a.weekday - b.weekday);
+              const allWeekdays = rows.length === 7
+                && rows.every((row, index) => row.weekday === index)
+                && rows.every((row) => row.isOpen === true);
+
+              if (allWeekdays) {
+                const first = rows[0];
+                const sameHours = first.openTime && first.closeTime
+                  && rows.every((row) => row.openTime === first.openTime && row.closeTime === first.closeTime);
+                if (sameHours) {
+                  snapshot.businessHoursSummary = `${first.openTime}～${first.closeTime}`;
+                }
+              }
+
+              const configuredClosed = String(config.site?.closedDays || "").trim();
+              const currentClosed = String(snapshot.closedDaysSummary || "").trim();
+              const machineGenericClosed = /^(?:祝日(?:（登録日）|\\(登録日\\))?|登録済み祝日)$/.test(currentClosed);
+
+              if (configuredClosed && (!currentClosed || machineGenericClosed)) {
+                snapshot.closedDaysSummary = configuredClosed;
+              }
+
+              return snapshot;
+            }
+
+          """
+          anchor = "  function loadCache() {"
+          if "function normalizeBusinessSnapshot(" not in s:
+              if anchor not in s:
+                  raise SystemExit("green-live-sync.js: helper insertion anchor not found")
+              s = s.replace(anchor, helper + anchor, 1)
+
+          s = replace_once(
+              s,
+              "const snapshot = sanitizeSnapshot(payload);",
+              "const snapshot = normalizeBusinessSnapshot(sanitizeSnapshot(payload));",
+              "live sync normalized snapshot"
+          )
+          p.write_text(s, encoding="utf-8")
+
+          p = Path("index.html")
+          s = p.read_text(encoding="utf-8")
+          s = s.replace(
+              "kasuya-welcome-overlay.js?v=WELCOME-EVERGREEN-V1.3-20260911",
+              "kasuya-welcome-overlay.js?v=WELCOME-EVERGREEN-R61-20261004"
+          )
+          s = s.replace(
+              "kasuya-information-position.js?v=INFO-POSITION-V1.1-20260911",
+              "kasuya-information-position.js?v=INFO-POSITION-R61-20261004"
+          )
+          s = s.replace('"dateModified":"2026-09-12"', '"dateModified":"2026-10-04"', 1)
+          p.write_text(s, encoding="utf-8")
+
+          p = Path("sitemap.xml")
+          s = p.read_text(encoding="utf-8")
+          old = (
+              "  <url>\n"
+              "    <loc>https://dpromstk2000-lab.github.io/dpro-green-website/</loc>\n"
+              "    <lastmod>2026-09-09</lastmod>\n"
+              "  </url>"
+          )
+          new = (
+              "  <url>\n"
+              "    <loc>https://dpromstk2000-lab.github.io/dpro-green-website/</loc>\n"
+              "    <lastmod>2026-10-04</lastmod>\n"
+              "  </url>"
+          )
+          s = replace_once(s, old, new, "sitemap root lastmod")
+          p.write_text(s, encoding="utf-8")
+          PY
+
+      - name: Static validation
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check config.js
+          node --check kasuya-welcome-overlay.js
+          node --check kasuya-information-position.js
+          node --check green-live-sync.js
+
+          grep -q 'openDays: "毎日"' config.js
+          grep -q 'openDays: "毎日"' config_JS_TEXT.txt
+          grep -q 'businessHours: "09:00～17:00"' config.js
+          grep -q 'closedDays: "年末年始・臨時休業あり"' config.js
+          grep -q 'managerName: "秀島 明"' config.js
+          grep -q 'phone: "092-719-0336"' config.js
+          grep -q 'openingHours: \["Mo-Su 09:00-17:00"\]' config.js
+
+          ! grep -q '月〜金' kasuya-welcome-overlay.js
+          ! grep -q '月〜金' kasuya-information-position.js
+          ! grep -q '祝日・長期休暇を含む' kasuya-welcome-overlay.js
+          ! grep -q '祝日・長期休暇を含む' kasuya-information-position.js
+
+          grep -q 'buildFactCard("営業日", snapshot.openDays' kasuya-welcome-overlay.js
+          grep -q 'buildFactCard("休業日", snapshot.closed' kasuya-welcome-overlay.js
+          grep -q '<span>営業日</span>' kasuya-information-position.js
+          grep -q '<span>休業日</span>' kasuya-information-position.js
+
+          grep -q 'normalizeBusinessSnapshot' green-live-sync.js
+          grep -q 'machineGenericClosed' green-live-sync.js
+          grep -q 'GREEN-WEBSITE-LIVE-SYNC-R61-20261004' config.js
+          grep -q 'WELCOME-EVERGREEN-R61-20261004' index.html
+          grep -q 'INFO-POSITION-R61-20261004' index.html
+
+          grep -q 'customDomain: ""' config.js
+          grep -q 'allowIndexing: false' config.js
+          grep -q 'privacyOperatorApproved: false' config.js
+          grep -q 'customDomainApproved: false' config.js
+
+          grep -q '<lastmod>2026-10-04</lastmod>' sitemap.xml
+
+          git diff --check
+          echo "R61 WEBSITE BUSINESS DAYS STATIC QA PASS"
+
+      - name: Commit R61
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "DPRO GREEN R61"
+          git config user.email "actions@users.noreply.github.com"
+
+          git add \
+            config.js \
+            config_JS_TEXT.txt \
+            kasuya-welcome-overlay.js \
+            kasuya-information-position.js \
+            green-live-sync.js \
+            index.html \
+            sitemap.xml
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "Fix GREEN Kasuya business-day display R61"
+          git push origin HEAD:main
