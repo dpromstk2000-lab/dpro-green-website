@@ -1,5 +1,5 @@
 window.GREEN_WEB_CONFIG = Object.freeze({
-  version: "WEB-GREEN-MOBILE-MENU-FIT-R2-20260928",
+  version: "WEB-GREEN-BUSINESS-DAYS-R61-20261004",
 
   site: {
     publicName: "グリーン・ポケット福岡粕屋店",
@@ -8,6 +8,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     operatorName: "グリーン・ポケット福岡粕屋店",
     postalCode: "811-2307",
     address: "福岡県糟屋郡粕屋町原町4-3-5 八昭ビル1階",
+    openDays: "毎日",
     businessHours: "09:00～17:00",
     closedDays: "年末年始・臨時休業あり",
     managerName: "秀島 明",
@@ -115,7 +116,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     endpointPath: "/api/public/site-profile?target=website",
     timeoutMs: 8000,
     cacheMinutes: 10,
-    adapterVersion: "GREEN-WEBSITE-LIVE-SYNC-20260804",
+    adapterVersion: "GREEN-WEBSITE-LIVE-SYNC-R61-20261004",
     fallbackSource: "config.js",
     showSyncStatus: true
   },

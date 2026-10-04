@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "WELCOME-EVERGREEN-V1.3-20260911";
+  const VERSION = "WELCOME-EVERGREEN-R61-20261004";
   const SEEN_KEY = "dpro-green-kasuya:welcome-notice:seen";
   const FORCE = new URLSearchParams(location.search).get("welcome") === "1";
   const cfg = window.GREEN_WEB_CONFIG || {};
@@ -69,7 +69,7 @@
 
   const getSnapshot = () => {
     const live = getLiveNotice();
-    const openDays = text(cfg.site?.openDays || cfg.site?.openDaysLabel) || "月〜金";
+    const openDays = text(cfg.site?.openDays || cfg.site?.openDaysLabel) || "毎日";
     const hours = text(cfg.site?.businessHours) || "09:00～17:00";
     const closed = text(cfg.site?.closedDays) || "年末年始・臨時休業あり";
     const shopEnabled = cfg.featureFlags?.show_online_shop !== false;
@@ -217,9 +217,9 @@
 
     const facts = make("div", "welcome-notice__facts");
     facts.append(
-      buildFactCard("通常営業日", snapshot.openDays, "ご相談受付の基本日程"),
+      buildFactCard("営業日", snapshot.openDays, "ご相談受付の基本日程"),
       buildFactCard("営業時間", snapshot.hours, "店舗・対応時間"),
-      buildFactCard("定休日", snapshot.closed, "祝日・長期休暇を含む")
+      buildFactCard("休業日", snapshot.closed, "年末年始・臨時休業")
     );
 
     const liveBox = make("div", "welcome-notice__live");

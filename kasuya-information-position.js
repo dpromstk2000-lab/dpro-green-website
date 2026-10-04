@@ -1,4 +1,4 @@
-/* DPRO GREEN KASUYA — INFORMATION POSITION ALL PAGES V1.0 / 2026-09-11 */
+/* DPRO GREEN KASUYA — INFORMATION POSITION R61 / 2026-10-04 */
 (() => {
   "use strict";
 
@@ -21,7 +21,7 @@
   function getBusinessSummary() {
     const cfg = window.GREEN_WEB_CONFIG || {};
     return {
-      openDays: text(cfg.site?.openDays || cfg.site?.openDaysLabel) || "月〜金",
+      openDays: text(cfg.site?.openDays || cfg.site?.openDaysLabel) || "毎日",
       hours: text(cfg.site?.businessHours) || "09:00～17:00",
       closed: text(cfg.site?.closedDays) || "年末年始・臨時休業あり"
     };
@@ -77,7 +77,7 @@
     summary.dataset.signature = signature;
     summary.innerHTML = `
       <div class="kasuya-store-summary__card">
-        <span>通常営業日</span>
+        <span>営業日</span>
         <strong>${escapeHtml(data.openDays)}</strong>
         <small>ご相談受付の基本日程</small>
       </div>
@@ -87,9 +87,9 @@
         <small>店舗・対応時間</small>
       </div>
       <div class="kasuya-store-summary__card">
-        <span>定休日</span>
+        <span>休業日</span>
         <strong>${escapeHtml(data.closed)}</strong>
-        <small>祝日・長期休暇を含む</small>
+        <small>年末年始・臨時休業</small>
       </div>`;
   }
 

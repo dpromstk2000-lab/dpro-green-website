@@ -1,4 +1,4 @@
-/* DPRO GREEN KASUYA — PUBLIC EXPERIENCE GUARD V1.0 / 2026-09-11
+/* DPRO GREEN KASUYA — PUBLIC EXPERIENCE GUARD R61 / 2026-10-04
    Live Sync remains active, while public-facing brand/copy stays production-safe. */
 (() => {
   "use strict";
@@ -10,7 +10,7 @@
 
   const endpointPath = String(liveSync.endpointPath || "/api/public/site-profile?target=website");
   const endpoint = `${apiBase}${endpointPath.startsWith("/") ? endpointPath : `/${endpointPath}`}`;
-  const cacheKey = `green-live-site-profile:${config.api?.facilityCode || "default"}`;
+  const cacheKey = `green-live-site-profile:${config.api?.facilityCode || "default"}:${liveSync.adapterVersion || "v1"}`;
   const timeoutMs = Math.max(2000, Math.min(Number(liveSync.timeoutMs || 8000), 20000));
   const cacheMs = Math.max(1, Number(liveSync.cacheMinutes || 10)) * 60 * 1000;
 
@@ -24,13 +24,13 @@
     if (!document.querySelector('link[href*="kasuya-information-position.css"]')) {
       const css = document.createElement("link");
       css.rel = "stylesheet";
-      css.href = "kasuya-information-position.css?v=INFO-ALL-PAGES-V1.0-20260911";
+      css.href = "kasuya-information-position.css?v=INFO-POSITION-R61-20261004";
       css.dataset.kasuyaInformationPosition = "live-sync";
       document.head.append(css);
     }
     if (!document.querySelector('script[src*="kasuya-information-position.js"]')) {
       const script = document.createElement("script");
-      script.src = "kasuya-information-position.js?v=INFO-ALL-PAGES-V1.0-20260911";
+      script.src = "kasuya-information-position.js?v=INFO-POSITION-R61-20261004";
       script.defer = true;
       script.dataset.kasuyaInformationPosition = "live-sync";
       document.head.append(script);
@@ -84,6 +84,33 @@
         period: String(row?.period || "").slice(0, 120),
       })).filter((row) => row.title && row.body),
     };
+  }
+
+
+  function normalizeBusinessSnapshot(snapshot) {
+    const rows = [...(snapshot.businessHours || [])].sort((a, b) => a.weekday - b.weekday);
+    const allWeekdays = rows.length === 7
+      && rows.every((row, index) => row.weekday === index)
+      && rows.every((row) => row.isOpen === true);
+
+    if (allWeekdays) {
+      const first = rows[0];
+      const sameHours = first.openTime && first.closeTime
+        && rows.every((row) => row.openTime === first.openTime && row.closeTime === first.closeTime);
+      if (sameHours) {
+        snapshot.businessHoursSummary = `${first.openTime}～${first.closeTime}`;
+      }
+    }
+
+    const configuredClosed = String(config.site?.closedDays || "").trim();
+    const currentClosed = String(snapshot.closedDaysSummary || "").trim();
+    const machineGenericClosed = /^(?:祝日(?:（登録日）|\(登録日\))?|登録済み祝日)$/.test(currentClosed);
+
+    if (configuredClosed && (!currentClosed || machineGenericClosed)) {
+      snapshot.closedDaysSummary = configuredClosed;
+    }
+
+    return snapshot;
   }
 
   function loadCache() {
@@ -279,7 +306,7 @@
       if (!response.ok || payload?.ok === false) {
         throw new Error(payload?.message || payload?.error || `HTTP ${response.status}`);
       }
-      const snapshot = sanitizeSnapshot(payload);
+      const snapshot = normalizeBusinessSnapshot(sanitizeSnapshot(payload));
       if (!snapshot.facilityCode || !snapshot.facilityName) throw new Error("public_profile_invalid");
       saveCache(snapshot);
       applySnapshot(snapshot, "live", Date.now());
