@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "ATLAS-LIVE-LOADER-R1.3-20261004";
+  const VERSION = "ATLAS-LIVE-LOADER-R1.4-20261004";
   const SUPABASE_URL = "https://jjmcavcuujkcwifuxonl.supabase.co";
   const SUPABASE_KEY = "sb_publishable_OtSNyipbXnlX-DcuOnCL_A_XA_1O3FP";
   const PREVIEW_SCRIPT = "plant-guide-preview.js?v=ATLAS-R1.4-20261004";
@@ -20,6 +20,8 @@
   function applyImages(items) {
     return (items || []).map((item) => ({
       ...item,
+      material: item.material === "未設定" ? null : item.material,
+      size: item.size === "未設定" ? null : item.size,
       image: imageFor(item.code, item.image)
     }));
   }

@@ -1,0 +1,30 @@
+/* DPRO GREEN ATLAS / MOBILE FINAL QA R1 / 2026-10-04
+   Mobile-only fixes discovered during HUMAN QA.
+   Desktop layout is intentionally untouched. */
+
+@media (max-width: 680px) {
+  /* The fixed bottom CTA already provides "設置相談".
+     Hide the duplicated header primary CTA to prevent vertical character wrapping. */
+  .atlas-page .site-head .head-actions .btn--primary {
+    display: none !important;
+  }
+
+  /* A single known metadata item must use full width on phones.
+     This prevents "プランター" from breaking onto a second line. */
+  .atlas-detail__meta {
+    grid-template-columns: 1fr !important;
+  }
+
+  .atlas-detail__meta strong {
+    min-width: 0;
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+
+  /* Keep the modal comfortably inside the Android viewport. */
+  .atlas-dialog {
+    width: calc(100vw - 20px);
+    max-width: calc(100vw - 20px);
+  }
+}
