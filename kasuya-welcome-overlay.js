@@ -70,8 +70,8 @@
   const getSnapshot = () => {
     const live = getLiveNotice();
     const openDays = text(cfg.site?.openDays || cfg.site?.openDaysLabel) || "月〜金";
-    const hours = text(cfg.site?.businessHours) || "09:00～17:30";
-    const closed = text(cfg.site?.closedDays) || "土日祝日・GW・年末年始";
+    const hours = text(cfg.site?.businessHours) || "09:00～17:00";
+    const closed = text(cfg.site?.closedDays) || "年末年始・臨時休業あり";
     const shopEnabled = cfg.featureFlags?.show_online_shop !== false;
     const lineReady = cfg.publication?.lineApproved === true && !!text(cfg.links?.line);
     const signature = [

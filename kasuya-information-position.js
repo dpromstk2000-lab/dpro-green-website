@@ -22,8 +22,8 @@
     const cfg = window.GREEN_WEB_CONFIG || {};
     return {
       openDays: text(cfg.site?.openDays || cfg.site?.openDaysLabel) || "月〜金",
-      hours: text(cfg.site?.businessHours) || "09:00～17:30",
-      closed: text(cfg.site?.closedDays) || "土日祝日・GW・年末年始"
+      hours: text(cfg.site?.businessHours) || "09:00～17:00",
+      closed: text(cfg.site?.closedDays) || "年末年始・臨時休業あり"
     };
   }
 

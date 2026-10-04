@@ -8,9 +8,9 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     operatorName: "グリーン・ポケット福岡粕屋店",
     postalCode: "811-2307",
     address: "福岡県糟屋郡粕屋町原町4-3-5 八昭ビル1階",
-    businessHours: "09:00～17:30",
-    closedDays: "土日祝日・GW・年末年始",
-    managerName: "西津 佳宏",
+    businessHours: "09:00～17:00",
+    closedDays: "年末年始・臨時休業あり",
+    managerName: "秀島 明",
     managerTitle: "店長",
     fax: "092-719-0338",
     officialStorePage: "https://green-pocket.biz/shop_list/fukuoka-kasuya",
@@ -83,7 +83,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     areaServed: ["福岡県糟屋郡粕屋町"],
     address: { postalCode: "811-2307", addressRegion: "福岡県", addressLocality: "糟屋郡粕屋町", streetAddress: "原町4-3-5 八昭ビル1階", addressCountry: "JP" },
     geo: { latitude: "", longitude: "" },
-    openingHours: ["Mo-Fr 09:00-17:30"]
+    openingHours: ["Mo-Su 09:00-17:00"]
   },
 
   links: {
