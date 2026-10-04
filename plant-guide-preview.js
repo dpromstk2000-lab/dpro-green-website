@@ -88,18 +88,20 @@
     $("#atlas-browser")?.scrollIntoView({behavior:"smooth",block:"start"});
   }
   const chips=(values)=>`<div class="atlas-detail__chips">${(values||[]).map(v=>`<span class="atlas-detail__chip">${esc(v)}</span>`).join("")}</div>`;
+  const hasValue=(v)=>v!==null&&v!==undefined&&String(v).trim()!==""&&String(v).trim()!=="未設定";
   function openDetail(kind,code){
     const item=(kind==="plants"?data.plants:data.pots).find(x=>x.code===code);
     if(!item)return;
     const plant=kind==="plants";
     const extra=DETAIL_DATA[code]||{};
     const media=item.image?`<img src="${esc(item.image)}" alt="${esc(item.name)}の代表イメージ">`:`<div class="atlas-detail__placeholder">${plant?"🌿":"◯"}</div>`;
-    const meta=plant
+    const meta=(plant
       ? [["分類",item.category],["屋内外",labels.indoorOutdoor[item.indoorOutdoor]||item.indoorOutdoor],["対応サイズ",item.size]]
-      : [["種別",labels.potType[item.type]||item.type],["素材",item.material],["サイズ",item.size]];
+      : [["種別",labels.potType[item.type]||item.type],["素材",item.material],["サイズ",item.size]]
+    ).filter(([,v])=>hasValue(v));
     const lead=extra.lead || (plant
       ? "植物選びの参考用として、代表的な分類・設置条件・対応サイズを掲載しています。"
-      : "鉢・プランター選びの参考用として、種別・素材・サイズ情報を掲載しています。");
+      : "鉢・プランター選びの参考用として、分かっている商品情報を掲載しています。");
     const sections = plant
       ? `<div class="atlas-detail__sections">
           <section class="atlas-detail__section"><h3>おすすめの設置場所</h3>${extra.places?chips(extra.places):"<p>詳細情報を準備中です。</p>"}</section>
@@ -116,7 +118,7 @@
       <div class="atlas-detail__body">
         <h2>${esc(item.name)}</h2>
         <p class="atlas-detail__lead">${esc(lead)}</p>
-        <div class="atlas-detail__meta">${meta.map(([k,v])=>`<div><span>${esc(k)}</span><strong>${esc(v||"未設定")}</strong></div>`).join("")}</div>
+        ${meta.length?`<div class="atlas-detail__meta">${meta.map(([k,v])=>`<div><span>${esc(k)}</span><strong>${esc(v)}</strong></div>`).join("")}</div>`:""}
         ${sections}
         <p class="atlas-detail__notice">${item.image?"掲載画像は選びやすくするための代表イメージです。":"現在は代表画像を準備中です。"} 植物は樹形や葉ぶりに個体差があり、鉢は色味・質感・在庫状況が異なる場合があります。</p>
         <div class="atlas-detail__actions">

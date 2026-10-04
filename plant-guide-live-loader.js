@@ -1,10 +1,10 @@
 (() => {
   "use strict";
 
-  const VERSION = "ATLAS-LIVE-LOADER-R1.2-20261004";
+  const VERSION = "ATLAS-LIVE-LOADER-R1.3-20261004";
   const SUPABASE_URL = "https://jjmcavcuujkcwifuxonl.supabase.co";
   const SUPABASE_KEY = "sb_publishable_OtSNyipbXnlX-DcuOnCL_A_XA_1O3FP";
-  const PREVIEW_SCRIPT = "plant-guide-preview.js?v=ATLAS-R1.3-20261003";
+  const PREVIEW_SCRIPT = "plant-guide-preview.js?v=ATLAS-R1.4-20261004";
 
   function imageFor(code, current) {
     if (current) return current;
