@@ -64,8 +64,6 @@
 .hq-price-details{margin:0 0 15px;border:1px solid #dce7df;border-radius:13px;background:#f8fbf9;overflow:hidden}
 .hq-price-details summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 13px;color:#123827;font-size:11px;font-weight:900;cursor:pointer;list-style:none}
 .hq-price-details summary::-webkit-details-marker{display:none}
-.hq-price-details summary span{display:grid;place-items:center;width:24px;height:24px;border-radius:999px;background:#e7f2eb;color:#1e7a52;font-size:16px;line-height:1;transition:transform .2s ease}
-.hq-price-details[open] summary span{transform:rotate(45deg)}
 .hq-price-details__body{padding:0 13px 12px;border-top:1px solid #e2ebe5}
 .hq-price-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center;padding:9px 0;border-bottom:1px solid #e8efea}
 .hq-price-row:last-of-type{border-bottom:0}
@@ -196,6 +194,62 @@
 @media(max-width:650px){
   .hq-price-toggle{
     font-size:13px!important;
+    white-space:normal;
+  }
+}
+
+
+/* R2.4 price-toggle bugfix / 2026-10-05
+   Text labels must never inherit the legacy round-icon sizing. */
+.hq-price-details summary .hq-price-toggle{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  place-items:unset!important;
+  width:auto!important;
+  height:auto!important;
+  min-width:0!important;
+  min-height:36px!important;
+  transform:none!important;
+  white-space:nowrap;
+}
+.hq-price-details summary .hq-price-toggle__closed,
+.hq-price-details summary .hq-price-toggle__open{
+  width:auto!important;
+  height:auto!important;
+  min-width:0!important;
+  min-height:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:inherit!important;
+  font-size:inherit!important;
+  font-weight:inherit!important;
+  line-height:inherit!important;
+  letter-spacing:inherit!important;
+  transform:none!important;
+  transition:none!important;
+  place-items:unset!important;
+}
+.hq-price-details summary .hq-price-toggle__closed{
+  display:inline!important;
+}
+.hq-price-details summary .hq-price-toggle__open{
+  display:none!important;
+}
+.hq-price-details[open] summary .hq-price-toggle__closed{
+  display:none!important;
+}
+.hq-price-details[open] summary .hq-price-toggle__open{
+  display:inline!important;
+}
+.hq-price-details summary .hq-price-toggle__icon{
+  transform:none!important;
+}
+
+@media(max-width:650px){
+  .hq-price-details summary .hq-price-toggle{
     white-space:normal;
   }
 }

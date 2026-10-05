@@ -274,7 +274,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
 
 (() => {
   "use strict";
-  const version = "GREEN-ORIGINAL-MASTER-R2.3-OBVIOUS-PRICE-TOGGLE-20261005";
+  const version = "GREEN-ORIGINAL-MASTER-R2.4-PRICE-TOGGLE-BUGFIX-20261005";
   if (!/\/original\.html$/.test(location.pathname)) return;
   if (!document.querySelector('link[data-green-original-master]')) {
     const link = document.createElement("link");
