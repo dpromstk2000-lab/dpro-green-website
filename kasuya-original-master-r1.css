@@ -76,3 +76,52 @@
   .hq-price-row{grid-template-columns:1fr}
   .hq-price-row strong{font-size:13px}
 }
+
+
+/* R2.2 final readability polish / 2026-10-05 */
+.hq-photo-card__body>p{
+  font-size:14px;
+  line-height:1.85;
+}
+.hq-photo-card__size{
+  grid-template-columns:58px 1fr;
+  gap:11px;
+  padding:11px 0;
+}
+.hq-photo-card__size span{
+  font-size:11px;
+  line-height:1.55;
+}
+.hq-photo-card__size strong{
+  font-size:13px;
+  line-height:1.65;
+}
+.hq-price-details summary{
+  padding:12px 14px;
+  font-size:12.5px;
+  line-height:1.5;
+}
+.hq-price-row{
+  padding:10px 0;
+}
+.hq-price-row span{
+  font-size:12px;
+  line-height:1.6;
+}
+.hq-price-row strong{
+  font-size:13px;
+}
+.hq-price-details__body>small,
+.hq-photo-card__note{
+  font-size:10px;
+  line-height:1.7;
+}
+
+@media(max-width:650px){
+  .hq-photo-card__body>p{font-size:14px}
+  .hq-photo-card__size span{font-size:11px}
+  .hq-photo-card__size strong{font-size:13px}
+  .hq-price-details summary{font-size:12.5px}
+  .hq-price-row span{font-size:12px}
+  .hq-price-row strong{font-size:13.5px}
+}
