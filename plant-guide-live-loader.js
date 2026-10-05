@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "ATLAS-LIVE-LOADER-R1.5-IMAGE-SCALE-20261005";
+  const VERSION = "ATLAS-LIVE-LOADER-R1.6-POSITION-FIX-20261005";
   const SUPABASE_URL = "https://jjmcavcuujkcwifuxonl.supabase.co";
   const SUPABASE_KEY = "sb_publishable_OtSNyipbXnlX-DcuOnCL_A_XA_1O3FP";
   const PREVIEW_SCRIPT = "plant-guide-preview.js?v=ATLAS-R1.4-20261004";
@@ -23,7 +23,13 @@
       material: item.material === "未設定" ? null : item.material,
       size: item.size === "未設定" ? null : item.size,
       image: imageFor(item.code, item.image),
-      imageScale: Number.isFinite(Number(item.imageScale)) ? Number(item.imageScale) : 1
+      imageScale: Number.isFinite(Number(item.imageScale)) ? Number(item.imageScale) : 1,
+      imageCardFit: item.imageCardFit === "contain" ? "contain" : "cover",
+      imageShiftX: Number.isFinite(Number(item.imageShiftX)) ? Number(item.imageShiftX) : 0,
+      imageShiftY: Number.isFinite(Number(item.imageShiftY)) ? Number(item.imageShiftY) : 0,
+      detailImageScale: Number.isFinite(Number(item.detailImageScale)) ? Number(item.detailImageScale) : 1,
+      detailImageShiftX: Number.isFinite(Number(item.detailImageShiftX)) ? Number(item.detailImageShiftX) : 0,
+      detailImageShiftY: Number.isFinite(Number(item.detailImageShiftY)) ? Number(item.detailImageShiftY) : 0
     }));
   }
 
@@ -64,35 +70,85 @@
     document.head.append(style);
   }
 
-  function applyPlantCardImageScale(plants) {
+  function applyPlantImageTuning(plants) {
+    document.querySelector('style[data-atlas-plant-tuning]')?.remove();
     document.querySelector('style[data-atlas-plant-scale]')?.remove();
 
-    const rules = (plants || []).flatMap((item) => {
-      const code = String(item?.code || "").trim();
-      const rawScale = Number(item?.imageScale);
-      if (!/^SP-(?:GP-\d{4}|PACHIRA-\d{3})$/.test(code)) return [];
-      if (!Number.isFinite(rawScale) || rawScale <= 1.001) return [];
+    const clamp = (v, min, max, fallback) => {
+      const n = Number(v);
+      return Number.isFinite(n) ? Math.min(max, Math.max(min, n)) : fallback;
+    };
 
-      const scale = Math.min(1.4, Math.max(1, rawScale));
-      return [
-        `.atlas-card[data-kind="plants"][data-code="${code}"] .atlas-card__media img {`,
-        `  transform: scale(${scale.toFixed(2)});`,
-        `  transform-origin: center center;`,
-        `}`
-      ];
-    });
+    const rules = [];
+    for (const item of plants || []) {
+      const code = String(item?.code || "").trim();
+      if (!/^SP-(?:GP-\d{4}|PACHIRA-\d{3})$/.test(code)) continue;
+
+      const scale = clamp(item.imageScale, .85, 1.4, 1);
+      const shiftX = clamp(item.imageShiftX, -18, 18, 0);
+      const shiftY = clamp(item.imageShiftY, -18, 18, 0);
+      const fit = item.imageCardFit === "contain" ? "contain" : "cover";
+
+      if (fit !== "cover" || Math.abs(scale - 1) > .001 || shiftX || shiftY) {
+        rules.push(
+          `.atlas-card[data-kind="plants"][data-code="${code}"] .atlas-card__media img {`,
+          `  object-fit: ${fit};`,
+          `  transform: translate(${shiftX.toFixed(2)}%, ${shiftY.toFixed(2)}%) scale(${scale.toFixed(2)});`,
+          `  transform-origin: center center;`,
+          fit === "contain" ? `  background: #f7f7f2;` : "",
+          `}`
+        );
+      }
+    }
 
     if (!rules.length) return;
 
     const style = document.createElement("style");
-    style.dataset.atlasPlantScale = VERSION;
+    style.dataset.atlasPlantTuning = VERSION;
     style.textContent = `
       .atlas-card[data-kind="plants"] .atlas-card__media img {
         transition: transform .18s ease;
+        transform-origin: center center;
       }
-      ${rules.join("\n")}
+      ${rules.filter(Boolean).join("\n")}
     `;
     document.head.append(style);
+  }
+
+  function installDetailImageTuning(plants) {
+    const dialog = document.querySelector("#atlas-dialog");
+    if (!dialog || dialog.dataset.atlasDetailTuning === VERSION) return;
+    dialog.dataset.atlasDetailTuning = VERSION;
+
+    const byName = new Map((plants || []).map((item) => [String(item?.name || "").trim(), item]));
+    const clamp = (v, min, max, fallback) => {
+      const n = Number(v);
+      return Number.isFinite(n) ? Math.min(max, Math.max(min, n)) : fallback;
+    };
+
+    const apply = () => {
+      const title = dialog.querySelector(".atlas-detail__body h2")?.textContent?.trim();
+      const img = dialog.querySelector(".atlas-detail__media img");
+      if (!title || !img) return;
+
+      const item = byName.get(title);
+      if (!item) return;
+
+      const scale = clamp(item.detailImageScale, .85, 1.2, 1);
+      const shiftX = clamp(item.detailImageShiftX, -18, 18, 0);
+      const shiftY = clamp(item.detailImageShiftY, -18, 18, 0);
+
+      img.style.objectFit = "contain";
+      img.style.objectPosition = "center center";
+      img.style.transformOrigin = "center center";
+      img.style.transform = `translate(${shiftX.toFixed(2)}%, ${shiftY.toFixed(2)}%) scale(${scale.toFixed(2)})`;
+      img.style.transition = "transform .18s ease";
+    };
+
+    const observer = new MutationObserver(apply);
+    observer.observe(dialog, { childList: true, subtree: true });
+    dialog.addEventListener("toggle", apply);
+    apply();
   }
 
   function loadPreviewScript() {
@@ -155,7 +211,8 @@
     window.DPRO_GREEN_ATLAS_RUNTIME_SOURCE = source;
     document.documentElement.dataset.atlasDataSource = source;
     applyPotCardImageFit();
-    applyPlantCardImageScale(data.plants);
+    applyPlantImageTuning(data.plants);
+    installDetailImageTuning(data.plants);
     loadPreviewScript();
   }
 
