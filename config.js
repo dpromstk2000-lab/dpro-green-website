@@ -271,3 +271,23 @@ window.GREEN_WEB_CONFIG = Object.freeze({
   link.dataset.greenMobileViewportFit = version;
   document.head.appendChild(link);
 })();
+
+(() => {
+  "use strict";
+  const version = "GREEN-ORIGINAL-MASTER-R1.0-20261005";
+  if (!/\/original\.html$/.test(location.pathname)) return;
+  if (!document.querySelector('link[data-green-original-master]')) {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = `kasuya-original-master-r1.css?v=${encodeURIComponent(version)}`;
+    link.dataset.greenOriginalMaster = version;
+    document.head.appendChild(link);
+  }
+  if (!document.querySelector('script[data-green-original-master]')) {
+    const script = document.createElement("script");
+    script.src = `kasuya-original-master-r1.js?v=${encodeURIComponent(version)}`;
+    script.defer = true;
+    script.dataset.greenOriginalMaster = version;
+    document.head.appendChild(script);
+  }
+})();
