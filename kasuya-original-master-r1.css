@@ -1,4 +1,4 @@
-/* DPRO GREEN KASUYA — HQ ORIGINAL PHOTO CATALOG R2.0 / 2026-10-05 */
+/* DPRO GREEN KASUYA — HQ ORIGINAL PHOTO CATALOG R2.1 / 2026-10-05 */
 .hq-photo-tools{margin:28px 0 18px}
 .hq-photo-source{display:flex;gap:13px;align-items:flex-start;padding:15px 17px;border:1px solid #d9e5dc;border-radius:16px;background:#f5f9f6}
 .hq-photo-source strong{flex:0 0 auto;color:#1d5a3d;font-size:11px}
@@ -55,4 +55,24 @@
   .hq-photo-card__price small{grid-column:1/-1}
   .hq-photo-card__price strong{font-size:26px}
   .hq-photo-card__actions{grid-template-columns:1fr}
+}
+
+
+/* R2.1 price drill-down + image fit */
+.hq-photo-card__image--contain{background:#f7faf7;padding:10px}
+.hq-photo-card__image--contain img{object-fit:contain!important;background:#fff}
+.hq-price-details{margin:0 0 15px;border:1px solid #dce7df;border-radius:13px;background:#f8fbf9;overflow:hidden}
+.hq-price-details summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 13px;color:#123827;font-size:11px;font-weight:900;cursor:pointer;list-style:none}
+.hq-price-details summary::-webkit-details-marker{display:none}
+.hq-price-details summary span{display:grid;place-items:center;width:24px;height:24px;border-radius:999px;background:#e7f2eb;color:#1e7a52;font-size:16px;line-height:1;transition:transform .2s ease}
+.hq-price-details[open] summary span{transform:rotate(45deg)}
+.hq-price-details__body{padding:0 13px 12px;border-top:1px solid #e2ebe5}
+.hq-price-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center;padding:9px 0;border-bottom:1px solid #e8efea}
+.hq-price-row:last-of-type{border-bottom:0}
+.hq-price-row span{color:#5f7067;font-size:11px;line-height:1.5}
+.hq-price-row strong{color:#123827;font-size:12px;white-space:nowrap}
+.hq-price-details__body>small{display:block;margin-top:9px;color:#7d7048;font-size:9px;line-height:1.65}
+@media(max-width:650px){
+  .hq-price-row{grid-template-columns:1fr}
+  .hq-price-row strong{font-size:13px}
 }
