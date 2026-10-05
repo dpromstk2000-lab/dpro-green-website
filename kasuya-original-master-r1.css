@@ -1,15 +1,58 @@
-/* DPRO GREEN KASUYA — HQ ORIGINAL MASTER R1.0 / 2026-10-05 */
-.hq-original-master{margin-top:46px;padding-top:46px;border-top:1px solid #d9e5dc}
-.hq-original-master__head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:34px;align-items:end}
-.hq-original-master__head h2{margin:4px 0 0;font-size:clamp(34px,4vw,54px);line-height:1.14;letter-spacing:-.04em;color:#123827}
-.hq-original-master__head h2+p{max-width:760px;margin:14px 0 0;color:#617168;line-height:1.9}
-.hq-original-master__summary{min-width:190px;padding:22px;border-radius:22px;background:#123827;color:#fff;text-align:center}
-.hq-original-master__summary strong{display:block;color:#d6ef68;font-size:44px;line-height:1}.hq-original-master__summary span{display:block;margin-top:8px;font-size:9px;font-weight:900;letter-spacing:.14em}.hq-original-master__summary small{display:block;margin-top:7px;color:#c8d7ce;font-size:9px}
-.hq-original-master__source{display:flex;gap:13px;align-items:flex-start;margin-top:24px;padding:15px 17px;border:1px solid #d9e5dc;border-radius:16px;background:#f5f9f6}.hq-original-master__source strong{flex:0 0 auto;color:#1d5a3d;font-size:11px}.hq-original-master__source span{color:#617168;font-size:12px;line-height:1.7}
-.hq-original-tools{display:grid;grid-template-columns:minmax(240px,.8fr) minmax(0,1.2fr);gap:18px;margin-top:28px;align-items:end}.hq-original-search{display:grid;gap:7px}.hq-original-search span{font-size:11px;font-weight:900;color:#123827}.hq-original-search input{width:100%;min-height:46px;border:1px solid #cddbd2;border-radius:13px;padding:0 14px;background:#fff;font:inherit;color:#123827;outline:none}.hq-original-search input:focus{border-color:#69a17f;box-shadow:0 0 0 4px rgba(31,107,79,.08)}
-.hq-original-filters{display:flex;flex-wrap:wrap;gap:7px}.hq-original-filters button{border:1px solid #d3e0d7;border-radius:999px;background:#fff;color:#42564a;padding:9px 12px;font:inherit;font-size:10px;font-weight:900;cursor:pointer}.hq-original-filters button.is-active{border-color:#123827;background:#123827;color:#fff}
-.hq-original-result{display:flex;align-items:baseline;gap:7px;margin:18px 0 10px;color:#607067}.hq-original-result strong{font-size:24px;color:#123827}.hq-original-result span{font-size:11px}
-.hq-original-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.hq-product-card{display:flex;min-width:0;flex-direction:column;padding:22px;border:1px solid #dbe6df;border-radius:20px;background:#fff;box-shadow:0 12px 34px rgba(18,56,39,.055)}.hq-product-card[hidden]{display:none!important}.hq-product-card__top{display:flex;justify-content:space-between;gap:8px;align-items:center}.hq-product-card__top span,.hq-product-card__top b{display:inline-flex;padding:5px 8px;border-radius:999px;font-size:8.5px;font-weight:900;letter-spacing:.06em}.hq-product-card__top span{background:#eef5f0;color:#1d5a3d}.hq-product-card__top b{background:#123827;color:#d6ef68}.hq-product-card h3{margin:15px 0 7px;color:#123827;font-size:20px;line-height:1.4}.hq-product-card>p{margin:0;min-height:4.6em;color:#617168;font-size:12px;line-height:1.75}.hq-product-card dl{margin:17px 0 0;border-top:1px solid #e6eee8}.hq-product-card dl>div{display:grid;grid-template-columns:54px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid #e6eee8}.hq-product-card dt{color:#74827a;font-size:10px}.hq-product-card dd{margin:0;color:#123827;font-size:12px;font-weight:900}.hq-product-card dd small{margin-left:5px;color:#74827a;font-size:8px;font-weight:700}.hq-product-card__note{display:block;margin-top:10px;color:#8a5a00;font-size:9px;line-height:1.6}.hq-product-card__actions{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:auto;padding-top:17px}.hq-product-card__actions a{display:grid;place-items:center;min-height:40px;border:1px solid #cad9d0;border-radius:10px;color:#123827;font-size:10px;font-weight:900;text-align:center}.hq-product-card__actions a:last-child{border-color:#1e7a52;background:#1e7a52;color:#fff}
-.hq-original-footnote{margin-top:14px;color:#738078;font-size:10px;line-height:1.7}.hq-original-cta{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center;margin-top:34px;padding:28px;border-radius:24px;background:#0d2b1d;color:#fff}.hq-original-cta span{color:#d6ef68;font-size:9px;font-weight:900;letter-spacing:.15em}.hq-original-cta strong{display:block;margin-top:6px;font-size:22px}.hq-original-cta p{margin:8px 0 0;color:#d4e1d9;font-size:12px}.hq-original-cta>div:last-child{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-@media(max-width:1020px){.hq-original-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hq-original-tools{grid-template-columns:1fr}.hq-original-master__head{grid-template-columns:1fr}.hq-original-master__summary{justify-self:start}.hq-original-cta{grid-template-columns:1fr}.hq-original-cta>div:last-child{justify-content:flex-start}}
-@media(max-width:650px){.hq-original-master{margin-top:34px;padding-top:34px}.hq-original-master__summary{width:100%}.hq-original-master__source{flex-direction:column}.hq-original-grid{grid-template-columns:1fr}.hq-product-card{padding:19px}.hq-product-card>p{min-height:auto}.hq-product-card__actions{grid-template-columns:1fr}.hq-original-cta{padding:23px}.hq-original-cta>div:last-child{display:grid}.hq-original-cta .btn{width:100%}}
+/* DPRO GREEN KASUYA — HQ ORIGINAL PHOTO CATALOG R2.0 / 2026-10-05 */
+.hq-photo-tools{margin:28px 0 18px}
+.hq-photo-source{display:flex;gap:13px;align-items:flex-start;padding:15px 17px;border:1px solid #d9e5dc;border-radius:16px;background:#f5f9f6}
+.hq-photo-source strong{flex:0 0 auto;color:#1d5a3d;font-size:11px}
+.hq-photo-source span{color:#617168;font-size:12px;line-height:1.75}
+.hq-photo-tools__row{display:grid;grid-template-columns:minmax(260px,.8fr) minmax(0,1.2fr);gap:18px;margin-top:18px;align-items:end}
+.hq-photo-search{display:grid;gap:7px}.hq-photo-search span{font-size:11px;font-weight:900;color:#123827}
+.hq-photo-search input{width:100%;min-height:48px;border:1px solid #cddbd2;border-radius:13px;padding:0 14px;background:#fff;font:inherit;color:#123827;outline:none}
+.hq-photo-search input:focus{border-color:#69a17f;box-shadow:0 0 0 4px rgba(31,107,79,.08)}
+.hq-photo-filters{display:flex;flex-wrap:wrap;gap:7px}
+.hq-photo-filters button{border:1px solid #d3e0d7;border-radius:999px;background:#fff;color:#42564a;padding:10px 13px;font:inherit;font-size:11px;font-weight:900;cursor:pointer}
+.hq-photo-filters button.is-active{border-color:#123827;background:#123827;color:#fff}
+.hq-photo-result{display:flex;align-items:baseline;gap:7px;margin-top:15px;color:#607067}
+.hq-photo-result strong{font-size:26px;color:#123827}.hq-photo-result span{font-size:12px}
+
+.original-catalog-grid.original-catalog-grid--photo22{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:22px!important;
+}
+.hq-photo-card{display:flex;min-width:0;flex-direction:column;overflow:hidden;border:1px solid #d9e5dc;border-radius:24px;background:#fff;text-decoration:none;box-shadow:0 14px 38px rgba(14,54,36,.07)}
+.hq-photo-card[hidden]{display:none!important}
+.hq-photo-card__image{position:relative;display:block;aspect-ratio:16/10;overflow:hidden;background:#eef3ef}
+.hq-photo-card__image img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+.hq-photo-card:hover .hq-photo-card__image img{transform:scale(1.025)}
+.hq-photo-card__fallback{display:none;position:absolute;inset:0;place-items:center;padding:24px;text-align:center;color:#123827;font-weight:900;background:linear-gradient(135deg,#eef5f0,#f9fbf9)}
+.hq-photo-card__image.is-error .hq-photo-card__fallback{display:grid}
+.hq-photo-card__body{display:flex;flex:1;flex-direction:column;padding:24px 25px 25px}
+.hq-photo-card__labels{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.hq-photo-card__labels span,.hq-photo-card__labels b{display:inline-flex;padding:6px 9px;border-radius:999px;font-size:9px;font-weight:900;letter-spacing:.06em}
+.hq-photo-card__labels span{background:#eef5f0;color:#1d5a3d}.hq-photo-card__labels b{background:#123827;color:#d6ef68}
+.hq-photo-card h3{margin:15px 0 0;color:#123827;font-size:clamp(22px,2vw,28px);line-height:1.35;letter-spacing:-.025em}
+.hq-photo-card__price{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:end;margin:16px 0;padding:16px 0;border-top:1px solid #e6eee8;border-bottom:1px solid #e6eee8}
+.hq-photo-card__price small{font-size:10px;color:#718078;font-weight:800}
+.hq-photo-card__price strong{color:#123827;font-size:clamp(22px,2.3vw,30px);line-height:1.1;letter-spacing:-.035em}
+.hq-photo-card__price span{font-size:9px;color:#718078;font-weight:800}
+.hq-photo-card__body>p{margin:0;color:#617168;font-size:13px;line-height:1.8}
+.hq-photo-card__size{display:grid;grid-template-columns:52px 1fr;gap:10px;margin-top:15px;padding:10px 0;border-top:1px solid #eef3ef}
+.hq-photo-card__size span{color:#74827a;font-size:10px}.hq-photo-card__size strong{color:#123827;font-size:12px;line-height:1.55}
+.hq-photo-card__note{display:block;margin-top:9px;color:#8a5a00;font-size:9px;line-height:1.6}
+.hq-photo-card__actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto;padding-top:18px}
+.hq-photo-card__actions a{display:grid;place-items:center;min-height:44px;border:1px solid #cad9d0;border-radius:11px;color:#123827;font-size:11px;font-weight:900;text-align:center}
+.hq-photo-card__actions a:last-child{border-color:#1e7a52;background:#1e7a52;color:#fff}
+.all-lineup[hidden]{display:none!important}
+
+@media(max-width:900px){
+  .hq-photo-tools__row{grid-template-columns:1fr}
+  .original-catalog-grid.original-catalog-grid--photo22{grid-template-columns:1fr!important}
+}
+@media(max-width:650px){
+  .hq-photo-source{flex-direction:column}
+  .hq-photo-card__body{padding:20px}
+  .hq-photo-card h3{font-size:22px}
+  .hq-photo-card__price{grid-template-columns:1fr auto}
+  .hq-photo-card__price small{grid-column:1/-1}
+  .hq-photo-card__price strong{font-size:26px}
+  .hq-photo-card__actions{grid-template-columns:1fr}
+}
