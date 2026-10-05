@@ -179,8 +179,8 @@ window.GREEN_WEB_CONFIG = Object.freeze({
 (() => {
   "use strict";
   const standalone = document.querySelector('meta[name="dpro-green-shop-standalone"]');
-  const version = "GREEN-SHOP-PUBLIC-PROD-R3.1-OFFSTATE-20261005";
-  const detailVersion = "GREEN-SHOP-PUBLIC-DETAIL-V3D2-OFFSTATE-20261005";
+  const version = "GREEN-SHOP-PUBLIC-PROD-R3.2-CASH-READY-20261005";
+  const detailVersion = "GREEN-SHOP-PUBLIC-DETAIL-V3D3-CASH-READY-20261005";
   const experienceVersion = "GREEN-SHOP-PUBLIC-V3E2.2-LINE-HANDOFF-20260927";
 
   if (standalone) {

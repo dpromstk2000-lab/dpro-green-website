@@ -1,9 +1,9 @@
 (() => {
   "use strict";
 
-  const VERSION = "GREEN-SHOP-PUBLIC-PROD-R3.1-OFFSTATE-20261005";
-  if (window.__DPRO_GREEN_SHOP_RUNTIME_R31__) return;
-  window.__DPRO_GREEN_SHOP_RUNTIME_R31__ = VERSION;
+  const VERSION = "GREEN-SHOP-PUBLIC-PROD-R3.2-CASH-READY-20261005";
+  if (window.__DPRO_GREEN_SHOP_RUNTIME_R32__) return;
+  window.__DPRO_GREEN_SHOP_RUNTIME_R32__ = VERSION;
   // Compatibility guard: if an older cached loader tries to execute after R3.1, stop it.
   window.__DPRO_GREEN_SHOP_RUNTIME_R30__ = VERSION;
 
@@ -230,18 +230,18 @@
       } else if (!open) {
         bar.textContent = "ONLINE SHOP｜現在準備中です。商品・在庫の確認や入れ替えを行っています。";
       } else {
-        bar.textContent = "ONLINE SHOP｜商品・在庫は本番データと同期しています。現在は注文受付後に決済方法をご案内します。";
+        bar.textContent = "ONLINE SHOP｜商品・在庫は本番データと同期しています。現在のお支払い方法は現金です。";
       }
     }
 
     polishDisabledPanel();
 
     const strong = $(".square-box strong");
-    if (strong) strong.textContent = "注文受付（決済前）";
+    if (strong) strong.textContent = "お支払い方法：現金";
 
     const small = $(".square-box small");
     if (small) {
-      small.textContent = "Square実決済は準備中です。送信後は注文受付として登録し、決済方法は店舗からご案内します。";
+      small.textContent = "現在は現金払いで受け付けています。Squareカード決済は準備中です。";
     }
 
     const submit = $('#checkout-form button[type="submit"][data-shop-feature="square"]');
@@ -253,16 +253,16 @@
       if (!el.matches(".trust div")) return;
       const b = $("b", el);
       const sp = $("span", el);
-      if (b) b.textContent = "注文受付";
-      if (sp) sp.textContent = "決済方法は後ほどご案内";
+      if (b) b.textContent = "現金払い";
+      if (sp) sp.textContent = "Squareは準備中";
     });
 
     const connected = $(".connected [data-shop-feature='square']");
     if (connected) {
       const h = $("h3", connected);
       const p = $("p", connected);
-      if (h) h.textContent = "受付・決済案内";
-      if (p) p.textContent = "注文受付後、店舗から決済方法をご案内します。";
+      if (h) h.textContent = "現金でお支払い";
+      if (p) p.textContent = "現在は現金払いで受け付けています。Squareカード決済は準備中です。";
     }
 
     if (document.body) document.body.dataset.greenShopRuntime = VERSION;
@@ -407,7 +407,7 @@
           address,
           contactMethod: String(fd.get("contactMethod") || "LINE")
         },
-        note: String(fd.get("note") || ""),
+        note: `[支払方法：現金] ${String(fd.get("note") || "")}`.trim().slice(0, 3000),
         items
       });
 
@@ -422,7 +422,7 @@
             <div class="eyebrow">ORDER RECEIVED</div>
             <h2>注文を受け付けました</h2>
             <p>注文番号 <strong>${orderNumber}</strong></p>
-            <p>現在は決済前です。店舗から決済方法・在庫確定についてご案内します。</p>
+            <p>お支払い方法は現金です。商品・在庫の最終確認後、店舗から受取方法をご案内します。</p>
             <div class="hero-actions" style="justify-content:center">
               <a class="btn primary" href="index.html">公式HPへ戻る</a>
               <a class="btn line" href="line.html">LINEで相談</a>

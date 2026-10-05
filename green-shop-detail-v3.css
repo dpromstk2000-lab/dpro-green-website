@@ -415,3 +415,38 @@ html[data-green-shop-state="error"] #shop-main::before {
   }
 }
 
+/* DPRO GREEN SHOP R3.2 / paused-page viewport fit / 2026-10-05 */
+html[data-green-shop-state="closed"] body,
+html[data-green-shop-state="error"] body {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+html[data-green-shop-state="closed"] #shop-main,
+html[data-green-shop-state="error"] #shop-main {
+  flex: 1 0 auto;
+  display: grid;
+  align-items: center;
+}
+
+html[data-green-shop-state="closed"] .foot,
+html[data-green-shop-state="error"] .foot {
+  margin-top: auto;
+}
+
+html[data-green-shop-state="closed"] [data-shop-disabled]:not([hidden]),
+html[data-green-shop-state="error"] [data-shop-disabled]:not([hidden]) {
+  width: min(760px, calc(100% - 32px));
+  margin-top: 48px;
+  margin-bottom: 48px;
+}
+
+@media (max-width: 620px) {
+  html[data-green-shop-state="closed"] [data-shop-disabled]:not([hidden]),
+  html[data-green-shop-state="error"] [data-shop-disabled]:not([hidden]) {
+    width: auto;
+    margin: 28px 16px;
+  }
+}
+
