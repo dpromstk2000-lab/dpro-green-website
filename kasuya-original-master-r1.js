@@ -1,7 +1,7 @@
 /* DPRO GREEN KASUYA — HQ ORIGINAL PHOTO CATALOG R2.1 / 2026-10-05 */
 (() => {
   "use strict";
-  const VERSION = "GREEN-ORIGINAL-MASTER-R2.1-PRICEDETAILS-20261005";
+  const VERSION = "GREEN-ORIGINAL-MASTER-R2.3-OBVIOUS-PRICE-TOGGLE-20261005";
   if (!/\/original\.html$/.test(location.pathname)) return;
   if (window.__DPRO_GREEN_ORIGINAL_PHOTO22__) return;
   window.__DPRO_GREEN_ORIGINAL_PHOTO22__ = VERSION;
@@ -16,7 +16,13 @@
       <div class="hq-price-row"><span>${esc(x.label)}</span><strong>${esc(x.price)}</strong></div>`).join("");
     const note = p.priceDetailNote ? `<small>${esc(p.priceDetailNote)}</small>` : "";
     return `<details class="hq-price-details">
-      <summary>料金内訳を見る <span aria-hidden="true">＋</span></summary>
+      <summary>
+        <span class="hq-price-toggle">
+          <span class="hq-price-toggle__closed">サイズ・仕様別の料金を見る</span>
+          <span class="hq-price-toggle__open">料金内訳を閉じる</span>
+          <b class="hq-price-toggle__icon" aria-hidden="true"></b>
+        </span>
+      </summary>
       <div class="hq-price-details__body">${rows}${note}</div>
     </details>`;
   }
@@ -58,7 +64,7 @@
     const countLabel = document.querySelector(".original-catalog-count span");
     if (countLabel) countLabel.textContent = "HQ ORIGINAL PRODUCTS";
     const countText = document.querySelector(".original-catalog-count p");
-    if (countText) countText.textContent = "本部共通22商品をすべて写真付きで掲載。複数料金の商品は「料金内訳を見る」でサイズ・仕様別料金まで確認できます。";
+    if (countText) countText.textContent = "本部共通22商品をすべて写真付きで掲載。複数料金の商品は「サイズ・仕様別の料金を見る」から詳しい料金を確認できます。";
 
     const heading = document.querySelector(".original-heading h2");
     if (heading) heading.innerHTML = "<span>写真と料金で、</span><span>22商品から選べる。</span>";
