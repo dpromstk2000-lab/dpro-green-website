@@ -1,8 +1,10 @@
 (() => {
   "use strict";
 
-  const VERSION = "GREEN-SHOP-PUBLIC-PROD-R3.0-20260927";
-  if (window.__DPRO_GREEN_SHOP_RUNTIME_R30__) return;
+  const VERSION = "GREEN-SHOP-PUBLIC-PROD-R3.1-OFFSTATE-20261005";
+  if (window.__DPRO_GREEN_SHOP_RUNTIME_R31__) return;
+  window.__DPRO_GREEN_SHOP_RUNTIME_R31__ = VERSION;
+  // Compatibility guard: if an older cached loader tries to execute after R3.1, stop it.
   window.__DPRO_GREEN_SHOP_RUNTIME_R30__ = VERSION;
 
   const API = "https://dpro-cl-000001-green-shop.dpromstk2000.workers.dev";
@@ -22,9 +24,12 @@
   };
   let liveProducts = [];
   let loading = null;
+  let shopState = "pending"; // pending | ready | error
 
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+
+  document.documentElement.dataset.greenShopState = "pending";
 
   function settings() {
     return {
@@ -47,6 +52,125 @@
 
   function products() {
     return liveProducts.slice();
+  }
+
+  function isShopOpen() {
+    const s = settings();
+    return Boolean(s.enabled && s.onlineShop);
+  }
+
+  function installStateGateStyle() {
+    if (document.querySelector('style[data-green-shop-state-gate]')) return;
+    const style = document.createElement("style");
+    style.dataset.greenShopStateGate = "R31";
+    style.textContent = `
+      html[data-green-shop-state="pending"] [data-stage6-shop] { display:none !important; }
+      body[data-shop-enabled="false"] .hero__rail { grid-template-columns:repeat(3,minmax(0,1fr)); }
+      body[data-shop-enabled="false"] .trust-strip__grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+      body[data-shop-enabled="false"] .choice-grid { grid-template-columns:1fr; }
+      body[data-shop-enabled="false"] .choice-grid .choice-card--rental { max-width:760px; width:100%; margin-inline:auto; }
+      @media(max-width:800px){
+        body[data-shop-enabled="false"] .hero__rail { grid-template-columns:1fr 1fr; }
+        body[data-shop-enabled="false"] .hero__rail article:nth-child(3) { grid-column:1 / -1; border-right:0; }
+        body[data-shop-enabled="false"] .trust-strip__grid { grid-template-columns:1fr 1fr; }
+        body[data-shop-enabled="false"] .trust-strip__grid > div:nth-child(3) { grid-column:1 / -1; border-right:0; }
+      }
+    `;
+    document.head.append(style);
+  }
+
+  installStateGateStyle();
+
+  function ensurePausedSection() {
+    if (document.querySelector('meta[name="dpro-green-shop-standalone"]')) return null;
+    let section = document.querySelector('[data-green-shop-paused]');
+    if (section) return section;
+    const activeShopSection = document.querySelector('.shop-showcase[data-stage6-shop]');
+    if (!activeShopSection) return null;
+
+    section = document.createElement("section");
+    section.className = "shop-showcase";
+    section.dataset.greenShopPaused = "1";
+    section.hidden = true;
+    section.innerHTML = `
+      <div aria-hidden="true" class="shop-showcase__backdrop"><img alt="" height="800" src="shop-set-natural.webp" width="1200"></div>
+      <div aria-hidden="true" class="shop-showcase__shade"></div>
+      <div class="wrap shop-showcase__inner">
+        <div class="shop-showcase__copy">
+          <p class="eyebrow eyebrow--lime">ONLINE SHOP</p>
+          <h2><span>オンラインショップは、</span><span data-green-shop-paused-title>現在準備中です。</span></h2>
+          <p data-green-shop-paused-message>商品・在庫の確認や入れ替えを行っています。準備が整い次第、こちらで注文受付を再開します。レンタルや植物選びのご相談は、LINE・WEBからいつでも受け付けています。</p>
+          <div class="shop-showcase__badges"><span>商品確認中</span><span>在庫調整</span><span>再開後に注文受付</span></div>
+          <div class="shop-showcase__actions">
+            <a class="btn btn--lime btn--large" href="line.html">LINEで植物を相談 →</a>
+            <a class="btn btn--glass btn--large" href="plant-guide.html">植物・鉢図鑑を見る</a>
+          </div>
+        </div>
+        <div class="shop-showcase__cards">
+          <article><img alt="植物と鉢の商品イメージ" height="800" src="shop-monstera-main.webp" width="1200"><span>PREPARING</span><strong>商品・在庫を確認中</strong></article>
+          <article><img alt="グリーン相談のイメージ" height="800" src="shop-gift-green.webp" width="1200"><span>CONSULTATION</span><strong>LINE相談は受付中</strong></article>
+        </div>
+      </div>`;
+    activeShopSection.insertAdjacentElement("afterend", section);
+    return section;
+  }
+
+  function applyPublicShopState() {
+    const open = shopState === "ready" && isShopOpen();
+    const resolved = shopState === "ready" || shopState === "error";
+    document.documentElement.dataset.greenShopState = shopState === "error" ? "error" : open ? "open" : shopState === "ready" ? "closed" : "pending";
+
+    if (document.body) {
+      document.body.dataset.shopEnabled = resolved ? String(open) : "pending";
+    }
+
+    $$('[data-stage6-shop]').forEach((el) => {
+      el.hidden = !open;
+    });
+
+    const paused = ensurePausedSection();
+    if (paused) {
+      paused.hidden = !resolved || open;
+      const title = $('[data-green-shop-paused-title]', paused);
+      const message = $('[data-green-shop-paused-message]', paused);
+      if (shopState === "error") {
+        if (title) title.textContent = "現在情報を確認できません。";
+        if (message) message.textContent = "オンラインショップの状態を一時的に確認できません。レンタルや植物選びのご相談は、LINE・WEBから受け付けています。";
+      } else {
+        if (title) title.textContent = "現在準備中です。";
+        if (message) message.textContent = "商品・在庫の確認や入れ替えを行っています。準備が整い次第、こちらで注文受付を再開します。レンタルや植物選びのご相談は、LINE・WEBからいつでも受け付けています。";
+      }
+    }
+
+    const purchaseBadge = $('.shop-showcase[data-stage6-shop] .shop-showcase__badges span:last-child');
+    if (purchaseBadge && open) {
+      purchaseBadge.textContent = "注文受付";
+    }
+  }
+
+  function polishDisabledPanel() {
+    const panel = $('[data-shop-disabled]');
+    if (!panel) return;
+    const title = $('h1', panel);
+    const message = $('p', panel);
+    const links = $$('a', panel);
+
+    if (shopState === "error") {
+      if (title) title.textContent = "オンラインショップ情報を確認できません";
+      if (message) message.textContent = "一時的にショップの状態を確認できません。レンタルや植物選びのご相談は、LINEから受け付けています。";
+    } else if (!isShopOpen()) {
+      if (title) title.textContent = "オンラインショップは現在準備中です";
+      if (message) message.textContent = "商品・在庫の確認や入れ替えのため、オンライン注文を一時停止しています。準備が整い次第、こちらで受付を再開します。";
+    }
+
+    if (links[0]) {
+      links[0].href = "plant-guide.html";
+      links[0].textContent = "植物・鉢図鑑を見る";
+    }
+    if (links[1]) {
+      links[1].href = "line.html";
+      links[1].textContent = "LINEで相談する";
+    }
   }
 
   function normalizePhone(value) {
@@ -89,8 +213,7 @@
 
   function applyNav() {
     $$('[data-green-shop-link]').forEach((x) => x.remove());
-    const s = settings();
-    if (!s.enabled || !s.onlineShop) return;
+    if (!isShopOpen()) return;
     addLink($(".desktop-nav"), "SHOP");
     addLink($(".mobile-menu__nav"), "ONLINE SHOP");
     addLink($(".footer-nav"), "ONLINE SHOP");
@@ -99,10 +222,19 @@
   function polish() {
     if (!document.querySelector('meta[name="dpro-green-shop-standalone"]')) return;
 
+    const open = shopState === "ready" && isShopOpen();
     const bar = $(".demo-bar");
     if (bar) {
-      bar.textContent = "ONLINE SHOP｜商品・在庫は本番データと同期しています。現在は注文受付後に決済方法をご案内します。";
+      if (shopState === "error") {
+        bar.textContent = "ONLINE SHOP｜現在ショップ情報を確認できません。LINEからご相談ください。";
+      } else if (!open) {
+        bar.textContent = "ONLINE SHOP｜現在準備中です。商品・在庫の確認や入れ替えを行っています。";
+      } else {
+        bar.textContent = "ONLINE SHOP｜商品・在庫は本番データと同期しています。現在は注文受付後に決済方法をご案内します。";
+      }
     }
+
+    polishDisabledPanel();
 
     const strong = $(".square-box strong");
     if (strong) strong.textContent = "注文受付（決済前）";
@@ -113,7 +245,9 @@
     }
 
     const submit = $('#checkout-form button[type="submit"][data-shop-feature="square"]');
-    if (submit && !submit.disabled) submit.textContent = "この内容で注文を受け付ける";
+    if (submit && !submit.disabled) {
+      submit.textContent = "この内容で注文を受け付ける";
+    }
 
     $$('[data-shop-feature="square"]').forEach((el) => {
       if (!el.matches(".trust div")) return;
@@ -131,7 +265,7 @@
       if (p) p.textContent = "注文受付後、店舗から決済方法をご案内します。";
     }
 
-    document.body.dataset.greenShopRuntime = VERSION;
+    if (document.body) document.body.dataset.greenShopRuntime = VERSION;
   }
 
   function refreshLegacyUi() {
@@ -156,6 +290,8 @@
         ]);
         liveSettings = s || liveSettings;
         liveProducts = Array.isArray(p) ? p : [];
+        shopState = "ready";
+        applyPublicShopState();
         applyNav();
         polish();
         refreshLegacyUi();
@@ -169,7 +305,11 @@
         return true;
       } catch (error) {
         console.error(VERSION, error);
-        liveSettings = {...liveSettings, enabled: false, onlineShop: false};
+        liveSettings = {...liveSettings, enabled: false, onlineShop: false, orderingEnabled: false};
+        shopState = "error";
+        applyPublicShopState();
+        applyNav();
+        polish();
         if (!silent) {
           window.dispatchEvent(new CustomEvent("dpro-green-shop-error", {
             detail: {message: error.message || "SHOP情報を読み込めませんでした。"}
@@ -214,6 +354,10 @@
     try {
       const freshSettings = await get("/api/public/settings");
       liveSettings = freshSettings || liveSettings;
+      shopState = "ready";
+      applyPublicShopState();
+      applyNav();
+      polish();
     } catch {
       alert("SHOP設定を確認できませんでした。時間をおいて再度お試しください。");
       return;
@@ -334,6 +478,7 @@
     settings,
     products,
     apply: () => {
+      applyPublicShopState();
       applyNav();
       polish();
       refreshLegacyUi();
@@ -342,12 +487,25 @@
     createOrder: (payload) => post("/api/public/orders", payload)
   });
 
+  function refreshWhenReturning(event) {
+    // Ignore the synthetic pageshow event used only to refresh the legacy renderer.
+    if (event?.type === "pageshow" && event.isTrusted === false) return;
+    if (document.hidden) return;
+    load({silent: true});
+  }
+
   function boot() {
+    installStateGateStyle();
+    ensurePausedSection();
+    applyPublicShopState();
     installAddons();
     installSubmitGuard();
     polish();
     load();
     document.documentElement.dataset.dproGreenShopRuntime = VERSION;
+    window.addEventListener("focus", refreshWhenReturning, {passive: true});
+    window.addEventListener("pageshow", refreshWhenReturning, {passive: true});
+    document.addEventListener("visibilitychange", refreshWhenReturning, {passive: true});
   }
 
   if (document.readyState === "loading") {

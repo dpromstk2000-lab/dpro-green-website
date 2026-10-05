@@ -314,3 +314,104 @@ body.shopv3d-lock {
 .product-actions .shopv3d-detail-button {
   grid-column: 1 / -1;
 }
+
+/* DPRO GREEN SHOP R3.1 / safe OFF + inventory-maintenance state / 2026-10-05 */
+html:not([data-green-shop-state]) #shop-main > :not([data-shop-disabled]),
+html[data-green-shop-state="pending"] #shop-main > :not([data-shop-disabled]) {
+  display: none !important;
+}
+
+html:not([data-green-shop-state]) [data-shop-disabled],
+html[data-green-shop-state="pending"] [data-shop-disabled] {
+  display: none !important;
+}
+
+html:not([data-green-shop-state]) #shop-main::before,
+html[data-green-shop-state="pending"] #shop-main::before {
+  content: "オンラインショップ情報を確認しています";
+  display: block;
+  max-width: 760px;
+  margin: 72px auto;
+  padding: 54px 28px;
+  border: 1px solid #dbe6df;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #eef6f0, #fbfdfb);
+  color: #173d2b;
+  text-align: center;
+  font-size: clamp(22px, 4vw, 34px);
+  font-weight: 900;
+  box-shadow: 0 18px 48px rgba(23,61,43,.08);
+}
+
+html:not([data-green-shop-state]) .cart-btn,
+html[data-green-shop-state="pending"] .cart-btn {
+  visibility: hidden !important;
+}
+
+html[data-green-shop-state="open"] #shop-main::before,
+html[data-green-shop-state="closed"] #shop-main::before,
+html[data-green-shop-state="error"] #shop-main::before {
+  content: none;
+  display: none;
+}
+
+[data-shop-disabled]:not([hidden]) {
+  max-width: 760px;
+  margin: 72px auto;
+  padding: 48px 28px;
+  border: 1px solid #dbe6df;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #eef6f0, #fbfdfb);
+  text-align: center;
+  box-shadow: 0 18px 48px rgba(23,61,43,.08);
+}
+
+[data-shop-disabled]:not([hidden]) h1 {
+  margin: 0 0 14px;
+  color: #173d2b;
+  font-size: clamp(26px, 4vw, 40px);
+}
+
+[data-shop-disabled]:not([hidden]) p {
+  margin: 0 auto 24px;
+  max-width: 620px;
+  color: #66766d;
+  line-height: 1.85;
+}
+
+[data-shop-disabled]:not([hidden]) a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  margin: 5px;
+  padding: 11px 18px;
+  border-radius: 999px;
+  border: 1px solid #cad8cf;
+  background: #fff;
+  color: #173d2b;
+  text-decoration: none;
+  font-weight: 900;
+}
+
+[data-shop-disabled]:not([hidden]) a:last-child {
+  border-color: #08b85a;
+  background: #08b85a;
+  color: #fff;
+}
+
+@media (max-width: 620px) {
+  html:not([data-green-shop-state]) #shop-main::before,
+  html[data-green-shop-state="pending"] #shop-main::before,
+  [data-shop-disabled]:not([hidden]) {
+    margin: 38px 16px;
+    padding: 38px 18px;
+  }
+
+  [data-shop-disabled]:not([hidden]) a {
+    display: flex;
+    width: 100%;
+    margin: 8px 0 0;
+  }
+}
+
