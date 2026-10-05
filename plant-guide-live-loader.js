@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const VERSION = "ATLAS-LIVE-LOADER-R1.4-20261004";
+  const VERSION = "ATLAS-LIVE-LOADER-R1.5-IMAGE-SCALE-20261005";
   const SUPABASE_URL = "https://jjmcavcuujkcwifuxonl.supabase.co";
   const SUPABASE_KEY = "sb_publishable_OtSNyipbXnlX-DcuOnCL_A_XA_1O3FP";
   const PREVIEW_SCRIPT = "plant-guide-preview.js?v=ATLAS-R1.4-20261004";
@@ -22,7 +22,8 @@
       ...item,
       material: item.material === "未設定" ? null : item.material,
       size: item.size === "未設定" ? null : item.size,
-      image: imageFor(item.code, item.image)
+      image: imageFor(item.code, item.image),
+      imageScale: Number.isFinite(Number(item.imageScale)) ? Number(item.imageScale) : 1
     }));
   }
 
@@ -59,6 +60,37 @@
         padding: 10px;
         background: #f7f5ef;
       }
+    `;
+    document.head.append(style);
+  }
+
+  function applyPlantCardImageScale(plants) {
+    document.querySelector('style[data-atlas-plant-scale]')?.remove();
+
+    const rules = (plants || []).flatMap((item) => {
+      const code = String(item?.code || "").trim();
+      const rawScale = Number(item?.imageScale);
+      if (!/^SP-(?:GP-\d{4}|PACHIRA-\d{3})$/.test(code)) return [];
+      if (!Number.isFinite(rawScale) || rawScale <= 1.001) return [];
+
+      const scale = Math.min(1.4, Math.max(1, rawScale));
+      return [
+        `.atlas-card[data-kind="plants"][data-code="${code}"] .atlas-card__media img {`,
+        `  transform: scale(${scale.toFixed(2)});`,
+        `  transform-origin: center center;`,
+        `}`
+      ];
+    });
+
+    if (!rules.length) return;
+
+    const style = document.createElement("style");
+    style.dataset.atlasPlantScale = VERSION;
+    style.textContent = `
+      .atlas-card[data-kind="plants"] .atlas-card__media img {
+        transition: transform .18s ease;
+      }
+      ${rules.join("\n")}
     `;
     document.head.append(style);
   }
@@ -123,6 +155,7 @@
     window.DPRO_GREEN_ATLAS_RUNTIME_SOURCE = source;
     document.documentElement.dataset.atlasDataSource = source;
     applyPotCardImageFit();
+    applyPlantCardImageScale(data.plants);
     loadPreviewScript();
   }
 
