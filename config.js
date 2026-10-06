@@ -292,10 +292,10 @@ window.GREEN_WEB_CONFIG = Object.freeze({
   }
 })();
 
-/* GREEN BLOG PUBLIC R1 / GREEN-BLOG-PUBLIC-R1-20261006 */
+/* GREEN BLOG PUBLIC R1 / GREEN-BLOG-PUBLIC-R1.1-FINAL-20261006 */
 (() => {
   "use strict";
-  const VERSION = "GREEN-BLOG-PUBLIC-R1-20261006";
+  const VERSION = "GREEN-BLOG-PUBLIC-R1.1-FINAL-20261006";
   if (!document.querySelector("link[data-green-blog-public-r1]")) {
     const link = document.createElement("link");
     link.rel = "stylesheet";
