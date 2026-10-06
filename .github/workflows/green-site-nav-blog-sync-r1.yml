@@ -1,0 +1,53 @@
+name: DPRO GREEN Site Nav Blog Sync R1
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sync blog links across site navigation
+        shell: python
+        env:
+          PATCH_B64: "CmZyb20gcGF0aGxpYiBpbXBvcnQgUGF0aAppbXBvcnQgcmUKCnRhcmdldHMgPSBbCiAgICAiaW5kZXguaHRtbCIsInNlcnZpY2UuaHRtbCIsInBsYW50LWd1aWRlLmh0bWwiLCJjYXNlcy5odG1sIiwiZmxvdy5odG1sIiwiYWJvdXQuaHRtbCIsImZhcS5odG1sIiwKICAgICJsaW5lLmh0bWwiLCJjb250YWN0Lmh0bWwiLCJhcmVhLmh0bWwiLCJtYWludGVuYW5jZS5odG1sIiwiY2xpbmljLmh0bWwiLCJvZmZpY2UuaHRtbCIsInN0b3JlLmh0bWwiLAogICAgIndlbGZhcmUuaHRtbCIsInByaXZhY3kuaHRtbCIsInNob3AuaHRtbCIsInRoYW5rcy5odG1sIgpdCgpkZWYgYWRkX2FmdGVyX3BsYW50KHJlZ2lvbjogc3RyLCBsYWJlbD0i44OW44Ot44KwIik6CiAgICBpZiByZS5zZWFyY2gocidocmVmPVsiXCddYmxvZ1wuaHRtbCcsIHJlZ2lvbik6CiAgICAgICAgcmV0dXJuIHJlZ2lvbgogICAgcGF0ID0gcmUuY29tcGlsZShyJyg8YVxiW14+XSpocmVmPVsiXCddcGxhbnQtZ3VpZGVcLmh0bWxbIlwnXVtePl0qPi4qPzwvYT4pJywgcmUuSXxyZS5TKQogICAgcmV0dXJuIHBhdC5zdWIocidcMTxhIGhyZWY9ImJsb2cuaHRtbCI+JytsYWJlbCtyJzwvYT4nLCByZWdpb24sIGNvdW50PTEpCgpjaGFuZ2VkID0gW10KCmZvciBuYW1lIGluIHRhcmdldHM6CiAgICBwYXRoID0gUGF0aChuYW1lKQogICAgaWYgbm90IHBhdGguZXhpc3RzKCk6CiAgICAgICAgY29udGludWUKICAgIHRleHQgPSBwYXRoLnJlYWRfdGV4dChlbmNvZGluZz0idXRmLTgiKQogICAgb3JpZ2luYWwgPSB0ZXh0CgogICAgIyAxKSBQQy9oZWFkZXIgbmF2aWdhdGlvbgogICAgaG0gPSByZS5zZWFyY2gocic8aGVhZGVyXGJbXHNcU10qPzwvaGVhZGVyPicsIHRleHQsIHJlLkkpCiAgICBpZiBobToKICAgICAgICByZWdpb24gPSBobS5ncm91cCgwKQogICAgICAgIHBhdGNoZWQgPSBhZGRfYWZ0ZXJfcGxhbnQocmVnaW9uLCAi44OW44Ot44KwIikKICAgICAgICBpZiBwYXRjaGVkICE9IHJlZ2lvbjoKICAgICAgICAgICAgdGV4dCA9IHRleHRbOmhtLnN0YXJ0KCldICsgcGF0Y2hlZCArIHRleHRbaG0uZW5kKCk6XQoKICAgICMgMikgTW9iaWxlIGRyYXdlci9tZW51IHBhbmVsIChtZW51IHBhbmVsIGJlZ2lucyBhdCBkYXRhLW1lbnUtcGFuZWwpLgogICAgIyBSZXBsYWNlIG9ubHkgdGhlIGZpcnN0IHBsYW50LWd1aWRlIGxpbmsgYWZ0ZXIgdGhlIG1vYmlsZSBwYW5lbCBtYXJrZXIuCiAgICBtYXJrZXJfcG9zID0gdGV4dC5maW5kKCJkYXRhLW1lbnUtcGFuZWwiKQogICAgaWYgbWFya2VyX3BvcyA+PSAwOgogICAgICAgIGJlZm9yZSA9IHRleHRbOm1hcmtlcl9wb3NdCiAgICAgICAgdGFpbCA9IHRleHRbbWFya2VyX3BvczpdCiAgICAgICAgIyBEbyBub3QgdHJlYXQgaGVhZGVyL2Zvb3RlciBibG9nIGxpbmtzIGFzIHByb29mIHRoYXQgdGhlIG1vYmlsZSBwYW5lbCBoYXMgb25lLgogICAgICAgIG5hdl9lbmQgPSB0YWlsLmZpbmQoIjwvbmF2PiIpCiAgICAgICAgaWYgbmF2X2VuZCA+PSAwOgogICAgICAgICAgICBtb2JpbGVfcmVnaW9uID0gdGFpbFs6bmF2X2VuZCs2XQogICAgICAgICAgICBtb2JpbGVfcmVzdCA9IHRhaWxbbmF2X2VuZCs2Ol0KICAgICAgICAgICAgcGF0Y2hlZF9tb2JpbGUgPSBhZGRfYWZ0ZXJfcGxhbnQobW9iaWxlX3JlZ2lvbiwgIuODluODreOCsCIpCiAgICAgICAgICAgIHRhaWwgPSBwYXRjaGVkX21vYmlsZSArIG1vYmlsZV9yZXN0CiAgICAgICAgICAgIHRleHQgPSBiZWZvcmUgKyB0YWlsCgogICAgIyAzKSBGb290ZXIgbmF2aWdhdGlvbgogICAgZm0gPSByZS5zZWFyY2gocic8Zm9vdGVyXGJbXHNcU10qPzwvZm9vdGVyPicsIHRleHQsIHJlLkkpCiAgICBpZiBmbToKICAgICAgICByZWdpb24gPSBmbS5ncm91cCgwKQogICAgICAgIHBhdGNoZWQgPSBhZGRfYWZ0ZXJfcGxhbnQocmVnaW9uLCAi44OW44Ot44KwIikKICAgICAgICBpZiBwYXRjaGVkICE9IHJlZ2lvbjoKICAgICAgICAgICAgdGV4dCA9IHRleHRbOmZtLnN0YXJ0KCldICsgcGF0Y2hlZCArIHRleHRbZm0uZW5kKCk6XQoKICAgIGlmIHRleHQgIT0gb3JpZ2luYWw6CiAgICAgICAgcGF0aC53cml0ZV90ZXh0KHRleHQsIGVuY29kaW5nPSJ1dGYtOCIpCiAgICAgICAgY2hhbmdlZC5hcHBlbmQobmFtZSkKCiMgVmFsaWRhdGlvbiBoZWxwZXJzCmRlZiByZWdpb25faGFzX2Jsb2codGV4dCwgcGF0dGVybik6CiAgICBtID0gcmUuc2VhcmNoKHBhdHRlcm4sIHRleHQsIHJlLkl8cmUuUykKICAgIHJldHVybiBib29sKG0gYW5kIHJlLnNlYXJjaChyJ2hyZWY9WyJcJ11ibG9nXC5odG1sJywgbS5ncm91cCgwKSwgcmUuSSkpCgojIE1vYmlsZSBtZW51IG11c3QgY29udGFpbiBibG9nIG9uIHRoZSBwYWdlcyB0aGF0IHVzZSB0aGUgRFBSTyBtb2JpbGUgZHJhd2VyLgpmb3IgbmFtZSBpbiBbImluZGV4Lmh0bWwiLCJsaW5lLmh0bWwiLCJjb250YWN0Lmh0bWwiXToKICAgIHRleHQgPSBQYXRoKG5hbWUpLnJlYWRfdGV4dChlbmNvZGluZz0idXRmLTgiKQogICAgcG9zID0gdGV4dC5maW5kKCJkYXRhLW1lbnUtcGFuZWwiKQogICAgaWYgcG9zIDwgMDoKICAgICAgICByYWlzZSBTeXN0ZW1FeGl0KGYie25hbWV9OiBtb2JpbGUgbWVudSBtYXJrZXIgbWlzc2luZyIpCiAgICB0YWlsID0gdGV4dFtwb3M6XQogICAgZW5kID0gdGFpbC5maW5kKCI8L25hdj4iKQogICAgaWYgZW5kIDwgMCBvciBub3QgcmUuc2VhcmNoKHInaHJlZj1bIlwnXWJsb2dcLmh0bWwnLCB0YWlsWzplbmQrNl0sIHJlLkkpOgogICAgICAgIHJhaXNlIFN5c3RlbUV4aXQoZiJ7bmFtZX06IGJsb2cgbWlzc2luZyBmcm9tIG1vYmlsZSBtZW51IikKCiMgSW5kZXggUEMgaGVhZGVyIGFuZCBmb290ZXIgYXJlIG1hbmRhdG9yeS4KaWR4ID0gUGF0aCgiaW5kZXguaHRtbCIpLnJlYWRfdGV4dChlbmNvZGluZz0idXRmLTgiKQppZiBub3QgcmVnaW9uX2hhc19ibG9nKGlkeCwgcic8aGVhZGVyXGJbXHNcU10qPzwvaGVhZGVyPicpOgogICAgcmFpc2UgU3lzdGVtRXhpdCgiaW5kZXguaHRtbDogYmxvZyBtaXNzaW5nIGZyb20gaGVhZGVyIikKaWYgbm90IHJlZ2lvbl9oYXNfYmxvZyhpZHgsIHInPGZvb3RlclxiW1xzXFNdKj88L2Zvb3Rlcj4nKToKICAgIHJhaXNlIFN5c3RlbUV4aXQoImluZGV4Lmh0bWw6IGJsb2cgbWlzc2luZyBmcm9tIGZvb3RlciIpCgojIEFueSB0YXJnZXQgcGFnZSB0aGF0IGhhcyBhIGZvb3RlciB3aXRoIHBsYW50IGd1aWRlIHNob3VsZCBhbHNvIGNvbnRhaW4gYmxvZyBpbiB0aGF0IGZvb3Rlci4KZm9yIG5hbWUgaW4gdGFyZ2V0czoKICAgIHBhdGg9UGF0aChuYW1lKQogICAgaWYgbm90IHBhdGguZXhpc3RzKCk6CiAgICAgICAgY29udGludWUKICAgIHRleHQ9cGF0aC5yZWFkX3RleHQoZW5jb2Rpbmc9InV0Zi04IikKICAgIGZtPXJlLnNlYXJjaChyJzxmb290ZXJcYltcc1xTXSo/PC9mb290ZXI+JywgdGV4dCwgcmUuSSkKICAgIGlmIGZtIGFuZCAicGxhbnQtZ3VpZGUuaHRtbCIgaW4gZm0uZ3JvdXAoMCk6CiAgICAgICAgaWYgbm90IHJlLnNlYXJjaChyJ2hyZWY9WyJcJ11ibG9nXC5odG1sJywgZm0uZ3JvdXAoMCksIHJlLkkpOgogICAgICAgICAgICByYWlzZSBTeXN0ZW1FeGl0KGYie25hbWV9OiBmb290ZXIgYmxvZyBzeW5jIGZhaWxlZCIpCgpwcmludCgiQ2hhbmdlZCBmaWxlczoiLCAiLCAiLmpvaW4oY2hhbmdlZCkpCg=="
+        run: |
+          import os, base64
+          code = base64.b64decode(os.environ["PATCH_B64"]).decode("utf-8")
+          exec(compile(code, "green_site_nav_blog_sync.py", "exec"))
+
+      - name: Validate
+        shell: bash
+        run: |
+          grep -q 'href="blog.html">ブログ' index.html
+          grep -q 'href="blog.html">ブログ' line.html
+          grep -q 'href="blog.html">ブログ' contact.html
+          grep -q 'href="blog.html">ブログ' service.html
+          grep -q 'href="blog.html">ブログ' plant-guide.html
+          grep -q 'href="blog.html">ブログ' cases.html
+          grep -q 'href="blog.html">ブログ' flow.html
+          grep -q 'href="blog.html">ブログ' about.html
+          grep -q 'href="blog.html">ブログ' faq.html
+
+      - name: Remove installer workflow
+        shell: bash
+        run: rm -f .github/workflows/green-site-nav-blog-sync-r1.yml
+
+      - name: Commit and push
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Sync blog links across GREEN site navigation"
+          git push
