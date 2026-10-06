@@ -291,3 +291,24 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     document.head.appendChild(script);
   }
 })();
+
+/* GREEN BLOG PUBLIC R1 / GREEN-BLOG-PUBLIC-R1-20261006 */
+(() => {
+  "use strict";
+  const VERSION = "GREEN-BLOG-PUBLIC-R1-20261006";
+  if (!document.querySelector("link[data-green-blog-public-r1]")) {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = `green-blog-public-r1.css?v=${VERSION}`;
+    link.dataset.greenBlogPublicR1 = VERSION;
+    document.head.append(link);
+  }
+  if (!document.querySelector("script[data-green-blog-public-r1]")) {
+    const script = document.createElement("script");
+    script.src = `green-blog-public-r1.js?v=${VERSION}`;
+    script.defer = true;
+    script.dataset.greenBlogPublicR1 = VERSION;
+    document.head.append(script);
+  }
+})();
+
