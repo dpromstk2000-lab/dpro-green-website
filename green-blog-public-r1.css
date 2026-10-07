@@ -67,3 +67,47 @@
   .gb-article-cta-actions{min-width:0;width:100%}
   .gb-article-cta-actions a{width:100%;box-sizing:border-box}
 }
+
+
+/* GREEN BLOG MOBILE NAVIGATION FINAL R1 */
+.gb-site-head{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);border-bottom:1px solid var(--gb-border);backdrop-filter:saturate(140%) blur(10px)}
+.gb-site-head-inner{min-height:76px;display:flex;align-items:center;gap:18px}
+.gb-site-brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--gb-dark);min-width:0}
+.gb-site-brand-mark{width:42px;height:42px;border-radius:13px;background:var(--gb-green);color:#fff;display:grid;place-items:center;font-weight:900;flex:0 0 auto}
+.gb-site-brand-copy{display:flex;flex-direction:column;min-width:0}
+.gb-site-brand-copy strong{font-size:15px;white-space:nowrap}
+.gb-site-brand-copy small{font-size:9px;letter-spacing:.08em;color:#6b7d75;margin-top:2px}
+.gb-site-desktop-nav{margin-left:auto;display:flex;align-items:center;gap:17px}
+.gb-site-desktop-nav a{color:#345147;text-decoration:none;font-size:13px;font-weight:800;white-space:nowrap}
+.gb-site-head-actions{display:flex;align-items:center;gap:8px}
+.gb-site-head-actions a{text-decoration:none;font-size:12px;font-weight:900;border-radius:999px;padding:10px 13px;white-space:nowrap}
+.gb-site-line{border:1px solid #c7dad1;color:var(--gb-green);background:#fff}
+.gb-site-contact{background:var(--gb-green);color:#fff}
+.gb-menu-button{display:none;width:46px;height:46px;border:0;border-radius:12px;background:#edf5f1;padding:11px;cursor:pointer;flex:0 0 auto}
+.gb-menu-button span{display:block;height:3px;border-radius:99px;background:#143f31;margin:4px 0}
+.gb-menu-backdrop{position:fixed;inset:0;background:rgba(11,33,25,.28);z-index:109}
+.gb-menu-panel{position:fixed;z-index:110;top:86px;right:16px;width:min(88vw,420px);max-height:calc(100dvh - 108px);overflow:auto;background:#fff;border:1px solid #d9e5df;border-radius:28px;box-shadow:0 24px 70px rgba(10,38,28,.2);padding:16px 20px 20px;opacity:0;visibility:hidden;transform:translateY(-8px);transition:.18s ease}
+.gb-menu-panel.is-open{opacity:1;visibility:visible;transform:none}
+.gb-menu-panel nav{display:flex;flex-direction:column}
+.gb-menu-panel nav a{color:#173d31;text-decoration:none;font-weight:900;font-size:20px;padding:17px 8px;border-bottom:1px solid #dfe8e3}
+.gb-menu-panel-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-top:16px}
+.gb-menu-panel-actions a{text-decoration:none;text-align:center;border-radius:999px;padding:13px 12px;font-weight:900;font-size:13px}
+.gb-menu-line{border:1px solid #bad3c7;color:var(--gb-green);background:#fff}
+.gb-menu-contact{background:var(--gb-green);color:#fff}
+.gb-menu-open{overflow:hidden}
+.gb-article-top-back{display:inline-flex;align-items:center;gap:5px;margin:0 0 22px;color:var(--gb-green);font-weight:900;text-decoration:none}
+.gb-mobile-cta{display:none}
+@media(max-width:980px){.gb-site-desktop-nav,.gb-site-head-actions{display:none}.gb-menu-button{display:block;margin-left:auto}}
+@media(max-width:640px){
+  body.gb-page{padding-bottom:68px}
+  .gb-site-head-inner{min-height:68px;padding-left:16px;padding-right:12px}
+  .gb-site-brand-mark{width:38px;height:38px;border-radius:11px}
+  .gb-site-brand-copy strong{font-size:13px;max-width:220px;overflow:hidden;text-overflow:ellipsis}
+  .gb-site-brand-copy small{font-size:8px}
+  .gb-menu-panel{top:78px;right:10px;left:10px;width:auto;max-height:calc(100dvh - 158px);border-radius:24px}
+  .gb-menu-panel nav a{font-size:18px;padding:15px 7px}
+  .gb-menu-panel-actions{grid-template-columns:1fr}
+  .gb-mobile-cta{display:grid;grid-template-columns:repeat(3,1fr) 1.25fr;position:fixed;left:0;right:0;bottom:0;z-index:105;min-height:60px;background:#fff;border-top:1px solid #d7e3dd;box-shadow:0 -8px 24px rgba(20,55,43,.08)}
+  .gb-mobile-cta a{display:flex;align-items:center;justify-content:center;text-decoration:none;color:#24483b;font-weight:900;font-size:12px;border-right:1px solid #e2ebe6}
+  .gb-mobile-cta a.gb-mobile-cta-main{background:var(--gb-green);color:#fff;border-right:0}
+}

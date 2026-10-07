@@ -1,6 +1,6 @@
 (() => {
   "use strict";
-  const VERSION="GREEN-BLOG-PUBLIC-R1.1-FINAL-20261006";
+  const VERSION="GREEN-BLOG-MOBILE-NAV-FINAL-R1-20261007";
   if(window.__GREEN_BLOG_PUBLIC_R1__===VERSION)return;window.__GREEN_BLOG_PUBLIC_R1__=VERSION;
   const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
   const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
@@ -96,6 +96,26 @@
     }
   }
   function ensureHomeSlot(){const path=(location.pathname.split('/').pop()||'index.html').toLowerCase();if(path!==''&&path!=='index.html')return;if($('[data-green-blog-home]'))return;const sec=document.createElement('section');sec.className='green-blog-home';sec.dataset.greenBlogHome='';const footer=$('footer');footer?.parentNode?.insertBefore(sec,footer);}
-  function init(){setRobots();addNavLink();ensureHomeSlot();initHome();initList();initDetail();}
+
+  function initBlogMobileNavigation(){
+    const button=$('[data-gb-menu-button]');
+    const panel=$('[data-gb-menu-panel]');
+    const backdrop=$('[data-gb-menu-backdrop]');
+    if(!button||!panel)return;
+    const setOpen=open=>{
+      button.setAttribute('aria-expanded',String(open));
+      button.setAttribute('aria-label',open?'メニューを閉じる':'メニューを開く');
+      panel.classList.toggle('is-open',open);
+      panel.setAttribute('aria-hidden',String(!open));
+      if(backdrop)backdrop.hidden=!open;
+      document.body.classList.toggle('gb-menu-open',open);
+    };
+    button.addEventListener('click',()=>setOpen(button.getAttribute('aria-expanded')!=='true'));
+    backdrop?.addEventListener('click',()=>setOpen(false));
+    panel.querySelectorAll('a,button').forEach(el=>el.addEventListener('click',()=>setOpen(false)));
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')setOpen(false);});
+  }
+
+  function init(){setRobots();addNavLink();initBlogMobileNavigation();ensureHomeSlot();initHome();initList();initDetail();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
