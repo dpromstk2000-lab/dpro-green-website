@@ -44,10 +44,13 @@
   const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const frames=[...document.querySelectorAll('.hero__frame')];
   const progress=document.querySelector('[data-hero-progress]');
-  let idx=0,timer=null;
+  const HERO_INTERVAL_MS=7500;
+  let idx=Math.max(0,frames.findIndex(frame=>frame.classList.contains('is-active'))),timer=null;
   const restartProgress=()=>{if(!progress||reduced)return;progress.classList.remove('is-running');void progress.offsetWidth;progress.classList.add('is-running');};
   const next=()=>{if(frames.length<2)return;frames[idx].classList.remove('is-active');idx=(idx+1)%frames.length;frames[idx].classList.add('is-active');restartProgress();};
-  if(frames.length>1&&!reduced){restartProgress();timer=setInterval(next,6000);document.addEventListener('visibilitychange',()=>{if(document.hidden){clearInterval(timer);timer=null;}else if(!timer){timer=setInterval(next,6000);restartProgress();}});}
+  const startHero=()=>{if(frames.length<2||reduced||timer)return;restartProgress();timer=setInterval(next,HERO_INTERVAL_MS);};
+  const stopHero=()=>{if(timer){clearInterval(timer);timer=null;}progress?.classList.remove('is-running');};
+  if(frames.length>1&&!reduced){startHero();document.addEventListener('visibilitychange',()=>{if(document.hidden)stopHero();else startHero();});}
 
   const reveal=[...document.querySelectorAll('[data-reveal]')];
   if(reduced||!('IntersectionObserver'in window)){reveal.forEach(el=>el.classList.add('is-revealed'));}
