@@ -45,10 +45,19 @@
   const frames=[...document.querySelectorAll('.hero__frame')];
   const progress=document.querySelector('[data-hero-progress]');
   const HERO_INTERVAL_MS=7500;
+  const HERO_INTRO_MS=4300;
+  const greenReveal=document.querySelector('[data-hero-green-reveal]');
+  const transformNote=document.querySelector('[data-hero-transform-note]');
   let idx=Math.max(0,frames.findIndex(frame=>frame.classList.contains('is-active'))),timer=null;
   const restartProgress=()=>{if(!progress||reduced)return;progress.classList.remove('is-running');void progress.offsetWidth;progress.classList.add('is-running');};
   const next=()=>{if(frames.length<2)return;frames[idx].classList.remove('is-active');idx=(idx+1)%frames.length;frames[idx].classList.add('is-active');restartProgress();};
   const startHero=()=>{if(frames.length<2||reduced||timer)return;restartProgress();timer=setInterval(next,HERO_INTERVAL_MS);};
+  if(!reduced){
+    window.setTimeout(()=>{
+      greenReveal?.setAttribute('data-intro-complete','true');
+      transformNote?.setAttribute('data-intro-complete','true');
+    },HERO_INTRO_MS);
+  }
   const stopHero=()=>{if(timer){clearInterval(timer);timer=null;}progress?.classList.remove('is-running');};
   if(frames.length>1&&!reduced){startHero();document.addEventListener('visibilitychange',()=>{if(document.hidden)stopHero();else startHero();});}
 
