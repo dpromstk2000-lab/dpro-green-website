@@ -59,6 +59,15 @@
     return Boolean(s.enabled && s.onlineShop);
   }
 
+  // SHOP display is based only on Owner's saved backend settings.
+  // enabled=false => hidden; enabled=true, onlineShop=false => preparing;
+  // enabled=true, onlineShop=true => published.
+  function shopDisplayMode() {
+    if (!liveSettings.enabled) return "hidden";
+    if (!liveSettings.onlineShop) return "preparing";
+    return "published";
+  }
+
   function installStateGateStyle() {
     if (document.querySelector('style[data-green-shop-state-gate]')) return;
     const style = document.createElement("style");
@@ -116,36 +125,37 @@
   }
 
   function applyPublicShopState() {
-    const open = shopState === "ready" && isShopOpen();
+    // Do not display shop links/products until the public API has resolved.
+    const mode = shopState === "ready" ? shopDisplayMode() : "hidden";
+    const open = mode === "published";
+    const preparing = mode === "preparing";
     const resolved = shopState === "ready" || shopState === "error";
-    document.documentElement.dataset.greenShopState = shopState === "error" ? "error" : open ? "open" : shopState === "ready" ? "closed" : "pending";
+    document.documentElement.dataset.greenShopState = shopState === "error" ? "error" : open ? "open" : preparing ? "preparing" : shopState === "ready" ? "hidden" : "pending";
 
     if (document.body) {
       document.body.dataset.shopEnabled = resolved ? String(open) : "pending";
     }
 
+    // Actual purchase controls are only available in published mode.
     $$('[data-stage6-shop]').forEach((el) => {
       el.hidden = !open;
     });
 
+    // Only the preparation mode shows the SHOP preparation panel on the HP.
     const paused = ensurePausedSection();
     if (paused) {
-      paused.hidden = !resolved || open;
+      paused.hidden = !preparing;
+      paused.style.display = preparing ? "" : "none";
       const title = $('[data-green-shop-paused-title]', paused);
       const message = $('[data-green-shop-paused-message]', paused);
-      if (shopState === "error") {
-        if (title) title.textContent = "現在情報を確認できません。";
-        if (message) message.textContent = "オンラインショップの状態を一時的に確認できません。レンタルや植物選びのご相談は、LINE・WEBから受け付けています。";
-      } else {
-        if (title) title.textContent = "現在準備中です。";
-        if (message) message.textContent = "商品・在庫の確認や入れ替えを行っています。準備が整い次第、こちらで注文受付を再開します。レンタルや植物選びのご相談は、LINE・WEBからいつでも受け付けています。";
+      if (preparing) {
+        if (title) title.textContent = "ONLINE SHOP は現在準備中です。";
+        if (message) message.textContent = "商品の入れ替え・在庫確認を行っています。販売再開までは、植物のご相談をLINE・WEBから承ります。";
       }
     }
 
     const purchaseBadge = $('.shop-showcase[data-stage6-shop] .shop-showcase__badges span:last-child');
-    if (purchaseBadge && open) {
-      purchaseBadge.textContent = "注文受付";
-    }
+    if (purchaseBadge && open) purchaseBadge.textContent = "注文受付";
   }
 
   function polishDisabledPanel() {
@@ -156,13 +166,15 @@
     const links = $$('a', panel);
 
     if (shopState === "error") {
-      if (title) title.textContent = "オンラインショップ情報を確認できません";
-      if (message) message.textContent = "一時的にショップの状態を確認できません。レンタルや植物選びのご相談は、LINEから受け付けています。";
-    } else if (!isShopOpen()) {
+      if (title) title.textContent = "現在ショップ情報を確認できません";
+      if (message) message.textContent = "一時的に公開状態を確認できません。お手数ですがLINEからお問い合わせください。";
+    } else if (shopState === "ready" && shopDisplayMode() === "hidden") {
+      if (title) title.textContent = "オンラインショップは現在ご案内していません";
+      if (message) message.textContent = "オンライン販売ページは現在非表示です。観葉植物レンタル・設置のご相談は引き続き承っています。";
+    } else {
       if (title) title.textContent = "オンラインショップは現在準備中です";
-      if (message) message.textContent = "商品・在庫の確認や入れ替えのため、オンライン注文を一時停止しています。準備が整い次第、こちらで受付を再開します。";
+      if (message) message.textContent = "商品の入れ替え・在庫確認を行っています。公開後に商品をご案内します。レンタル・設置のご相談はLINEから受け付けています。";
     }
-
     if (links[0]) {
       links[0].href = "plant-guide.html";
       links[0].textContent = "植物・鉢図鑑を見る";
@@ -213,7 +225,20 @@
 
   function applyNav() {
     $$('[data-green-shop-link]').forEach((x) => x.remove());
-    if (!isShopOpen()) return;
+    if (shopState !== "ready") return;
+    const mode = shopDisplayMode();
+    if (mode === "hidden") return;
+
+    // In preparing mode: show the preparation link, but keep buying UI hidden.
+    if (mode === "preparing") {
+      if (document.querySelector('meta[name="dpro-green-shop-standalone"]')) return;
+      addLink($(".site-head .nav"), "SHOP 準備中");
+      addLink($(".menu-panel nav"), "SHOP 準備中");
+      addLink($(".footer nav"), "SHOP 準備中");
+      return;
+    }
+
+    // Keep existing published-state navigation behavior intact.
     addLink($(".desktop-nav"), "SHOP");
     addLink($(".mobile-menu__nav"), "ONLINE SHOP");
     addLink($(".footer-nav"), "ONLINE SHOP");
