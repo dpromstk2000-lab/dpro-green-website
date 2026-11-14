@@ -154,7 +154,7 @@ window.GREEN_WEB_CONFIG = Object.freeze({
     show_maintenance_report_feature: true,
     show_google_map: true,
     show_headquarters_branding: true,
-    show_online_shop: true
+    show_online_shop: false
   }
 });
 
